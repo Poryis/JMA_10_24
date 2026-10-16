@@ -181,13 +181,13 @@ function GateRibbon({ ribbon, fontSize }) {
   );
 }
 
-function Building({ b, index, locked, onEnter, shout, L, entering, badge, extras, x }) {
+function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, badge, extras, x }) {
   const [shake, setShake] = useState(0);
   const lift = b.flat ? (b.lift ? 58 * b.lift : 0) : index % 3 === 1 ? 54 : index % 3 === 2 ? 22 : 0; // varied depth on the shelf
   const scale = b.flat ? 1 : index % 3 === 1 ? 0.86 : 1;
   const drop = b.drop || 0;
   const handle = () => {
-    if (locked) { setShake((s) => s + 1); say('charlie.hub.lockbadge'); return; }
+    if (locked) { setShake((s) => s + 1); say('charlie.hub.lockbadge'); if (onLocked) setTimeout(() => onLocked(b), 500); return; }
     onEnter(b);
   };
   return (
@@ -516,7 +516,7 @@ export default function CampusMapPage({ plaza = false }) {
           {!plaza && <StreetSign zone={nextZone} dir="right" onClick={() => goStreet(nextZone, 'start')} style={{ left: width - Math.round(L.bw * 0.62), bottom: floor + 4, zIndex: 11 }} />}
           {/* buildings */}
           {buildings.map((b, i) => (
-            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} extras={b.custom === 'bandstand' ? extras : null} locked={!unlocked && !b.starter} onEnter={enter} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
+            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} extras={b.custom === 'bandstand' ? extras : null} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">

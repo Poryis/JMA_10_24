@@ -217,7 +217,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
           )}
           {b.custom === 'tv'
             ? <DriveIn />
-            : <img src={b.art} alt="" draggable={false} className="relative z-[1] w-full h-full object-contain object-bottom" style={{ filter: locked && b.flat ? 'grayscale(0.9) brightness(0.8) drop-shadow(0 8px 0 rgba(2,36,63,0.35))' : 'drop-shadow(0 8px 0 rgba(2,36,63,0.35))', transition: 'filter 0.6s', transform: drop ? `translateY(${drop}%)` : undefined }} />}
+            : <img src={b.art} alt="" draggable={false} className="relative z-[1] w-full h-full object-contain object-bottom" style={{ filter: locked && b.flat ? 'grayscale(0.9) brightness(0.8) drop-shadow(0 8px 0 rgba(2,36,63,0.35))' : 'drop-shadow(0 8px 0 rgba(2,36,63,0.35))', transition: 'filter 0.6s', transform: [drop ? `translateY(${drop}%)` : '', b.flip ? 'scaleX(-1)' : ''].join(' ').trim() || undefined }} />}
           {b.sign && (
             <span data-testid={`campus-building-${b.id}-sign`} className="absolute -translate-x-1/2 -translate-y-1/2 font-black font-display whitespace-nowrap pointer-events-none"
               style={{ left: `${b.signPos.x}%`, top: `${b.signPos.y}%`, fontSize: Math.round(L.bw * b.size * (b.sign.length > 8 ? 0.055 : 0.085) * (b.signScale || 1)), color: 'var(--jma-dark)', zIndex: 5, letterSpacing: '0.04em',

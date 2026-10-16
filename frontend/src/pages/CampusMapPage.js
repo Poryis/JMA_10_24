@@ -7,7 +7,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Lock, Music, ChevronsRight, ArrowLeft, ArrowRight, X, Flame, VolumeX } from 'lucide-react';
+import { Music, ChevronsRight, ArrowLeft, ArrowRight, X, Flame, VolumeX, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import BlimpFlyby from '../components/BlimpFlyby';
 import { Bubbles, Swimmer, SandStrip, Seaweed, UW_ASSETS, UNDERWATER_WATER, FRONT_TROUGH } from '../components/UnderwaterBackdrop';
@@ -268,15 +268,15 @@ function Building({ b, index, locked, onEnter, shout, L, entering, badge, extras
               <span className="flex justify-between" style={{ width: Math.round(L.bw * b.size * 0.2) }}>
                 {[0, 1].map((n) => <span key={n} className="block" style={{ width: 3, height: Math.round(L.bw * b.size * 0.16), background: 'repeating-linear-gradient(180deg, #8A96A8 0 4px, #4B5668 4px 8px)', border: '1px solid var(--jma-dark)' }} />)}
               </span>
-              <span className="flex items-center gap-1.5 font-black font-display whitespace-nowrap rounded-md" style={{ fontSize: Math.round(L.bw * b.size * 0.075), color: '#FFF4D6', background: '#8B5A2B', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', padding: '3px 14px', letterSpacing: '0.06em', textShadow: '0 2px 0 rgba(0,0,0,0.35)' }}>
-                <Lock style={{ width: '0.9em', height: '0.9em' }} strokeWidth={3} /> CLOSED
+              <span className="flex items-center gap-1.5 font-black font-display whitespace-nowrap rounded-md" style={{ fontSize: Math.round(L.bw * b.size * 0.075), color: 'var(--jma-dark)', background: '#FFCC00', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark), inset 0 3px 0 rgba(255,255,255,0.35)', padding: '3px 14px', letterSpacing: '0.06em' }}>
+                <Sparkles style={{ width: '0.9em', height: '0.9em' }} strokeWidth={3} /> UNLOCK ME!
               </span>
             </motion.div>
           </div>
         )}
         {locked && (
           <span data-testid={`campus-building-${b.id}-lock`} className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] md:text-[10px] font-black text-white whitespace-nowrap" style={{ background: 'rgba(10,37,64,0.92)', border: '2px solid white', zIndex: 6 }}>
-            <Lock className="w-3 h-3" strokeWidth={3} /> Earn 1 badge
+            <Music className="w-3 h-3" strokeWidth={3} /> Earn 1 badge to open
           </span>
         )}
       </motion.div>

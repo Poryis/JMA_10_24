@@ -43,7 +43,7 @@ export const PLAZA_BUILDINGS = [
   // Foreground props sit small on the front sand; the three street gates + bandstand stand big on the back dune.
   { id: 'quest-board',   zone: 'plaza', name: 'Quest Board',   action: 'quests',             art: `${PZ}quest-board.png`,    starter: true,  size: 0.7,  flat: true, hangSign: { text: 'QUESTS', x: 51.5, y: 67 } },
   { id: 'gate-play',     zone: 'plaza', name: 'Play Street',   path: '/campus?zone=play',    art: `${PZ}gate-play.png`,      host: `${CH}chunk-disco.png`,  starter: true,  size: 1.45, flat: true, drop: 4, ribbon: { text: 'PLAY', bg: '#FFCC00', color: 'var(--jma-dark)' },
-    portal: { box: { left: 20, width: 60, top: 14, bottom: 4 }, bg: 'radial-gradient(ellipse at 50% 85%, #FF2D85 0%, #5B1C8A 45%, #140B2E 100%)', art: ['jukebox-diner', 'shred-club'] } },
+    portal: { box: { left: 23, width: 54, top: 14, bottom: 4 }, bg: 'radial-gradient(ellipse at 50% 85%, #FF2D85 0%, #5B1C8A 45%, #140B2E 100%)', art: ['jukebox-diner', 'shred-club'] } },
   { id: 'gate-learn',    zone: 'plaza', name: 'Learn Street',  path: '/campus?zone=learn',   art: `${PZ}gate-learn.png`,     host: `${CH}jazzy-marching.png`, starter: false, size: 1.45, flat: true, drop: 4, ribbon: { text: 'LEARN', bg: '#8E5BD9', color: 'white' },
     portal: { box: { left: 19, width: 62, top: 22, bottom: 4 }, bg: 'radial-gradient(ellipse at 50% 90%, #7ED957 0%, #2E7D32 40%, #0B2E4F 100%)', art: ['football-field', 'music-101'] } },
   { id: 'gate-create',   zone: 'plaza', name: 'Create Street', path: '/campus?zone=create',  art: `${PZ}gate-create.png`,    host: `${CH}sharky-hiphop.png`, starter: false, size: 1.45, flat: true, ribbonLift: 5, ribbon: { text: 'CREATE', bg: '#1FA38C', color: 'white' },

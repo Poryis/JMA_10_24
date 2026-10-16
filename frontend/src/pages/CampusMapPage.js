@@ -51,11 +51,16 @@ export function useStreetMusic(tracks) {
     const a = new Audio(); a.preload = 'auto'; a.volume = 0; a.muted = muted; audioRef.current = a;
     let last = -1; let fade = null; let armed = false; let alive = true;
     const pick = () => { let i; do { i = Math.floor(Math.random() * tracks.length); } while (tracks.length > 1 && i === last); last = i; return tracks[i]; };
-    const fadeIn = () => { clearInterval(fade); fade = setInterval(() => { if (!alive) return clearInterval(fade); a.volume = Math.min(0.28, a.volume + 0.02); if (a.volume >= 0.28) clearInterval(fade); }, 80); };
+    const fadeIn = () => { clearInterval(fade); fade = setInterval(() => { if (!alive) return clearInterval(fade); a.volume = Math.min(0.16, a.volume + 0.02); if (a.volume >= 0.16) clearInterval(fade); }, 80); };
     const start = () => { if (!alive) return; const t = pick(); a.src = t.src; a.play().then(() => { fadeIn(); setNowPlaying(t.title); }).catch(() => {}); };
     a.addEventListener('ended', start);
+    // Leaving the app / switching tabs: music stops (and quietly fades back in on return).
+    const onVis = () => { if (document.hidden) { clearInterval(fade); a.pause(); } else if (a.src && a.paused) { a.volume = 0; a.play().then(fadeIn).catch(() => {}); } };
+    const onHide = () => { clearInterval(fade); a.pause(); };
+    document.addEventListener('visibilitychange', onVis);
+    window.addEventListener('pagehide', onHide);
     try { if (sessionStorage.getItem('jma_audio_unlocked_v1') === '1') start(); else { armed = true; document.addEventListener('pointerdown', start, { once: true, capture: true }); } } catch (_) { start(); }
-    return () => { alive = false; clearInterval(fade); a.pause(); a.src = ''; audioRef.current = null; if (armed) document.removeEventListener('pointerdown', start, { capture: true }); };
+    return () => { alive = false; clearInterval(fade); a.pause(); a.src = ''; audioRef.current = null; document.removeEventListener('visibilitychange', onVis); window.removeEventListener('pagehide', onHide); if (armed) document.removeEventListener('pointerdown', start, { capture: true }); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks]);
   return { nowPlaying, muted, toggleMute };
@@ -112,25 +117,29 @@ function RoofBubbles({ index }) {
 function DriveIn({ live }) {
   const featured = useMemo(() => pickFeaturedEpisode(), []);
   const previewSrc = featured ? `https://player.vimeo.com/video/${featured.vimeoId}?autoplay=1&loop=1&muted=1&background=1&controls=0&app_id=122963&title=0&byline=0&portrait=0&dnt=1` : null;
+  // Screen hole of assets/plaza/crt-tv.png (transparent in the art), as % of the square image.
+  const screen = { left: '28.2%', top: '32%', width: '50.7%', height: '52.2%' };
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-end" data-testid="plaza-drive-in">
-      <div className="relative w-full rounded-[14%/18%] overflow-hidden" style={{ height: '62%', background: 'radial-gradient(ellipse at 30% 20%, #2A1B5E 0%, #0B1033 55%, #05071C 100%)', border: '5px solid var(--jma-dark)', boxShadow: '0 8px 0 0 rgba(2,36,63,0.45), inset 0 0 40px rgba(120,80,255,0.25)' }}>
-        {[...Array(18)].map((_, i) => (
-          <motion.span key={i} className="absolute rounded-full bg-white" style={{ width: 2 + (i % 3), height: 2 + (i % 3), left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%` }}
-            animate={{ opacity: [0.2, 1, 0.2] }} transition={{ repeat: Infinity, duration: 1.5 + (i % 4) * 0.6, delay: (i % 5) * 0.3 }} />
-        ))}
-        {previewSrc && (
-          <iframe key={featured.vimeoId} title="JMAtv preview" src={previewSrc} allow="autoplay; fullscreen; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" data-testid="plaza-drive-in-preview"
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '112%', height: '100%', border: 0 }} />
-        )}
-        <span aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'repeating-linear-gradient(180deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px)', mixBlendMode: 'multiply' }} />
-        <img src="assets/ui/jmatv-logo-v2.png" alt="JMAtv" draggable={false} className={`absolute object-contain ${previewSrc ? 'bottom-[6%] right-[5%] w-[24%]' : 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[56%]'}`} style={{ filter: 'drop-shadow(0 3px 0 rgba(0,0,0,0.5))' }} />
-        <motion.span className="absolute top-[7%] left-[7%] flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] md:text-[11px] font-black text-white" style={{ background: '#E11D48', border: '2px solid white' }} animate={{ opacity: [1, 0.55, 1] }} transition={{ repeat: Infinity, duration: 1.2 }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-white" /> {live || 'LIVE'}
-        </motion.span>
-      </div>
-      <div className="flex justify-between" style={{ width: '70%', height: '30%' }}>
-        {[0, 1].map((n) => <span key={n} className="block h-full" style={{ width: '12%', background: '#8B5A2B', border: '4px solid var(--jma-dark)', borderTop: 0 }} />)}
+    <div className="relative w-full flex items-end justify-center" style={{ height: '100%' }} data-testid="plaza-drive-in">
+      <div className="relative" style={{ width: '100%', aspectRatio: '1 / 1' }}>
+        {/* behind the glass */}
+        <div className="absolute overflow-hidden" style={{ ...screen, zIndex: 1, borderRadius: '10% / 12%', background: 'radial-gradient(ellipse at 30% 20%, #2A1B5E 0%, #0B1033 55%, #05071C 100%)' }}>
+          {[...Array(14)].map((_, i) => (
+            <motion.span key={i} className="absolute rounded-full bg-white" style={{ width: 2 + (i % 3), height: 2 + (i % 3), left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%` }}
+              animate={{ opacity: [0.2, 1, 0.2] }} transition={{ repeat: Infinity, duration: 1.5 + (i % 4) * 0.6, delay: (i % 5) * 0.3 }} />
+          ))}
+          {previewSrc && (
+            <iframe key={featured.vimeoId} title="JMAtv preview" src={previewSrc} allow="autoplay; fullscreen; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" data-testid="plaza-drive-in-preview"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '180%', height: '100%', border: 0 }} />
+          )}
+          <span aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'repeating-linear-gradient(180deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px)', mixBlendMode: 'multiply' }} />
+          <span aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%)' }} />
+          <img src="assets/ui/jmatv-logo-v2.png" alt="JMAtv" draggable={false} className={`absolute object-contain ${previewSrc ? 'bottom-[6%] right-[6%] w-[26%]' : 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%]'}`} style={{ filter: 'drop-shadow(0 3px 0 rgba(0,0,0,0.5))' }} />
+          <motion.span className="absolute top-[7%] left-[7%] flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] md:text-[11px] font-black text-white" style={{ background: '#E11D48', border: '2px solid white' }} animate={{ opacity: [1, 0.55, 1] }} transition={{ repeat: Infinity, duration: 1.2 }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-white" /> {live || 'LIVE'}
+          </motion.span>
+        </div>
+        <img src="assets/plaza/crt-tv.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 2, filter: 'drop-shadow(0 8px 0 rgba(2,36,63,0.45))' }} />
       </div>
     </div>
   );

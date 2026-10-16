@@ -117,8 +117,8 @@ function RoofBubbles({ index }) {
 function DriveIn({ live }) {
   const featured = useMemo(() => pickFeaturedEpisode(), []);
   const previewSrc = featured ? `https://player.vimeo.com/video/${featured.vimeoId}?autoplay=1&loop=1&muted=1&background=1&controls=0&app_id=122963&title=0&byline=0&portrait=0&dnt=1` : null;
-  // Screen hole of assets/plaza/crt-tv.png (transparent in the art), as % of the square image.
-  const screen = { left: '28.2%', top: '32%', width: '50.7%', height: '52.2%' };
+  // Screen hole of assets/plaza/crt-tv.png (transparent in the art), as % of the square image. TV art is mirrored to face the stage.
+  const screen = { left: '21.1%', top: '32%', width: '50.7%', height: '52.2%' };
   return (
     <div className="relative w-full flex items-end justify-center" style={{ height: '100%' }} data-testid="plaza-drive-in">
       <div className="relative" style={{ width: '100%', aspectRatio: '1 / 1' }}>
@@ -139,7 +139,7 @@ function DriveIn({ live }) {
             <span className="w-1.5 h-1.5 rounded-full bg-white" /> {live || 'LIVE'}
           </motion.span>
         </div>
-        <img src="assets/plaza/crt-tv.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 2, filter: 'drop-shadow(0 8px 0 rgba(2,36,63,0.45))' }} />
+        <img src="assets/plaza/crt-tv.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 2, transform: 'scaleX(-1)', filter: 'drop-shadow(0 8px 0 rgba(2,36,63,0.45))' }} />
       </div>
     </div>
   );

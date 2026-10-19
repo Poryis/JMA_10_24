@@ -241,7 +241,7 @@ function PlayableBell({ bell, onDown, onUp, isHighlighted, registerRef, rotation
             INSIDE of the bell circle since each bell's top points outward),
             with a counter-rotation so the digit stays upright. */}
         <div
-          className="hidden md:flex absolute -bottom-1 left-1/2 w-7 h-7 rounded-full bg-white border-2 border-[var(--jma-dark)] items-center justify-center text-sm font-bold pointer-events-none"
+          className="key-hint hidden md:flex absolute -bottom-1 left-1/2 w-7 h-7 rounded-full bg-white border-2 border-[var(--jma-dark)] items-center justify-center text-sm font-bold pointer-events-none"
           style={{
             color: bell.color,
             transform: `translateX(-50%) rotate(${-rotation}deg)`,

@@ -952,7 +952,8 @@ h1, h2, h3, h4, h5, h6 {
   .jam-main .key-hint { display: none !important; }
   .jam-main { padding-top: 48px !important; padding-bottom: 0 !important; justify-content: flex-start !important; }
   .jam-instrument-wrap { margin-top: 0 !important; }
-  .jam-main [data-testid="jelly-bells-row"] { width: min(62vh, 720px) !important; }
+  .jam-main [data-testid="jelly-bells-row"] { width: min(68vh, 720px) !important; }
+  .jam-main .bell-instrument { width: 70px !important; height: 70px !important; }
   [data-testid="guitar-instrument"] { zoom: 0.56; }
 
   /* Game intro menus: title across the top, How-to card left, levels right */

@@ -62,7 +62,7 @@ function XyloBar({ config, bell, onPlayNote, onNoteUp, isHighlighted, registerRe
         <div className="absolute top-3 left-1 w-1.5 rounded-full opacity-30 bg-white" style={{ height: `${config.height * 0.6}px` }} />
       </div>
       <span className="text-sm md:text-base font-bold mt-2" style={{ color: bell?.color }}>{bell ? nameFor(bell.note, bell.solfege) : ''}</span>
-      <div className="w-6 h-6 rounded-full bg-white border-2 border-[var(--jma-dark)] text-xs font-bold flex items-center justify-center" style={{ color: bell?.color }}>{bell?.key}</div>
+      <div className="key-hint w-6 h-6 rounded-full bg-white border-2 border-[var(--jma-dark)] text-xs font-bold flex items-center justify-center" style={{ color: bell?.color }}>{bell?.key}</div>
     </div>
   );
 }
@@ -145,7 +145,7 @@ function PianoKey({ bell, onPlayNote, onNoteUp, isHighlighted, registerRef }) {
           <span className="text-xl font-black" style={{ color: 'var(--jma-dark)' }}>{nameFor(bell.note, bell.solfege)}</span>
         </div>
       </div>
-      <div className="w-8 h-8 rounded-full bg-white border-2 border-[var(--jma-dark)] text-base font-bold flex items-center justify-center mt-2" style={{ color: bell.color }}>{bell.key}</div>
+      <div className="key-hint w-8 h-8 rounded-full bg-white border-2 border-[var(--jma-dark)] text-base font-bold flex items-center justify-center mt-2" style={{ color: bell.color }}>{bell.key}</div>
     </div>
   );
 }

@@ -310,7 +310,7 @@ function PlayableDrumPiece({ drumId, info, onDown, onUp, style, registerRef }) {
         style={{ ...imgStyle, touchAction: 'none' }}
         draggable={false}
       />
-      <div className="absolute text-xs font-bold bg-white/80 rounded-full w-6 h-6 flex items-center justify-center border border-[var(--jma-dark)] pointer-events-none"
+      <div className="key-hint absolute text-xs font-bold bg-white/80 rounded-full w-6 h-6 flex items-center justify-center border border-[var(--jma-dark)] pointer-events-none"
         style={{ left: badgeLeft, bottom: badgeBottom, zIndex: 10, color: info.color }}>{info.key}</div>
     </>
   );
@@ -320,19 +320,26 @@ function PlayableDrumPiece({ drumId, info, onDown, onUp, style, registerRef }) {
 // ResponsiveScaler: scales children down uniformly to fit the available width.
 // Requires explicit nativeWidth/Height to reserve vertical space correctly.
 // Never scales up past 1 (so on wide screens the instrument stays at native size).
-function ResponsiveScaler({ children, nativeWidth, nativeHeight }) {
-  const wrapRef = useRef(null);
+// Scales children down uniformly to fit the available width AND the height left below the wrapper.
+function useFitScale(wrapRef, nativeWidth, nativeHeight) {
   const [scale, setScale] = useState(1);
   useLayoutEffect(() => {
     const compute = () => {
       if (!wrapRef.current) return;
-      const availW = wrapRef.current.getBoundingClientRect().width;
-      setScale(Math.min(1, availW / nativeWidth));
+      const r = wrapRef.current.getBoundingClientRect();
+      const availH = window.innerHeight - r.top - 8;
+      setScale(Math.max(0.2, Math.min(1, r.width / nativeWidth, availH / nativeHeight)));
     };
     compute();
     window.addEventListener('resize', compute);
     return () => window.removeEventListener('resize', compute);
-  }, [nativeWidth]);
+  }, [wrapRef, nativeWidth, nativeHeight]);
+  return scale;
+}
+
+function ResponsiveScaler({ children, nativeWidth, nativeHeight }) {
+  const wrapRef = useRef(null);
+  const scale = useFitScale(wrapRef, nativeWidth, nativeHeight);
   return (
     <div ref={wrapRef} className="w-full flex justify-center" style={{ height: `${nativeHeight * scale}px` }}>
       <div style={{ width: `${nativeWidth}px`, height: `${nativeHeight}px`, transform: `scale(${scale})`, transformOrigin: 'top center' }}>
@@ -358,18 +365,9 @@ function DrumKitPlayable({ onDrumDown, onDrumUp, registerDrumRef }) {
   const NATIVE_W = Math.round((500 + RIGHT_SHIFT + 30) * S); // ~1007px
   const NATIVE_H = Math.round(340 * S);                      // ~561px
 
-  // Responsive scaling: measure wrapper width and scale kit to fit
+  // Responsive scaling: fit kit to wrapper width and remaining viewport height
   const wrapRef = useRef(null);
-  const [scale, setScale] = useState(1);
-  useLayoutEffect(() => {
-    const compute = () => {
-      const w = wrapRef.current?.getBoundingClientRect().width || NATIVE_W;
-      setScale(Math.min(1, w / NATIVE_W));
-    };
-    compute();
-    window.addEventListener('resize', compute);
-    return () => window.removeEventListener('resize', compute);
-  }, [NATIVE_W]);
+  const scale = useFitScale(wrapRef, NATIVE_W, NATIVE_H);
 
   return (
     <div ref={wrapRef} className="w-full flex justify-center" style={{ height: `${NATIVE_H * scale}px` }}>

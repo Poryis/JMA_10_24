@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend-only regression of iteration-53 changes (locked gates/UNLOCK ME sign, iPhone install flow, Jam Session phone-landscape, plaza/campus assets, name prompt, Shred/Clubhouse intro cards at 844x345). Nearly all passed. One real bug: on Jam Session the Guitar tab overflows the viewport at 844x345 (bottom 380px; BEND bar cut off and the page scrolls). Jelly Bells at 844x345 runs 2px past the bottom (minor).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "FreePlayPage Guitar tab @ 844x345", "issue": "guitar-instrument rect is top 106 / bottom 380 with viewport 345, so the BEND bar and the bottom of the note-button row are clipped and documentElement.scrollHeight=380. The cause is the fixed `[data-testid=guitar-instrument]{zoom:0.56}` in the max-height:520px landscape block: it doesn't scale with height, and 274px of guitar plus the 106px toolbar offset doesn't fit in 345. At 844x390 it fits (bottom 380 <= 390).", "selector": "[data-testid=guitar-instrument]", "priority": "HIGH"},
+      {"component": "FreePlayPage Jelly Bells @ 844x345", "issue": "The bottom bell's rect bottom is 347 (2px past the viewport) and scrollHeight=347. Cosmetic, but the 'nothing below the viewport' criterion fails.", "selector": "[data-testid^=bell-]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "InstallCard @ 844x345", "issues": ["The card fills 10-334px and scrolls inside itself. The 'Got it!' button's bottom edge is cut by the card's overflow, and md: text sizes kick in at 844 width. It still works (scroll + click), but tightening it for short landscape would look cleaner."]},
+      {"screen": "Clubhouse intro @ 844x345", "issues": ["The 'Let's find them!' button bottom (336) sits about 1px past the card's inner bottom (335), so the button's shadow is slightly clipped. It is clickable."]},
+      {"screen": "Jam Session desktop 1920x800 Jelly Bells", "issues": ["The page scrolls to 850px because jam-controls-hint sits below the fold (desktop only, minor)."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix the Guitar tab fit at 844x345: replace the fixed zoom:0.56 with a height-aware scale (e.g. reuse useFitScale/ResponsiveScaler, or add a max-height:400px media rule with a smaller zoom ~0.45) so guitar-instrument bottom <= viewport.",
+    "Trim Jelly Bells at max-height ~360px by a few px (e.g. reduce .jam-main padding-top or the jelly-bells-row width) so the bottom bell stays inside the viewport."
+  ],
+  "critical_code_review_comments": [
+    "index.css landscape block: guitar uses a static zoom while xylophone/piano use ResponsiveScaler. That inconsistency is the root cause of the guitar overflow.",
+    "The review request's zone mapping is off: jam-session.png and song-studio.png are in zone=create (not play), and sight-reading.png is in zone=play (not learn), per data/campus.js. All of them load fine in their real zones. This is not an app bug.",
+    "The agent note says the name-prompt skip is session-scoped, but PlayerNamePrompt actually saves jma_player_name_skipped_v1 in localStorage, so skip persists across reloads."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "92% (24/26 checks; failures: Guitar overflow @844x345, Jelly Bells 2px @844x345)"},
+  "seed_data_creation": "None. localStorage cleared per test.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Verified PASS: fresh profile at 1920x800 has gate-learn and gate-create data-locked=true, closed-sign text 'UNLOCK ME!', lock pill 'Earn 1 badge to open', 0 '-rope' elements; clicking a locked gate opens plaza-quests-modal (absent at 300ms, present by 1.5s). The quests modal fits at 844x345. Desktop fullscreen-button aria-label is 'Go fullscreen' and no install-nudge appears. iPhone emulation via page.context.add_init_script plus ctx.new_page() works: aria-label 'How to make JMA full screen', nudge appears, click opens install-card and sets jma_install_nudge_seen='1', install-card-done closes it, reload shows no nudge, fullscreen-button reopens the card, install-card-close closes it. Assets on Home: gate-play.png (906w), crt-tv.png (1024w, scaleX(-1)), dressing-room.png (scaleX(-1)). All campus zone images load with no broken images. Key hints: 0 visible at 844x390/345 on all tabs; 8/8/7 visible at 1920x800 on bells/xylo/piano/drums. Name prompt card at 844x345 spans 66-280px and the skip link works. Shred: shred-start-btn starts at 340-400px, scrolls into view and click shows shred-ready-count. Clubhouse: clubhouse-intro-go click closes the card. Tooling note: the browser_automation tool failed on f-strings that contain inner quotes, and str() is shadowed, so use plain concatenation."
+}

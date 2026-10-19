@@ -426,3 +426,21 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 ### Testing notes
 - The main-agent screenshot harness CANNOT dismiss the audio-unlock overlay reliably nor read runtime console / post-interaction state (it captures only load-time console + a pre-interaction frame). Use `testing_agent` for anything behind the overlay. Reports: iteration_22 (Jelly Jukebox regression), iteration_23 (JMAtv Live) — both pass.
 - Vimeo embeds 401 in the test sandbox (referrer not whitelisted) — environment artifact, works on real preview/device.
+
+## Session Update — June 2026 (Plaza polish + iPhone Safari reality)
+
+### Shipped this session
+- **Play gate** regenerated at the same ¾ angle as Learn/Create (generated on flat magenta + `scripts/chroma_key.py`); portal box nudged (`campus.js` left 27).
+- **CRT TV** faces the stage: new `crt-tv.png` (knobs left, no antenna star) rendered with `scaleX(-1)` → faces left, knobs right; screen cutout `{left 8.8%, top 32.3%, w 46.5%, h 47.8%}`.
+- **Dressing-room trailer** flipped inward (`flip: true` in `campus.js` → img `scaleX(-1)`).
+- **Locked gates**: dashed "rope" removed. Locked LEARN/CREATE gates grey out (portal + art + ribbon), host stays in color, swinging yellow **UNLOCK ME!** sign on chains; top pill "Earn 1 badge to open" (no lock icons). Tapping a locked gate shakes → opens the Quest Board (`onLocked` → `setQuestsOpen`). Voice line `charlie.hub.lockbadge` rewritten to be encouraging.
+- **Building signs baked into art** (edited via reference-image generation + chroma key): STEW + hanging KAZOO plank, LIVE JAM, SONG STUDIO, SIGHT READING, "WHO'S GOT THE RHYTHM?" (2 lines). JMA harp logo composited into the Clubhouse gable (PIL). Originals backed up in `/tmp/sign_bak` (ephemeral).
+- **Jam Session phone landscape** (`@media (max-height:520px) and (orientation: landscape)`): `useFitScale` (width AND remaining height) for xylophone/piano/drums/guitar (`ResponsiveScaler nativeHeight` 492 for guitar; CSS `zoom` hack removed); `.key-hint` class on all keyboard hints (drums letters, xylophone/piano/bells numbers) hidden on phone landscape; bells 70px on a `min(66vh,720px)` circle (no overlap).
+- **iPhone Safari**: confirmed (caniuse/WebKit 2026) NO Fullscreen API on iPhone except `<video>`. Shipped: `isIPhone()` in `lib/fullscreen.js`; `FullscreenButton` renders `IPhoneInstallButton` on iPhone → `InstallCard` (Share → Add to Home Screen steps); one-time Plaza nudge "Want JMA full screen? Tap here →" (`localStorage jma_install_nudge_seen`). Real fullscreen on iPhone = PWA install (manifest already `display: fullscreen`) or a future Capacitor App Store wrapper.
+- **Safari-fit sweep at 844×345** (iPhone landscape minus URL bar): compact `PlayerNamePrompt` (`.name-prompt-card`), scrollable compact Shred City intro (`.shred-intro-card`, `.shred-main`), scrollable Clubhouse intro (`.clubhouse-intro-card`), Beat Lab `padding-top` 52px. All other routes verified fitting/scrolling.
+- Testing: `test_reports/iteration_53.json` (frontend regression — pass; guitar overflow found there and fixed after).
+
+### Still open
+- Avatar significance (selected Jelly in game end-cards + "new outfit" gift nudge on kiosk) — approved earlier, not started.
+- Safari localStorage "not saving" report — unverified; audio pause on `visibilitychange`/`pagehide` was added.
+- Full code review before GitHub Pages launch (user asked for reminder). For Parents counts. Music 101 nudges. PWA service worker. The Path. Sing-back mic. Path C PAUSED.

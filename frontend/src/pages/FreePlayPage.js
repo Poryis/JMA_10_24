@@ -952,6 +952,7 @@ function FreePlayPage() {
                 </ResponsiveScaler>
               )}
               {activeTab === 'guitar' && (
+                <ResponsiveScaler nativeWidth={900} nativeHeight={492}>
                 <GuitarInstrument
                   initAudioContext={initAudioContext}
                   getAudioGraph={getAudioGraph}
@@ -965,6 +966,7 @@ function FreePlayPage() {
                     spawnParticles('#E74C3C');
                   }}
                 />
+                </ResponsiveScaler>
               )}
             </motion.div>
           </>

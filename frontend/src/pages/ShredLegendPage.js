@@ -644,14 +644,14 @@ export default function ShredLegendPage() {
         </div>
       )}
 
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-end pt-16 pb-2 px-2">
+      <main className="shred-main relative z-10 flex-1 flex flex-col items-center justify-end pt-16 pb-2 px-2">
         {/* INTRO */}
         {screen === 'intro' && (
-          <div className="flex-1 flex items-center justify-center w-full">
+          <div className="flex-1 flex items-center justify-center w-full min-h-0">
             <motion.div
               data-testid="shred-intro-card"
-              className="max-w-md w-full text-center rounded-3xl px-6 py-7 relative"
-              style={{ background: 'rgba(16,24,38,0.92)', border: '4px solid #FFCC00', boxShadow: '0 8px 0 0 #0A1420' }}
+              className="shred-intro-card max-w-md w-full text-center rounded-3xl px-6 py-7 relative"
+              style={{ background: 'rgba(16,24,38,0.92)', border: '4px solid #FFCC00', boxShadow: '0 8px 0 0 #0A1420', maxHeight: 'calc(100dvh - 24px)', overflowY: 'auto' }}
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
             >
               <HowToVoiceButton lineId="charlie.howto.shred" className="absolute top-3 right-3 z-10" dark />

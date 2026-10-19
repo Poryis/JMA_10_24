@@ -412,7 +412,7 @@ function FunFactsPage() {
           >
             <motion.div
               data-testid="clubhouse-intro-card"
-              className="relative bg-white rounded-3xl border-4 max-w-sm w-full p-6 text-center"
+              className="clubhouse-intro-card relative bg-white rounded-3xl border-4 max-w-sm w-full p-6 text-center max-h-[94vh] overflow-y-auto"
               style={{ borderColor: '#FFCC00', boxShadow: '0 10px 0 0 #FFCC00' }}
               initial={{ scale: 0.6, y: 40, rotate: -4 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}

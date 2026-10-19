@@ -16,6 +16,10 @@ export function isIOS() {
   return /iPhone|iPad|iPod/.test(ua) || (ua.includes('Mac') && 'ontouchend' in document);
 }
 
+export function isIPhone() {
+  return /iPhone|iPod/.test(window.navigator.userAgent);
+}
+
 export function canFullscreen() {
   const el = document.documentElement;
   return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled) && !!(el.requestFullscreen || el.webkitRequestFullscreen);

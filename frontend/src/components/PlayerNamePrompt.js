@@ -71,7 +71,7 @@ export default function PlayerNamePrompt() {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-3xl border-4 p-6 md:p-8 max-w-md w-full text-center"
+            className="name-prompt-card bg-white rounded-3xl border-4 p-6 md:p-8 max-w-md w-full text-center max-h-[96vh] overflow-y-auto"
             style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 10px 0 0 var(--jma-dark)' }}
             initial={{ scale: 0.7, y: 30 }}
             animate={{ scale: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function PlayerNamePrompt() {
             transition={{ type: 'spring', delay: 0.1 }}
           >
             <motion.div
-              className="mx-auto rounded-full border-4 flex items-center justify-center mb-3 overflow-hidden"
+              className="name-prompt-logo mx-auto rounded-full border-4 flex items-center justify-center mb-3 overflow-hidden"
               style={{
                 width: 80,
                 height: 80,

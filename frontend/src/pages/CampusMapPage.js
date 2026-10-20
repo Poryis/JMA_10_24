@@ -155,17 +155,12 @@ function BrandMarquee({ extras }) {
           animate={{ scale: [0.9, 1.14, 0.9] }} transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }} />
       </div>
       {extras && (
-        <div className="absolute flex flex-col items-center pointer-events-none" style={{ left: '-6%', bottom: '4%', width: '15%', zIndex: 6 }} data-testid="plaza-pennant">
-          <motion.div className="relative w-full" animate={{ skewY: [0, 3, 0, -3, 0] }} transition={{ repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}>
-            <div className="w-full rounded-xl p-1 flex flex-col items-center" style={{ background: '#FFCC00', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }}>
-              <img src={extras.rankIcon} alt="" className="w-[70%] object-contain" />
-              <span className="text-[8px] md:text-[10px] font-black leading-none text-center" style={{ color: 'var(--jma-dark)' }}>{extras.rankTitle}</span>
-            </div>
-          </motion.div>
-          <span className="block" style={{ width: 6, height: 'clamp(30px, 8vh, 70px)', background: '#8B5A2B', border: '2px solid var(--jma-dark)', borderTop: 0 }} />
+        <div className="absolute pointer-events-none flex items-center justify-center rounded-full" data-testid="plaza-rank-badge" title={extras.rankTitle}
+          style={{ left: '66%', top: '20%', width: 'clamp(26px, 9%, 44px)', aspectRatio: '1 / 1', zIndex: 6, background: '#FFCC00', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>
+          <img src={extras.rankIcon} alt={extras.rankTitle} className="w-[72%] h-[72%] object-contain" />
           {extras.streak >= 2 && (
-            <span className="absolute -right-2 top-0 flex items-center gap-0.5 rounded-full px-1.5 text-[9px] md:text-[11px] font-black text-white" style={{ background: '#FF6B35', border: '2px solid var(--jma-dark)' }} data-testid="plaza-streak">
-              <Flame className="w-3 h-3" strokeWidth={3} /> {extras.streak}
+            <span className="absolute -right-2 -bottom-1 flex items-center gap-0.5 rounded-full px-1 text-[8px] md:text-[10px] font-black text-white leading-tight" style={{ background: '#FF6B35', border: '2px solid var(--jma-dark)' }} data-testid="plaza-streak">
+              <Flame className="w-2.5 h-2.5" strokeWidth={3} /> {extras.streak}
             </span>
           )}
         </div>

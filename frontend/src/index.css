@@ -929,8 +929,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-height: 520px) and (orientation: landscape) {
   /* title pill gets in the way of play areas — Back button stays, and gets a real thumb-sized target */
   .game-title-pill:not(.keep-title) { display: none !important; }
-  [data-testid="back-button"] .back-shield { width: calc(60px / var(--stage-scale, 1)) !important; height: calc(60px / var(--stage-scale, 1)) !important; border-width: 3px !important; }
-  [data-testid="back-button"] .back-label { font-size: calc(16px / var(--stage-scale, 1)) !important; padding: calc(4px / var(--stage-scale, 1)) calc(14px / var(--stage-scale, 1)) !important; }
+  [data-testid="back-button"] .back-shield { width: calc(40px / var(--stage-scale, 1)) !important; height: calc(40px / var(--stage-scale, 1)) !important; border-width: calc(2px / var(--stage-scale, 1)) !important; }
+  [data-testid="back-button"] .back-label { font-size: calc(12px / var(--stage-scale, 1)) !important; padding: calc(2px / var(--stage-scale, 1)) calc(10px / var(--stage-scale, 1)) !important; }
+  /* Sticker Shack has its own home button — same constant on-screen size */
+  [data-testid="sticker-home-btn"] > div { width: calc(40px / var(--stage-scale, 1)) !important; height: calc(40px / var(--stage-scale, 1)) !important; padding: 0 !important; display: flex; align-items: center; justify-content: center; }
+  [data-testid="sticker-home-btn"] > div svg { width: 85% !important; height: 85% !important; }
+  [data-testid="sticker-home-btn"] > span { font-size: calc(12px / var(--stage-scale, 1)) !important; padding: calc(2px / var(--stage-scale, 1)) calc(10px / var(--stage-scale, 1)) !important; }
 
   /* Jelly Jukebox: lanes fill the board, small bells, lots of runway */
   .rhythm-lanes { min-height: 0; }

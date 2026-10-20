@@ -86,7 +86,7 @@ function StreetSign({ zone, dir, onClick, style }) {
 function Host({ src, shout, pos }) {
   return (
     <motion.div className="absolute pointer-events-none flex flex-col items-center" style={pos || { left: '-12%', bottom: 6, height: '34%', zIndex: 4 }}
-      animate={{ y: [0, -6, 0], rotate: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>
+      animate={{ y: [0, -7, 0] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>
       <AnimatePresence>
         {shout && (
           <motion.div key={shout.id} className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xl px-2 py-0.5 text-[10px] md:text-xs font-black font-display"

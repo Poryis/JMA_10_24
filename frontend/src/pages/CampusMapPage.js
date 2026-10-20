@@ -7,7 +7,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Music, ChevronsRight, ArrowLeft, ArrowRight, X, Flame, VolumeX, Sparkles } from 'lucide-react';
+import { Music, ChevronsRight, ArrowLeft, ArrowRight, X, VolumeX, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import BlimpFlyby from '../components/BlimpFlyby';
 import { Bubbles, Swimmer, SandStrip, Seaweed, UW_ASSETS, UNDERWATER_WATER, FRONT_TROUGH } from '../components/UnderwaterBackdrop';
@@ -16,7 +16,6 @@ import DailyQuestCard from '../components/DailyQuestCard';
 import FitBox from '../components/FitBox';
 import { CAMPUS_ZONES, CAMPUS_BUILDINGS, PLAZA_ZONE, PLAZA_BUILDINGS } from '../data/campus';
 import useUnlocks from '../hooks/useUnlocks';
-import useRank from '../hooks/useRank';
 import usePracticeStreak from '../hooks/usePracticeStreak';
 import useDailyQuests from '../hooks/useDailyQuests';
 import { readAvatarOutfit } from '../hooks/useAvatar';
@@ -146,7 +145,7 @@ function DriveIn({ live }) {
 }
 
 // Plaza: brand marquee above the bandstand + the kid's rank pennant.
-function BrandMarquee({ extras }) {
+function BrandMarquee() {
   return (
     <>
       <div className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '28%', left: '58%', top: '18%', zIndex: 5 }}>
@@ -154,29 +153,6 @@ function BrandMarquee({ extras }) {
           className="w-full object-contain" style={{ filter: 'drop-shadow(0 2px 0 rgba(2,36,63,0.35))' }}
           animate={{ scale: [0.9, 1.14, 0.9] }} transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }} />
       </div>
-      {extras && (
-        <div className="absolute flex flex-col items-center pointer-events-none" data-testid="plaza-rank-sign" style={{ left: '-10%', bottom: '3%', width: 'clamp(84px, 20%, 136px)', zIndex: 6 }}>
-          <span className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 block" style={{ width: 7, background: '#8B5A2B', border: '2px solid var(--jma-dark)', zIndex: 0 }} />
-          <span className="relative block w-full rounded-sm" style={{ height: 8, background: '#B8783F', border: '2px solid var(--jma-dark)', zIndex: 1 }} />
-          <motion.div className="relative flex flex-col items-center w-full" style={{ transformOrigin: 'top center', zIndex: 2 }} animate={{ rotate: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
-            <span className="flex justify-between" style={{ width: '58%' }}>
-              {[0, 1].map((n) => <span key={n} className="block" style={{ width: 4, height: 12, background: '#2F3A4A', border: '1.5px solid var(--jma-dark)' }} />)}
-            </span>
-            <div className="relative w-full flex flex-col items-center rounded-md px-1.5 pb-1" style={{ background: '#B8783F', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', paddingTop: 'clamp(16px, 2.2vw, 26px)' }}>
-              <span className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full" style={{ top: 'clamp(-16px, -2.2vw, -12px)', width: 'clamp(30px, 4.4vw, 48px)', aspectRatio: '1 / 1', background: '#FFCC00', border: '3px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>
-                <img src={extras.rankIcon} alt="" className="w-[70%] h-[70%] object-contain" />
-              </span>
-              <span className="font-black font-display whitespace-nowrap text-center leading-tight" style={{ fontSize: 'clamp(9px, 1.15vw, 13px)', color: '#FFF4D6', letterSpacing: '0.04em', textShadow: '0 2px 0 rgba(0,0,0,0.35)' }}>{extras.rankTitle}</span>
-            </div>
-            {extras.streak >= 2 && (
-              <span className="absolute -right-3 flex items-center gap-0.5 rounded-full px-1.5 text-[9px] md:text-[11px] font-black text-white" style={{ top: 10, background: '#FF6B35', border: '2px solid var(--jma-dark)' }} data-testid="plaza-streak">
-                <Flame className="w-3 h-3" strokeWidth={3} /> {extras.streak}
-              </span>
-            )}
-          </motion.div>
-          <span className="block" style={{ height: 'clamp(28px, 7vh, 64px)' }} />
-        </div>
-      )}
     </>
   );
 }
@@ -188,7 +164,7 @@ function GateRibbon({ ribbon, fontSize }) {
   );
 }
 
-function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, badge, extras, x }) {
+function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, badge, x }) {
   const [shake, setShake] = useState(0);
   const lift = b.flat ? (b.lift ? 58 * b.lift : 0) : index % 3 === 1 ? 54 : index % 3 === 2 ? 22 : 0; // varied depth on the shelf
   const scale = b.flat ? 1 : index % 3 === 1 ? 0.86 : 1;
@@ -250,7 +226,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
               <GateRibbon ribbon={b.ribbon} fontSize={Math.round(L.bw * b.size * 0.085)} />
             </div>
           )}
-          {b.custom === 'bandstand' && <BrandMarquee extras={extras} />}
+          {b.custom === 'bandstand' && <BrandMarquee />}
           {!locked && b.custom !== 'tv' && <RoofBubbles index={index} />}
           {/* floating notes from the door */}
           {!locked && [0, 1, 2].map((n) => (
@@ -295,7 +271,6 @@ export default function CampusMapPage({ plaza = false }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { unlocked } = useUnlocks();
-  const { currentRank } = useRank();
   const { count: streakCount } = usePracticeStreak();
   const { quests, doneCount, allDone } = useDailyQuests();
   const [questsOpen, setQuestsOpen] = useState(false);
@@ -343,7 +318,6 @@ export default function CampusMapPage({ plaza = false }) {
     if (b.id === 'quest-board') return `${doneCount}/${quests.length} today`;
     return null;
   };
-  const extras = plaza ? { rankIcon: currentRank.icon, rankTitle: currentRank.title, streak: streakCount } : null;
   // Plaza: Charlie greets the kid at the bandstand (time-of-day / first visit / quests).
   useEffect(() => {
     if (!plaza) return undefined;
@@ -523,7 +497,7 @@ export default function CampusMapPage({ plaza = false }) {
           {!plaza && <StreetSign zone={nextZone} dir="right" onClick={() => goStreet(nextZone, 'start')} style={{ left: width - Math.round(L.bw * 0.62), bottom: floor + 4, zIndex: 11 }} />}
           {/* buildings */}
           {buildings.map((b, i) => (
-            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} extras={b.custom === 'bandstand' ? extras : null} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
+            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">

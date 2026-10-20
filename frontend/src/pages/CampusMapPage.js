@@ -155,14 +155,26 @@ function BrandMarquee({ extras }) {
           animate={{ scale: [0.9, 1.14, 0.9] }} transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }} />
       </div>
       {extras && (
-        <div className="absolute pointer-events-none flex items-center justify-center rounded-full" data-testid="plaza-rank-badge" title={extras.rankTitle}
-          style={{ left: '66%', top: '20%', width: 'clamp(26px, 9%, 44px)', aspectRatio: '1 / 1', zIndex: 6, background: '#FFCC00', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>
-          <img src={extras.rankIcon} alt={extras.rankTitle} className="w-[72%] h-[72%] object-contain" />
-          {extras.streak >= 2 && (
-            <span className="absolute -right-2 -bottom-1 flex items-center gap-0.5 rounded-full px-1 text-[8px] md:text-[10px] font-black text-white leading-tight" style={{ background: '#FF6B35', border: '2px solid var(--jma-dark)' }} data-testid="plaza-streak">
-              <Flame className="w-2.5 h-2.5" strokeWidth={3} /> {extras.streak}
+        <div className="absolute flex flex-col items-center pointer-events-none" data-testid="plaza-rank-sign" style={{ left: '-10%', bottom: '3%', width: 'clamp(84px, 20%, 136px)', zIndex: 6 }}>
+          <span className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 block" style={{ width: 7, background: '#8B5A2B', border: '2px solid var(--jma-dark)', zIndex: 0 }} />
+          <span className="relative block w-full rounded-sm" style={{ height: 8, background: '#B8783F', border: '2px solid var(--jma-dark)', zIndex: 1 }} />
+          <motion.div className="relative flex flex-col items-center w-full" style={{ transformOrigin: 'top center', zIndex: 2 }} animate={{ rotate: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
+            <span className="flex justify-between" style={{ width: '58%' }}>
+              {[0, 1].map((n) => <span key={n} className="block" style={{ width: 4, height: 12, background: '#2F3A4A', border: '1.5px solid var(--jma-dark)' }} />)}
             </span>
-          )}
+            <div className="relative w-full flex flex-col items-center rounded-md px-1.5 pb-1" style={{ background: '#B8783F', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', paddingTop: 'clamp(16px, 2.2vw, 26px)' }}>
+              <span className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full" style={{ top: 'clamp(-16px, -2.2vw, -12px)', width: 'clamp(30px, 4.4vw, 48px)', aspectRatio: '1 / 1', background: '#FFCC00', border: '3px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>
+                <img src={extras.rankIcon} alt="" className="w-[70%] h-[70%] object-contain" />
+              </span>
+              <span className="font-black font-display whitespace-nowrap text-center leading-tight" style={{ fontSize: 'clamp(9px, 1.15vw, 13px)', color: '#FFF4D6', letterSpacing: '0.04em', textShadow: '0 2px 0 rgba(0,0,0,0.35)' }}>{extras.rankTitle}</span>
+            </div>
+            {extras.streak >= 2 && (
+              <span className="absolute -right-3 flex items-center gap-0.5 rounded-full px-1.5 text-[9px] md:text-[11px] font-black text-white" style={{ top: 10, background: '#FF6B35', border: '2px solid var(--jma-dark)' }} data-testid="plaza-streak">
+                <Flame className="w-3 h-3" strokeWidth={3} /> {extras.streak}
+              </span>
+            )}
+          </motion.div>
+          <span className="block" style={{ height: 'clamp(28px, 7vh, 64px)' }} />
         </div>
       )}
     </>

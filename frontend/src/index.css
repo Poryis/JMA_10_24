@@ -1106,3 +1106,9 @@ h1, h2, h3, h4, h5, h6 {
   .funfacts-scene.w-\[2400px\] { width: 1500px !important; }
   .funfacts-scroller-pad { padding: 26vh 30vw; box-sizing: content-box; width: max-content; }
 }
+
+/* Rank Hall on a portrait phone: no room for the host beside YOU — the kid gets the stage alone */
+@media (orientation: portrait) and (max-width: 640px) {
+  .rank-hall-host { display: none !important; }
+}
+

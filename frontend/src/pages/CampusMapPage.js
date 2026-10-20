@@ -94,7 +94,8 @@ function Host({ src, shout, pos }) {
             initial={{ opacity: 0, y: 8, scale: 0.6 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10 }}>{shout.text}</motion.div>
         )}
       </AnimatePresence>
-      <img src={src} alt="" draggable={false} className="h-full w-auto object-contain object-bottom" style={{ filter: 'drop-shadow(0 4px 4px rgba(0,0,0,0.35))' }} />
+      <img src={src} alt="" draggable={false} className="h-full w-auto object-contain object-bottom" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }} />
+      <span aria-hidden="true" className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none" style={{ bottom: -4, width: '70%', height: '7%', background: 'rgba(2,36,63,0.35)', filter: 'blur(3px)', zIndex: -1 }} />
     </motion.div>
   );
 }

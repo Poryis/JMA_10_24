@@ -139,7 +139,7 @@ function GameHeader({ title, subtitle, score, streak, showHomeButton = true, bac
                     style={{ overflow: 'hidden' }}
                   >
                     <div
-                      className="rounded-xl md:rounded-2xl border-2 md:border-3 border-[var(--jma-dark)] shadow-[0_3px_0_0_var(--jma-dark)] md:shadow-[0_4px_0_0_var(--jma-dark)] group-hover:shadow-[0_6px_0_0_var(--jma-dark)] transition-shadow w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 overflow-hidden"
+                      className="back-shield rounded-xl md:rounded-2xl border-2 md:border-3 border-[var(--jma-dark)] shadow-[0_3px_0_0_var(--jma-dark)] md:shadow-[0_4px_0_0_var(--jma-dark)] group-hover:shadow-[0_6px_0_0_var(--jma-dark)] transition-shadow w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 overflow-hidden"
                       style={{
                         backgroundColor: 'var(--jma-dark)',
                         display: 'flex',
@@ -156,7 +156,7 @@ function GameHeader({ title, subtitle, score, streak, showHomeButton = true, bac
                 )}
               </AnimatePresence>
               <motion.span
-                className="font-black uppercase tracking-wide rounded-full"
+                className="back-label font-black uppercase tracking-wide rounded-full"
                 animate={{
                   // Slightly larger + rounder pill when the shield is
                   // hidden so the label stays tap-friendly on its own.

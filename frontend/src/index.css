@@ -927,8 +927,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== PHONE LANDSCAPE ONLY (short + wide). Desktop/tablet/portrait untouched. ===== */
 @media (max-height: 520px) and (orientation: landscape) {
-  /* title pill gets in the way of play areas — Back button stays */
+  /* title pill gets in the way of play areas — Back button stays, and gets a real thumb-sized target */
   .game-title-pill:not(.keep-title) { display: none !important; }
+  [data-testid="back-button"] .back-shield { width: calc(60px / var(--stage-scale, 1)) !important; height: calc(60px / var(--stage-scale, 1)) !important; border-width: 3px !important; }
+  [data-testid="back-button"] .back-label { font-size: calc(16px / var(--stage-scale, 1)) !important; padding: calc(4px / var(--stage-scale, 1)) calc(14px / var(--stage-scale, 1)) !important; }
 
   /* Jelly Jukebox: lanes fill the board, small bells, lots of runway */
   .rhythm-lanes { min-height: 0; }

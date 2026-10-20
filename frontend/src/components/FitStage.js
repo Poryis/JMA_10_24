@@ -71,7 +71,7 @@ export default function FitStage({ children }) {
   if (!active || EXCLUDED.includes(location.pathname)) return <>{probe}{children}</>;
   const pct = 100 / scale;
   return (
-    <div data-testid="fit-stage" data-scale={scale.toFixed(2)} className="fixed inset-0 overflow-hidden" style={{ background: '#02243F' }}>
+    <div data-testid="fit-stage" data-scale={scale.toFixed(2)} className="fixed inset-0 overflow-hidden" style={{ background: '#02243F', '--stage-scale': scale }}>
       {probe}
       <div ref={ref} className="fit-stage-inner overflow-y-auto overflow-x-hidden"
         style={{ width: `${pct}vw`, height: `${pct}vh`, transform: `scale(${scale})`, transformOrigin: 'top left' }}>

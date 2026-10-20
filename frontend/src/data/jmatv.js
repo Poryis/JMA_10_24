@@ -26,6 +26,7 @@ export const JMATV_CHANNELS = [
     // Order per user request: Robot Boogie + Goody Bag pinned to the
     // top; the rest keep their original chronological order below.
     episodes: [
+      { vimeoId: '1237507858', title: 'The Magic Is in the Music' },
       { vimeoId: '1200951612', title: 'Robot Boogie' },
       { vimeoId: '1200949757', title: 'Goody Bag' },
       { vimeoId: '1200947216', title: 'Jelly Jamboree' },

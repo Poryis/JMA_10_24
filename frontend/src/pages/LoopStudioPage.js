@@ -10,6 +10,7 @@ import usePlayer from '../hooks/usePlayer';
 import { earnSticker, earnAchievement, earnAchievementUpTo } from '../hooks/useStickers';
 import { reportQuestEvent } from '../hooks/useDailyQuests';
 import { say } from '../lib/voice';
+import { createStepScheduler } from '../lib/stepScheduler';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import { saveBeat, loadSavedBeats, renameSavedBeat } from '../hooks/useSavedBeats';
 
@@ -248,7 +249,7 @@ function LoopStudioPage() {
   const [grid, setGrid] = useState({});
   const [muted, setMuted] = useState(new Set());
 
-  const intervalRef = useRef(null);
+  const schedulerRef = useRef(null);
   const gridRef = useRef(grid);
   const mutedRef = useRef(muted);
   const totalStepsRef = useRef(totalSteps);
@@ -276,7 +277,7 @@ function LoopStudioPage() {
     else lab.playDrum(key);
   }, [lab]);
 
-  const playStep = useCallback((step) => {
+  const playStep = useCallback((step, when) => {
     const g = gridRef.current;
     const m = mutedRef.current;
     const msPerStep = (60 / bpmRef.current / 4) * 1000;
@@ -291,22 +292,23 @@ function LoopStudioPage() {
         const gap = stepsUntilNextForInstrument(g, inst, step, total);
         const cap = inst === 'guitar' ? total : NOTE_CAP_STEPS;
         const durationMs = Math.min(gap, cap) * msPerStep;
-        lab.playNote(inst, note, durationMs);
+        lab.playNote(inst, note, durationMs, when);
       } else {
-        lab.playDrum(key);
+        lab.playDrum(key, when);
       }
     });
   }, [lab]);
 
   const stopPlayback = useCallback(() => {
-    clearInterval(intervalRef.current);
+    schedulerRef.current?.stop();
+    schedulerRef.current = null;
     lab.releaseAll();
     setIsPlaying(false);
     setCurrentStep(-1);
   }, [lab]);
 
   const startPlayback = useCallback(() => {
-    initAudioContext();
+    const ctx = initAudioContext();
     setIsPlaying(true);
     earnAchievement('beat', 'cadet');
     const activeCount = Object.values(gridRef.current).filter((s) => s.some(Boolean)).length;
@@ -320,32 +322,19 @@ function LoopStudioPage() {
       if (n >= 3) earnSticker('fit_charlie_surf');
     } catch (_) {}
     if (bpm >= 140) earnSticker('fit_charlie_disco');
-    let step = 0;
-    const msPerStep = (60 / bpm / 4) * 1000;
-    playStep(0);
-    setCurrentStep(0);
-    intervalRef.current = setInterval(() => {
-      step = (step + 1) % totalStepsRef.current;
-      setCurrentStep(step);
-      playStep(step);
-    }, msPerStep);
+    // Audio-clock scheduler: BPM / length changes are picked up live via refs.
+    schedulerRef.current?.stop();
+    schedulerRef.current = createStepScheduler({
+      ctx,
+      getSecPerStep: () => 60 / bpmRef.current / 4,
+      getTotalSteps: () => totalStepsRef.current,
+      onSchedule: playStep,
+      onStepUI: setCurrentStep,
+    });
+    schedulerRef.current.start(0);
   }, [bpm, initAudioContext, playStep]);
 
-  // Re-time the running loop when BPM / length changes.
-  useEffect(() => {
-    if (!isPlaying) return;
-    clearInterval(intervalRef.current);
-    let step = currentStep;
-    const msPerStep = (60 / bpm / 4) * 1000;
-    intervalRef.current = setInterval(() => {
-      step = (step + 1) % totalStepsRef.current;
-      setCurrentStep(step);
-      playStep(step);
-    }, msPerStep);
-    return () => clearInterval(intervalRef.current);
-  }, [bpm, totalSteps]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => () => { if (intervalRef.current) clearInterval(intervalRef.current); }, []);
+  useEffect(() => () => { schedulerRef.current?.stop(); }, []);
 
   const toggleCell = useCallback((key, step) => {
     setGrid((prev) => {
@@ -423,7 +412,7 @@ function LoopStudioPage() {
     // Grow the grid to fit the preset (e.g. a 32-step preset switches to 2 bars).
     const longest = Math.max(16, ...Object.values(preset).map((s) => s.length));
     const target = longest > 32 ? 64 : longest > 16 ? 32 : 16;
-    if (isPlaying) { clearInterval(intervalRef.current); setIsPlaying(false); setCurrentStep(-1); }
+    if (isPlaying) stopPlayback();
     setTotalSteps(target);
     setGrid(() => {
       const next = {};
@@ -434,7 +423,7 @@ function LoopStudioPage() {
       });
       return next;
     });
-  }, [lab, isPlaying]);
+  }, [lab, isPlaying, stopPlayback]);
 
   // First visit — start with Basic Beat so the grid isn't empty.
   useEffect(() => {
@@ -464,7 +453,7 @@ function LoopStudioPage() {
   }, []);
 
   const changeMeasures = useCallback((newSteps) => {
-    if (isPlaying) { clearInterval(intervalRef.current); setIsPlaying(false); setCurrentStep(-1); }
+    if (isPlaying) stopPlayback();
     setTotalSteps(newSteps);
     setGrid((prev) => {
       const next = {};
@@ -475,7 +464,7 @@ function LoopStudioPage() {
       });
       return next;
     });
-  }, [isPlaying]);
+  }, [isPlaying, stopPlayback]);
 
   // Which lanes are visible for the active tab.
   const instCfg = INSTRUMENTS[melodyInst];

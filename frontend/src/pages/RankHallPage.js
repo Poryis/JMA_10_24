@@ -51,18 +51,28 @@ const CURTAIN_HOLD = 700;
 const CURTAIN_STEP = 150;
 function CurtainReveal({ scene, onDone }) {
   const [frame, setFrame] = useState(0);
+  const [ready, setReady] = useState(false);
+  const loaded = useRef(0);
+  const onLoad = () => { loaded.current += 1; if (loaded.current >= 10) setReady(true); };
+  // Safety: start anyway if some frame is slow (the solid backdrop hides the stage meanwhile)
+  useEffect(() => { const t = setTimeout(() => setReady(true), 2500); return () => clearTimeout(t); }, []);
   useEffect(() => {
+    if (!ready) return undefined;
     const ids = [];
     ids.push(setTimeout(() => SFX('Crash cymbal.mp3', 0.3, 0), CURTAIN_HOLD - 80));
     for (let i = 1; i <= 4; i++) ids.push(setTimeout(() => setFrame(i), CURTAIN_HOLD + (i - 1) * CURTAIN_STEP));
     ids.push(setTimeout(onDone, CURTAIN_HOLD + 4 * CURTAIN_STEP));
     return () => ids.forEach(clearTimeout);
-  }, [onDone]);
+  }, [ready, onDone]);
   return (
-    <div aria-hidden="true" data-testid="rank-hall-curtain-reveal" data-frame={frame} className="absolute pointer-events-none" style={{ width: scene.w, height: scene.h, left: scene.left, top: scene.top, zIndex: 20 }}>
-      {STAGE.curtainLeft.map((m, i) => <img key={`l${i}`} src={`assets/stage/cl-${i}.webp`} alt="" draggable={false} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
-      {STAGE.curtainRight.map((m, i) => <img key={`r${i}`} src={`assets/stage/cr-${i}.webp`} alt="" draggable={false} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
-    </div>
+    <>
+      {/* solid blackout under the frames so nothing shows while the art is still downloading */}
+      {frame === 0 && <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ zIndex: 19, background: '#7A1218' }} />}
+      <div aria-hidden="true" data-testid="rank-hall-curtain-reveal" data-frame={frame} data-ready={ready ? 'true' : 'false'} className="absolute pointer-events-none" style={{ width: scene.w, height: scene.h, left: scene.left, top: scene.top, zIndex: 20 }}>
+        {STAGE.curtainLeft.map((m, i) => <img key={`l${i}`} src={`assets/stage/cl-${i}.webp`} alt="" draggable={false} onLoad={onLoad} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
+        {STAGE.curtainRight.map((m, i) => <img key={`r${i}`} src={`assets/stage/cr-${i}.webp`} alt="" draggable={false} onLoad={onLoad} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
+      </div>
+    </>
   );
 }
 

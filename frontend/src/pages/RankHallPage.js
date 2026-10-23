@@ -1,22 +1,26 @@
 // RankHallPage — inside the Bandstand. The kid's own avatar stands center stage
 // under a spotlight, the band cheers from the pit, the trophy shelf of ranks sits
 // behind, and "TAKE A BOW!" sets off the crowd. Tap a trophy → Charlie explains it.
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Star, BookOpen, Hand, Heart, Music, VolumeX } from 'lucide-react';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
+import stageLayout from '../data/stageLayout.json';
 import { useStreetMusic } from './CampusMapPage';
 import { readAvatarOutfit } from '../hooks/useAvatar';
 import AvatarSprite from '../components/AvatarSprite';
 import Confetti from '../components/Confetti';
 import { GameHeader } from '../components/GameUI';
-import { StageLights, CrowdRow, CROWD_SHOUTS } from './ShredLegendPage';
+import { CrowdRow, CROWD_SHOUTS } from './ShredLegendPage';
 
-const CURTAIN = 'repeating-linear-gradient(90deg, #C2173A 0 18px, #8E0C22 18px 36px)';
 const FANFARE = ['C4', 'E4', 'G4', 'C5'];
+const STAGE = stageLayout;
+const RIG_SWING = [9, 7, 6, 6, 7, 9];
+// layout json is in 1920x1080 px → % so the scene box can be any size
+const pos = (m) => ({ left: `${m.x / 19.2}%`, top: `${m.y / 10.8}%`, width: `${m.w / 19.2}%`, height: `${m.h / 10.8}%` });
 const SFX = (file, vol, delay) => setTimeout(() => { const a = new Audio(encodeURI(`assets/audio/${file}`)); a.volume = vol; a.play().catch(() => {}); }, delay);
 const HALL_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
 const OVATION_AT = 3;
@@ -78,6 +82,12 @@ export default function RankHallPage() {
   const [ovation, setOvation] = useState(false);
   const timers = useRef([]);
   const hypeTimer = useRef(null);
+  // The painted stage (JELLY STAGE.psd → assets/stage/*): 16:9 plate sized like background-size: cover, bottom-anchored.
+  const [scene, setScene] = useState({ w: 1920, h: 1080, left: 0, top: 0 });
+  useLayoutEffect(() => {
+    const fit = () => { const vw = window.innerWidth, vh = window.innerHeight; const sc = Math.max(vw / 1920, vh / 1080); const w = 1920 * sc, h = 1080 * sc; setScene({ w, h, left: (vw - w) / 2, top: (vh - h) * 0.45 }); };
+    fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit);
+  }, []);
   useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); }, []);
 
   const takeBow = useCallback(() => {
@@ -95,13 +105,19 @@ export default function RankHallPage() {
 
 
   return (
-    <div className="relative overflow-hidden" data-testid="rank-hall-page" style={{ height: '100dvh', minHeight: '100vh', background: 'radial-gradient(ellipse at 50% 20%, #1E3A5C 0%, #0B1E33 55%, #060F1C 100%)' }}>
-      <StageLights energy={energy} style="halftime" />
+    <div className="relative overflow-hidden" data-testid="rank-hall-page" style={{ height: '100dvh', minHeight: '100vh', background: '#6E7480' }}>
+      {/* painted stage (JELLY STAGE.psd): gradient wall, floor, 6 swinging light rigs, podium, top curtain */}
+      <div aria-hidden="true" data-testid="rank-hall-scene" className="absolute pointer-events-none" style={{ width: scene.w, height: scene.h, left: scene.left, top: scene.top, zIndex: 1, background: 'radial-gradient(ellipse at 50% 35%, #4A5570 0%, #2E3650 45%, #1A2038 80%, #10141F 100%)' }}>
+        <img src="assets/stage/floor.webp" alt="" draggable={false} className="absolute" style={pos(STAGE.floor)} />
+        {STAGE.rigs.map((r, i) => (
+          <motion.img key={i} src={`assets/stage/rig-${i + 1}.webp`} alt="" draggable={false} data-testid={`rank-hall-rig-${i + 1}`} className="absolute" style={{ ...pos(r), transformOrigin: `${r.px}% ${r.py}%` }}
+            animate={{ rotate: [-RIG_SWING[i], RIG_SWING[i], -RIG_SWING[i]] }} transition={{ repeat: Infinity, duration: energy > 0.5 ? 1.6 + i * 0.15 : 3.2 + i * 0.35, ease: 'easeInOut', delay: i * 0.3 }} />
+        ))}
+        <img src="assets/stage/riser.webp" alt="" draggable={false} className="absolute" style={pos(STAGE.riser)} />
+        <img src="assets/stage/tc.webp" alt="" draggable={false} className="absolute" style={{ ...pos(STAGE.tc), zIndex: 3 }} />
+      </div>
       <BadgeTicker names={badgeNames} />
       <GameHeader title="The Stage" showHomeButton={true} backTo="/home" />
-
-      {/* curtain valance */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: '13%', background: CURTAIN, borderBottom: '4px solid #FFCC00', boxShadow: 'inset 0 -16px 24px rgba(0,0,0,0.45)', zIndex: 2 }} />
 
       {/* marquee: your rank in lights */}
       <motion.div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full px-4 py-1 whitespace-nowrap" data-testid="rank-hall-marquee"
@@ -121,14 +137,8 @@ export default function RankHallPage() {
         </button>
       )}
 
-      {/* stage floor */}
-      <div aria-hidden="true" className="absolute inset-x-0 pointer-events-none" style={{ bottom: '18%', height: '16%', background: 'repeating-linear-gradient(90deg, #A67B4C 0 60px, #8B6540 60px 62px)', borderTop: '4px solid var(--jma-dark)', boxShadow: 'inset 0 10px 20px rgba(0,0,0,0.35)', zIndex: 2 }} />
-
-      {/* spotlight + YOU */}
-      <motion.div aria-hidden="true" className="absolute left-1/2 pointer-events-none" style={{ bottom: '30%', width: 'min(60vw, 520px)', height: '62%', transformOrigin: 'top center', zIndex: 3, clipPath: 'polygon(44% 0, 56% 0, 100% 100%, 0 100%)', background: ovation ? 'linear-gradient(180deg, rgba(255,240,180,0.0) 0%, rgba(255,240,180,0.4) 60%, rgba(255,240,180,0.6) 100%)' : 'linear-gradient(180deg, rgba(255,240,180,0.0) 0%, rgba(255,240,180,0.22) 60%, rgba(255,240,180,0.35) 100%)' }}
-        animate={{ x: ['-50%', '-46%', '-54%', '-50%'] }} transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }} />
       <motion.button type="button" data-testid="rank-hall-you" onClick={takeBow} aria-label="Take a bow"
-        className="rank-hall-you absolute left-1/2 -translate-x-1/2 bg-transparent border-0 p-0 cursor-pointer flex flex-col items-center" style={{ bottom: '31%', zIndex: 5, height: '40%' }}>
+        className="rank-hall-you absolute bg-transparent border-0 p-0 cursor-pointer flex flex-col items-center" style={{ left: scene.left + scene.w * 0.505, top: scene.top + scene.h * 0.70, transform: 'translate(-50%, -100%)', height: scene.h * 0.3, zIndex: 5 }}>
         <motion.div key={bow} className="h-full flex items-end" style={{ transformOrigin: 'bottom center' }}
           animate={bow ? { rotate: [0, 0, -22, -22, 0], y: [0, -26, 0, 0, 0] } : { y: [0, -4, 0] }} transition={bow ? { duration: 1.4, times: [0, 0.2, 0.45, 0.8, 1] } : { repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}>
           <AvatarSprite src={avatar.src} helmet={!!avatar.helmet} className="h-full w-auto" imgStyle={{ height: '100%', width: 'auto', filter: 'drop-shadow(0 6px 0 rgba(0,0,0,0.45))' }} />
@@ -137,7 +147,7 @@ export default function RankHallPage() {
       </motion.button>
 
       {/* Charlie, the host, with a speech bubble */}
-      <div className="rank-hall-host absolute flex items-end gap-2" style={{ left: '3%', bottom: '31%', zIndex: 5, height: '34%' }}>
+      <div className="rank-hall-host absolute flex items-end gap-2" style={{ left: scene.left + scene.w * 0.1, top: scene.top + scene.h * 0.86, transform: 'translateY(-100%)', zIndex: 5, height: scene.h * 0.26 }}>
         <img src={host.src} alt={host.name} draggable={false} className="h-full w-auto object-contain" style={{ filter: 'drop-shadow(0 4px 0 rgba(0,0,0,0.4))' }} />
         <AnimatePresence mode="wait">
           <motion.div key={bubble} data-testid="rank-hall-bubble" className="rank-hall-bubble relative mb-[55%] rounded-2xl px-3 py-2 text-[11px] md:text-sm font-bold leading-snug bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', width: 'clamp(150px, 20vw, 240px)' }}
@@ -148,7 +158,7 @@ export default function RankHallPage() {
       </div>
 
       {/* buttons on the lip of the stage */}
-      <div className="rank-hall-actions absolute left-1/2 -translate-x-1/2 flex flex-nowrap justify-center gap-2 whitespace-nowrap" style={{ bottom: '19.5%', zIndex: 6 }}>
+      <div className="rank-hall-actions absolute left-1/2 -translate-x-1/2 flex flex-nowrap justify-center gap-2 whitespace-nowrap" style={{ bottom: '20%', zIndex: 6 }}>
         <motion.button type="button" data-testid="rank-hall-bow" onClick={takeBow} className="chunky-btn px-4 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FF2D85', color: 'white' }}
           animate={{ scale: [1, 1.06, 1] }} transition={{ repeat: Infinity, duration: 1.4 }}><Hand className="w-4 h-4" strokeWidth={3} /> TAKE A BOW!
           <span className="flex items-center gap-0.5 ml-1" data-testid="rank-hall-hype" data-hype={hype}>{Array.from({ length: OVATION_AT }, (_, i) => <Heart key={i} className="w-3 h-3" fill={i < hype ? 'white' : 'none'} strokeWidth={3} />)}</span></motion.button>

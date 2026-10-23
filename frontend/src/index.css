@@ -1089,15 +1089,13 @@ h1, h2, h3, h4, h5, h6 {
   [data-testid="robot-boogie-lineup"] { padding-bottom: 2px !important; }
 
   /* Rank Hall: tighter stage so YOU, the shelf, the host and the crowd all fit */
-  .rank-hall-shelf { top: 16% !important; }
-  .rank-hall-shelf button { width: 46px !important; }
-  .rank-hall-you { height: 32% !important; }
-  .rank-hall-host { height: 28% !important; }
   .rank-hall-bubble { margin-bottom: 4% !important; font-size: 10px !important; width: 150px !important; padding: 4px 8px !important; }
-  .rank-hall-actions { left: 2% !important; transform: none !important; bottom: 20.5% !important; gap: 6px !important; }
+  .rank-hall-host { top: auto !important; bottom: 21% !important; transform: none !important; height: 30% !important; }
+  .rank-hall-you { height: 36% !important; }
+  /* actions stack on the right wall so they clear the podium, Charlie and the crowd */
+  .rank-hall-actions { left: auto !important; right: 2% !important; transform: none !important; bottom: 24% !important; flex-direction: column !important; align-items: flex-end !important; gap: 6px !important; }
   .rank-hall-actions button { padding: 4px 8px !important; font-size: 11px !important; min-height: 0 !important; }
-  .rank-hall-next { bottom: 21% !important; right: 2% !important; width: 180px !important; }
-  .rank-hall-music { top: auto !important; bottom: 41% !important; right: 2% !important; }
+  .rank-hall-music { top: auto !important; bottom: 46% !important; right: 2% !important; }
 
   /* Dressing Room: tighter backstage on short screens */
   .dr-grid { padding-top: 48px !important; padding-bottom: 10% !important; gap: 8px !important; }

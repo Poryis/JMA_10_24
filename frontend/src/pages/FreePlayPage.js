@@ -55,17 +55,19 @@ const DRUM_INFO = {
   kick:   { label: 'Kick',      key: 'X', color: '#E74C3C', ...POV('kick') },
 };
 
-// Layout on a 1000x545 native canvas: [left, top, width, height, zIndex].
-// Back row = cymbals + rack toms, front row = snare / kick / floor tom.
+// Layout on a 1000x500 native canvas: [left, top, width, height, zIndex, badgeX, badgeY].
+// badgeX/Y are fractions of the piece box — where the key label sits on the
+// playing surface (drum head / cymbal top). Back row = cymbals + rack toms,
+// front row (nearer, larger) = snare / kick / floor tom.
 const DRUM_LAYOUT = {
-  crash:  [120,  10, 230, 196, 1],
-  ride:   [690,  20, 270, 270, 1],
-  kick:   [398, 195, 230, 249, 2],
-  tom:    [338,  78, 168, 164, 3],
-  midTom: [512,  70, 175, 184, 3],
-  hihat:  [140, 150, 190, 177, 4],
-  lowTom: [628, 200, 240, 252, 5],
-  snare:  [198, 210, 215, 240, 6],
+  crash:  [ 70,   6, 190, 162, 1, 0.42, 0.48],
+  ride:   [750,  10, 225, 225, 1, 0.32, 0.52],
+  kick:   [395, 205, 250, 271, 2, 0.50, 0.36],
+  tom:    [368,  82, 150, 146, 3, 0.50, 0.34],
+  midTom: [526,  70, 165, 174, 3, 0.50, 0.33],
+  hihat:  [135, 155, 180, 168, 4, 0.52, 0.36],
+  lowTom: [610, 225, 240, 252, 5, 0.50, 0.32],
+  snare:  [215, 235, 230, 257, 6, 0.50, 0.32],
 };
 
 const noteToSolfege = { C: 'Do', D: 'Re', E: 'Mi', F: 'Fa', G: 'So', A: 'La', B: 'Ti', 'High C': 'Do' };
@@ -324,8 +326,8 @@ function PlayableDrumPiece({ drumId, info, onDown, onUp, style, registerRef }) {
         style={{ ...imgStyle, touchAction: 'none' }}
         draggable={false}
       />
-      <div className="key-hint absolute text-xs font-bold bg-white/80 rounded-full w-6 h-6 flex items-center justify-center border border-[var(--jma-dark)] pointer-events-none"
-        style={{ left: badgeLeft, bottom: badgeBottom, zIndex: 10, color: info.color }}>{info.key}</div>
+      <div className="key-hint absolute text-xs font-bold bg-white rounded-full w-6 h-6 flex items-center justify-center border-2 pointer-events-none shadow-sm"
+        style={{ left: badgeLeft, bottom: badgeBottom, zIndex: 10, color: 'var(--jma-dark)', borderColor: info.color }}>{info.key}</div>
     </>
   );
 }
@@ -365,17 +367,17 @@ function ResponsiveScaler({ children, nativeWidth, nativeHeight }) {
 
 function DrumKitPlayable({ onDrumDown, onDrumUp, registerDrumRef }) {
   const NATIVE_W = 1000;
-  const NATIVE_H = 460;
+  const NATIVE_H = 500;
   const wrapRef = useRef(null);
   const scale = useFitScale(wrapRef, NATIVE_W, NATIVE_H);
 
   return (
     <div ref={wrapRef} className="w-full flex justify-center" style={{ height: `${NATIVE_H * scale}px` }}>
       <div data-testid="drum-kit-pov" style={{ width: `${NATIVE_W}px`, height: `${NATIVE_H}px`, transform: `scale(${scale})`, transformOrigin: 'top center', position: 'relative' }}>
-        {Object.entries(DRUM_LAYOUT).map(([id, [left, top, width, height, zIndex]]) => (
+        {Object.entries(DRUM_LAYOUT).map(([id, [left, top, width, height, zIndex, bx, by]]) => (
           <PlayableDrumPiece key={id} drumId={id} info={DRUM_INFO[id]} onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
             style={{ left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px`, zIndex,
-              badgeLeft: `${left + width / 2 - 12}px`, badgeBottom: `${NATIVE_H - top - height + 6}px` }} />
+              badgeLeft: `${left + width * bx - 12}px`, badgeBottom: `${NATIVE_H - top - height * by - 12}px` }} />
         ))}
       </div>
     </div>

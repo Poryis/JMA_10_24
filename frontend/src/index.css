@@ -1089,8 +1089,6 @@ h1, h2, h3, h4, h5, h6 {
   [data-testid="robot-boogie-lineup"] { padding-bottom: 2px !important; }
 
   /* Rank Hall: tighter stage so YOU, the shelf, the host and the crowd all fit */
-  .rank-hall-bubble { margin-bottom: 4% !important; font-size: 10px !important; width: 150px !important; padding: 4px 8px !important; }
-  .rank-hall-host { top: auto !important; bottom: 21% !important; transform: none !important; height: 30% !important; }
   .rank-hall-you { height: 36% !important; }
   /* actions stack on the right wall so they clear the podium, Charlie and the crowd */
   .rank-hall-actions { left: auto !important; right: 2% !important; transform: none !important; bottom: 24% !important; flex-direction: column !important; align-items: flex-end !important; gap: 6px !important; }
@@ -1113,6 +1111,5 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Rank Hall on a portrait phone: no room for the host beside YOU — the kid gets the stage alone */
 @media (orientation: portrait) and (max-width: 640px) {
-  .rank-hall-host { display: none !important; }
 }
 

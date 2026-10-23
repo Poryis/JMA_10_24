@@ -131,7 +131,7 @@ function charOf(src = '') {
   return f.split('-')[0];
 }
 
-export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false }) {
+export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false, extras = true }) {
   // The front row never repeats a character — drop whoever the kid IS from the regulars.
   const members = useMemo(() => {
     if (!avatarSrc) return CROWD_MEMBERS.slice(0, 7);
@@ -150,7 +150,7 @@ export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHe
   return (
     <div className="relative w-full h-full pointer-events-none select-none" data-testid="shred-crowd-row" data-back-row={backRow ? 'true' : 'false'}>
       <CameraFlashes energy={energy} />
-      <CrowdExtras energy={energy} />
+      {extras && <CrowdExtras energy={energy} />}
       <AnimatePresence>
         {backRow && (
           <motion.div

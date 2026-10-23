@@ -72,12 +72,10 @@ export default function RankHallPage() {
   const badgeNames = ACHIEVEMENT_STICKERS.filter((a) => earned[a.id]).map((a) => a.name);
   const { nowPlaying, muted, toggleMute } = useStreetMusic(HALL_TRACKS);
   const avatar = readAvatarOutfit();
-  const host = /charlie/.test(avatar.src) ? { src: 'assets/characters/dr-jellybone.png', name: 'Dr. Jellybone' } : { src: 'assets/characters/charlie.png', name: 'Charlie' };
   const [bow, setBow] = useState(0);
   const [energy, setEnergy] = useState(0.3);
   const [shouts, setShouts] = useState([]);
   const [confetti, setConfetti] = useState(0);
-  const [bubble, setBubble] = useState(`The stage is yours, ${currentRank.title}! Take a bow!`);
   const [hype, setHype] = useState(0);
   const [ovation, setOvation] = useState(false);
   const timers = useRef([]);
@@ -99,7 +97,6 @@ export default function RankHallPage() {
     clearTimeout(hypeTimer.current); hypeTimer.current = setTimeout(() => setHype(0), 7000);
     const members = big ? [0, 1, 2, 3, 4, 5, 6, 7] : [0, 2, 4, 6];
     setShouts(members.map((m, i) => ({ id: Date.now() + i, member: m, text: CROWD_SHOUTS[(m + i + bow) % CROWD_SHOUTS.length] })));
-    setBubble(big ? 'STANDING OVATION! They love you!' : ['The crowd goes wild!', 'Encore! Encore!', 'That bow had STYLE, kid.', 'Hear that? That\'s all for you.', 'One more and they\'ll stand up!'][Math.min(hype, 4)]);
     timers.current.push(setTimeout(() => { setEnergy(0.3); setShouts([]); }, big ? 4200 : 2600));
   }, [bow, hype]);
 
@@ -115,6 +112,8 @@ export default function RankHallPage() {
         ))}
         <img src="assets/stage/riser.webp" alt="" draggable={false} className="absolute" style={pos(STAGE.riser)} />
         <img src="assets/stage/tc.webp" alt="" draggable={false} className="absolute" style={{ ...pos(STAGE.tc), zIndex: 3 }} />
+        <img src="assets/stage/lc.webp" alt="" draggable={false} data-testid="rank-hall-curtain-left" className="absolute" style={{ ...pos(STAGE.lc), zIndex: 3 }} />
+        <img src="assets/stage/rc.webp" alt="" draggable={false} data-testid="rank-hall-curtain-right" className="absolute" style={{ ...pos(STAGE.rc), zIndex: 3 }} />
       </div>
       <BadgeTicker names={badgeNames} />
       <GameHeader title="The Stage" showHomeButton={true} backTo="/home" />
@@ -146,17 +145,6 @@ export default function RankHallPage() {
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-black text-white whitespace-nowrap" style={{ background: '#FF2D85', border: '2px solid var(--jma-dark)' }}>YOU</span>
       </motion.button>
 
-      {/* Charlie, the host, with a speech bubble */}
-      <div className="rank-hall-host absolute flex items-end gap-2" style={{ left: scene.left + scene.w * 0.1, top: scene.top + scene.h * 0.86, transform: 'translateY(-100%)', zIndex: 5, height: scene.h * 0.26 }}>
-        <img src={host.src} alt={host.name} draggable={false} className="h-full w-auto object-contain" style={{ filter: 'drop-shadow(0 4px 0 rgba(0,0,0,0.4))' }} />
-        <AnimatePresence mode="wait">
-          <motion.div key={bubble} data-testid="rank-hall-bubble" className="rank-hall-bubble relative mb-[55%] rounded-2xl px-3 py-2 text-[11px] md:text-sm font-bold leading-snug bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', width: 'clamp(150px, 20vw, 240px)' }}
-            initial={{ opacity: 0, scale: 0.7, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8 }}>
-            {bubble}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
       {/* buttons on the lip of the stage */}
       <div className="rank-hall-actions absolute left-1/2 -translate-x-1/2 flex flex-nowrap justify-center gap-2 whitespace-nowrap" style={{ bottom: '20%', zIndex: 6 }}>
         <motion.button type="button" data-testid="rank-hall-bow" onClick={takeBow} className="chunky-btn px-4 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FF2D85', color: 'white' }}
@@ -167,7 +155,7 @@ export default function RankHallPage() {
 
       {/* the band cheers from the pit */}
       <div className="absolute inset-x-0 bottom-0" style={{ height: '20%', zIndex: 7 }}>
-        <CrowdRow energy={energy} burstId={bow} shouts={shouts} />
+        <CrowdRow energy={energy} burstId={bow} shouts={shouts} extras={false} />
       </div>
 
       {bow > 0 && <CrowdBurst key={`burst-${bow}`} id={bow} big={ovation} />}

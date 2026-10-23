@@ -16,6 +16,7 @@ import DailyQuestCard from '../components/DailyQuestCard';
 import FitBox from '../components/FitBox';
 import { CAMPUS_ZONES, CAMPUS_BUILDINGS, PLAZA_ZONE, PLAZA_BUILDINGS } from '../data/campus';
 import useUnlocks from '../hooks/useUnlocks';
+import useRank from '../hooks/useRank';
 import usePracticeStreak from '../hooks/usePracticeStreak';
 import useDailyQuests from '../hooks/useDailyQuests';
 import { readAvatarOutfit } from '../hooks/useAvatar';
@@ -158,6 +159,24 @@ function BrandMarquee() {
   );
 }
 
+// The Academy's cuckoo: the kid's current rank character pops out onto the
+// clock-tower ledge (assets/plaza/academy.png — door ≈ x 61.6%, ledge y 31%).
+function Cuckoo() {
+  const { currentRank } = useRank();
+  const [out, setOut] = useState(false);
+  useEffect(() => {
+    setOut(false);
+    const t = setTimeout(() => setOut(true), 900);
+    return () => clearTimeout(t);
+  }, [currentRank.id]);
+  return (
+    <div aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} className="absolute pointer-events-none overflow-hidden" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2 }}>
+      <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
+        initial={false} animate={out ? { y: '0%', x: '-50%', scale: 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={{ type: 'spring', stiffness: 260, damping: 18 }} />
+    </div>
+  );
+}
+
 function GateRibbon({ ribbon, fontSize }) {
   const text = <span className="font-black font-display whitespace-nowrap" style={{ fontSize, lineHeight: 1.25, color: ribbon.color, letterSpacing: '0.06em', textShadow: ribbon.color === 'white' ? '0 2px 0 rgba(0,0,0,0.35)' : 'none' }}>{ribbon.text}</span>;
   return (
@@ -202,6 +221,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
           {b.custom === 'tv'
             ? <DriveIn />
             : <img src={b.art} alt="" draggable={false} className="relative z-[1] w-full h-full object-contain object-bottom" style={{ filter: locked && b.flat ? 'grayscale(0.9) brightness(0.8) drop-shadow(0 8px 0 rgba(2,36,63,0.35))' : 'drop-shadow(0 8px 0 rgba(2,36,63,0.35))', transition: 'filter 0.6s', transform: [drop ? `translateY(${drop}%)` : '', b.flip ? 'scaleX(-1)' : ''].join(' ').trim() || undefined }} />}
+          {b.custom === 'academy' && <Cuckoo />}
           {b.sign && (
             <span data-testid={`campus-building-${b.id}-sign`} className="absolute -translate-x-1/2 -translate-y-1/2 font-black font-display whitespace-nowrap pointer-events-none"
               style={{ left: `${b.signPos.x}%`, top: `${b.signPos.y}%`, fontSize: Math.round(L.bw * b.size * (b.sign.length > 8 ? 0.055 : 0.085) * (b.signScale || 1)), color: 'var(--jma-dark)', zIndex: 5, letterSpacing: '0.04em',

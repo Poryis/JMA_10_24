@@ -4,8 +4,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Star, Lock, BookOpen, Hand, Heart, Music, VolumeX } from 'lucide-react';
-import { RANKS } from '../data/ranks';
+import { Star, BookOpen, Hand, Heart, Music, VolumeX } from 'lucide-react';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
@@ -14,7 +13,6 @@ import { readAvatarOutfit } from '../hooks/useAvatar';
 import AvatarSprite from '../components/AvatarSprite';
 import Confetti from '../components/Confetti';
 import { GameHeader } from '../components/GameUI';
-import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import { StageLights, CrowdRow, CROWD_SHOUTS } from './ShredLegendPage';
 
 const CURTAIN = 'repeating-linear-gradient(90deg, #C2173A 0 18px, #8E0C22 18px 36px)';
@@ -63,37 +61,19 @@ export function playFanfare() {
   SFX('Crash cymbal.mp3', 0.6, 60 + FANFARE.length * 120);
 }
 
-function Trophy({ rank, state, index, onPick, picked }) {
-  const reached = state !== 'future';
-  return (
-    <motion.button type="button" onClick={() => onPick(rank, state)} data-testid={`rank-hall-trophy-${rank.id}`} data-state={state}
-      className="relative flex flex-col items-center bg-transparent border-0 p-0 cursor-pointer" style={{ width: 'clamp(52px, 7vw, 76px)' }}
-      initial={{ y: 16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 + index * 0.06, type: 'spring', stiffness: 220 }}
-      whileHover={{ y: -4 }} whileTap={{ scale: 0.92 }}>
-      <div className="relative rounded-full flex items-center justify-center overflow-hidden" style={{ width: '80%', aspectRatio: '1', background: reached ? rank.badgeBg : '#0F2238', border: `3px solid ${reached ? rank.color : '#2B4660'}`, boxShadow: state === 'current' || picked ? `0 0 0 3px #FFCC00, 0 0 18px ${rank.color}` : reached ? `0 3px 0 0 ${rank.color}` : 'none' }}>
-        <img src={rank.icon} alt="" draggable={false} className="w-[82%] h-[82%] object-contain" style={{ filter: reached ? 'none' : 'brightness(0) opacity(0.45)' }} />
-        {!reached && <Lock className="absolute w-4 h-4" style={{ color: 'rgba(255,255,255,0.6)' }} strokeWidth={3} />}
-      </div>
-      <span className="w-full mt-0.5 rounded-sm text-[8px] md:text-[9px] font-black text-center leading-tight py-0.5" style={{ background: '#2B1A0C', color: reached ? '#FFE8A3' : 'rgba(255,232,163,0.4)', border: '1px solid #000' }}>{rank.title}</span>
-    </motion.button>
-  );
-}
-
 export default function RankHallPage() {
   const navigate = useNavigate();
-  const { currentRank, nextRank, progress, achievementCount } = useRank();
+  const { currentRank } = useRank();
   const { earned } = useStickers();
   const badgeNames = ACHIEVEMENT_STICKERS.filter((a) => earned[a.id]).map((a) => a.name);
   const { nowPlaying, muted, toggleMute } = useStreetMusic(HALL_TRACKS);
-  const curIdx = RANKS.findIndex((r) => r.id === currentRank.id);
   const avatar = readAvatarOutfit();
   const host = /charlie/.test(avatar.src) ? { src: 'assets/characters/dr-jellybone.png', name: 'Dr. Jellybone' } : { src: 'assets/characters/charlie.png', name: 'Charlie' };
-  const [howOpen, setHowOpen] = useState(false);
   const [bow, setBow] = useState(0);
   const [energy, setEnergy] = useState(0.3);
   const [shouts, setShouts] = useState([]);
   const [confetti, setConfetti] = useState(0);
-  const [bubble, setBubble] = useState(`Welcome to the Rank Hall, ${currentRank.title}! Tap a trophy, or take a bow!`);
+  const [bubble, setBubble] = useState(`The stage is yours, ${currentRank.title}! Take a bow!`);
   const [hype, setHype] = useState(0);
   const [ovation, setOvation] = useState(false);
   const timers = useRef([]);
@@ -114,17 +94,11 @@ export default function RankHallPage() {
   }, [bow, hype]);
 
 
-  const pickTrophy = (rank, state) => {
-    if (state === 'future') setBubble(`${rank.title} — ${rank.requirement.label}. You'll get there!`);
-    else if (state === 'current') setBubble(`${rank.title}: ${rank.blurb}`);
-    else setBubble(`${rank.title} — you've already earned this one. ${rank.blurb}`);
-  };
-
   return (
     <div className="relative overflow-hidden" data-testid="rank-hall-page" style={{ height: '100dvh', minHeight: '100vh', background: 'radial-gradient(ellipse at 50% 20%, #1E3A5C 0%, #0B1E33 55%, #060F1C 100%)' }}>
       <StageLights energy={energy} style="halftime" />
       <BadgeTicker names={badgeNames} />
-      <GameHeader title="Rank Hall" showHomeButton={true} backTo="/home" />
+      <GameHeader title="The Stage" showHomeButton={true} backTo="/home" />
 
       {/* curtain valance */}
       <div aria-hidden="true" className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: '13%', background: CURTAIN, borderBottom: '4px solid #FFCC00', boxShadow: 'inset 0 -16px 24px rgba(0,0,0,0.45)', zIndex: 2 }} />
@@ -146,14 +120,6 @@ export default function RankHallPage() {
           <span style={{ textDecoration: muted ? 'line-through' : 'none' }}>{nowPlaying}</span>
         </button>
       )}
-
-      {/* trophy shelf behind the stage */}
-      <div className="rank-hall-shelf absolute left-1/2 -translate-x-1/2 w-[min(92vw,760px)] rounded-2xl px-2 pt-2 pb-1" data-testid="rank-hall-shelf"
-        style={{ top: '21%', zIndex: 3, background: 'linear-gradient(180deg, #8B5A2B 0%, #6E4320 100%)', border: '3px solid var(--jma-dark)', boxShadow: 'inset 0 4px 0 rgba(255,255,255,0.12), 0 5px 0 0 var(--jma-dark)' }}>
-        <div className="flex justify-center gap-1 md:gap-2">
-          {RANKS.map((r, i) => <Trophy key={r.id} rank={r} index={i} state={i < curIdx ? 'reached' : i === curIdx ? 'current' : 'future'} onPick={pickTrophy} />)}
-        </div>
-      </div>
 
       {/* stage floor */}
       <div aria-hidden="true" className="absolute inset-x-0 pointer-events-none" style={{ bottom: '18%', height: '16%', background: 'repeating-linear-gradient(90deg, #A67B4C 0 60px, #8B6540 60px 62px)', borderTop: '4px solid var(--jma-dark)', boxShadow: 'inset 0 10px 20px rgba(0,0,0,0.35)', zIndex: 2 }} />
@@ -181,28 +147,12 @@ export default function RankHallPage() {
         </AnimatePresence>
       </div>
 
-      {/* next rank — the applause meter */}
-      <div className="rank-hall-next absolute rounded-2xl px-3 py-2" data-testid="rank-hall-next" style={{ right: '3%', bottom: '36%', zIndex: 5, width: 'clamp(180px, 24vw, 280px)', background: 'rgba(5,15,28,0.85)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
-        {nextRank ? (
-          <>
-            <div className="flex items-center justify-between gap-2 text-[11px] md:text-xs font-black text-white">
-              <span>Next: {nextRank.title}</span><span style={{ color: '#FFCC00' }}>{progress.current}/{progress.target}</span>
-            </div>
-            <div className="mt-1.5 h-2.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.15)' }}>
-              <motion.div className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, #FFCC00, #FF9500)' }} initial={{ width: 0 }} animate={{ width: `${progress.pct}%` }} transition={{ delay: 0.4, duration: 0.8 }} />
-            </div>
-            <div className="mt-1 text-[10px] font-bold text-white/70 leading-tight">{nextRank.requirement.label}</div>
-          </>
-        ) : <div className="text-xs font-black text-white">Maestro! Every rank earned — {achievementCount} badges strong.</div>}
-      </div>
-
       {/* buttons on the lip of the stage */}
       <div className="rank-hall-actions absolute left-1/2 -translate-x-1/2 flex flex-nowrap justify-center gap-2 whitespace-nowrap" style={{ bottom: '19.5%', zIndex: 6 }}>
         <motion.button type="button" data-testid="rank-hall-bow" onClick={takeBow} className="chunky-btn px-4 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FF2D85', color: 'white' }}
           animate={{ scale: [1, 1.06, 1] }} transition={{ repeat: Infinity, duration: 1.4 }}><Hand className="w-4 h-4" strokeWidth={3} /> TAKE A BOW!
           <span className="flex items-center gap-0.5 ml-1" data-testid="rank-hall-hype" data-hype={hype}>{Array.from({ length: OVATION_AT }, (_, i) => <Heart key={i} className="w-3 h-3" fill={i < hype ? 'white' : 'none'} strokeWidth={3} />)}</span></motion.button>
-        <button type="button" data-testid="rank-hall-how" onClick={() => setHowOpen(true)} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black" style={{ background: 'white', color: 'var(--jma-dark)' }}>How do ranks work?</button>
-        <button type="button" data-testid="rank-hall-stickers" onClick={() => navigate('/sticker-book')} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><BookOpen className="w-4 h-4" strokeWidth={3} /> Sticker Shack</button>
+        <button type="button" data-testid="rank-hall-academy" onClick={() => navigate('/academy')} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><BookOpen className="w-4 h-4" strokeWidth={3} /> My Yearbook</button>
       </div>
 
       {/* the band cheers from the pit */}
@@ -228,7 +178,6 @@ export default function RankHallPage() {
           ))}
         </div>
       )}
-      <HowRanksWorkModal open={howOpen} onClose={() => setHowOpen(false)} />
     </div>
   );
 }

@@ -216,7 +216,7 @@ export default function StickerBookPage() {
   const navigate = useNavigate();
   const { earned, achievementCount, collectionCount } = useStickers();
   const [openSticker, setOpenSticker] = useState(null);
-  const [printReportOpen, setPrintReportOpen] = useState(false);
+  const [printReportOpen, setPrintReportOpen] = useState(() => window.location.hash.includes('print=1'));
   const [manageDataOpen, setManageDataOpen] = useState(false);
   const [howRanksOpen, setHowRanksOpen] = useState(false);
   // Teacher View — when on, the achievement section swaps kid blurbs for

@@ -3,6 +3,7 @@
 // Hooked into App.js so it works from any page.
 
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import useRank from '../hooks/useRank';
 import { setOverlayActive } from '../hooks/useGamePause';
@@ -11,6 +12,7 @@ import { say } from '../lib/voice';
 
 export default function RankUpCelebration() {
   const { rankUp, dismissRankUp } = useRank({ withCelebration: true });
+  const navigate = useNavigate();
 
   // Freeze any game underneath while the full-screen celebration is up.
   useEffect(() => {
@@ -97,14 +99,24 @@ export default function RankUpCelebration() {
                 {rankUp.celebrationHint}
               </motion.p>
             )}
-            <button
-              data-testid="rank-up-dismiss"
-              onClick={dismissRankUp}
-              className="chunky-btn text-white px-6 py-2 text-base font-bold"
-              style={{ backgroundColor: rankUp.color }}
-            >
-              Keep playing!
-            </button>
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                data-testid="rank-up-stage"
+                onClick={() => { dismissRankUp(); navigate('/rank-hall'); }}
+                className="chunky-btn text-white px-5 py-2 text-base font-bold"
+                style={{ backgroundColor: rankUp.color }}
+              >
+                Take a bow on stage!
+              </button>
+              <button
+                data-testid="rank-up-dismiss"
+                onClick={dismissRankUp}
+                className="chunky-btn px-5 py-2 text-base font-bold"
+                style={{ background: 'white', color: 'var(--jma-dark)' }}
+              >
+                Keep playing
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}

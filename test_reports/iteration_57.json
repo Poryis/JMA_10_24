@@ -1,0 +1,47 @@
+{
+  "summary": "Frontend-only testing of the new Jam Session drum kit, The Stage (/rank-hall) upgrades, Academy redesign/Yearbook posters and the Shred Legend crowd regression, on desktop 1920x1080 and phone landscape 844x390. Every requested flow works and no page errors were thrown. I found 2 small visual bugs, both on The Stage: the marquee and the STANDING OVATION banner sit off-center, because framer-motion's transform replaces Tailwind's -translate-x-1/2. There is also a minor click-area overlap on the Hi-Hat.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "RankHallPage marquee", "issue": "The marquee is not centered: its center is at x=1081 on a 1920 viewport (should be 960), and at 543 instead of 422 on 844x390. The motion.div has the classes 'left-1/2 -translate-x-1/2' and also animates y, so framer-motion writes its own inline transform and the Tailwind translate is dropped. The NOW PLAYING pill hangs off the marquee, so it is off-center too. Fix: center with style={{x:'-50%'}} on the motion.div, or wrap it in a plain div that does the centering.", "selector": "[data-testid='rank-hall-marquee']", "priority": "MEDIUM"},
+      {"component": "RankHallPage ovation banner", "issue": "Same cause as the marquee: the STANDING OVATION banner animates scale/rotate, which drops -translate-x-1/2. Its center is at x=1153 instead of 960, and it partly covers the avatar's head.", "selector": "[data-testid='rank-hall-ovation']", "priority": "MEDIUM"},
+      {"component": "FreePlay DrumKitPlayable", "issue": "Each drum image's transparent bounding box catches clicks. The Snare (zIndex 6) covers the lower half of the Hi-Hat's box: a click at the Hi-Hat box center hits the Snare. A click on the Q badge still hits the Hi-Hat, so users who tap the lower edge of the hi-hat cymbal get a snare instead. Minor.", "selector": "[data-testid='drum-kit-pov'] img[alt='Hi-Hat']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "The Stage during a performance or cheer", "issues": ["The crowd row (zIndex 7, raised when energy=1) is drawn over the action buttons (zIndex 6). Cymbals and characters hide parts of 'TAKE A BOW!' and 'My Yearbook'. The buttons can still be clicked because the crowd has pointer-events:none, but they are hard to read. Consider giving the actions zIndex 8 or more."]},
+      {"screen": "Academy", "issues": ["assets/academy/hall.jpg is only 1264px wide (naturalWidth) but is stretched to 1920px on desktop, so it looks a little soft."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix the centering of rank-hall-marquee and rank-hall-ovation: use framer-motion x:'-50%' or a wrapper div instead of Tailwind -translate-x-1/2 on the motion elements.",
+    "Optional: raise .rank-hall-actions above the crowd row so cheering crowd sprites don't hide the buttons.",
+    "Optional: trim the drum pieces' click areas (or reorder zIndex) so the snare's box doesn't steal clicks meant for the lower hi-hat cymbal.",
+    "Optional: use a higher-resolution academy hall.jpg."
+  ],
+  "critical_code_review_comments": [
+    "RankHallPage: inside perform(), the setInterval callback holds an endPerf → cheer closure created when perform ran, so it keeps a stale 'bow' value. This only changes which crowd shout text is picked, so it is harmless.",
+    "RankHallPage: pressing LIGHT SHOW during a performance stops the performance's light show (stopShow), and the lights stay off for the rest of the song. Minor UX gap.",
+    "FreePlayPage.js is 981 lines, over the 700-line guideline. Consider extracting DrumKitPlayable, JamAlongControls and the other instrument components."
+  ],
+  "verified_passing": [
+    "Jam Session drums: 8 pieces load. Mouse-down on each piece shows its pressed frame (Hi-Hat at its box center plays Snare, see ui_bugs). Keys q,w,e,a,s,d,f,x each press the matching drum. Q W E A S D F X labels show on desktop; they are hidden on 844x390 by an intentional CSS rule (.jam-main .key-hint). In landscape the kit fits (bottom 382 < 390, no horizontal overflow).",
+    "Curtain reveal: data-frame goes 0→1→2→3→4 and the overlay unmounts at about 1.7s. Left and right side curtains stay. There is no Charlie host (only Charlie band members in the pit) and no shred-crowd-extras on The Stage.",
+    "Marquee name shows 'FINN·' followed by the rank POLLIWOG.",
+    "Lamp 3 data-gel goes 1,2,…,7,0,1, so it wraps after 8 values. LIGHT SHOW sets data-on=true, shows the strobe and cycles the gels, then auto-ends after about 6s. Manual toggle off also works.",
+    "PLAY MY SONG with no tracks shows the empty setlist; the Beat Lab and Song Studio buttons go to #/loop-studio and #/song-studio. With a seeded beat: picking it closes the setlist, shows 'NOW PLAYING: Test Groove', the progress bar grows (12% after about 2.5s), the strobe runs and STOP replaces the play button. STOP brings the play button back and shows confetti. Left alone, the song ended by itself at about 20.3s with the STANDING OVATION banner and confetti.",
+    "SNAP!: the flash appears and the poster modal shows Finn, Polliwog, LIVE ON STAGE and SOLD OUT. If taken during a song it also shows 'performing “Test Groove”'. Print button is present (not clicked) and Done closes the modal. jma_stage_posters_v1 gets an entry.",
+    "TAKE A BOW: hype goes 1→2→0 with hearts filling 1, 2, then the ovation banner appears on the third bow.",
+    "Academy: hall.jpg loads. The class, album and yearbook hotspots line up with the chalkboard, record shelf and yearbook and each opens and closes its panel. Clock, bell and plant are clickable with no errors. Clicking Charlie changes the bubble text.",
+    "Yearbook posters: with no posters the posters-go link appears and goes to #/rank-hall. After a SNAP, one mini poster shows and opens academy-poster-modal; closing it leaves the yearbook panel open.",
+    "Shred Legend: shred-crowd-extras renders on the ready and playing screens.",
+    "Stage at 844x390: the 5 buttons stack on the right (x 662–828), with no horizontal overflow."
+  ],
+  "updated_files": ["/app/test_reports/iteration_57.json"],
+  "success_rate": {"backend": "N/A", "frontend": "about 95%: all functional checks pass; 2 visual centering bugs and 1 minor click-area overlap"},
+  "seed_data_creation": "Test data was written to localStorage only: jma_player_v1 {displayName:'Finn'}, jma_saved_beats_v1 with the btest1 'Test Groove' beat, and posters created by SNAP.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "The browser tool loads page_url first, so add_init_script has no effect on the first load. Set localStorage with page.evaluate, then goto the hash route and call page.reload(). The Shred Legend crowd (and its extras) only renders after clicking shred-start-btn. Drum key hints are intentionally hidden at phone-landscape size."
+}

@@ -240,8 +240,8 @@ export default function RankHallPage() {
       <GameHeader title="The Stage" showHomeButton={true} backTo="/home" />
 
       {/* marquee: your rank in lights */}
-      <motion.div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full px-4 py-1 whitespace-nowrap" data-testid="rank-hall-marquee"
-        style={{ top: '13%', marginTop: -16, zIndex: 6, background: 'radial-gradient(circle, #FFF2A8 0 2.5px, rgba(255,255,255,0) 3.5px) 1px 1px / 14px 14px, var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}
+      <motion.div className="absolute left-1/2 flex items-center gap-2 rounded-full px-4 py-1 whitespace-nowrap" data-testid="rank-hall-marquee"
+        style={{ x: '-50%', top: '13%', marginTop: -16, zIndex: 6, background: 'radial-gradient(circle, #FFF2A8 0 2.5px, rgba(255,255,255,0) 3.5px) 1px 1px / 14px 14px, var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}
         initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         <span className="rounded-full px-3 py-0.5 font-black font-display text-sm md:text-base flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}>
           <Star className="inline w-4 h-4 -mt-0.5" strokeWidth={3} />
@@ -285,7 +285,7 @@ export default function RankHallPage() {
         ) : (
           <button type="button" data-testid="rank-hall-play-song" onClick={() => setPicker(true)} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5 text-white" style={{ background: '#1E9BFF' }}><ListMusic className="w-4 h-4" strokeWidth={3} /> PLAY MY SONG</button>
         )}
-        <button type="button" data-testid="rank-hall-light-show" data-on={show ? 'true' : 'false'} onClick={lightShow} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: show ? 'var(--jma-dark)' : '#8E44AD', color: 'white' }}><Zap className="w-4 h-4" strokeWidth={3} fill={show ? 'currentColor' : 'none'} /> LIGHT SHOW</button>
+        <button type="button" data-testid="rank-hall-light-show" data-on={show ? 'true' : 'false'} onClick={lightShow} disabled={!!perf} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: show ? 'var(--jma-dark)' : '#8E44AD', color: 'white', opacity: perf ? 0.6 : 1 }}><Zap className="w-4 h-4" strokeWidth={3} fill={show ? 'currentColor' : 'none'} /> LIGHT SHOW</button>
         <button type="button" data-testid="rank-hall-snap" onClick={snap} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: 'white', color: 'var(--jma-dark)' }}><Camera className="w-4 h-4" strokeWidth={3} /> SNAP!</button>
         <button type="button" data-testid="rank-hall-academy" onClick={() => navigate('/academy')} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><BookOpen className="w-4 h-4" strokeWidth={3} /> My Yearbook</button>
       </div>
@@ -298,8 +298,8 @@ export default function RankHallPage() {
       {bow > 0 && <CrowdBurst key={`burst-${bow}`} id={bow} big={ovation} />}
       <AnimatePresence>
         {ovation && (
-          <motion.div key="ovation" data-testid="rank-hall-ovation" className="absolute left-1/2 -translate-x-1/2 px-6 py-2 rounded-2xl font-black font-display text-2xl md:text-4xl whitespace-nowrap"
-            style={{ top: '38%', zIndex: 30, background: '#FFCC00', color: 'var(--jma-dark)', border: '4px solid var(--jma-dark)', boxShadow: '0 6px 0 0 var(--jma-dark)' }}
+          <motion.div key="ovation" data-testid="rank-hall-ovation" className="absolute left-1/2 px-6 py-2 rounded-2xl font-black font-display text-2xl md:text-4xl whitespace-nowrap"
+            style={{ x: '-50%', top: '26%', zIndex: 30, background: '#FFCC00', color: 'var(--jma-dark)', border: '4px solid var(--jma-dark)', boxShadow: '0 6px 0 0 var(--jma-dark)' }}
             initial={{ scale: 0, rotate: -8 }} animate={{ scale: [0, 1.2, 1], rotate: [-8, 4, -2] }} exit={{ scale: 0, opacity: 0 }} transition={{ duration: 0.6 }}>
             STANDING OVATION!
           </motion.div>

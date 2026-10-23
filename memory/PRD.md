@@ -464,3 +464,10 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 ## Session Update — June 2026 (part 4): Academy as a clickable room
 - `AcademyPage.js` is now a scene: hall art sized like `background-size: cover` (bottom-center anchored, `HALL = 1264x848`) with %-pinned `Hotspot`s — corkboard → Today's Class, gold record on trophy wall → My Album, yearbook on desk → Yearbook (panels open as modals, `academy-panel-*`, close `academy-panel-close`). Extras: desk bell (note + wiggle), plant wiggle, Charlie bubble cycling. Tabs removed.
 - Cuckoo moment bug: plaza auto-scrolls the Academy into view (scrollIntoView delayed 350ms to outlive the plaza's `scrollLeft=0` reset) before the moment plays. Tests: iteration_55 (room pass, scroll fail) → iteration_56 (scroll PASS).
+
+## Session Update — June 2026 (part 5): Drummer's-POV kit in Jam Session
+- Jam Session drums (`FreePlayPage.js` `DrumKitPlayable`) now a GarageBand-style top-down kit: AI-generated pieces in the house style (red shells / cream heads / thick outlines), 2 frames each (idle + struck, cut from the same canvas) at `assets/drums/pov/{kick,snare,racktomL,racktom,floortom,hihat,crash,ride}-{1,2}.webp` (~35–58KB each). Layout table `DRUM_LAYOUT` on a 1000×460 canvas; toms mount onto the kick, hardware arms face center (Tom 1 uses `racktomL`).
+- New 8th piece **Tom 2** (`midTom`, key D) = Tom sample at playbackRate 0.8 (`useAudio.playDrumSound`); Floor Tom moved to key F. Old front-view PNGs remain in `assets/drums/` (still used by Beat Lab `DrumKitVisual` / Instruments.js if ever re-enabled).
+- Source JPEG generations + `build_pairs.py` (checkerboard→alpha cutout, shared crop) kept in `/app/memory/drum_pov/`.
+- **Hold**: `Hey Pachuco stage.psd` — user said hold for now.
+- Verified via screenshots (desktop + 844×390 landscape, all 8 pieces tappable, hit frames swap). Testing agent not run.

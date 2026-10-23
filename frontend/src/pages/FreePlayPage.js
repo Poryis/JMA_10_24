@@ -49,7 +49,7 @@ const DRUM_INFO = {
   crash:  { label: 'Crash',     key: 'W', color: '#E67E22', ...POV('crash') },
   ride:   { label: 'Ride',      key: 'E', color: '#E74C3C', ...POV('ride') },
   snare:  { label: 'Snare',     key: 'A', color: '#3498DB', ...POV('snare') },
-  tom:    { label: 'Tom 1',     key: 'S', color: '#9B59B6', ...POV('racktom') },
+  tom:    { label: 'Tom 1',     key: 'S', color: '#9B59B6', ...POV('racktomL') },
   midTom: { label: 'Tom 2',     key: 'D', color: '#8E44AD', ...POV('racktom') },
   lowTom: { label: 'Floor Tom', key: 'F', color: '#1ABC9C', ...POV('floortom') },
   kick:   { label: 'Kick',      key: 'X', color: '#E74C3C', ...POV('kick') },
@@ -58,14 +58,14 @@ const DRUM_INFO = {
 // Layout on a 1000x545 native canvas: [left, top, width, height, zIndex].
 // Back row = cymbals + rack toms, front row = snare / kick / floor tom.
 const DRUM_LAYOUT = {
-  crash:  [125,  20, 230, 196, 1],
-  ride:   [665,  30, 270, 270, 1],
-  tom:    [332,  90, 165, 173, 2],
-  midTom: [497,  85, 175, 184, 2],
-  kick:   [385, 250, 230, 249, 3],
-  hihat:  [140, 165, 190, 177, 4],
-  lowTom: [615, 238, 240, 252, 4],
-  snare:  [192, 242, 215, 240, 5],
+  crash:  [120,  10, 230, 196, 1],
+  ride:   [690,  20, 270, 270, 1],
+  kick:   [398, 195, 230, 249, 2],
+  tom:    [338,  78, 168, 164, 3],
+  midTom: [512,  70, 175, 184, 3],
+  hihat:  [140, 150, 190, 177, 4],
+  lowTom: [628, 200, 240, 252, 5],
+  snare:  [198, 210, 215, 240, 6],
 };
 
 const noteToSolfege = { C: 'Do', D: 'Re', E: 'Mi', F: 'Fa', G: 'So', A: 'La', B: 'Ti', 'High C': 'Do' };
@@ -365,7 +365,7 @@ function ResponsiveScaler({ children, nativeWidth, nativeHeight }) {
 
 function DrumKitPlayable({ onDrumDown, onDrumUp, registerDrumRef }) {
   const NATIVE_W = 1000;
-  const NATIVE_H = 505;
+  const NATIVE_H = 460;
   const wrapRef = useRef(null);
   const scale = useFitScale(wrapRef, NATIVE_W, NATIVE_H);
 

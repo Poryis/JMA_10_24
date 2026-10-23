@@ -31,7 +31,7 @@ def cutout(path):
     alpha = np.where(mask, 0, 255).astype(np.uint8)
     return Image.fromarray(np.dstack([a.astype(np.uint8), alpha]), 'RGBA')
 
-for name in ['kick', 'snare', 'racktom', 'floortom', 'hihat', 'crash', 'ride']:
+for name in ['kick', 'snare', 'racktom', 'racktomL', 'floortom', 'hihat', 'crash', 'ride']:
     idle = cutout(f'/app/memory/drum_pov/{name}.img')
     hit = cutout(f'/app/memory/drum_pov/{name}_hit.img')
     b1, b2 = idle.getbbox(), hit.getbbox()

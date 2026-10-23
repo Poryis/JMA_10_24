@@ -2,10 +2,10 @@
 //   Today's Class  → the 3 daily quests with ONE start button (no menus)
 //   My Album       → the kid's saved Beat Lab / Song Studio tracks as records
 //   Yearbook       → rank, next-rank meter, badges, attendance stamps
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CalendarCheck, Disc3, BookOpen, Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X } from 'lucide-react';
+import { BookOpen, Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
@@ -20,11 +20,6 @@ import { RANKS } from '../data/ranks';
 import { COLLECTION_STICKERS } from '../data/stickers';
 import { say } from '../lib/voice';
 
-const ROOMS = [
-  { id: 'class', label: "Today's Class", Icon: CalendarCheck, color: '#1E9BFF' },
-  { id: 'album', label: 'My Album', Icon: Disc3, color: '#FF2D85' },
-  { id: 'yearbook', label: 'Yearbook', Icon: BookOpen, color: '#FFCC00' },
-];
 const SLEEVES = ['#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF', '#00B8D9'];
 
 const COVERS_KEY = 'jma_album_covers_v1';
@@ -219,34 +214,101 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Today's class is on the board.", 'Finish all three and stamp your card!', 'Your records live on the shelf in My Album.', 'Rank up and a new friend pops out of the clock!'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The corkboard has today\'s class on it.', 'Your records hang on the wall over there.', 'The big book on my desk is your Yearbook.', 'Rank up and a new friend pops out of the clock!'];
+const HALL = { w: 1264, h: 848 };
+const PANELS = { class: TodaysClass, album: MyAlbum, yearbook: Yearbook };
+const ding = (f) => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {}); };
+
+// Hotspot pinned to a % of the painted hall, with a pulsing ring + label so kids find it.
+function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
+  return (
+    <motion.button type="button" data-testid={testId || `academy-room-${id}`} aria-label={label} onClick={onClick} className="absolute flex flex-col items-center justify-end group" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, zIndex: 3 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+      {children}
+      <motion.span aria-hidden="true" className="absolute inset-0 rounded-2xl pointer-events-none" style={{ border: `3px solid ${color}`, boxShadow: `0 0 0 3px rgba(255,255,255,0.6)` }} animate={{ opacity: [0.25, 0.85, 0.25], scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }} />
+      {label && <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-black text-[10px] md:text-xs" style={{ background: color, color: id === 'class' || id === 'album' ? 'white' : 'var(--jma-dark)', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>{label}</span>}
+    </motion.button>
+  );
+}
+
+// Props painted over the empty frames / desk so the hotspots have something to be.
+function GoldRecord() {
+  return (
+    <span aria-hidden="true" className="relative block w-[62%] aspect-square rounded-full mb-[14%]" style={{ background: 'radial-gradient(circle at 50% 50%, #FFF2B0 0 8%, #C98F1B 9% 14%, #FFD95A 15% 30%, #B8800F 31% 55%, #FFD24A 56% 80%, #8F6208 81% 100%)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }}>
+      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[28%] aspect-square rounded-full" style={{ background: '#FF2D85', border: '2px solid var(--jma-dark)' }} />
+    </span>
+  );
+}
+function YearbookProp() {
+  return (
+    <span aria-hidden="true" className="relative block w-[80%] h-[62%] mb-[10%] rounded-md" style={{ background: 'linear-gradient(180deg, #FFCC00, #E6A800)', border: '3px solid var(--jma-dark)', boxShadow: '-5px 5px 0 0 #B07A00, -5px 5px 0 3px var(--jma-dark)', transform: 'rotate(-6deg)' }}>
+      <span className="absolute left-[12%] right-[12%] top-[28%] h-[3px] rounded" style={{ background: 'var(--jma-dark)' }} />
+      <span className="absolute left-[12%] right-[30%] top-[48%] h-[3px] rounded" style={{ background: 'var(--jma-dark)' }} />
+      <BookOpen className="absolute right-[10%] bottom-[10%] w-[28%] h-[28%]" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} />
+    </span>
+  );
+}
 
 export default function AcademyPage() {
-  const [room, setRoom] = useState('class');
+  const [panel, setPanel] = useState(null);
   const [line, setLine] = useState(0);
+  const [wiggle, setWiggle] = useState({ bell: 0, plant: 0 });
+  const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
   useEffect(() => { say('charlie.academy.welcome', { minGapMs: 4000 }); }, []);
+  // Size the hall like background-size: cover (anchored bottom-center) so % hotspots stay glued to the art.
+  useLayoutEffect(() => {
+    const fit = () => {
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const sc = Math.max(vw / HALL.w, vh / HALL.h);
+      const w = HALL.w * sc, h = HALL.h * sc;
+      setBox({ w, h, left: (vw - w) / 2, top: vh - h });
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+  const Panel = panel ? PANELS[panel] : null;
+  const poke = (k, sfx) => { setWiggle((o) => ({ ...o, [k]: o[k] + 1 })); if (sfx) ding(sfx); };
+
   return (
-    <div data-testid="academy-page" className="min-h-screen flex flex-col items-center jma-safe-center p-4 pt-20 md:pt-24 pb-8 relative" style={{ backgroundImage: 'url(assets/academy/hall.jpg)', backgroundSize: 'cover', backgroundPosition: 'center bottom', backgroundColor: '#F7D9A8' }}>
+    <div data-testid="academy-page" className="fixed inset-0 overflow-hidden" style={{ background: '#F7D9A8' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
-      <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="academy-charlie absolute hidden md:flex flex-col items-center" style={{ left: '3%', bottom: '4%', width: 'clamp(120px, 14vw, 220px)', zIndex: 2 }}>
-        <AnimatePresence mode="wait">
-          <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[11px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
-        </AnimatePresence>
-        <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
-      </button>
-      <div className="relative z-[1] flex gap-2 mb-4 flex-wrap justify-center" data-testid="academy-rooms">
-        {ROOMS.map(({ id, label, Icon, color }) => (
-          <button key={id} type="button" data-testid={`academy-room-${id}`} aria-pressed={room === id} onClick={() => setRoom(id)} className="chunky-btn px-3 md:px-4 py-2 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: room === id ? color : 'white', color: room === id && id !== 'yearbook' ? 'white' : 'var(--jma-dark)' }}>
-            <Icon className="w-4 h-4" strokeWidth={3} /> {label}
-          </button>
-        ))}
+      <div data-testid="academy-hall" className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top }}>
+        <img src="assets/academy/hall.jpg" alt="" draggable={false} className="absolute inset-0 w-full h-full" />
+
+        {/* corkboard → Today's Class */}
+        <Hotspot id="class" x={2} y={33} w={17} h={24} label="Today's Class" color="#1E9BFF" onClick={() => setPanel('class')} />
+        {/* gold record on the trophy wall → My Album */}
+        <Hotspot id="album" x={83.5} y={33} w={11} h={17} label="My Album" color="#FF2D85" onClick={() => setPanel('album')}><GoldRecord /></Hotspot>
+        {/* yearbook on the desk → Yearbook */}
+        <Hotspot id="yearbook" x={29.5} y={54.5} w={8} h={10} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')}><YearbookProp /></Hotspot>
+
+        {/* desk bell — just for fun */}
+        <motion.button type="button" data-testid="academy-bell" aria-label="Ring the bell" onClick={() => poke('bell', 'xylo High c.mp3')} className="absolute" style={{ left: '19.5%', top: '59%', width: '5%', height: '8%', zIndex: 3 }} key={`bell-${wiggle.bell}`} animate={wiggle.bell ? { rotate: [0, -14, 12, -8, 5, 0], y: [0, -6, 0] } : {}} transition={{ duration: 0.6 }}>
+          <Bell className="w-full h-full opacity-0" />
+        </motion.button>
+        {/* the plant wiggles */}
+        <motion.button type="button" data-testid="academy-plant" aria-label="Plant" onClick={() => poke('plant')} className="absolute" style={{ left: '2%', top: '58%', width: '11%', height: '24%', zIndex: 3 }} key={`plant-${wiggle.plant}`} animate={wiggle.plant ? { rotate: [0, -4, 4, -3, 2, 0] } : {}} transition={{ duration: 0.7 }} />
+
+        {/* Charlie at the desk */}
+        <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '12%', bottom: '2%', width: '12%', zIndex: 4 }}>
+          <AnimatePresence mode="wait">
+            <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '160%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
+          </AnimatePresence>
+          <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
+        </button>
       </div>
-      <AnimatePresence mode="wait">
-        <motion.div key={room} className="relative z-[1] w-full flex justify-center" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}>
-          {room === 'class' && <TodaysClass />}
-          {room === 'album' && <MyAlbum />}
-          {room === 'yearbook' && <Yearbook />}
-        </motion.div>
+
+      <AnimatePresence>
+        {Panel && (
+          <motion.div data-testid={`academy-panel-${panel}`} className="fixed inset-0 z-[60] flex items-center justify-center p-3 pt-14 md:pt-20" style={{ background: 'rgba(2,36,63,0.55)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setPanel(null)}>
+            <motion.div className="relative w-full flex justify-center max-h-full overflow-y-auto" initial={{ y: 24, scale: 0.97 }} animate={{ y: 0, scale: 1 }} exit={{ y: 24, scale: 0.97 }} transition={{ duration: 0.2 }} onClick={(e) => e.stopPropagation()}>
+              <div className="relative w-full flex justify-center">
+                <Panel />
+                <button type="button" data-testid="academy-panel-close" onClick={() => setPanel(null)} aria-label="Close" className="absolute -top-3 right-2 md:right-auto md:left-[calc(50%+22rem)] w-10 h-10 rounded-full bg-white flex items-center justify-center" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', zIndex: 2 }}><X className="w-5 h-5" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </div>
   );

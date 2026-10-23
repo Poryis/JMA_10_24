@@ -168,9 +168,12 @@ function Cuckoo() {
   const { currentRank } = useRank();
   const [out, setOut] = useState(false);
   const [moment, setMoment] = useState(false);
+  const rootRef = useRef(null);
   useEffect(() => {
     setOut(false);
     const isNew = localStorage.getItem(CUCKOO_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
+    // Bring the Academy on screen first so the moment is actually seen.
+    if (isNew) rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     const t = setTimeout(() => {
       setOut(true);
       if (!isNew) return;
@@ -179,12 +182,12 @@ function Cuckoo() {
       say('charlie.academy.rankup', { delayMs: 700 });
       localStorage.setItem(CUCKOO_SEEN_KEY, currentRank.id);
       setTimeout(() => setMoment(false), 4000);
-    }, isNew ? 1600 : 900);
+    }, isNew ? 2200 : 900);
     return () => clearTimeout(t);
   }, [currentRank.id]);
   const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (
-    <div aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2, perspective: 300 }}>
+    <div ref={rootRef} aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2, perspective: 300 }}>
       <div className="absolute inset-0 overflow-hidden">
         <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
           initial={false} animate={out ? { y: '0%', x: '-50%', scale: moment ? [1, 1.15, 1] : 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={moment ? { type: 'spring', stiffness: 260, damping: 14, scale: { repeat: 3, duration: 0.5 } } : { type: 'spring', stiffness: 260, damping: 18 }} />

@@ -460,3 +460,7 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - **Cuckoo rank-up moment** (`Cuckoo` in `CampusMapPage.js`): first time a new rank (≠ polliwog) is seen on the Plaza (`jma_cuckoo_seen_rank_v1`), the door halves swing open (rotateY), 3-note xylophone chime (`assets/audio/xylo G/b/High c.mp3`), bouncing character, "RANK!" banner for 4s, voice `charlie.academy.rankup`.
 - **Album cover designer** (`AcademyPage.js`): tap a sleeve → `CoverDesigner` modal: 6 colors + avatar/16 collection-sticker icons; saved in `jma_album_covers_v1` {trackId:{color,sticker}}; "Open in Beat Lab / Song Studio".
 - Verified via screenshots (hall, designer save, cuckoo moment with seeded Tadpole rank). Testing agent not re-run for this part.
+
+## Session Update — June 2026 (part 4): Academy as a clickable room
+- `AcademyPage.js` is now a scene: hall art sized like `background-size: cover` (bottom-center anchored, `HALL = 1264x848`) with %-pinned `Hotspot`s — corkboard → Today's Class, gold record on trophy wall → My Album, yearbook on desk → Yearbook (panels open as modals, `academy-panel-*`, close `academy-panel-close`). Extras: desk bell (note + wiggle), plant wiggle, Charlie bubble cycling. Tabs removed.
+- Cuckoo moment bug: plaza auto-scrolls the Academy into view (scrollIntoView delayed 350ms to outlive the plaza's `scrollLeft=0` reset) before the moment plays. Tests: iteration_55 (room pass, scroll fail) → iteration_56 (scroll PASS).

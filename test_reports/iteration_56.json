@@ -1,0 +1,14 @@
+{
+  "summary": "RETEST of Plaza Academy cuckoo rank-up visibility fix: PASS. With the iteration_55 seeding plus a real page reload, at 1920x800 the plaza scrolls by itself (academy x went 2329 -> 692, centered, 536px wide) before data-moment becomes 'true' (~2.2s after mount), and the 'TADPOLE!' banner is visible. At 844x390 the building is centered (x=299, w=246) when the moment plays and the banner is visible. jma_cuckoo_seen_rank_v1 is set to 'tadpole'. After a reload data-moment stays 'false', the scroll stays at 0 and the academy is back at its normal off-screen spot (x=2329 desktop / 1217 phone).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": ["Cuckoo effect cleans up both the scroll and moment timers, so StrictMode double-invoke is safe. The 350ms delay works but depends on timing; a more robust option is to have the parent's scroll-reset effect run first (for example, pass a ready flag or do the scroll from the parent after reset). Optional."],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "localStorage seeding only (iteration_55 recipe)",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Test gotcha: after seeding localStorage on #/, page.goto('#/home') is a same-document hash navigation and does NOT reload the SPA, so the in-memory rank stays polliwog. You must call page.reload() after seeding. Also a 'Tadpole' rank modal / name prompt can show if jma_rank_last_seen_v1 or jma_player_v1 are missing."
+}

@@ -5,10 +5,11 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell } from 'lucide-react';
+import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell, Camera } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
+import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
 import useDailyQuests from '../hooks/useDailyQuests';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
@@ -167,6 +168,8 @@ function Yearbook() {
   const { questDays } = useDailyQuests();
   const { player } = usePlayer();
   const [how, setHow] = useState(false);
+  const [openPoster, setOpenPoster] = useState(null);
+  const posters = useMemo(() => loadPosters(), []);
   const avatar = readAvatarOutfit();
   const curIdx = RANKS.findIndex((r) => r.id === currentRank.id);
   const badges = ACHIEVEMENT_STICKERS.filter((a) => earned[a.id]);
@@ -209,12 +212,27 @@ function Yearbook() {
           </div>
         </div>
       </div>
+      {/* Stage posters snapped on The Stage */}
+      <div className="mt-3 rounded-2xl px-3 py-2" data-testid="academy-posters" style={{ background: '#F6F8FB', border: '3px solid var(--jma-dark)' }}>
+        <div className="flex items-center justify-between">
+          <div className="font-black text-xs md:text-sm flex items-center gap-1.5" style={{ color: 'var(--jma-dark)' }}><Camera className="w-4 h-4" strokeWidth={3} /> Stage Posters</div>
+          {posters.length === 0 && <button type="button" data-testid="academy-posters-go" onClick={() => navigate('/rank-hall')} className="text-[11px] font-black underline" style={{ color: '#FF2D85' }}>Snap one on The Stage →</button>}
+        </div>
+        {posters.length > 0 && (
+          <div className="flex gap-2 mt-2 overflow-x-auto pb-1">
+            {posters.map((p) => (
+              <button key={p.id} type="button" data-testid={`academy-poster-${p.id}`} onClick={() => setOpenPoster(p)} className="flex-shrink-0 rounded-md overflow-hidden" style={{ transform: 'rotate(-2deg)' }}><Poster poster={p} width={84} /></button>
+            ))}
+          </div>
+        )}
+      </div>
       <HowRanksWorkModal open={how} onClose={() => setHow(false)} />
+      <AnimatePresence>{openPoster && <PosterModal key="poster" poster={openPoster} onClose={() => setOpenPoster(null)} testId="academy-poster-modal" />}</AnimatePresence>
     </Card>
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The corkboard has today\'s class on it.', 'Your records hang on the wall over there.', 'The big book on my desk is your Yearbook.', 'Rank up and a new friend pops out of the clock!'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard has today\'s class on it.', 'Your records are on the shelf over there.', 'The big yellow book on my desk is your Yearbook.', 'Tap the big clock — it chimes!', 'Rank up and a new friend pops out of the clock tower!'];
 const HALL = { w: 1264, h: 848 };
 const PANELS = { class: TodaysClass, album: MyAlbum, yearbook: Yearbook };
 const ding = (f) => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {}); };

@@ -164,8 +164,8 @@ export default function AcademyPage() {
   return (
     <div data-testid="academy-page" className="min-h-screen flex flex-col items-center jma-safe-center p-4 pt-20 md:pt-24 pb-8 relative" style={{ background: 'linear-gradient(180deg, #FFF4D6 0%, #F7D9A8 55%, #C98A4B 55.2%, #A86B33 100%)' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
-      <div aria-hidden="true" className="absolute inset-x-0 pointer-events-none" style={{ top: '55%', height: 3, background: 'var(--jma-dark)' }} />
-      <div className="flex gap-2 mb-4 flex-wrap justify-center" data-testid="academy-rooms">
+      <div aria-hidden="true" className="absolute inset-x-0 pointer-events-none" style={{ top: '55%', height: 3, background: 'var(--jma-dark)', zIndex: 0 }} />
+      <div className="relative z-[1] flex gap-2 mb-4 flex-wrap justify-center" data-testid="academy-rooms">
         {ROOMS.map(({ id, label, Icon, color }) => (
           <button key={id} type="button" data-testid={`academy-room-${id}`} aria-pressed={room === id} onClick={() => setRoom(id)} className="chunky-btn px-3 md:px-4 py-2 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: room === id ? color : 'white', color: room === id && id !== 'yearbook' ? 'white' : 'var(--jma-dark)' }}>
             <Icon className="w-4 h-4" strokeWidth={3} /> {label}
@@ -173,7 +173,7 @@ export default function AcademyPage() {
         ))}
       </div>
       <AnimatePresence mode="wait">
-        <motion.div key={room} className="w-full flex justify-center" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}>
+        <motion.div key={room} className="relative z-[1] w-full flex justify-center" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.2 }}>
           {room === 'class' && <TodaysClass />}
           {room === 'album' && <MyAlbum />}
           {room === 'yearbook' && <Yearbook />}

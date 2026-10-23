@@ -444,3 +444,13 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Avatar significance (selected Jelly in game end-cards + "new outfit" gift nudge on kiosk) — approved earlier, not started.
 - Safari localStorage "not saving" report — unverified; audio pause on `visibilitychange`/`pagehide` was added.
 - Full code review before GitHub Pages launch (user asked for reminder). For Parents counts. Music 101 nudges. PWA service worker. The Path. Sing-back mic. Path C PAUSED.
+
+## Session Update — June 2026 (part 2): Rank Hall → The Academy
+- **Decision**: partner rejected the Rank Hall as a destination. Rank progression KEPT (user's core retention mechanic) but moved into the world:
+  - **The Academy** (`assets/plaza/academy.png`, cuckoo-clock schoolhouse, plaza building `academy` → `/academy`). `Cuckoo` component in `CampusMapPage.js` pops the current rank's character onto the tower ledge (door ≈ left 55–68%, top 18–31% of the square art box).
+  - **`AcademyPage.js`** rooms: *Today's Class* (3 daily quests + single Start button + stamps = `questDays`), *My Album* (saved Beat Lab beats + Song Studio songs as sleeves), *Yearbook* (avatar, rank ladder, next-rank meter, badge chips, stamps, How-ranks modal, print → `/sticker-book?print=1`).
+  - **The Stage** (`/rank-hall`, `RankHallPage.js`) is now ceremony-only: bows, crowd, ovation, "My Yearbook" button. Trophy shelf + next-rank card removed (live in Yearbook). Bandstand renamed "The Stage".
+  - `RankUpCelebration` gained "Take a bow on stage!" → `/rank-hall`.
+- Also this session: Beat Lab audio-clock scheduler (`lib/stepScheduler.js`, fixes tempo sag on slow iPhones; recordings steady); plaza host blur fixed (removed animated `rotate` — Chrome rasterizes animated-rotation layers blurry); Back button constant 40px on phone landscape via `--stage-scale` from FitStage (`.back-shield/.back-label`, sticker-home-btn); Clubhouse "JMA" plank sign in art; Parrot Percussion hero = `stew-drumline.png`; corner `RoomCharacters` removed from intro/difficulty screens of Ear Quest, Name That Note, Stew Kazoo, Detective, Note Match; Jukebox SPEED label white; Rank Hall host hidden on portrait phones (`.rank-hall-host`); "The Magic Is in the Music" (Vimeo 1237507858) added to JMAtv music videos.
+- Tests: `iteration_53.json`, `iteration_54.json` (Academy — pass).
+- **Open**: Academy interior art is a plain gradient (needs a proper hall backdrop + Charlie host); For Parents copy still over-claims (COPPA/FERPA/DPA/report card) — user asked why, agreed path: Vimeo dnt, local fonts, privacy page, soften copy (NOT YET DONE); voice line recordings missing (`assets/voice` empty); WebP conversion + service worker for school Wi-Fi; standards-alignment doc; Avatar-in-games; Path C paused.

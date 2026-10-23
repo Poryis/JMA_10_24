@@ -1,0 +1,39 @@
+{
+  "summary": "Frontend-only test of (1) Plaza cuckoo auto-scroll bug fix and (2) new interactive Academy room at 1920x800/900 and 844x390. The Academy room passes everything I tested. The cuckoo bug fix FAILS: the moment plays (data-moment=true at ~2.5s, banner says 'TADPOLE!', seen key gets written, it plays only once), but the plaza never scrolls to the Academy. The building stays at x=2329..2865 at 1920 wide, off-screen, for the whole moment and after it. That is the same bug the fix was meant to solve.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CampusMapPage Cuckoo auto-scroll", "issue": "scrollIntoView in Cuckoo's mount effect has no visible effect. campus-building-academy stays at bbox x=2329 (viewport is 1920) for 12s. Calling the same scrollIntoView({behavior:'smooth',inline:'center'}) by hand ~1.5s after load works (building lands at x=692..1228), so the scroller itself is fine. RCA: in React, child effects run before parent effects. Cuckoo (child) starts the smooth scroll, then the parent's 'New street' effect (CampusMapPage.js ~line 404-408: el.scrollLeft = atEnd ? scrollWidth : 0) runs in the same commit and resets scrollLeft to 0, which cancels the smooth scroll.", "selector": "[data-testid=campus-building-academy]", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "#/academy panels at phone landscape 844x390", "issues": [
+        "Card content spills out of its white frame. The class card is 298px tall but its content is 367px, so 'Start class!' sits below the card border; same for the yearbook's bottom buttons and the rank column. Cause: the panel's motion.div uses 'flex justify-center max-h-full overflow-y-auto', which stretches the child to the clamped height. Fix: add items-start to that motion.div (or use block layout).",
+        "academy-panel-close is inside the scroll container, so it scrolls away (y=-1, clipped) once the user scrolls the class panel. The backdrop still closes the panel. Consider pinning the close button outside the scroller.",
+        "The fixed fullscreen button (bottom-right) overlaps the right edge of the yearbook and class cards."
+      ]},
+      {"screen": "#/academy desktop 1920x900", "issues": [
+        "The close button is placed at left:calc(50%+22rem), which floats ~17px outside the narrower class card (max-w-2xl), and its top is slightly clipped by the overflow container.",
+        "The header BACK button sits on top of the corkboard (academy-room-class) hotspot area. Clicking the hotspot centre still works."
+      ]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix the cuckoo auto-scroll: run the scroll after the parent's scroll reset, e.g. wrap it in setTimeout(..., 150) or requestAnimationFrame x2 inside the Cuckoo effect (clear it in cleanup), or have the parent skip its scrollLeft reset when a cuckoo moment is pending. Then check that campus-building-academy is within 0..1920 before data-moment turns true.",
+    "Academy panel wrapper: add items-start (or drop the flex) so cards are not height-clamped on short viewports; pin academy-panel-close outside the scroll area.",
+    "Pre-existing: React warning 'Encountered two children with the same key' with key '' (empty), seen on both #/home and #/academy; also seen in iterations 50, 51 and 54."
+  ],
+  "critical_code_review_comments": [
+    "CampusMapPage.js Cuckoo: the scroll fires in the same commit as the parent's scrollLeft reset, so it is cancelled (see RCA).",
+    "Cuckoo: the nested chime setTimeouts and the 4s setMoment(false) timeout are never cleared on unmount, so state can be set after unmount.",
+    "AcademyPage.js: the close button uses a magic offset md:left-[calc(50%+22rem)] that is not tied to each card's max-width (class card is 2xl, album/yearbook are 3xl)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "80% (bug fix: auto-scroll fails, while moment/banner/seen-key/plays-once pass; Academy room desktop + phone: all functional checks pass)"},
+  "seed_data_creation": "localStorage only: jma_stickers_v1={ach_rhythm_cadet}, jma_stickers_migrated_v2=done, jma_rank_last_seen_v1=tadpole, jma_player_v1 Milo, jma_install_nudge_seen=1",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Seed localStorage with add_init_script (guard it with a sessionStorage flag) and then reload. A hash-only goto keeps the in-memory React state, so seeds made after load are ignored. Academy room results: academy-rooms is absent; class/album/yearbook hotspots are inside the viewport at 1920x900 and 844x390; panels open; close button and backdrop close them; clicking inside a card does not close it; yearbook rank shows 'Polliwog'; academy-album-empty is shown; Charlie's bubble text cycles; bell and plant clicks are fine; no horizontal scroll. Retest the cuckoo: the academy bbox must be in the viewport before or at the moment.",
+  "rca of the issue": "Repro: seed the rank-up state, remove jma_cuckoo_seen_rank_v1, load #/home at 1920x800 and click to dismiss the audio overlay. The moment fires at ~2.5s, but the academy bbox x stays at 2329. Cause: React runs child effects before parent effects. The Cuckoo effect starts a smooth scrollIntoView, then CampusMapPage's zone effect sets scrollLeft=0 and cancels it. Mitigation: defer the scroll (timeout or rAF) or coordinate it with the parent's reset."
+}

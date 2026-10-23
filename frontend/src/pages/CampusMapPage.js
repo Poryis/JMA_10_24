@@ -172,8 +172,8 @@ function Cuckoo() {
   useEffect(() => {
     setOut(false);
     const isNew = localStorage.getItem(CUCKOO_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
-    // Bring the Academy on screen first so the moment is actually seen.
-    if (isNew) rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    // Bring the Academy on screen first so the moment is actually seen (after the plaza's own scroll reset).
+    const s = isNew ? setTimeout(() => rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 350) : null;
     const t = setTimeout(() => {
       setOut(true);
       if (!isNew) return;
@@ -183,7 +183,7 @@ function Cuckoo() {
       localStorage.setItem(CUCKOO_SEEN_KEY, currentRank.id);
       setTimeout(() => setMoment(false), 4000);
     }, isNew ? 2200 : 900);
-    return () => clearTimeout(t);
+    return () => { clearTimeout(t); if (s) clearTimeout(s); };
   }, [currentRank.id]);
   const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (

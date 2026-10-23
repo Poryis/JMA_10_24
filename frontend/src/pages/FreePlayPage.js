@@ -347,8 +347,10 @@ function useFitScale(wrapRef, nativeWidth, nativeHeight) {
       setScale(Math.max(0.2, Math.min(1, r.width / nativeWidth, availH / nativeHeight)));
     };
     compute();
+    // the instrument wrap slides in (y: 30 → 0), so re-measure once it has settled
+    const t = setTimeout(compute, 450);
     window.addEventListener('resize', compute);
-    return () => window.removeEventListener('resize', compute);
+    return () => { clearTimeout(t); window.removeEventListener('resize', compute); };
   }, [wrapRef, nativeWidth, nativeHeight]);
   return scale;
 }
@@ -806,7 +808,7 @@ function FreePlayPage() {
             whatever backdrop is behind (underwater sea, space, whatever).
             Before: the white tab pills disappeared into the light-blue
             water; the Play/Record chips lost their dark border too. */}
-        <div className="flex flex-wrap items-center justify-center gap-1 md:gap-2 mb-2 md:mb-2 rounded-2xl px-2 py-1 md:px-3 md:py-1.5 relative"
+        <div className="jam-toolbar flex flex-wrap items-center justify-center gap-1 md:gap-2 mb-2 md:mb-2 rounded-2xl px-2 py-1 md:px-3 md:py-1.5 relative"
           style={{
             backgroundColor: 'rgba(255,249,230,0.95)',
             border: '3px solid var(--jma-dark)',

@@ -471,3 +471,7 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Source JPEG generations + `build_pairs.py` (checkerboard→alpha cutout, shared crop) kept in `/app/memory/drum_pov/`.
 - **Hold**: `Hey Pachuco stage.psd` — user said hold for now.
 - Verified via screenshots (desktop + 844×390 landscape, all 8 pieces tappable, hit frames swap). Testing agent not run.
+
+## Session Update — June 2026 (part 6): Stage polish + drum kit composition
+- Jam Session POV kit composition refined (`DRUM_LAYOUT` now `[left, top, w, h, z, badgeX, badgeY]`; key labels sit on the playing surfaces, white pill + piece-colored ring). Cymbals −17%, tucked so their (cut-off) stands hide behind hi-hat / floor tom; rack toms nudged left/up so Tom 2 doesn't mount into the kick head.
+- The Stage (`RankHallPage.js`): removed Charlie host + speech bubble; beach ball suppressed via new `extras={false}` prop on shared `CrowdRow` (Shred Legend unchanged); side curtains `assets/stage/lc.webp` / `rc.webp` (PSD layers `LC`/`RC`); **curtain-opening reveal on enter** — `CurtainReveal` steps `cl-0..4` / `cr-0..4` (PSD `+Closed Curtains` + `+Open Curtains` frames; screen-left = PSD "Right"), 700ms hold then 150ms/frame, soft crash cymbal, z 20. Frame boxes in `stageLayout.json` (`curtainLeft/Right`). PSD copy kept at `/app/memory/stage_src/jelly_stage.psd`.

@@ -45,6 +45,27 @@ function CrowdBurst({ id, big }) {
   );
 }
 
+// Hand-drawn curtain-opening frames from the PSD: closed → 4 bunching frames,
+// then the overlay unmounts and the permanent LC/RC side curtains remain.
+const CURTAIN_HOLD = 700;
+const CURTAIN_STEP = 150;
+function CurtainReveal({ scene, onDone }) {
+  const [frame, setFrame] = useState(0);
+  useEffect(() => {
+    const ids = [];
+    ids.push(setTimeout(() => SFX('Crash cymbal.mp3', 0.3, 0), CURTAIN_HOLD - 80));
+    for (let i = 1; i <= 4; i++) ids.push(setTimeout(() => setFrame(i), CURTAIN_HOLD + (i - 1) * CURTAIN_STEP));
+    ids.push(setTimeout(onDone, CURTAIN_HOLD + 4 * CURTAIN_STEP));
+    return () => ids.forEach(clearTimeout);
+  }, [onDone]);
+  return (
+    <div aria-hidden="true" data-testid="rank-hall-curtain-reveal" data-frame={frame} className="absolute pointer-events-none" style={{ width: scene.w, height: scene.h, left: scene.left, top: scene.top, zIndex: 20 }}>
+      {STAGE.curtainLeft.map((m, i) => <img key={`l${i}`} src={`assets/stage/cl-${i}.webp`} alt="" draggable={false} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
+      {STAGE.curtainRight.map((m, i) => <img key={`r${i}`} src={`assets/stage/cr-${i}.webp`} alt="" draggable={false} className="absolute" style={{ ...pos(m), visibility: i === frame ? 'visible' : 'hidden' }} />)}
+    </div>
+  );
+}
+
 // Scrolling ticker of the badges this kid has actually earned.
 function BadgeTicker({ names }) {
   const text = names.length ? names.map((n) => `★ ${n}`).join('   ') + '   ' : '★ Earn badges in the games to light up this hall   ';
@@ -78,6 +99,8 @@ export default function RankHallPage() {
   const [confetti, setConfetti] = useState(0);
   const [hype, setHype] = useState(0);
   const [ovation, setOvation] = useState(false);
+  const [curtain, setCurtain] = useState(true);
+  const curtainDone = useCallback(() => setCurtain(false), []);
   const timers = useRef([]);
   const hypeTimer = useRef(null);
   // The painted stage (JELLY STAGE.psd → assets/stage/*): 16:9 plate sized like background-size: cover, bottom-anchored.
@@ -116,6 +139,7 @@ export default function RankHallPage() {
         <img src="assets/stage/rc.webp" alt="" draggable={false} data-testid="rank-hall-curtain-right" className="absolute" style={{ ...pos(STAGE.rc), zIndex: 3 }} />
       </div>
       <BadgeTicker names={badgeNames} />
+      {curtain && <CurtainReveal scene={scene} onDone={curtainDone} />}
       <GameHeader title="The Stage" showHomeButton={true} backTo="/home" />
 
       {/* marquee: your rank in lights */}

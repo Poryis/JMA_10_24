@@ -458,7 +458,6 @@ export default function DetectivePage() {
         }}
       >
         <GameHeader showHomeButton={true} backLink={{ to: '/play', label: 'Play' }} />
-        <RoomCharacters room="detective" />
 
         <motion.div className="intro-head text-center mb-3" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
           <h1

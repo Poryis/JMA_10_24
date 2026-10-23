@@ -205,7 +205,6 @@ function EarTrainerPage() {
         style={{ backgroundImage: 'url(assets/backgrounds/beach.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <GameHeader showHomeButton={true} backLink={{ to: '/learn', label: 'Learn' }} />
-        <RoomCharacters room="ear-quest" />
 
         <motion.h1 className="intro-head text-3xl md:text-5xl font-black mb-4 text-center font-display uppercase" style={{ color: 'var(--jma-dark)' }} initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
           EAR QUEST

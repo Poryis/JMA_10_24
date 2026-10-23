@@ -349,7 +349,6 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
         }}
       >
         <GameHeader showHomeButton={true} backLink={{ to: '/play', label: 'Play' }} />
-        <RoomCharacters room="kazoo-room" />
 
         <motion.h1
           className="intro-head text-3xl md:text-5xl font-black mb-4 text-center uppercase"

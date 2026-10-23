@@ -575,7 +575,6 @@ export default function NameThatNotePage() {
         style={{ backgroundImage: 'url(assets/backgrounds/chalkboard.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <GameHeader showHomeButton={true} />
-        <RoomCharacters room="name-that-note" />
 
         <motion.h1
           className="intro-head text-3xl md:text-5xl font-black mb-1 text-center font-display uppercase"

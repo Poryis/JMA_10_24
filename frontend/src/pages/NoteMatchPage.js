@@ -218,7 +218,6 @@ export default function NoteMatchPage() {
         style={{ backgroundImage: 'url(assets/backgrounds/boat.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <GameHeader showHomeButton={true} backLink={{ to: '/play', label: 'Play' }} />
-        <RoomCharacters room="note-match" />
 
         <motion.h1
           className="intro-head text-3xl md:text-5xl font-black mb-2 text-center font-display uppercase"

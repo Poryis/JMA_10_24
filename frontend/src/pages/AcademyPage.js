@@ -2,10 +2,10 @@
 //   Today's Class  → the 3 daily quests with ONE start button (no menus)
 //   My Album       → the kid's saved Beat Lab / Song Studio tracks as records
 //   Yearbook       → rank, next-rank meter, badges, attendance stamps
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CalendarCheck, Disc3, BookOpen, Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum } from 'lucide-react';
+import { CalendarCheck, Disc3, BookOpen, Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
@@ -17,6 +17,8 @@ import { readAvatarOutfit } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import { RANKS } from '../data/ranks';
+import { COLLECTION_STICKERS } from '../data/stickers';
+import { say } from '../lib/voice';
 
 const ROOMS = [
   { id: 'class', label: "Today's Class", Icon: CalendarCheck, color: '#1E9BFF' },
@@ -24,6 +26,56 @@ const ROOMS = [
   { id: 'yearbook', label: 'Yearbook', Icon: BookOpen, color: '#FFCC00' },
 ];
 const SLEEVES = ['#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF', '#00B8D9'];
+
+const COVERS_KEY = 'jma_album_covers_v1';
+const COVER_STICKERS = COLLECTION_STICKERS.filter((st) => st.icon).slice(0, 16);
+function loadCovers() { try { return JSON.parse(localStorage.getItem(COVERS_KEY) || '{}'); } catch { return {}; } }
+function saveCover(id, cover) { const all = loadCovers(); all[id] = cover; try { localStorage.setItem(COVERS_KEY, JSON.stringify(all)); } catch { /* ignore */ } }
+
+function Sleeve({ color, stickerSrc, avatar, kind, className = '' }) {
+  return (
+    <div className={`relative aspect-square rounded-xl overflow-hidden flex items-end justify-center ${className}`} style={{ background: color, border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
+      <span className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full bg-black/80 flex items-center justify-center"><span className="w-2 h-2 rounded-full bg-white" /></span>
+      {stickerSrc
+        ? <img src={stickerSrc} alt="" className="h-[78%] w-auto object-contain object-bottom" />
+        : <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[78%] w-auto object-contain object-bottom" />}
+      <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
+    </div>
+  );
+}
+
+function CoverDesigner({ track, cover, avatar, onSave, onClose, onOpen }) {
+  const [color, setColor] = useState(cover?.color || SLEEVES[0]);
+  const [sticker, setSticker] = useState(cover?.sticker || null);
+  const stickerSrc = COVER_STICKERS.find((st) => st.id === sticker)?.icon || null;
+  return (
+    <motion.div data-testid="cover-designer" className="fixed inset-0 z-[80] flex items-center justify-center p-3" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+      <motion.div className="relative w-full max-w-lg rounded-3xl bg-white p-4 max-h-[94vh] overflow-y-auto" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)' }} initial={{ y: 30, scale: 0.96 }} animate={{ y: 0, scale: 1 }} exit={{ y: 30, scale: 0.96 }} onClick={(e) => e.stopPropagation()}>
+        <button type="button" data-testid="cover-close" onClick={onClose} aria-label="Close" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white border-2 border-[var(--jma-dark)] flex items-center justify-center"><X className="w-4 h-4" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
+        <div className="font-display font-black text-lg pr-8 truncate" style={{ color: 'var(--jma-dark)' }}>{track.name}</div>
+        <div className="text-xs font-bold mb-3" style={{ color: '#4B5668' }}>Design your record sleeve</div>
+        <div className="flex gap-4">
+          <div className="w-32 md:w-40 flex-shrink-0"><Sleeve color={color} stickerSrc={stickerSrc} avatar={avatar} kind={track.kind} /></div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Color</div>
+            <div className="flex flex-wrap gap-1.5 mb-3" data-testid="cover-colors">
+              {SLEEVES.map((c) => <button key={c} type="button" data-testid={`cover-color-${c.slice(1)}`} aria-pressed={color === c} onClick={() => setColor(c)} className="w-8 h-8 rounded-full" style={{ background: c, border: '3px solid var(--jma-dark)', transform: color === c ? 'scale(1.15)' : 'none', boxShadow: color === c ? '0 0 0 3px white, 0 0 0 5px var(--jma-dark)' : 'none' }} />)}
+            </div>
+            <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Sticker</div>
+            <div className="grid grid-cols-5 gap-1.5" data-testid="cover-stickers">
+              <button type="button" data-testid="cover-sticker-me" aria-pressed={!sticker} onClick={() => setSticker(null)} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={{ background: '#F6F8FB', border: `3px solid ${!sticker ? '#FF9500' : 'var(--jma-dark)'}` }}><AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[80%] w-auto object-contain" /></button>
+              {COVER_STICKERS.map((st) => <button key={st.id} type="button" data-testid={`cover-sticker-${st.id}`} aria-pressed={sticker === st.id} onClick={() => setSticker(st.id)} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={{ background: '#F6F8FB', border: `3px solid ${sticker === st.id ? '#FF9500' : 'var(--jma-dark)'}` }}><img src={st.icon} alt={st.name} className="h-[80%] w-auto object-contain" /></button>)}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          <button type="button" data-testid="cover-save" onClick={() => onSave({ color, sticker })} className="chunky-btn flex-1 py-2 text-sm font-black text-white flex items-center justify-center gap-1.5" style={{ background: '#34A853' }}><Check className="w-4 h-4" strokeWidth={3} /> Save cover</button>
+          <button type="button" data-testid="cover-open" onClick={onOpen} className="chunky-btn flex-1 py-2 text-sm font-black flex items-center justify-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><Play className="w-4 h-4" strokeWidth={3} /> Open in {track.kind === 'beat' ? 'Beat Lab' : 'Song Studio'}</button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
 
@@ -70,14 +122,17 @@ function TodaysClass() {
 function MyAlbum() {
   const navigate = useNavigate();
   const avatar = readAvatarOutfit();
+  const [covers, setCovers] = useState(loadCovers);
+  const [editing, setEditing] = useState(null);
   const tracks = useMemo(() => [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: '/loop-studio', at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: '/song-studio', at: Date.parse(s.createdAt) || 0 })),
   ].sort((a, b) => b.at - a.at), []);
+  const coverFor = (t, i) => covers[t.id] || { color: SLEEVES[i % SLEEVES.length], sticker: null };
   return (
     <Card testId="academy-album" className="w-full max-w-3xl">
       <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>My Album</div>
-      <div className="text-xs md:text-sm font-bold mb-3" style={{ color: '#4B5668' }}>Every track you make in Beat Lab or Song Studio lands on this shelf.</div>
+      <div className="text-xs md:text-sm font-bold mb-3 flex items-center gap-1.5" style={{ color: '#4B5668' }}><Palette className="w-4 h-4" strokeWidth={3} /> Tap a record to design its cover.</div>
       {tracks.length === 0 ? (
         <div data-testid="academy-album-empty" className="rounded-2xl p-4 text-center" style={{ background: '#F6F8FB', border: '3px dashed var(--jma-dark)' }}>
           <div className="font-black mb-3" style={{ color: 'var(--jma-dark)' }}>No tracks yet — go make your first one!</div>
@@ -88,19 +143,24 @@ function MyAlbum() {
         </div>
       ) : (
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
-          {tracks.map((t, i) => (
-            <button key={t.id} type="button" data-testid={`academy-track-${i}`} onClick={() => navigate(t.route)} className="text-left group">
-              <div className="relative aspect-square rounded-xl overflow-hidden flex items-end justify-center transition-transform group-hover:-translate-y-1" style={{ background: SLEEVES[i % SLEEVES.length], border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
-                <span className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full bg-black/80 flex items-center justify-center"><span className="w-2 h-2 rounded-full bg-white" /></span>
-                <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[78%] w-auto object-contain object-bottom" />
-                <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{t.kind}</span>
-              </div>
-              <div className="mt-1 text-xs font-black truncate" style={{ color: 'var(--jma-dark)' }}>{t.name}</div>
-              <div className="text-[10px] font-bold truncate" style={{ color: '#4B5668' }}>{t.meta}</div>
-            </button>
-          ))}
+          {tracks.map((t, i) => {
+            const c = coverFor(t, i);
+            return (
+              <button key={t.id} type="button" data-testid={`academy-track-${i}`} onClick={() => setEditing(t)} className="text-left group">
+                <Sleeve color={c.color} stickerSrc={COVER_STICKERS.find((st) => st.id === c.sticker)?.icon || null} avatar={avatar} kind={t.kind} className="transition-transform group-hover:-translate-y-1" />
+                <div className="mt-1 text-xs font-black truncate" style={{ color: 'var(--jma-dark)' }}>{t.name}</div>
+                <div className="text-[10px] font-bold truncate" style={{ color: '#4B5668' }}>{t.meta}</div>
+              </button>
+            );
+          })}
         </div>
       )}
+      <AnimatePresence>
+        {editing && (
+          <CoverDesigner track={editing} cover={covers[editing.id]} avatar={avatar} onClose={() => setEditing(null)} onOpen={() => navigate(editing.route)}
+            onSave={(cover) => { saveCover(editing.id, cover); setCovers(loadCovers()); setEditing(null); }} />
+        )}
+      </AnimatePresence>
     </Card>
   );
 }
@@ -159,12 +219,21 @@ function Yearbook() {
   );
 }
 
+const WELCOME = ["Welcome to the Academy! Today's class is on the board.", 'Finish all three and stamp your card!', 'Your records live on the shelf in My Album.', 'Rank up and a new friend pops out of the clock!'];
+
 export default function AcademyPage() {
   const [room, setRoom] = useState('class');
+  const [line, setLine] = useState(0);
+  useEffect(() => { say('charlie.academy.welcome', { minGapMs: 4000 }); }, []);
   return (
-    <div data-testid="academy-page" className="min-h-screen flex flex-col items-center jma-safe-center p-4 pt-20 md:pt-24 pb-8 relative" style={{ background: 'linear-gradient(180deg, #FFF4D6 0%, #F7D9A8 55%, #C98A4B 55.2%, #A86B33 100%)' }}>
+    <div data-testid="academy-page" className="min-h-screen flex flex-col items-center jma-safe-center p-4 pt-20 md:pt-24 pb-8 relative" style={{ backgroundImage: 'url(assets/academy/hall.jpg)', backgroundSize: 'cover', backgroundPosition: 'center bottom', backgroundColor: '#F7D9A8' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
-      <div aria-hidden="true" className="absolute inset-x-0 pointer-events-none" style={{ top: '55%', height: 3, background: 'var(--jma-dark)', zIndex: 0 }} />
+      <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="academy-charlie absolute hidden md:flex flex-col items-center" style={{ left: '3%', bottom: '4%', width: 'clamp(120px, 14vw, 220px)', zIndex: 2 }}>
+        <AnimatePresence mode="wait">
+          <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[11px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
+        </AnimatePresence>
+        <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
+      </button>
       <div className="relative z-[1] flex gap-2 mb-4 flex-wrap justify-center" data-testid="academy-rooms">
         {ROOMS.map(({ id, label, Icon, color }) => (
           <button key={id} type="button" data-testid={`academy-room-${id}`} aria-pressed={room === id} onClick={() => setRoom(id)} className="chunky-btn px-3 md:px-4 py-2 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: room === id ? color : 'white', color: room === id && id !== 'yearbook' ? 'white' : 'var(--jma-dark)' }}>

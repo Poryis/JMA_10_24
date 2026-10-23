@@ -32,6 +32,8 @@ export const VOICE_LINES = [
   L('charlie.hub.alldone',   'That\'s the whole list! See ya tomorrow, kid.',   'warm, satisfied','Home — all 3 quests done'),
   L('charlie.jam.takeit',    'Take it to the Jam Session, kid!',                     'hyped',          'Beat Lab / Song Studio — tapping "Jam on it!"'),
   L('charlie.hub.lockbadge', 'Earn one badge and this street is yours — here are today\'s quests!', 'playful, encouraging', 'Tapping a locked LEARN/CREATE gate — opens the Quest Board'),
+  L('charlie.academy.welcome', 'Welcome to the Academy! Today\'s class is up on the board.', 'warm, host',       'Entering the Academy hall'),
+  L('charlie.academy.rankup',  'Ding ding! A new friend just popped out of the clock — you ranked up!', 'excited',  'Plaza cuckoo moment on a new rank'),
   L('charlie.hub.lockpass',  'Ask a grown-up about that one, kid.',     'gentle',         'Tapping an Academy-Pass-locked room (future)'),
 
   // Charlie — room taglines

@@ -161,18 +161,49 @@ function BrandMarquee() {
 
 // The Academy's cuckoo: the kid's current rank character pops out onto the
 // clock-tower ledge (assets/plaza/academy.png — door ≈ x 61.6%, ledge y 31%).
+// The first time a NEW rank shows up here, the doors swing open with a chime.
+const CUCKOO_SEEN_KEY = 'jma_cuckoo_seen_rank_v1';
+const CHIME = ['xylo G.mp3', 'xylo b.mp3', 'xylo High c.mp3'];
 function Cuckoo() {
   const { currentRank } = useRank();
   const [out, setOut] = useState(false);
+  const [moment, setMoment] = useState(false);
   useEffect(() => {
     setOut(false);
-    const t = setTimeout(() => setOut(true), 900);
+    const isNew = localStorage.getItem(CUCKOO_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
+    const t = setTimeout(() => {
+      setOut(true);
+      if (!isNew) return;
+      setMoment(true);
+      CHIME.forEach((f, i) => setTimeout(() => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.7; a.play().catch(() => {}); }, i * 160));
+      say('charlie.academy.rankup', { delayMs: 700 });
+      localStorage.setItem(CUCKOO_SEEN_KEY, currentRank.id);
+      setTimeout(() => setMoment(false), 4000);
+    }, isNew ? 1600 : 900);
     return () => clearTimeout(t);
   }, [currentRank.id]);
+  const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (
-    <div aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} className="absolute pointer-events-none overflow-hidden" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2 }}>
-      <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
-        initial={false} animate={out ? { y: '0%', x: '-50%', scale: 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={{ type: 'spring', stiffness: 260, damping: 18 }} />
+    <div aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2, perspective: 300 }}>
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
+          initial={false} animate={out ? { y: '0%', x: '-50%', scale: moment ? [1, 1.15, 1] : 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={moment ? { type: 'spring', stiffness: 260, damping: 14, scale: { repeat: 3, duration: 0.5 } } : { type: 'spring', stiffness: 260, damping: 18 }} />
+      </div>
+      <AnimatePresence>
+        {moment && (
+          <motion.div key="doors" className="absolute pointer-events-none" style={{ left: '14%', right: '14%', top: '6%', bottom: '28%', borderRadius: '45% 45% 6% 6% / 35% 35% 6% 6%', overflow: 'hidden', zIndex: 3 }} initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            <motion.span style={{ ...door, left: 0, transformOrigin: 'left center' }} initial={{ rotateY: 0 }} animate={{ rotateY: -110 }} transition={{ duration: 0.6, ease: 'easeOut' }} />
+            <motion.span style={{ ...door, right: 0, transformOrigin: 'right center' }} initial={{ rotateY: 0 }} animate={{ rotateY: 110 }} transition={{ duration: 0.6, ease: 'easeOut' }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {moment && (
+          <motion.span key="rankup" data-testid="academy-cuckoo-banner" className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 font-display font-black" style={{ top: '-45%', fontSize: 'clamp(10px, 1.1vw, 15px)', background: '#FFCC00', color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }} initial={{ opacity: 0, y: 10, scale: 0.7 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10 }}>
+            <Sparkles className="inline w-[1em] h-[1em] -mt-0.5 mr-1" strokeWidth={3} /> {currentRank.title.toUpperCase()}!
+          </motion.span>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

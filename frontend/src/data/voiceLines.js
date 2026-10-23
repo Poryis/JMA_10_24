@@ -219,7 +219,7 @@ export const VOICE_LINES = [
   L('charlie.howto.sightread',      'Listen to the notes on the staff, then tap those bells in order before time\'s up.',   'coach, quick',    'Sight-Reading Sprint menu / speaker button'),
   L('charlie.howto.namenote.name',  'See the note on the staff? Tap its name, champ.',                                       'coach, warm',     'Name That Note menu — Name It mode / speaker button'),
   L('charlie.howto.namenote.place', 'Read the note\'s name, then drag it home onto the staff.',                              'coach, warm',     'Name That Note menu — Place It mode selected / speaker button'),
-  L('charlie.howto.boom.copy',      'Chunk plays a rhythm — tap it right back the same way.',                                'coach, groovy',   'Who\'s Got the Rhythm — Parrot Percussion how-to card'),
+  L('charlie.howto.boom.copy',      'Stew plays a rhythm — tap it right back the same way.',                                 'coach, groovy',   'Who\'s Got the Rhythm — Parrot Percussion how-to card'),
   L('charlie.howto.boom.match',     'Hear the rhythm, then tap the card that matches it.',                                   'coach, groovy',   'Who\'s Got the Rhythm — Beat Finder how-to card'),
   L('charlie.howto.boom.trail',     'Follow the rhythm on the trail and tap along in time.',                                 'coach, groovy',   'Who\'s Got the Rhythm — Rhythm Run how-to card'),
   L('charlie.howto.shred',          'Pick a song, then rock the guitar in time with the beat to get the crowd goin\'!',      'rock announcer',  'Shred City intro / speaker button'),

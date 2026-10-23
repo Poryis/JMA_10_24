@@ -58,7 +58,7 @@ const MODES = [
     color: '#4285F4',
     accent: '#1A4FAB',
     bg: 'assets/backgrounds/football-field.png',
-    character: 'assets/characters/chunk-marching.png',
+    character: 'assets/characters/stew-drumline.png',
     charWidthPct: 40,
     howToPlay: [
       { icon: '👂', text: 'Listen to Stew play the rhythm.' },

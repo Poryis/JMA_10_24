@@ -155,12 +155,15 @@ export function useAudio() {
   const playDrumSound = useCallback((drum) => {
     const ctx = initAudioContext();
 
-    const buffer = audioBuffersRef.current[drum];
+    // midTom is the 2nd rack tom in the POV kit: same sample as Tom 1,
+    // pitched down a few semitones so it sits between Tom 1 and the floor tom.
+    const buffer = audioBuffersRef.current[drum === 'midTom' ? 'tom' : drum];
     if (buffer) {
       const source = ctx.createBufferSource();
       const gainNode = ctx.createGain();
       
       source.buffer = buffer;
+      if (drum === 'midTom') source.playbackRate.value = 0.8;
       gainNode.gain.setValueAtTime(0.8, ctx.currentTime);
       
       source.connect(gainNode);

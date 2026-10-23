@@ -38,20 +38,34 @@ const INSTRUMENT_TABS = [
 const XYLO_AUDIO = { C: 'assets/audio/xylo low c.mp3', D: 'assets/audio/xylo D.mp3', E: 'assets/audio/xylo E.mp3', F: 'assets/audio/xylo F.mp3', G: 'assets/audio/xylo G.mp3', A: 'assets/audio/xylo a.mp3', B: 'assets/audio/xylo b.mp3', 'High C': 'assets/audio/xylo High c.mp3' };
 const PIANO_AUDIO = { C: 'assets/audio/C4.mp3', D: 'assets/audio/D4.mp3', E: 'assets/audio/E4.mp3', F: 'assets/audio/F4.mp3', G: 'assets/audio/G4.mp3', A: 'assets/audio/A4.mp3', B: 'assets/audio/B4.mp3', 'High C': 'assets/audio/C5.mp3' };
 
-const DRUM_KEY_MAP = { q: 'hihat', w: 'crash', e: 'ride', a: 'snare', s: 'tom', d: 'lowTom', x: 'kick' };
+const DRUM_KEY_MAP = { q: 'hihat', w: 'crash', e: 'ride', a: 'snare', s: 'tom', d: 'midTom', f: 'lowTom', x: 'kick' };
 
+// Drummer's-POV kit (GarageBand-style, looking down from the throne).
+// Each piece has an idle + struck frame cut from the same canvas so they
+// line up pixel-for-pixel when swapped.
+const POV = (name) => ({ img1: `assets/drums/pov/${name}-1.webp`, img2: `assets/drums/pov/${name}-2.webp` });
 const DRUM_INFO = {
-  hihat:  { label: 'Hi-Hat', key: 'Q', color: '#F1C40F', img1: 'assets/drums/Hi hat 1.png', img2: 'assets/drums/Hi hat 2.png' },
-  crash:  { label: 'Crash',  key: 'W', color: '#E67E22', img1: 'assets/drums/Crash 1.png',  img2: 'assets/drums/Crash 2.png'  },
-  // Ride's asset files are named opposite the convention used by every
-  // other drum: `Ride 1.png` is actually the PLAYED frame and `Ride 2.png`
-  // is the REST frame. Swapping img1/img2 here keeps the rest-vs-played
-  // logic consistent without renaming the source PNGs.
-  ride:   { label: 'Ride',   key: 'E', color: '#E74C3C', img1: 'assets/drums/Ride 2.png',   img2: 'assets/drums/Ride 1.png'   },
-  snare:  { label: 'Snare',  key: 'A', color: '#3498DB', img1: 'assets/drums/Snare 1.png',  img2: 'assets/drums/Snare 2.png'  },
-  tom:    { label: 'Tom 1',  key: 'S', color: '#9B59B6', img1: 'assets/drums/tOM 1 1.png',  img2: 'assets/drums/tOM 1 2.png'  },
-  lowTom: { label: 'Tom 2',  key: 'D', color: '#1ABC9C', img1: 'assets/drums/tOM 2 1.png',  img2: 'assets/drums/tOM 2 2.png'  },
-  kick:   { label: 'Kick',   key: 'X', color: '#E74C3C', img1: 'assets/drums/kICK 1.png',   img2: 'assets/drums/kICK 2.png'   },
+  hihat:  { label: 'Hi-Hat',    key: 'Q', color: '#F1C40F', ...POV('hihat') },
+  crash:  { label: 'Crash',     key: 'W', color: '#E67E22', ...POV('crash') },
+  ride:   { label: 'Ride',      key: 'E', color: '#E74C3C', ...POV('ride') },
+  snare:  { label: 'Snare',     key: 'A', color: '#3498DB', ...POV('snare') },
+  tom:    { label: 'Tom 1',     key: 'S', color: '#9B59B6', ...POV('racktom') },
+  midTom: { label: 'Tom 2',     key: 'D', color: '#8E44AD', ...POV('racktom') },
+  lowTom: { label: 'Floor Tom', key: 'F', color: '#1ABC9C', ...POV('floortom') },
+  kick:   { label: 'Kick',      key: 'X', color: '#E74C3C', ...POV('kick') },
+};
+
+// Layout on a 1000x545 native canvas: [left, top, width, height, zIndex].
+// Back row = cymbals + rack toms, front row = snare / kick / floor tom.
+const DRUM_LAYOUT = {
+  crash:  [125,  20, 230, 196, 1],
+  ride:   [665,  30, 270, 270, 1],
+  tom:    [332,  90, 165, 173, 2],
+  midTom: [497,  85, 175, 184, 2],
+  kick:   [385, 250, 230, 249, 3],
+  hihat:  [140, 165, 190, 177, 4],
+  lowTom: [615, 238, 240, 252, 4],
+  snare:  [192, 242, 215, 240, 5],
 };
 
 const noteToSolfege = { C: 'Do', D: 'Re', E: 'Mi', F: 'Fa', G: 'So', A: 'La', B: 'Ti', 'High C': 'Do' };
@@ -350,47 +364,19 @@ function ResponsiveScaler({ children, nativeWidth, nativeHeight }) {
 }
 
 function DrumKitPlayable({ onDrumDown, onDrumUp, registerDrumRef }) {
-  // Drum kit scale - sized to fit game board
-  const S = 1.65;
-  const px = (n) => `${Math.round(n * S)}px`;
-  const cymS = 1.1;
-  // Shift the whole kit RIGHT by this many unscaled px
-  const RIGHT_SHIFT = 80;
-  const L = (n) => px(n + RIGHT_SHIFT);
-  // Toms group: move together up and slightly right
-  const TOMS_DX = 15;
-  const TOMS_DY = -8;  // nudged up 10 from +2 — final resting spot on the kick
-
-  // Native kit dimensions (before responsive scaling)
-  const NATIVE_W = Math.round((500 + RIGHT_SHIFT + 30) * S); // ~1007px
-  const NATIVE_H = Math.round(340 * S);                      // ~561px
-
-  // Responsive scaling: fit kit to wrapper width and remaining viewport height
+  const NATIVE_W = 1000;
+  const NATIVE_H = 505;
   const wrapRef = useRef(null);
   const scale = useFitScale(wrapRef, NATIVE_W, NATIVE_H);
 
   return (
     <div ref={wrapRef} className="w-full flex justify-center" style={{ height: `${NATIVE_H * scale}px` }}>
-      <div style={{ width: `${NATIVE_W}px`, height: `${NATIVE_H}px`, transform: `scale(${scale})`, transformOrigin: 'top center', position: 'relative' }}>
-      <div className="relative mx-auto" style={{ width: px(500 + RIGHT_SHIFT + 30), height: px(340), transform: 'translateX(-30px)' }}>
-      <PlayableDrumPiece drumId="crash"  info={DRUM_INFO.crash}  onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(90),  bottom: px(150), height: `${Math.round(130 * S * cymS)}px`, zIndex: 1, badgeLeft: L(145), badgeBottom: px(148) }} />
-      <PlayableDrumPiece drumId="ride"   info={DRUM_INFO.ride}   onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(325), bottom: px(120), height: `${Math.round(160 * S * cymS)}px`, zIndex: 1, badgeLeft: L(400), badgeBottom: px(118) }} />
-      <PlayableDrumPiece drumId="hihat"  info={DRUM_INFO.hihat}  onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(0),   bottom: px(25),  height: px(210), zIndex: 3, badgeLeft: L(30),  badgeBottom: px(23)  }} />
-      <PlayableDrumPiece drumId="kick"   info={DRUM_INFO.kick}   onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(155), bottom: px(0),   width: px(185),  zIndex: 4, badgeLeft: L(240), badgeBottom: px(-2)  }} />
-      {/* Toms group: moved way up and slightly right, sit on top of kick */}
-      <PlayableDrumPiece drumId="lowTom" info={DRUM_INFO.lowTom} onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(140 + TOMS_DX), bottom: px(155 + TOMS_DY * -1), width: px(90), zIndex: 5, badgeLeft: L(178 + TOMS_DX), badgeBottom: px(153 + TOMS_DY * -1) }} />
-      <img src="assets/drums/toms-base.png" alt="Toms base" className="absolute object-contain pointer-events-none"
-        style={{ left: L(215 + TOMS_DX), bottom: px(143 + TOMS_DY * -1), width: px(50), zIndex: 6 }} />
-      <PlayableDrumPiece drumId="tom"    info={DRUM_INFO.tom}    onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(252 + TOMS_DX), bottom: px(158 + TOMS_DY * -1), width: px(78), zIndex: 7, badgeLeft: L(284 + TOMS_DX), badgeBottom: px(156 + TOMS_DY * -1) }} />
-      <PlayableDrumPiece drumId="snare"  info={DRUM_INFO.snare}  onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
-        style={{ left: L(85),  bottom: px(12),  width: px(99),   zIndex: 8, badgeLeft: L(123), badgeBottom: px(10)  }} />
-    </div>
+      <div data-testid="drum-kit-pov" style={{ width: `${NATIVE_W}px`, height: `${NATIVE_H}px`, transform: `scale(${scale})`, transformOrigin: 'top center', position: 'relative' }}>
+        {Object.entries(DRUM_LAYOUT).map(([id, [left, top, width, height, zIndex]]) => (
+          <PlayableDrumPiece key={id} drumId={id} info={DRUM_INFO[id]} onDown={onDrumDown} onUp={onDrumUp} registerRef={registerDrumRef}
+            style={{ left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px`, zIndex,
+              badgeLeft: `${left + width / 2 - 12}px`, badgeBottom: `${NATIVE_H - top - height + 6}px` }} />
+        ))}
       </div>
     </div>
   );

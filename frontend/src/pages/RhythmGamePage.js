@@ -589,7 +589,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
         {/* Speed selector — chunky pill row with proper "Speed:" label */}
         <div className="jj-menu-speed flex items-center gap-2 mb-3 flex-wrap justify-center">
           <HowToVoiceButton lineId="charlie.howto.jukebox" size={30} className="mr-1" />
-          <span className="text-[10px] md:text-xs uppercase font-black opacity-60 mr-1" style={{ color: 'var(--jma-dark)' }}>
+          <span className="text-[10px] md:text-xs uppercase font-black mr-1" style={{ color: 'white', textShadow: '0 1px 0 rgba(0,0,0,0.5)' }}>
             Speed
           </span>
           {Object.entries(SPEED_SETTINGS).map(([key, cfg]) => {

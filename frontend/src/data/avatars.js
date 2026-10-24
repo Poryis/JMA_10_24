@@ -81,12 +81,9 @@ export const AVATARS = [
     { ...wfit('spitfire', 'Spitfire', 'lou-spitfire', { kind: 'sticker', value: 'ach_rhythm_master', hint: 'Earn the Rhythm Master badge' }), wide: true },
     wfit('dapper',    'Dapper',  'lou-dapper', DAPPER),
   ] },
-  { id: 'clammo',  name: 'Clammo',        color: '#0FA3B1', outfits: [
-    { ...wfit('classic', 'Classic', 'clammo'), wide: true },
-    { ...wfit('shut',    'Snapped', 'clammo-shut', STREAK_3), wide: true },
-  ] },
   // ---- Secret Friends: one cast card; each friend hangs on the rail as a '???' silhouette until found. ----
   { id: 'secret', name: 'Secret Friends', color: '#FFCC00', secret: true, cardSrc: 'assets/characters/secret-friends.svg', outfits: [
+    { ...wfit('clammo',  'Clammo',          'clammo',          { kind: 'flag',    value: 'clammo_found',     hint: 'Tap Clammo on the Plaza 5 times' }), hidden: true, wide: true },
     { ...wfit('dolphin', 'Dolphin',         'dolphin',         { kind: 'sticker', value: 'ach_fact_finder',  hint: 'Learn 10 fun facts' }), hidden: true, wide: true },
     { ...wfit('pete',    'Pepperoni Pete',  'pepperoni-pete',  { kind: 'sticker', value: 'lesson_6',         hint: 'Finish Lesson 6' }), hidden: true },
     { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true, wide: true },

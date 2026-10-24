@@ -24,6 +24,8 @@ import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { loadSavedSongs } from '../hooks/useSongLoopPlayer';
 import { say, voiceEnabled } from '../lib/voice';
 import { pickFeaturedEpisode } from '../data/jmatv';
+import useGamePaused from '../hooks/useGamePause';
+import { readFlags, setFlag } from '../data/avatars';
 
 // Shelf layout scales with the viewport: a building is ~46% of the screen
 // height (capped by width) and everything else is derived from that.
@@ -183,6 +185,10 @@ function Clammo({ left, width, bottom }) {
     const a = new Audio(encodeURI('assets/audio/Hi Hat closed.mp3')); a.volume = 0.6; a.play().catch(() => {});
     setShut(true);
     tRef.current = setTimeout(() => { setShut(false); loopRef.current(); }, 450);
+    // 5 taps and Clammo joins the Secret Friends in the Dressing Room
+    const taps = (Number(readFlags().clammo_taps) || 0) + 1;
+    try { localStorage.setItem('jma_flags_v1', JSON.stringify({ ...readFlags(), clammo_taps: taps })); } catch { /* ignore */ }
+    if (taps >= 5) setFlag('clammo_found');
   };
   return (
     <motion.button type="button" data-testid="plaza-clammo" data-shut={shut ? 'true' : 'false'} aria-label="Clammo the clam" onClick={snap}
@@ -201,12 +207,15 @@ const CUCKOO_SEEN_KEY = 'jma_cuckoo_seen_rank_v1';
 const CHIME = ['xylo G.mp3', 'xylo b.mp3', 'xylo High c.mp3'];
 function Cuckoo() {
   const { currentRank } = useRank();
+  const paused = useGamePaused(); // true while the rank-up card / sticker toast covers the plaza
   const [out, setOut] = useState(false);
   const [moment, setMoment] = useState(false);
   const rootRef = useRef(null);
   useEffect(() => {
     setOut(false);
     const isNew = localStorage.getItem(CUCKOO_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
+    // A new rank also shows the full-screen rank-up card; wait for it to be dismissed so the cuckoo isn't hidden behind it.
+    if (isNew && paused) return undefined;
     // Bring the Academy on screen first so the moment is actually seen (after the plaza's own scroll reset).
     const s = isNew ? setTimeout(() => rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 350) : null;
     const t = setTimeout(() => {
@@ -217,9 +226,9 @@ function Cuckoo() {
       say('charlie.academy.rankup', { delayMs: 700 });
       localStorage.setItem(CUCKOO_SEEN_KEY, currentRank.id);
       setTimeout(() => setMoment(false), 4000);
-    }, isNew ? 2200 : 900);
+    }, isNew ? 1800 : 900);
     return () => { clearTimeout(t); if (s) clearTimeout(s); };
-  }, [currentRank.id]);
+  }, [currentRank.id, paused]);
   const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (
     <div ref={rootRef} aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2, perspective: 300 }}>

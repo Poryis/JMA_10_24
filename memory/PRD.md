@@ -494,3 +494,10 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Unused from the drop: duplicates of existing art (Charlie Steampunk/Drum major/zoot/studio, Chunk steampunk). Source files + `build.py` in `/app/memory/adds1023/`.
 - Tests: `iteration_58.json` (pass; Clammo loop + secret spoiler fixed after).
 - **Open question**: user reported "click character to switch → mirror doesn't switch, stays classic unless you hit a locked one" — could not reproduce in preview (character + outfit switching verified via DOM). Possibly the padded-image sizing (now fixed) or a stale build.
+
+## Session Update — June 2026 (part 9): Expanded album cover designer
+- New `components/CoverDesigner.js` (extracted from AcademyPage): tabs Color · Pattern · Stickers · Frame.
+- 12 sleeve colors, 6 patterns (solid/stripes/dots/stars/waves/checks), 4 frames, 8 vinyl label colors, "Surprise me!" shuffle.
+- 3 sticker slots (main / top-left / bottom-right) — tap the spot on the preview sleeve or use slot pills. Stickers = every earned Sticker Book sticker with an icon + "Meet the Band" always + "Me" avatar, with category chips.
+- Cover schema now `{color, pattern, frame, label, stickers:{main,tl,br}}`; `normalizeCover()` upgrades legacy `{color, sticker}` covers (sticker=null → "me"). Goldfish Gil unlock (2 covers) unaffected.
+- Verified via screenshot (desktop + 844x390 landscape): save persists, legacy covers render.

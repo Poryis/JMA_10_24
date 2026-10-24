@@ -10,6 +10,7 @@ import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
 import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
+import CoverDesigner, { Sleeve, SLEEVES, loadCovers, saveCover, normalizeCover } from '../components/CoverDesigner';
 import useDailyQuests from '../hooks/useDailyQuests';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
@@ -18,60 +19,7 @@ import { readAvatarOutfit } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import { RANKS } from '../data/ranks';
-import { COLLECTION_STICKERS } from '../data/stickers';
 import { say } from '../lib/voice';
-
-const SLEEVES = ['#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF', '#00B8D9'];
-
-const COVERS_KEY = 'jma_album_covers_v1';
-const COVER_STICKERS = COLLECTION_STICKERS.filter((st) => st.icon).slice(0, 16);
-function loadCovers() { try { return JSON.parse(localStorage.getItem(COVERS_KEY) || '{}'); } catch { return {}; } }
-function saveCover(id, cover) { const all = loadCovers(); all[id] = cover; try { localStorage.setItem(COVERS_KEY, JSON.stringify(all)); } catch { /* ignore */ } }
-
-function Sleeve({ color, stickerSrc, avatar, kind, className = '' }) {
-  return (
-    <div className={`relative aspect-square rounded-xl overflow-hidden flex items-end justify-center ${className}`} style={{ background: color, border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
-      <span className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full bg-black/80 flex items-center justify-center"><span className="w-2 h-2 rounded-full bg-white" /></span>
-      {stickerSrc
-        ? <img src={stickerSrc} alt="" className="h-[78%] w-auto object-contain object-bottom" />
-        : <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[78%] w-auto object-contain object-bottom" />}
-      <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
-    </div>
-  );
-}
-
-function CoverDesigner({ track, cover, avatar, onSave, onClose, onOpen }) {
-  const [color, setColor] = useState(cover?.color || SLEEVES[0]);
-  const [sticker, setSticker] = useState(cover?.sticker || null);
-  const stickerSrc = COVER_STICKERS.find((st) => st.id === sticker)?.icon || null;
-  return (
-    <motion.div data-testid="cover-designer" className="fixed inset-0 z-[80] flex items-center justify-center p-3" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="relative w-full max-w-lg rounded-3xl bg-white p-4 max-h-[94vh] overflow-y-auto" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)' }} initial={{ y: 30, scale: 0.96 }} animate={{ y: 0, scale: 1 }} exit={{ y: 30, scale: 0.96 }} onClick={(e) => e.stopPropagation()}>
-        <button type="button" data-testid="cover-close" onClick={onClose} aria-label="Close" className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white border-2 border-[var(--jma-dark)] flex items-center justify-center"><X className="w-4 h-4" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
-        <div className="font-display font-black text-lg pr-8 truncate" style={{ color: 'var(--jma-dark)' }}>{track.name}</div>
-        <div className="text-xs font-bold mb-3" style={{ color: '#4B5668' }}>Design your record sleeve</div>
-        <div className="flex gap-4">
-          <div className="w-32 md:w-40 flex-shrink-0"><Sleeve color={color} stickerSrc={stickerSrc} avatar={avatar} kind={track.kind} /></div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Color</div>
-            <div className="flex flex-wrap gap-1.5 mb-3" data-testid="cover-colors">
-              {SLEEVES.map((c) => <button key={c} type="button" data-testid={`cover-color-${c.slice(1)}`} aria-pressed={color === c} onClick={() => setColor(c)} className="w-8 h-8 rounded-full" style={{ background: c, border: '3px solid var(--jma-dark)', transform: color === c ? 'scale(1.15)' : 'none', boxShadow: color === c ? '0 0 0 3px white, 0 0 0 5px var(--jma-dark)' : 'none' }} />)}
-            </div>
-            <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Sticker</div>
-            <div className="grid grid-cols-5 gap-1.5" data-testid="cover-stickers">
-              <button type="button" data-testid="cover-sticker-me" aria-pressed={!sticker} onClick={() => setSticker(null)} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={{ background: '#F6F8FB', border: `3px solid ${!sticker ? '#FF9500' : 'var(--jma-dark)'}` }}><AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[80%] w-auto object-contain" /></button>
-              {COVER_STICKERS.map((st) => <button key={st.id} type="button" data-testid={`cover-sticker-${st.id}`} aria-pressed={sticker === st.id} onClick={() => setSticker(st.id)} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={{ background: '#F6F8FB', border: `3px solid ${sticker === st.id ? '#FF9500' : 'var(--jma-dark)'}` }}><img src={st.icon} alt={st.name} className="h-[80%] w-auto object-contain" /></button>)}
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-4">
-          <button type="button" data-testid="cover-save" onClick={() => onSave({ color, sticker })} className="chunky-btn flex-1 py-2 text-sm font-black text-white flex items-center justify-center gap-1.5" style={{ background: '#34A853' }}><Check className="w-4 h-4" strokeWidth={3} /> Save cover</button>
-          <button type="button" data-testid="cover-open" onClick={onOpen} className="chunky-btn flex-1 py-2 text-sm font-black flex items-center justify-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><Play className="w-4 h-4" strokeWidth={3} /> Open in {track.kind === 'beat' ? 'Beat Lab' : 'Song Studio'}</button>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
 
@@ -124,7 +72,7 @@ function MyAlbum() {
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: '/loop-studio', at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: '/song-studio', at: Date.parse(s.createdAt) || 0 })),
   ].sort((a, b) => b.at - a.at), []);
-  const coverFor = (t, i) => covers[t.id] || { color: SLEEVES[i % SLEEVES.length], sticker: null };
+  const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
     <Card testId="academy-album" className="w-full max-w-3xl">
       <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>My Album</div>
@@ -143,7 +91,7 @@ function MyAlbum() {
             const c = coverFor(t, i);
             return (
               <button key={t.id} type="button" data-testid={`academy-track-${i}`} onClick={() => setEditing(t)} className="text-left group">
-                <Sleeve color={c.color} stickerSrc={COVER_STICKERS.find((st) => st.id === c.sticker)?.icon || null} avatar={avatar} kind={t.kind} className="transition-transform group-hover:-translate-y-1" />
+                <Sleeve cover={c} avatar={avatar} kind={t.kind} className="transition-transform group-hover:-translate-y-1" />
                 <div className="mt-1 text-xs font-black truncate" style={{ color: 'var(--jma-dark)' }}>{t.name}</div>
                 <div className="text-[10px] font-bold truncate" style={{ color: '#4B5668' }}>{t.meta}</div>
               </button>

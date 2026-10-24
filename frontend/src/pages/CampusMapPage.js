@@ -164,6 +164,7 @@ function BrandMarquee() {
 function Clammo({ left, width, bottom }) {
   const [shut, setShut] = useState(false);
   const tRef = useRef(null);
+  const loopRef = useRef(() => {});
   useEffect(() => {
     let alive = true;
     const loop = () => {
@@ -173,6 +174,7 @@ function Clammo({ left, width, bottom }) {
         tRef.current = setTimeout(() => { if (alive) { setShut(false); loop(); } }, 650);
       }, 8000 + Math.random() * 7000);
     };
+    loopRef.current = loop;
     loop();
     return () => { alive = false; clearTimeout(tRef.current); };
   }, []);
@@ -180,7 +182,7 @@ function Clammo({ left, width, bottom }) {
     clearTimeout(tRef.current);
     const a = new Audio(encodeURI('assets/audio/Hi Hat closed.mp3')); a.volume = 0.6; a.play().catch(() => {});
     setShut(true);
-    tRef.current = setTimeout(() => setShut(false), 450);
+    tRef.current = setTimeout(() => { setShut(false); loopRef.current(); }, 450);
   };
   return (
     <motion.button type="button" data-testid="plaza-clammo" data-shut={shut ? 'true' : 'false'} aria-label="Clammo the clam" onClick={snap}

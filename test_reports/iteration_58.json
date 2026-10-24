@@ -1,0 +1,53 @@
+{
+  "summary": "Frontend-only Playwright testing of the new batch: Dressing Room (8-card cast, switching characters, unlocked/locked outfits, rail arrows, Secret Friends incl. sticker/flag/covers unlocks, astronaut helmet box), Beat Lab tempo flag, Plaza Clammo, Academy PBJ poster, regressions (Jam Session drums, The Stage), phone landscape 844x390. Almost everything works as specified. 1 functional bug (Clammo stops auto-blinking forever after a tap) and 1 UX/spoiler issue (trying on a locked Secret Friend shows its full art and real name).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CampusMapPage Clammo", "issue": "After you tap Clammo he never blinks on his own again. On a fresh load the auto-blink works (shut at about 10.4s, open about 500ms later). After one tap: data-shut goes true, then false after about 400ms, then there were 0 auto flips over the next 22s. RCA: snap() calls clearTimeout(tRef.current), which cancels the pending loop() timer. Its reopen timeout (setShut(false) after 450ms) never calls loop() again, so the blink cycle ends for good. A tap during the 650ms blink-close also kills the loop. Fix: restart the loop after the tap reopens, e.g. make loop reachable via a ref and call it in the 450ms callback.", "selector": "[data-testid='plaza-clammo']", "priority": "MEDIUM"},
+      {"component": "DressingRoom Secret Friends ghost try-on", "issue": "Tapping a locked hidden friend (e.g. outfit-gerald with no flags) shows the full grayscale art of Elephant Gerald in the mirror, and the nameplate reads '??? Elephant Gerald'. This spoils the '???' mystery. Fix: for hidden && !unlocked, keep the silhouette filter (brightness(0)) and show '???' instead of ghost.name in the nameplate. Showing the hint is fine.", "selector": "[data-testid='outfit-gerald'], [data-testid='dressing-nameplate']", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Dressing Room phone landscape 844x390", "issues": ["The SNAP! camera button overlaps the left part of the nameplate (e.g. 'Seahorse Sal' shows as 'horse Sal').", "The Secret cast card at the end of the cast strip is clipped and needs a horizontal swipe. There is no scroll hint."]},
+      {"screen": "Dressing Room rail", "issues": ["The 'ON' badge on the worn card sits above the card at the rail bar and is partly hidden by the edge fade mask when that card is near the left edge.", "With no secret unlocks the mirror shows the dolphin silhouette, the first friend. Acceptable, but it reveals one shape."]},
+      {"screen": "The Stage", "issues": ["Top-left hint text 'Earn badges in the games to light up this hall' appeared cut off ('rn badges...') in the screenshot. May be mid-animation; quick check suggested."]}
+    ]
+  },
+  "passed_checks": [
+    "Cast has 8 cards in order charlie, finn, chunk, jazzy, stew, doctor, lou, secret",
+    "Picking finn/jazzy/charlie sets mirror src to finn-danger.png/jazzy.png/charlie.png; nameplate and jma_avatar_v1 update",
+    "Unlocked outfits (Charlie steampunk; Finn/Jazzy/Lou/Doctor dapper .webp) update mirror, nameplate and jma_avatar_v1",
+    "Locked punk shows ghost hint 'Earn it: Max the crowd in Shred City' with grayscale preview; jma_avatar_v1 unchanged",
+    "Charlie rail: 14 cards; rail-next visible; scrollLeft 61->554; rail-prev appears and scrolls back; hangers stay inside the rail posts",
+    "Secret with empty storage: bubble text correct, black silhouette, nameplate '??? Secret Friend', 6 cards all data-locked=true with '???'; jma_avatar_v1 not set",
+    "lesson_3 unlocks Seahorse Sal: jma_avatar_v1={secret,sal}, seahorse-sal.webp in color, persists after reload",
+    "tempo_changed flag unlocks gerald; 2 album covers unlock gil; 1 cover keeps gil locked",
+    "Beat Lab bpm-plus and bpm-minus both set jma_flags_v1={tempo_changed:1}; gerald then unlocked in Dressing Room",
+    "Astronaut: wrapper data-helmet=true, img + 4 svg (2 layers); overlay 240.9x485 vs computed contain box 241.1x485 (natural 300x604). Rail card helmet overlay 42x84 also matches",
+    "Clammo: tap gives shut=true then reopens about 400ms later; auto blink seen without tapping",
+    "Academy PBJ poster visible; modal opens with pbj-poster.webp; backdrop click closes; class/album/yearbook panels still open",
+    "Jam Session Drums mode shows drum-kit-pov with 8 visible pieces (W,Q,S,D,E,A,X,F)",
+    "The Stage has curtains left/right and marquee",
+    "844x390: no page overflow (scrollWidth 844, scrollHeight 390); cast, rail, arrows, mirror usable; rail-next scrolls on phone",
+    "Console: only the known duplicate-key warning and harmless CSP/401 noise from the preview host; no page errors"
+  ],
+  "test_report_links": [],
+  "action_items": [
+    "Clammo: restart the auto-blink loop after a tap (snap() currently cancels it permanently)",
+    "Secret Friends: when trying on a locked hidden friend, keep the silhouette and '???' instead of showing the art and real name",
+    "Phone landscape: move the SNAP! camera button so it does not cover the nameplate"
+  ],
+  "critical_code_review_comments": [
+    "CampusMapPage Clammo snap(): clearTimeout(tRef.current) kills the blink loop; the reopen callback should restart it.",
+    "DressingRoomPage: ghost branch ignores o.hidden; shownSrc filter and nameplate (ghost.name) leak the secret identity.",
+    "avatars.isUnlocked 'rank' kind: rankIds.indexOf(value) returns -1 for an unknown rank id, which makes the outfit always unlocked. Guard against -1.",
+    "useAvatar.unlockedFor useCallback deps leave out flags and covers, which are read from localStorage at call time. This works now but is fragile if memoized further."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "~92% (2 of ~25 checks found issues)"},
+  "test_credentials": "None required",
+  "seed_data_creation": "Only localStorage set per test (jma_stickers_v1, jma_flags_v1, jma_album_covers_v1, jma_avatar_v1)",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Retest the Clammo auto-blink after a tap (poll data-shut every 100ms for about 20s after one click) and the hidden-friend ghost preview (outfit-gerald with no flags should stay a silhouette with '???'). Jam Session drum pieces have no data-testid inside drum-kit-pov; verify them visually."
+}

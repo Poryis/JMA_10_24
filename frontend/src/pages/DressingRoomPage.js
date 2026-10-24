@@ -89,9 +89,6 @@ export default function DressingRoomPage() {
   const previewOutfits = isCurrent ? outfits : previewChar.outfits.map(o => ({ ...o, unlocked: o.unlock.kind === 'free' || unlockedFor({ outfits: [o] }) > 0 }));
   // previewing another character shows their first *unlocked* look (Secret Friends may have none → silhouette)
   const worn = isCurrent ? outfit : (previewOutfits.find(o => o.unlocked) || previewOutfits[0]);
-  const wornHidden = !!worn.hidden && !worn.unlocked;
-  const plateName = previewChar.secret ? (wornHidden ? '???' : worn.name) : previewChar.name;
-  const plateSub = previewChar.secret ? 'Secret Friend' : worn.name;
 
   const [seen, setSeen] = useState(() => {
     const cur = readJSON(SEEN_KEY, null);
@@ -173,6 +170,9 @@ export default function DressingRoomPage() {
   };
   const keepPhoto = () => { const next = [polaroid, ...photos].slice(0, 6); setPhotos(next); writeJSON(PHOTOS_KEY, next); setPolaroid(null); };
 
+  const wornHidden = (!!worn.hidden && !worn.unlocked) || (!!ghost && !!ghost.hidden);
+  const plateName = previewChar.secret ? (wornHidden ? '???' : worn.name) : previewChar.name;
+  const plateSub = previewChar.secret ? 'Secret Friend' : worn.name;
   const shownSrc = ghost ? ghost.src : worn.src;
   const shownHelmet = ghost ? !!ghost.helmet : !!worn.helmet;
   const mirrorRect = mirrorRef.current ? mirrorRef.current.getBoundingClientRect() : null;
@@ -190,10 +190,10 @@ export default function DressingRoomPage() {
           <div ref={mirrorRef} className="relative h-full" style={{ aspectRatio: '738 / 1150', maxWidth: '100%' }} data-testid="dressing-mirror">
             <img src="assets/dressing/mirror.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 3, filter: 'drop-shadow(0 8px 0 rgba(0,0,0,0.35))' }} />
             {/* glass contents: the Jelly, posed */}
-            <div className="absolute flex items-end justify-center" style={{ left: '14%', right: '14%', top: '8%', bottom: '22%', zIndex: 4 }}>
+            <div className="absolute flex items-end justify-center" style={{ left: '18%', right: '18%', top: '9%', bottom: '22%', zIndex: 4 }}>
               <motion.div className="dr-bob absolute inset-x-0 bottom-0 h-[92%]" style={{ transformOrigin: 'bottom center' }} animate={poseCtl}>
                 <AvatarSprite src={shownSrc} helmet={shownHelmet} className="block w-full h-full" testId="dressing-mirror-avatar"
-                  imgStyle={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom', filter: ghost ? 'grayscale(1) opacity(0.55) drop-shadow(0 0 10px rgba(255,255,255,0.6))' : wornHidden ? 'brightness(0) opacity(0.8)' : 'drop-shadow(0 6px 0 rgba(0,0,0,0.3))', transition: 'filter 0.3s' }} />
+                  imgStyle={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom', filter: ghost && ghost.hidden ? 'brightness(0) opacity(0.8)' : ghost ? 'grayscale(1) opacity(0.55) drop-shadow(0 0 10px rgba(255,255,255,0.6))' : wornHidden ? 'brightness(0) opacity(0.8)' : 'drop-shadow(0 6px 0 rgba(0,0,0,0.3))', transition: 'filter 0.3s' }} />
               </motion.div>
               {poof > 0 && <Poof key={poof} id={poof} ghost={!!ghost} />}
               <AnimatePresence>{flash > 0 && <motion.div key={flash} className="absolute inset-0 rounded-2xl bg-white pointer-events-none" style={{ zIndex: 8 }} initial={{ opacity: 0.95 }} animate={{ opacity: 0 }} transition={{ duration: 0.45 }} />}</AnimatePresence>
@@ -210,7 +210,7 @@ export default function DressingRoomPage() {
             {/* name plate on the vanity shelf */}
             <div className="absolute left-1/2 -translate-x-1/2 rounded-lg px-2 py-0.5 text-center whitespace-nowrap" style={{ bottom: '3%', zIndex: 5, background: '#FFCC00', border: '2px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }} data-testid="dressing-nameplate">
               <span className="font-black font-display text-[11px] md:text-sm" style={{ color: 'var(--jma-dark)' }}>{plateName}</span>
-              <span className="ml-1.5 text-[9px] md:text-[11px] font-bold opacity-70" style={{ color: 'var(--jma-dark)' }}>{ghost ? ghost.name : plateSub}</span>
+              <span className="ml-1.5 text-[9px] md:text-[11px] font-bold opacity-70" style={{ color: 'var(--jma-dark)' }}>{ghost ? (ghost.hidden ? '???' : ghost.name) : plateSub}</span>
             </div>
             {/* speech bubble */}
             <AnimatePresence>

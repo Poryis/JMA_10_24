@@ -1105,7 +1105,7 @@ h1, h2, h3, h4, h5, h6 {
   .dr-mirror-col { width: 30% !important; }
   .dr-hanger { width: 74px !important; }
   .dr-hanger img { height: 46px !important; }
-  .dr-camera { padding: 3px 8px !important; font-size: 10px !important; }
+  .dr-camera { padding: 3px 8px !important; font-size: 10px !important; left: -6% !important; bottom: 14% !important; }
 
   /* Fun Facts: room is zoomed just enough to hunt; room reaches every corner */
   .funfacts-hint { display: none !important; }

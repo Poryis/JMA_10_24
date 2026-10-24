@@ -81,17 +81,18 @@ export const AVATARS = [
     wfit('spitfire',  'Spitfire', 'lou-spitfire', { kind: 'sticker', value: 'ach_rhythm_master', hint: 'Earn the Rhythm Master badge' }),
     wfit('dapper',    'Dapper',  'lou-dapper', DAPPER),
   ] },
-  // ---- Secret Friends: hidden until found. Each has one look and a character-level unlock. ----
-  { id: 'dolphin', name: 'Dolphin',         color: '#1E9BFF', secret: true, unlock: { kind: 'sticker', value: 'ach_fact_finder', hint: 'Learn 10 fun facts' }, outfits: [wfit('classic', 'Classic', 'dolphin')] },
-  { id: 'pete',    name: 'Pepperoni Pete',  color: '#E74C3C', secret: true, unlock: { kind: 'sticker', value: 'lesson_6', hint: 'Finish Lesson 6' }, outfits: [wfit('classic', 'Classic', 'pepperoni-pete')] },
-  { id: 'gil',     name: 'Goldfish Gil',    color: '#FF9500', secret: true, unlock: { kind: 'covers', value: 2, hint: 'Design 2 album covers' }, outfits: [wfit('classic', 'Classic', 'goldfish-gil')] },
-  { id: 'sal',     name: 'Seahorse Sal',    color: '#FF2D85', secret: true, unlock: { kind: 'sticker', value: 'lesson_3', hint: 'Finish Lesson 3' }, outfits: [wfit('classic', 'Classic', 'seahorse-sal')] },
-  { id: 'sun',     name: 'The Sun',         color: '#FFCC00', secret: true, unlock: { kind: 'sticker', value: 'practice_buddy_7', hint: 'Practice 7 days in a row' }, outfits: [wfit('classic', 'Classic', 'the-sun')] },
-  { id: 'gerald',  name: 'Elephant Gerald', color: '#8E8E93', secret: true, unlock: { kind: 'flag', value: 'tempo_changed', hint: 'Change the tempo in Beat Lab' }, outfits: [wfit('classic', 'Classic', 'elephant-gerald')] },
+  // ---- Secret Friends: one cast card; each friend hangs on the rail as a '???' silhouette until found. ----
+  { id: 'secret', name: 'Secret Friends', color: '#FFCC00', secret: true, cardSrc: 'assets/characters/secret-friends.svg', outfits: [
+    { ...wfit('dolphin', 'Dolphin',         'dolphin',         { kind: 'sticker', value: 'ach_fact_finder',  hint: 'Learn 10 fun facts' }), hidden: true },
+    { ...wfit('pete',    'Pepperoni Pete',  'pepperoni-pete',  { kind: 'sticker', value: 'lesson_6',         hint: 'Finish Lesson 6' }), hidden: true },
+    { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true },
+    { ...wfit('sal',     'Seahorse Sal',    'seahorse-sal',    { kind: 'sticker', value: 'lesson_3',         hint: 'Finish Lesson 3' }), hidden: true },
+    { ...wfit('sun',     'The Sun',         'the-sun',         { kind: 'sticker', value: 'practice_buddy_7', hint: 'Practice 7 days in a row' }), hidden: true },
+    { ...wfit('gerald',  'Elephant Gerald', 'elephant-gerald', { kind: 'flag',    value: 'tempo_changed',    hint: 'Change the tempo in Beat Lab' }), hidden: true },
+  ] },
 ];
 
 export const AVATAR_MAP = Object.fromEntries(AVATARS.map(a => [a.id, a]));
-export const SECRET_AVATARS = AVATARS.filter(a => a.secret);
 
 // Small "did this once" flags set by pages (Beat Lab tempo etc.) — read by unlocks.
 export const FLAGS_KEY = 'jma_flags_v1';
@@ -113,5 +114,4 @@ export function isUnlocked(u, { earned, rankIndex, rankIds }) {
   if (u.kind === 'covers') return coverCount() >= u.value;
   return false;
 }
-export function isCharacterUnlocked(a, ctx) { return !a.secret || isUnlocked(a.unlock, ctx); }
 export function isOutfitUnlocked(o, ctx) { return isUnlocked(o.unlock, ctx); }

@@ -1,6 +1,6 @@
 // useAvatar — the kid's chosen Jelly + outfit, with unlock state.
 import { useCallback, useEffect, useState } from 'react';
-import { AVATARS, AVATAR_MAP, AVATAR_KEY, isOutfitUnlocked, isCharacterUnlocked } from '../data/avatars';
+import { AVATARS, AVATAR_MAP, AVATAR_KEY, isOutfitUnlocked } from '../data/avatars';
 import { RANKS } from '../data/ranks';
 import useRank from './useRank';
 import useStickers, { readEarnedStickers } from './useStickers';
@@ -42,18 +42,17 @@ export default function useAvatar() {
   }, []);
 
   const ctx = { earned: earned || readEarnedStickers(), rankIndex: RANK_IDS.indexOf(currentRank.id), rankIds: RANK_IDS };
-  const savedChar = AVATAR_MAP[state.character];
-  // a secret friend that got re-locked (e.g. cleared data) falls back to Charlie
-  const character = isCharacterUnlocked(savedChar, ctx) ? savedChar : AVATAR_MAP.charlie;
-  const outfits = character.outfits.map(o => ({ ...o, unlocked: isOutfitUnlocked(o, ctx) }));
-  const outfit = outfits.find(o => o.id === state.outfit && o.unlocked) || outfits[0];
-  const totalUnlocked = AVATARS.reduce((n, a) => n + a.outfits.filter(o => isCharacterUnlocked(a, ctx) && isOutfitUnlocked(o, ctx)).length, 0);
+  let character = AVATAR_MAP[state.character] || AVATAR_MAP.charlie;
+  let outfits = character.outfits.map(o => ({ ...o, unlocked: isOutfitUnlocked(o, ctx) }));
+  // Secret Friends has no free look — if none is found yet (e.g. cleared data) fall back to Charlie
+  if (character.secret && !outfits.some(o => o.unlocked)) { character = AVATAR_MAP.charlie; outfits = character.outfits.map(o => ({ ...o, unlocked: isOutfitUnlocked(o, ctx) })); }
+  const outfit = outfits.find(o => o.id === state.outfit && o.unlocked) || outfits.find(o => o.unlocked) || outfits[0];
+  const totalUnlocked = AVATARS.reduce((n, a) => n + a.outfits.filter(o => isOutfitUnlocked(o, ctx)).length, 0);
   const totalOutfits = AVATARS.reduce((n, a) => n + a.outfits.length, 0);
 
   const choose = useCallback((characterId, outfitId = 'classic') => writeAvatar(characterId, outfitId), []);
   const wear = useCallback((outfitId) => writeAvatar(state.character, outfitId), [state.character]);
   const unlockedFor = useCallback((a) => a.outfits.filter(o => isOutfitUnlocked(o, ctx)).length, [ctx.earned, ctx.rankIndex]); // eslint-disable-line react-hooks/exhaustive-deps
-  const characterUnlocked = useCallback((a) => isCharacterUnlocked(a, ctx), [ctx.earned, ctx.rankIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return { chosen: state.chosen, character, outfit, outfits, src: outfit.src, choose, wear, unlockedFor, characterUnlocked, totalUnlocked, totalOutfits };
+  return { chosen: state.chosen, character, outfit, outfits, src: outfit.src, choose, wear, unlockedFor, totalUnlocked, totalOutfits };
 }

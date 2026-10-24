@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "./static/css/main.245a9cd0.css",
+    "main.js": "./static/js/main.bfe512d0.js",
+    "static/media/ComicKings.otf": "./static/media/ComicKings.ff3351fbec8978a9884e.otf",
+    "index.html": "./index.html",
+    "main.245a9cd0.css.map": "./static/css/main.245a9cd0.css.map",
+    "main.bfe512d0.js.map": "./static/js/main.bfe512d0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.245a9cd0.css",
+    "static/js/main.bfe512d0.js"
+  ]
+}

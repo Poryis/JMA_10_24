@@ -287,6 +287,10 @@ export default function AcademyPage() {
         <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '75.6%', top: '38.6%', width: '4.5%', height: '17.9%', zIndex: 3, clipPath: 'polygon(0 11.4%, 100% 0, 100% 100%, 0 96.6%)' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
           <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-7deg) scale(1.08)' }} />
         </motion.button>
+        {/* Music 101 cover art pinned over the front concert poster (among the gold records) */}
+        <motion.button type="button" data-testid="academy-m101-poster" aria-label="Music 101 poster" onClick={() => setPbj('m101')} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '86.6%', top: '45.7%', width: '6.8%', height: '17.2%', zIndex: 3, clipPath: 'polygon(0 7.7%, 100% 0, 100% 100%, 0 92.3%)' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+          <img src="assets/academy/music101-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-5deg) scale(1.06)' }} />
+        </motion.button>
 
         {/* the big tower clock chimes when tapped */}
         <motion.button type="button" data-testid="academy-clock" aria-label="Tower clock" onClick={() => { ding('xylo G.mp3'); setTimeout(() => ding('xylo b.mp3'), 180); setTimeout(() => ding('xylo High c.mp3'), 360); poke('clock'); }} className="absolute rounded-full" style={{ left: '31%', top: '15%', width: '38%', height: '58%', zIndex: 2 }} key={`clock-${wiggle.clock}`} animate={wiggle.clock ? { scale: [1, 1.02, 0.99, 1] } : {}} transition={{ duration: 0.5 }} />
@@ -309,7 +313,7 @@ export default function AcademyPage() {
       <AnimatePresence>
         {pbj && (
           <motion.div key="pbj" data-testid="academy-pbj-modal" className="fixed inset-0 z-[60] flex items-center justify-center p-3 pt-14" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setPbj(false)}>
-            <motion.img src="assets/academy/pbj-poster.webp" alt="Peanut Butter Jellyfish Sandwich — the movie" className="max-h-full max-w-full object-contain" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)', background: 'white' }} initial={{ scale: 0.6, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 240, damping: 18 }} />
+            <motion.img src={pbj === 'm101' ? 'assets/academy/music101-poster.webp' : 'assets/academy/pbj-poster.webp'} alt={pbj === 'm101' ? 'Jelly of the Month Club — Music 101' : 'Peanut Butter Jellyfish Sandwich — the movie'} className="max-h-full max-w-full object-contain" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)', background: 'white' }} initial={{ scale: 0.6, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 240, damping: 18 }} />
           </motion.div>
         )}
       </AnimatePresence>

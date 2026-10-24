@@ -161,7 +161,7 @@ function BrandMarquee() {
   );
 }
 
-// Clammo the clam sits on the sand. Every 8–15s he blinks to his state-2 art
+// Chowda the clam (component kept as Clammo) sits on the sand. Every 8–15s he blinks to his state-2 art
 // for a beat; tapping him snaps him shut (with a click) and he pops back open.
 function Clammo({ left, width, bottom }) {
   const [shut, setShut] = useState(false);
@@ -185,13 +185,13 @@ function Clammo({ left, width, bottom }) {
     const a = new Audio(encodeURI('assets/audio/Hi Hat closed.mp3')); a.volume = 0.6; a.play().catch(() => {});
     setShut(true);
     tRef.current = setTimeout(() => { setShut(false); loopRef.current(); }, 450);
-    // 5 taps and Clammo joins the Secret Friends in the Dressing Room
+    // 5 taps and Chowda joins the Secret Friends in the Dressing Room
     const taps = (Number(readFlags().clammo_taps) || 0) + 1;
     try { localStorage.setItem('jma_flags_v1', JSON.stringify({ ...readFlags(), clammo_taps: taps })); } catch { /* ignore */ }
     if (taps >= 5) setFlag('clammo_found');
   };
   return (
-    <motion.button type="button" data-testid="plaza-clammo" data-shut={shut ? 'true' : 'false'} aria-label="Clammo the clam" onClick={snap}
+    <motion.button type="button" data-testid="plaza-clammo" data-shut={shut ? 'true' : 'false'} aria-label="Chowda the clam" onClick={snap}
       className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left, width, bottom, zIndex: 8 }} whileTap={{ scale: 0.92 }}>
       <img src="assets/plaza/clammo-1.webp" alt="" draggable={false} className="block w-full h-auto" style={{ display: shut ? 'none' : 'block', filter: 'drop-shadow(0 4px 0 rgba(2,36,63,0.35))' }} />
       <img src="assets/plaza/clammo-2.webp" alt="" draggable={false} className="block w-full h-auto" style={{ display: shut ? 'block' : 'none', filter: 'drop-shadow(0 4px 0 rgba(2,36,63,0.35))' }} />
@@ -598,7 +598,7 @@ export default function CampusMapPage({ plaza = false }) {
           {buildings.map((b, i) => (
             <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
-          {/* Clammo: blinks shut every so often; tap him and he snaps */}
+          {/* Chowda: blinks shut every so often; tap him and he snaps */}
           {plaza && <Clammo left={Math.round(xs[4] - L.bw * 0.07 - L.bw * 0.13)} width={Math.round(L.bw * 0.26)} bottom={Math.round(sandFront * 0.55)} />}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">

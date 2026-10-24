@@ -59,7 +59,7 @@ export const AVATARS = [
     outfit('marching', 'Marching', 'jazzy-marching', RHYTHM_PRO),
     wfit('showtime',   'Showtime', 'jazzy-showtime', { kind: 'sticker', value: 'ach_keyboard_pro', hint: 'Earn the Keyboard Pro badge' }),
     wfit('tiger',      'Tiger Stripes', 'jazzy-tiger', { kind: 'sticker', value: 'shred_encore', hint: 'Play a flawless set in Shred City' }),
-    { ...wfit('roadtrip', 'Road Trip', 'jazzy-roadtrip', { kind: 'sticker', value: 'practice_buddy_14', hint: 'Practice 14 days in a row' }), wide: true },
+    { ...wfit('roadtrip', 'Road Trip', 'jazzy-roadtrip', { kind: 'sticker', value: 'practice_buddy_14', hint: 'Practice 14 days in a row' }) },
     wfit('dapper',     'Dapper',   'jazzy-dapper', DAPPER),
   ] },
   { id: 'stew',    name: 'Stew',          color: '#FF9500', outfits: [
@@ -78,17 +78,17 @@ export const AVATARS = [
     outfit('classic', 'Classic', 'lou'),
     outfit('disco',   'Disco',   'lou-disco', FIRST_BADGE),
     wfit('tea',       'Tea Time', 'lou-tea', { kind: 'sticker', value: 'lesson_1', hint: 'Finish Lesson 1' }),
-    { ...wfit('spitfire', 'Spitfire', 'lou-spitfire', { kind: 'sticker', value: 'ach_rhythm_master', hint: 'Earn the Rhythm Master badge' }), wide: true },
+    { ...wfit('spitfire', 'Spitfire', 'lou-spitfire', { kind: 'sticker', value: 'ach_rhythm_master', hint: 'Earn the Rhythm Master badge' }) },
     wfit('dapper',    'Dapper',  'lou-dapper', DAPPER),
   ] },
   // ---- Secret Friends: one cast card; each friend hangs on the rail as a '???' silhouette until found. ----
   { id: 'secret', name: 'Secret Friends', color: '#FFCC00', secret: true, cardSrc: 'assets/characters/secret-friends.svg', outfits: [
-    { ...wfit('clammo',  'Clammo',          'clammo',          { kind: 'flag',    value: 'clammo_found',     hint: 'Tap Clammo on the Plaza 5 times' }), hidden: true, wide: true },
-    { ...wfit('dolphin', 'Dolphin',         'dolphin',         { kind: 'sticker', value: 'ach_fact_finder',  hint: 'Learn 10 fun facts' }), hidden: true, wide: true },
+    { ...wfit('clammo',  'Chowda',          'clammo',          { kind: 'flag',    value: 'clammo_found',     hint: 'Tap Chowda the clam on the Plaza 5 times' }), hidden: true },
+    { ...wfit('dolphin', 'Dolphin',         'dolphin',         { kind: 'sticker', value: 'ach_fact_finder',  hint: 'Learn 10 fun facts' }), hidden: true },
     { ...wfit('pete',    'Pepperoni Pete',  'pepperoni-pete',  { kind: 'sticker', value: 'lesson_6',         hint: 'Finish Lesson 6' }), hidden: true },
-    { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true, wide: true },
+    { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true },
     { ...wfit('sal',     'Seahorse Sal',    'seahorse-sal',    { kind: 'sticker', value: 'lesson_3',         hint: 'Finish Lesson 3' }), hidden: true },
-    { ...wfit('sun',     'The Sun',         'the-sun',         { kind: 'sticker', value: 'practice_buddy_7', hint: 'Practice 7 days in a row' }), hidden: true, wide: true },
+    { ...wfit('sun',     'The Sun',         'the-sun',         { kind: 'sticker', value: 'practice_buddy_7', hint: 'Practice 7 days in a row' }), hidden: true },
     { ...wfit('gerald',  'Elephant Gerald', 'elephant-gerald', { kind: 'flag',    value: 'tempo_changed',    hint: 'Change the tempo in Beat Lab' }), hidden: true },
   ] },
 ];

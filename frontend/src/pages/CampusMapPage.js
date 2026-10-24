@@ -590,7 +590,7 @@ export default function CampusMapPage({ plaza = false }) {
             <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
           {/* Clammo: blinks shut every so often; tap him and he snaps */}
-          {plaza && <Clammo left={Math.round(L.left - L.bw * 0.27)} width={Math.round(L.bw * 0.22)} bottom={Math.round(sandFront * 0.26)} />}
+          {plaza && <Clammo left={Math.round(xs[4] - L.bw * 0.07 - L.bw * 0.13)} width={Math.round(L.bw * 0.26)} bottom={Math.round(sandFront * 0.55)} />}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">
             {frontAccents.map((a, i) => a.kind === 'weed'

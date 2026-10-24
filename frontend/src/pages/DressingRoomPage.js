@@ -174,6 +174,7 @@ export default function DressingRoomPage() {
   const plateName = previewChar.secret ? (wornHidden ? '???' : worn.name) : previewChar.name;
   const plateSub = previewChar.secret ? 'Secret Friend' : worn.name;
   const shownSrc = ghost ? ghost.src : worn.src;
+  const shownWide = ghost ? !!ghost.wide : !!worn.wide;
   const shownHelmet = ghost ? !!ghost.helmet : !!worn.helmet;
   const mirrorRect = mirrorRef.current ? mirrorRef.current.getBoundingClientRect() : null;
 
@@ -188,9 +189,11 @@ export default function DressingRoomPage() {
         {/* ---------- the mirror ---------- */}
         <div className="dr-mirror-col relative flex flex-col items-center justify-end flex-shrink-0" style={{ width: '34%' }}>
           <div ref={mirrorRef} className="relative h-full" style={{ aspectRatio: '738 / 1150', maxWidth: '100%' }} data-testid="dressing-mirror">
-            <img src="assets/dressing/mirror.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 3, filter: 'drop-shadow(0 8px 0 rgba(0,0,0,0.35))' }} />
-            {/* glass contents: the Jelly, posed */}
-            <div className="absolute flex items-end justify-center" style={{ left: '18%', right: '18%', top: '9%', bottom: '22%', zIndex: 4 }}>
+            {/* glass: painted here (the frame PNG has a transparent hole) so the Jelly can be clipped by the frame */}
+            <div aria-hidden="true" className="absolute" style={{ left: '15%', right: '15%', top: '10%', bottom: '14%', zIndex: 1, borderRadius: '42% 42% 10% 10% / 24% 24% 6% 6%', background: 'radial-gradient(ellipse at 50% 30%, #B4CDD1 0%, #9FBBBF 55%, #8FADB2 100%)' }} />
+            <img src="assets/dressing/mirror-frame.png" alt="" draggable={false} className="absolute inset-0 w-full h-full object-contain pointer-events-none" style={{ zIndex: 3, filter: 'drop-shadow(0 8px 0 rgba(0,0,0,0.35))' }} />
+            {/* glass contents: the Jelly, posed — box is wider than the glass; the frame hides the overflow */}
+            <div className="absolute flex items-end justify-center" style={{ left: shownWide ? '14%' : '5%', right: shownWide ? '14%' : '5%', top: '8%', bottom: '16%', zIndex: 2, transition: 'left 0.3s, right 0.3s' }}>
               <motion.div className="dr-bob absolute inset-x-0 bottom-0 h-[92%]" style={{ transformOrigin: 'bottom center' }} animate={poseCtl}>
                 <AvatarSprite src={shownSrc} helmet={shownHelmet} className="block w-full h-full" testId="dressing-mirror-avatar"
                   imgStyle={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom', filter: ghost && ghost.hidden ? 'brightness(0) opacity(0.8)' : ghost ? 'grayscale(1) opacity(0.55) drop-shadow(0 0 10px rgba(255,255,255,0.6))' : wornHidden ? 'brightness(0) opacity(0.8)' : 'drop-shadow(0 6px 0 rgba(0,0,0,0.3))', transition: 'filter 0.3s' }} />

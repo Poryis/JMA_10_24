@@ -13,6 +13,7 @@ import { say } from '../lib/voice';
 import { createStepScheduler } from '../lib/stepScheduler';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import { saveBeat, loadSavedBeats, renameSavedBeat } from '../hooks/useSavedBeats';
+import { setFlag } from '../data/avatars';
 
 const DEFAULT_BPM = 100;
 
@@ -587,8 +588,8 @@ function LoopStudioPage() {
             </div>
 
             <div className="flex items-center gap-1">
-              <button className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#3E5471', color: '#E8F4FF', border: '2px solid #000', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={() => setBpm((b) => Math.max(60, b - 10))} data-testid="bpm-minus"><Minus className="w-4 h-4" /></button>
-              <button className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#3E5471', color: '#E8F4FF', border: '2px solid #000', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={() => setBpm((b) => Math.min(200, b + 10))} data-testid="bpm-plus"><Plus className="w-4 h-4" /></button>
+              <button className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#3E5471', color: '#E8F4FF', border: '2px solid #000', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={() => { setFlag('tempo_changed'); setBpm((b) => Math.max(60, b - 10)); }} data-testid="bpm-minus"><Minus className="w-4 h-4" /></button>
+              <button className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#3E5471', color: '#E8F4FF', border: '2px solid #000', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={() => { setFlag('tempo_changed'); setBpm((b) => Math.min(200, b + 10)); }} data-testid="bpm-plus"><Plus className="w-4 h-4" /></button>
             </div>
 
             <div className="flex items-center gap-0.5 rounded-lg p-0.5" style={{ background: '#3E5471', border: '2px solid #000' }}>

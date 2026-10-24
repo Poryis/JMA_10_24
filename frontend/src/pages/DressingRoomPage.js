@@ -2,7 +2,7 @@
 // hang on the rail. Tap one → it flies onto you with a sparkle poof and a pose.
 // Locked outfits can be tried on for 3 s as a ghost. New unlocks arrive as gift
 // boxes to unwrap. The camera takes a 3-2-1 Polaroid for the photo wall.
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
 import { Lock, Camera, Sparkles, X, Check } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
@@ -56,7 +56,7 @@ function HangerCard({ o, worn, color, isNew, onTap, cardRef }) {
 }
 
 export default function DressingRoomPage() {
-  const { character, outfit, outfits, choose, wear, unlockedFor, totalUnlocked, totalOutfits } = useAvatar();
+  const { character, outfit, outfits, choose, wear, unlockedFor, characterUnlocked, totalUnlocked, totalOutfits } = useAvatar();
   const [preview, setPreview] = useState(character.id);
   const previewChar = AVATARS.find(a => a.id === preview) || character;
   const isCurrent = previewChar.id === character.id;
@@ -104,6 +104,11 @@ export default function DressingRoomPage() {
   const celebrate = () => { setPoof(p => p + 1); setFlash(f => f + 1); setPose(p => p + 1); };
 
   const pickCharacter = (a) => {
+    if (!characterUnlocked(a)) {
+      setBubble(`??? — ${a.unlock.hint} to meet this secret friend!`); setPoof(p => p + 1);
+      later(() => setBubble(null), 3200);
+      return;
+    }
     setPreview(a.id); setGhost(null);
     if (a.id !== character.id) { choose(a.id, 'classic'); celebrate(); speak(a.id, 'pick'); }
   };
@@ -193,16 +198,21 @@ export default function DressingRoomPage() {
           <div className="flex items-center gap-2">
             <span className="rounded-lg px-2 py-0.5 text-[10px] md:text-xs font-black whitespace-nowrap" style={{ background: '#FFCC00', color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>THE CAST</span>
             <div className="flex-1 flex gap-1.5 md:gap-2 overflow-x-auto no-scrollbar py-1" data-testid="dressing-cast">
-              {AVATARS.map(a => {
+              {AVATARS.map((a, idx) => {
                 const active = a.id === previewChar.id;
+                const locked = !characterUnlocked(a);
+                const firstSecret = a.secret && AVATARS[idx - 1] && !AVATARS[idx - 1].secret;
                 return (
-                  <motion.button key={a.id} type="button" data-testid={`avatar-pick-${a.id}`} onClick={() => pickCharacter(a)} className="relative flex-shrink-0 rounded-xl bg-white flex flex-col items-center p-0.5" style={{ width: 'clamp(46px, 5.2vw, 64px)', border: `3px solid ${active ? a.color : 'var(--jma-dark)'}`, boxShadow: active ? `0 0 0 2px #FFCC00, 0 3px 0 0 var(--jma-dark)` : '0 3px 0 0 var(--jma-dark)', transform: `rotate(${[-3, 2, -2, 3, -1, 2, -3][AVATARS.indexOf(a)]}deg)` }}
+                  <Fragment key={a.id}>
+                  {firstSecret && <span data-testid="dressing-secret-divider" className="flex-shrink-0 self-center rounded-lg px-1.5 py-0.5 text-[8px] md:text-[9px] font-black leading-tight text-center" style={{ background: 'var(--jma-dark)', color: '#FFCC00', border: '2px solid #FFCC00', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>SECRET FRIENDS</span>}
+                  <motion.button type="button" data-testid={`avatar-pick-${a.id}`} data-locked={locked ? 'true' : 'false'} onClick={() => pickCharacter(a)} className="relative flex-shrink-0 rounded-xl bg-white flex flex-col items-center p-0.5" style={{ width: 'clamp(46px, 5.2vw, 64px)', border: `3px solid ${active ? a.color : 'var(--jma-dark)'}`, boxShadow: active ? `0 0 0 2px #FFCC00, 0 3px 0 0 var(--jma-dark)` : '0 3px 0 0 var(--jma-dark)', transform: `rotate(${[-3, 2, -2, 3, -1, 2, -3][idx % 7]}deg)`, background: locked ? '#2A1638' : 'white' }}
                     whileHover={{ scale: 1.08, rotate: 0 }} whileTap={{ scale: 0.95 }}>
                     <span aria-hidden="true" className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-5 h-2 rounded-sm" style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(0,0,0,0.2)' }} />
-                    <img src={a.outfits[0].src} alt={a.name} draggable={false} className="w-full object-contain" style={{ height: 'clamp(30px, 3.6vw, 46px)' }} />
-                    <span className="text-[8px] md:text-[9px] font-black leading-none" style={{ color: 'var(--jma-dark)' }}>{a.name.split(' ')[0]}</span>
+                    <img src={a.outfits[0].src} alt={locked ? 'Secret friend' : a.name} draggable={false} className="w-full object-contain" style={{ height: 'clamp(30px, 3.6vw, 46px)', filter: locked ? 'brightness(0) opacity(0.85)' : 'none' }} />
+                    <span className="text-[8px] md:text-[9px] font-black leading-none" style={{ color: locked ? '#FFCC00' : 'var(--jma-dark)' }}>{locked ? '???' : a.name.split(' ')[0]}</span>
                     {active && <span className="absolute -right-1.5 -bottom-1.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: '#34A853', border: '2px solid var(--jma-dark)' }}><Check className="w-2.5 h-2.5 text-white" strokeWidth={4} /></span>}
                   </motion.button>
+                  </Fragment>
                 );
               })}
             </div>

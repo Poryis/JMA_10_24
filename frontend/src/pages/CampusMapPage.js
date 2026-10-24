@@ -159,6 +159,39 @@ function BrandMarquee() {
   );
 }
 
+// Clammo the clam sits on the sand. Every 8–15s he blinks to his state-2 art
+// for a beat; tapping him snaps him shut (with a click) and he pops back open.
+function Clammo({ left, width, bottom }) {
+  const [shut, setShut] = useState(false);
+  const tRef = useRef(null);
+  useEffect(() => {
+    let alive = true;
+    const loop = () => {
+      tRef.current = setTimeout(() => {
+        if (!alive) return;
+        setShut(true);
+        tRef.current = setTimeout(() => { if (alive) { setShut(false); loop(); } }, 650);
+      }, 8000 + Math.random() * 7000);
+    };
+    loop();
+    return () => { alive = false; clearTimeout(tRef.current); };
+  }, []);
+  const snap = () => {
+    clearTimeout(tRef.current);
+    const a = new Audio(encodeURI('assets/audio/Hi Hat closed.mp3')); a.volume = 0.6; a.play().catch(() => {});
+    setShut(true);
+    tRef.current = setTimeout(() => setShut(false), 450);
+  };
+  return (
+    <motion.button type="button" data-testid="plaza-clammo" data-shut={shut ? 'true' : 'false'} aria-label="Clammo the clam" onClick={snap}
+      className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left, width, bottom, zIndex: 8 }} whileTap={{ scale: 0.92 }}>
+      <img src="assets/plaza/clammo-1.webp" alt="" draggable={false} className="block w-full h-auto" style={{ display: shut ? 'none' : 'block', filter: 'drop-shadow(0 4px 0 rgba(2,36,63,0.35))' }} />
+      <img src="assets/plaza/clammo-2.webp" alt="" draggable={false} className="block w-full h-auto" style={{ display: shut ? 'block' : 'none', filter: 'drop-shadow(0 4px 0 rgba(2,36,63,0.35))' }} />
+    </motion.button>
+  );
+}
+
+
 // The Academy's cuckoo: the kid's current rank character pops out onto the
 // clock-tower ledge (assets/plaza/academy.png — door ≈ x 61.6%, ledge y 31%).
 // The first time a NEW rank shows up here, the doors swing open with a chime.
@@ -554,6 +587,8 @@ export default function CampusMapPage({ plaza = false }) {
           {buildings.map((b, i) => (
             <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
+          {/* Clammo: blinks shut every so often; tap him and he snaps */}
+          {plaza && <Clammo left={Math.round(L.left - L.bw * 0.27)} width={Math.round(L.bw * 0.22)} bottom={Math.round(sandFront * 0.26)} />}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">
             {frontAccents.map((a, i) => a.kind === 'weed'

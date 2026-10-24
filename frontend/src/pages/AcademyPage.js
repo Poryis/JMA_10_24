@@ -250,6 +250,7 @@ function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
 
 export default function AcademyPage() {
   const [panel, setPanel] = useState(null);
+  const [pbj, setPbj] = useState(false);
   const [line, setLine] = useState(0);
   const [wiggle, setWiggle] = useState({ bell: 0, plant: 0, clock: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
@@ -282,6 +283,11 @@ export default function AcademyPage() {
         {/* yearbook on the desk → Yearbook */}
         <Hotspot id="yearbook" x={12.5} y={80} w={13} h={12} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')} />
 
+        {/* PBJ movie poster on the wall — tap to see it big */}
+        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '23.6%', top: '49%', width: '5.2%', zIndex: 3, transform: 'rotate(-2deg)' }} whileHover={{ scale: 1.06, rotate: 0 }} whileTap={{ scale: 0.95 }}>
+          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 rgba(0,0,0,0.35)', background: 'white' }} />
+        </motion.button>
+
         {/* the big tower clock chimes when tapped */}
         <motion.button type="button" data-testid="academy-clock" aria-label="Tower clock" onClick={() => { ding('xylo G.mp3'); setTimeout(() => ding('xylo b.mp3'), 180); setTimeout(() => ding('xylo High c.mp3'), 360); poke('clock'); }} className="absolute rounded-full" style={{ left: '31%', top: '15%', width: '38%', height: '58%', zIndex: 2 }} key={`clock-${wiggle.clock}`} animate={wiggle.clock ? { scale: [1, 1.02, 0.99, 1] } : {}} transition={{ duration: 0.5 }} />
         {/* desk bell — just for fun */}
@@ -299,6 +305,14 @@ export default function AcademyPage() {
           <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
         </button>
       </div>
+
+      <AnimatePresence>
+        {pbj && (
+          <motion.div key="pbj" data-testid="academy-pbj-modal" className="fixed inset-0 z-[60] flex items-center justify-center p-3 pt-14" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setPbj(false)}>
+            <motion.img src="assets/academy/pbj-poster.webp" alt="Peanut Butter Jellyfish Sandwich — the movie" className="max-h-full max-w-full object-contain" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)', background: 'white' }} initial={{ scale: 0.6, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 240, damping: 18 }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {Panel && (

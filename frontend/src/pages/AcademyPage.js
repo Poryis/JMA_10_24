@@ -283,9 +283,9 @@ export default function AcademyPage() {
         {/* yearbook on the desk → Yearbook */}
         <Hotspot id="yearbook" x={12.5} y={80} w={13} h={12} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')} />
 
-        {/* PBJ movie poster on the wall — tap to see it big */}
-        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '23.6%', top: '49%', width: '5.2%', zIndex: 3, transform: 'rotate(-2deg)' }} whileHover={{ scale: 1.06, rotate: 0 }} whileTap={{ scale: 0.95 }}>
-          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 rgba(0,0,0,0.35)', background: 'white' }} />
+        {/* PBJ movie poster pinned over the back concert poster on the right wall — tap to see it big */}
+        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '75.6%', top: '38.6%', width: '4.5%', height: '17.9%', zIndex: 3, clipPath: 'polygon(0 11.4%, 100% 0, 100% 100%, 0 96.6%)' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-7deg) scale(1.08)' }} />
         </motion.button>
 
         {/* the big tower clock chimes when tapped */}

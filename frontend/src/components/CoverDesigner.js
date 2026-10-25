@@ -67,7 +67,7 @@ export function Sleeve({ cover, avatar, kind, className = '', activeSlot, onSlot
       <span data-testid="sleeve-label" className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: cover.label, border: '2px solid var(--jma-dark)' }}><span className="w-2 h-2 rounded-full" style={{ background: cover.label === '#111111' ? 'white' : 'var(--jma-dark)' }} /></span>
       {slot('main', 'inset-x-0 bottom-0 h-[76%] items-end justify-center', 'h-full w-auto max-w-[70%] object-contain object-bottom')}
       {slot('tl', 'left-1.5 top-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
-      {slot('br', 'right-1.5 bottom-7 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
+      {slot('br', 'right-1.5 bottom-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
       <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
     </div>
   );
@@ -94,12 +94,14 @@ function StickerPicker({ cover, avatar, slot, setSlot, onPick }) {
       <div className="flex gap-1.5 mb-2" data-testid="cover-slots">
         {SLOTS.map((s) => <button key={s.id} type="button" data-testid={`cover-slot-${s.id}`} aria-pressed={slot === s.id} onClick={() => setSlot(s.id)} className="flex-1 py-1 rounded-full text-[11px] font-black" style={{ background: slot === s.id ? '#FF9500' : 'white', color: slot === s.id ? 'white' : 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{s.name}</button>)}
       </div>
-      <div className="flex gap-1.5 overflow-x-auto pb-1 mb-2 no-scrollbar" data-testid="cover-categories">
-        {[{ id: 'all', label: 'All' }, ...cats].map((c) => <button key={c.id} type="button" data-testid={`cover-cat-${c.id}`} aria-pressed={cat === c.id} onClick={() => setCat(c.id)} className="flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-black whitespace-nowrap" style={{ background: cat === c.id ? 'var(--jma-dark)' : '#F6F8FB', color: cat === c.id ? 'white' : 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{c.label}</button>)}
+      <div className="flex flex-wrap gap-1.5 mb-2" data-testid="cover-categories">
+        {[{ id: 'all', label: 'All' }, ...cats].map((c) => <button key={c.id} type="button" data-testid={`cover-cat-${c.id}`} aria-pressed={cat === c.id} onClick={() => setCat(c.id)} className="px-2.5 py-0.5 rounded-full text-[10px] font-black whitespace-nowrap" style={{ background: cat === c.id ? 'var(--jma-dark)' : '#F6F8FB', color: cat === c.id ? 'white' : 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{c.label}</button>)}
       </div>
       <div className="grid grid-cols-5 sm:grid-cols-6 gap-1.5" data-testid="cover-stickers">
-        <button type="button" data-testid="cover-sticker-none" aria-pressed={!cur} onClick={() => onPick(null)} className="aspect-square rounded-lg flex items-center justify-center" style={tile(!cur)}><X className="w-5 h-5" strokeWidth={3} style={{ color: '#4B5668' }} /></button>
-        <button type="button" data-testid="cover-sticker-me" aria-pressed={cur === 'me'} onClick={() => onPick('me')} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={tile(cur === 'me')}><AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[80%] w-auto object-contain" /></button>
+        {cat === 'all' && <>
+          <button type="button" data-testid="cover-sticker-none" aria-pressed={!cur} onClick={() => onPick(null)} className="aspect-square rounded-lg flex flex-col items-center justify-center" style={tile(!cur)}><X className="w-5 h-5" strokeWidth={3} style={{ color: '#4B5668' }} /><span className="text-[8px] font-black" style={{ color: '#4B5668' }}>None</span></button>
+          <button type="button" data-testid="cover-sticker-me" aria-pressed={cur === 'me'} onClick={() => onPick('me')} className="relative aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={tile(cur === 'me')}><AvatarSprite src={avatar.src} helmet={avatar.helmet} className="h-[80%] w-auto object-contain" /><span className="absolute bottom-0.5 text-[8px] font-black px-1 rounded-full bg-white" style={{ color: 'var(--jma-dark)' }}>Me</span></button>
+        </>}
         {shown.map((st) => <button key={st.id} type="button" data-testid={`cover-sticker-${st.id}`} aria-pressed={cur === st.id} onClick={() => onPick(st.id)} className="aspect-square rounded-lg flex items-center justify-center overflow-hidden" style={tile(cur === st.id)}><img src={st.icon} alt={st.name} title={st.name} className="h-[80%] w-auto object-contain" /></button>)}
       </div>
       <div className="text-[10px] font-bold mt-2 flex items-center gap-1" style={{ color: '#4B5668' }}><User className="w-3 h-3" strokeWidth={3} /> Earn more stickers in games to unlock more choices.</div>

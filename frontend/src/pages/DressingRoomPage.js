@@ -199,16 +199,17 @@ export default function DressingRoomPage() {
               </motion.div>
               {poof > 0 && <Poof key={poof} id={poof} ghost={!!ghost} />}
               <AnimatePresence>{flash > 0 && <motion.div key={flash} className="absolute inset-0 rounded-2xl bg-white pointer-events-none" style={{ zIndex: 8 }} initial={{ opacity: 0.95 }} animate={{ opacity: 0 }} transition={{ duration: 0.45 }} />}</AnimatePresence>
-              <AnimatePresence>
-                {ghost && (
-                  <motion.div key="ghost" data-testid="dressing-ghost-hint" className="absolute left-1/2 -translate-x-1/2 bottom-1 rounded-xl px-2 py-1 text-[10px] md:text-xs font-black text-center whitespace-nowrap" style={{ zIndex: 9, background: 'var(--jma-dark)', color: '#FFCC00', border: '2px solid #FFCC00' }}
-                    initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }}>
-                    <Lock className="inline w-3 h-3 -mt-0.5 mr-1" />Earn it: {ghost.unlock.hint}
-                  </motion.div>
-                )}
-              </AnimatePresence>
               <AnimatePresence>{countdown !== null && <motion.div key={countdown} data-testid="dressing-countdown" className="absolute inset-0 flex items-center justify-center font-black font-display text-white pointer-events-none" style={{ zIndex: 9, fontSize: 'clamp(48px, 10vw, 120px)', textShadow: '0 4px 0 var(--jma-dark)' }} initial={{ scale: 2, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.4, opacity: 0 }}>{countdown}</motion.div>}</AnimatePresence>
             </div>
+            {/* locked-outfit hint: sits ABOVE the frame (zIndex 3) so the bulbs never cover it */}
+            <AnimatePresence>
+              {ghost && (
+                <motion.div key="ghost" data-testid="dressing-ghost-hint" className="absolute rounded-xl px-2 py-1 text-[10px] md:text-xs font-black text-center leading-tight" style={{ left: '12%', right: '12%', bottom: '19%', zIndex: 6, background: 'var(--jma-dark)', color: '#FFCC00', border: '2px solid #FFCC00', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)' }}
+                  initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }}>
+                  <Lock className="inline w-3 h-3 -mt-0.5 mr-1" />Earn it: {ghost.unlock.hint}
+                </motion.div>
+              )}
+            </AnimatePresence>
             {/* name plate on the vanity shelf */}
             <div className="absolute left-1/2 -translate-x-1/2 rounded-lg px-2 py-0.5 text-center whitespace-nowrap" style={{ bottom: '3%', zIndex: 5, background: '#FFCC00', border: '2px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }} data-testid="dressing-nameplate">
               <span className="font-black font-display text-[11px] md:text-sm" style={{ color: 'var(--jma-dark)' }}>{plateName}</span>

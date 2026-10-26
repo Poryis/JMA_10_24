@@ -40,6 +40,14 @@ export const QUEST_POOL = [
 
 export const QUEST_MAP = Object.fromEntries(QUEST_POOL.map(q => [q.id, q]));
 
+// The Academy Tour — a one-time first set shown before daily quests begin.
+// Routes walk the kid out through the plaza (`go=` makes their Jelly swim to that door).
+export const TOUR_QUESTS = [
+  { id: 't_character',  event: 'avatar_chosen',  title: 'Choose your character',   where: 'Dressing Room',            route: '/home?go=dressing-room' },
+  { id: 't_first_game', event: 'detective_case', title: 'Play your very first game', where: "Dr. Jellybone's Office", route: '/campus?zone=play&go=detective-jellybone' },
+];
+export const TOUR_MAP = Object.fromEntries(TOUR_QUESTS.map(q => [q.id, q]));
+
 // Easier domains first — mirrors useNextMission's CADET_PREFERENCE.
 const DOMAIN_PREFERENCE = ['ear', 'keyboard', 'rhythm', 'beat', 'scholar', 'song'];
 

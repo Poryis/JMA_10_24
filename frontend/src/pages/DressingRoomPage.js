@@ -3,12 +3,14 @@
 // Locked outfits can be tried on for 3 s as a ghost. New unlocks arrive as gift
 // boxes to unwrap. The camera takes a 3-2-1 Polaroid for the photo wall.
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
-import { Lock, Camera, Sparkles, X, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Lock, Camera, Sparkles, X, Check, ChevronLeft, ChevronRight, ClipboardList } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import AvatarSprite from '../components/AvatarSprite';
 import Confetti from '../components/Confetti';
 import useAvatar from '../hooks/useAvatar';
+import { reportQuestEvent, readTour } from '../hooks/useDailyQuests';
 import { AVATARS } from '../data/avatars';
 import { VOICE_MAP } from '../data/voiceLines';
 import { say } from '../lib/voice';
@@ -108,6 +110,9 @@ export default function DressingRoomPage() {
   const [confetti, setConfetti] = useState(0);
   const [countdown, setCountdown] = useState(null);
   const [polaroid, setPolaroid] = useState(null);
+  const [backToBoard, setBackToBoard] = useState(false); // Academy Tour: pop up after the first pick
+  const navigate = useNavigate();
+  const picked = () => { const fresh = !readTour().done.t_character; reportQuestEvent('avatar_chosen'); if (fresh) later(() => setBackToBoard(true), 1400); };
   const [photos, setPhotos] = useState(() => readJSON(PHOTOS_KEY, []));
   const poseCtl = useAnimationControls();
   useEffect(() => {
@@ -140,7 +145,7 @@ export default function DressingRoomPage() {
       later(() => setBubble(null), 3200);
       return;
     }
-    choose(a.id, first.id); celebrate(); speak(a.secret ? first.id : a.id, 'pick');
+    choose(a.id, first.id); celebrate(); speak(a.secret ? first.id : a.id, 'pick'); picked();
   };
 
   const tapOutfit = (o) => {
@@ -157,6 +162,7 @@ export default function DressingRoomPage() {
     }
     setGhost(null);
     if (!isCurrent) choose(previewChar.id, o.id); else wear(o.id);
+    picked();
     if (from) { setFlyer({ src: o.src, from, key: Date.now() }); later(() => setFlyer(null), 520); }
     later(() => { celebrate(); speak(previewChar.secret ? o.id : previewChar.id, 'wear'); }, 380);
   };
@@ -297,6 +303,16 @@ export default function DressingRoomPage() {
         )}
       </AnimatePresence>
 
+      <AnimatePresence>
+        {backToBoard && (
+          <motion.div key="back" data-testid="dressing-back-to-board" className="fixed inset-x-0 bottom-[16%] z-[70] flex justify-center px-3 pointer-events-none" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 20 }}>
+            <motion.button type="button" data-testid="dressing-back-to-board-btn" onClick={() => navigate('/home?go=academy&panel=class')} className="chunky-btn pointer-events-auto flex items-center gap-2 px-5 py-3 text-sm md:text-base font-black" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}
+              animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 1.4 }}>
+              <ClipboardList className="w-5 h-5" strokeWidth={3} /> Looking good! Back to the Quest Board
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {confetti > 0 && <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 55 }}><Confetti key={confetti} mega testId="dressing-confetti" /></div>}
     </div>
   );

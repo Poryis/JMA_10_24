@@ -7,13 +7,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Music, ChevronsRight, ArrowLeft, ArrowRight, X, VolumeX, Sparkles } from 'lucide-react';
+import { Music, ChevronsRight, ArrowLeft, ArrowRight, VolumeX, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import BlimpFlyby from '../components/BlimpFlyby';
 import { Bubbles, Swimmer, SandStrip, Seaweed, UW_ASSETS, UNDERWATER_WATER, FRONT_TROUGH } from '../components/UnderwaterBackdrop';
 import AvatarSprite from '../components/AvatarSprite';
-import DailyQuestCard from '../components/DailyQuestCard';
-import FitBox from '../components/FitBox';
 import { CAMPUS_ZONES, CAMPUS_BUILDINGS, PLAZA_ZONE, PLAZA_BUILDINGS } from '../data/campus';
 import useUnlocks from '../hooks/useUnlocks';
 import useRank from '../hooks/useRank';
@@ -148,16 +146,13 @@ function DriveIn({ live }) {
   );
 }
 
-// Plaza: brand marquee above the bandstand + the kid's rank pennant.
-function BrandMarquee() {
+// The Stage's marquee board reads MAIN STAGE with chasing bulbs.
+function StageMarquee({ bw }) {
   return (
-    <>
-      <div className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '28%', left: '58%', top: '18%', zIndex: 5 }}>
-        <motion.img src="assets/ui/jma-stylized-logo.png" alt="Jelly of the Month Club Music Academy" draggable={false} data-testid="plaza-logo"
-          className="w-full object-contain" style={{ filter: 'drop-shadow(0 2px 0 rgba(2,36,63,0.35))' }}
-          animate={{ scale: [0.9, 1.14, 0.9] }} transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }} />
-      </div>
-    </>
+    <div data-testid="stage-marquee" className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style={{ width: '38%', height: '12%', left: '58.5%', top: '11.5%', zIndex: 5 }}>
+      <motion.span className="font-black font-display whitespace-nowrap" style={{ fontSize: Math.round(bw * 0.058), color: '#B8233A', letterSpacing: '0.08em', textShadow: '0 2px 0 rgba(0,0,0,0.12)' }}
+        animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>MAIN STAGE</motion.span>
+    </div>
   );
 }
 
@@ -325,7 +320,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
               <GateRibbon ribbon={b.ribbon} fontSize={Math.round(L.bw * b.size * 0.085)} />
             </div>
           )}
-          {b.custom === 'bandstand' && <BrandMarquee />}
+          {b.custom === 'bandstand' && <StageMarquee bw={L.bw * b.size} />}
           {!locked && b.custom !== 'tv' && <RoofBubbles index={index} />}
           {/* floating notes from the door */}
           {!locked && [0, 1, 2].map((n) => (
@@ -371,8 +366,10 @@ export default function CampusMapPage({ plaza = false }) {
   const location = useLocation();
   const { unlocked } = useUnlocks();
   const { count: streakCount } = usePracticeStreak();
-  const { quests, doneCount, allDone } = useDailyQuests();
-  const [questsOpen, setQuestsOpen] = useState(false);
+  const { doneCount, allDone, tour } = useDailyQuests();
+  const params = new URLSearchParams(location.search);
+  const goTo = params.get('go');          // swim straight into this building on arrival
+  const panelParam = params.get('panel'); // handed on to the room (e.g. /academy?panel=class)
   const scroller = useRef(null);
   const shelfRef = useRef(null);
   const [leaving, setLeaving] = useState(null);
@@ -380,7 +377,7 @@ export default function CampusMapPage({ plaza = false }) {
   const [scrollX, setScrollX] = useState(0);
   const [shout, setShout] = useState(null); // { id, buildingId, text }
   const [hint, setHint] = useState(true);
-  const zoneId = new URLSearchParams(location.search).get('zone') || 'play';
+  const zoneId = params.get('zone') || 'play';
   const zone = plaza ? PLAZA_ZONE : (CAMPUS_ZONES.find((z) => z.id === zoneId) || CAMPUS_ZONES[0]);
   const rawBuildings = useMemo(() => (plaza ? PLAZA_BUILDINGS : CAMPUS_BUILDINGS.filter((b) => b.zone === zone.id)), [plaza, zone.id]);
   const night = useMemo(isNight, []);
@@ -395,8 +392,8 @@ export default function CampusMapPage({ plaza = false }) {
   // Plaza props vary a lot in width, so pack them by size instead of fixed slots.
   const xs = useMemo(() => {
     if (!plaza) return null;
-    const out = []; let x = Math.round(L.left * 0.15);
-    buildings.forEach((b) => { out.push(Math.round(x)); x += L.bw * b.size + L.bw * (b.id === 'quest-board' ? 0.7 : 0.14); });
+    const out = []; let x = Math.round(L.bw * 0.2 + L.you + L.bw * 0.12);
+    buildings.forEach((b) => { out.push(Math.round(x)); x += L.bw * b.size + L.bw * 0.14; });
     return out;
   }, [plaza, buildings, L.left, L.bw]);
   const width = plaza
@@ -407,14 +404,14 @@ export default function CampusMapPage({ plaza = false }) {
   const prevZone = CAMPUS_ZONES[(zi + CAMPUS_ZONES.length - 1) % CAMPUS_ZONES.length];
   const youBottom = floor + 2;
   const YOU_W = L.you;
-  // plaza: quest board → YOU → gates; streets: sign → YOU → first building
-  const YOU_LEFT = plaza ? xs[0] + Math.round(L.bw * buildings[0].size) + Math.round(L.bw * 0.06) : Math.round(L.bw * 0.45);
+  // plaza: YOU → Academy → ...; streets: sign → YOU → first building
+  const YOU_LEFT = plaza ? Math.round(L.bw * 0.2) : Math.round(L.bw * 0.45);
   const { nowPlaying, muted: musicMuted, toggleMute: toggleMusic } = useStreetMusic(zone.tracks);
   const jamCount = useMemo(() => loadSavedBeats().length + loadSavedSongs().length, []);
   const jamBadge = jamCount > 0 ? `${jamCount} to jam` : null;
   const badgeFor = (b) => {
     if (b.id === 'jam-session') return jamBadge;
-    if (b.id === 'quest-board') return `${doneCount}/${quests.length} today`;
+    if (b.id === 'academy' && tour) return 'Start here!';
     return null;
   };
   // Plaza: Charlie greets the kid at the bandstand (time-of-day / first visit / quests).
@@ -427,7 +424,7 @@ export default function CampusMapPage({ plaza = false }) {
     else if (streakCount >= 3) line = 'charlie.hub.streak';
     else if (doneCount === 0 && Math.random() < 0.5) line = 'charlie.hub.quests';
     say(line, { delayMs: 900, minGapMs: 0 });
-    const s = { id: Date.now(), buildingId: 'bandstand', text: hour < 12 ? 'Mornin\', kid!' : 'Welcome back!' };
+    const s = { id: Date.now(), buildingId: 'sticker-shack', text: hour < 12 ? 'Mornin\', kid!' : 'Welcome back!' };
     const t1 = setTimeout(() => setShout(s), 700);
     const t2 = setTimeout(() => setShout((cur) => (cur && cur.id === s.id ? null : cur)), 3200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
@@ -451,6 +448,16 @@ export default function CampusMapPage({ plaza = false }) {
     el.scrollLeft = atEnd ? el.scrollWidth : 0; setScrollX(el.scrollLeft);
   }, [zone.id, location.state]);
   const goStreet = (z, enterAt) => navigate(`/campus?zone=${z.id}`, { state: { enterAt } });
+  // Quest deep-link: bring the door on screen, then the kid's Jelly swims in by itself.
+  useEffect(() => {
+    if (!goTo) return undefined;
+    const b = buildings.find((x) => x.id === goTo);
+    if (!b || (!unlocked && !b.starter)) return undefined;
+    const t1 = setTimeout(() => shelfRef.current?.querySelector(`[data-testid="campus-building-${b.id}"]`)?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 500);
+    const t2 = setTimeout(() => enterRef.current(b), 1500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [goTo, zone.id]);
 
   // Hosts shout now and then.
   useEffect(() => {
@@ -482,13 +489,14 @@ export default function CampusMapPage({ plaza = false }) {
     const el = document.querySelector(`[data-testid="campus-building-${b.id}"]`);
     const r = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
     setLeaving({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
-    setTimeout(() => navigate(b.path), 520);
+    const path = panelParam && !b.path.includes('?') ? `${b.path}?panel=${panelParam}` : b.path;
+    setTimeout(() => navigate(path), 520);
   };
 
   // Your Jelly swims from the street entrance to the tapped door, then we go in.
+  const enterRef = useRef(() => {});
   const enter = (b) => {
     if (swim || leaving) return;
-    if (b.action === 'quests') { setQuestsOpen(true); return; }
     const el = shelfRef.current && shelfRef.current.querySelector(`[data-testid="campus-building-${b.id}"]`);
     if (!el) { zoomIn(b); return; }
     const door = { x: el.offsetLeft + el.offsetWidth * 0.5, bottom: (parseFloat(el.style.marginBottom) || 0) + el.offsetWidth * 0.1 };
@@ -498,6 +506,7 @@ export default function CampusMapPage({ plaza = false }) {
     setSwim({ x: dx, y: dy, dur, buildingId: b.id });
     setTimeout(() => zoomIn(b), dur * 1000 + 120);
   };
+  enterRef.current = enter;
 
   const backAccents = useMemo(() => {
     const items = [];
@@ -596,7 +605,7 @@ export default function CampusMapPage({ plaza = false }) {
           {!plaza && <StreetSign zone={nextZone} dir="right" onClick={() => goStreet(nextZone, 'start')} style={{ left: width - Math.round(L.bw * 0.62), bottom: floor + 4, zIndex: 11 }} />}
           {/* buildings */}
           {buildings.map((b, i) => (
-            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => setQuestsOpen(true)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
+            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => navigate('/academy?panel=class')} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
           {/* Chowda: blinks shut every so often; tap him and he snaps */}
           {plaza && <Clammo left={Math.round(xs[4] - L.bw * 0.07 - L.bw * 0.13)} width={Math.round(L.bw * 0.26)} bottom={Math.round(sandFront * 0.55)} />}
@@ -639,23 +648,6 @@ export default function CampusMapPage({ plaza = false }) {
         <motion.div data-testid="campus-door-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.45, delay: 0.1 }} />
       )}
 
-      {/* Plaza: the Quest Board opens today's quests */}
-      <AnimatePresence>
-        {questsOpen && (
-          <motion.div data-testid="plaza-quests-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(2,36,63,0.7)' }}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setQuestsOpen(false)}>
-            <FitBox className="w-full max-w-md">
-              <motion.div className="relative" initial={{ scale: 0.7, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
-                <button type="button" data-testid="plaza-quests-close" aria-label="Close" onClick={() => setQuestsOpen(false)}
-                  className="absolute -top-3 -right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#FF2D85', color: 'white', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }}>
-                  <X className="w-5 h-5" strokeWidth={3} />
-                </button>
-                <DailyQuestCard defaultExpanded />
-              </motion.div>
-            </FitBox>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

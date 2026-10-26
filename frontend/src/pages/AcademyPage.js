@@ -1,16 +1,19 @@
-// AcademyPage — inside the clock-tower schoolhouse. Three rooms, one job each:
-//   Today's Class  → the 3 daily quests with ONE start button (no menus)
+// AcademyPage — inside the clock-tower schoolhouse. Where every visit starts.
+//   Quest Board    → the Academy Tour, then 3 daily quests with ONE start button
+//   The Portal     → the giant round door in the clock that leads out to the plaza
 //   My Album       → the kid's saved Beat Lab / Song Studio tracks as records
 //   Yearbook       → rank, next-rank meter, badges, attendance stamps
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell, Camera } from 'lucide-react';
+import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell, Camera, Music, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
 import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
 import CoverDesigner, { Sleeve, SLEEVES, loadCovers, saveCover, normalizeCover } from '../components/CoverDesigner';
+import AcademyPortal from '../components/AcademyPortal';
+import { useStreetMusic } from './CampusMapPage';
 import useDailyQuests from '../hooks/useDailyQuests';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
@@ -29,14 +32,14 @@ function Card({ children, className = '', testId }) {
 
 function TodaysClass() {
   const navigate = useNavigate();
-  const { quests, doneCount, allDone, questDays } = useDailyQuests();
+  const { quests, doneCount, allDone, questDays, tour, tourDone, finishTour } = useDailyQuests();
   const next = quests.find((q) => !q.done);
   return (
     <Card testId="academy-class" className="w-full max-w-2xl">
       <div className="flex items-center justify-between gap-3 mb-3">
         <div>
-          <div className="font-display font-black text-lg md:text-2xl" style={{ color: 'var(--jma-dark)' }}>Today's Class</div>
-          <div className="text-xs md:text-sm font-bold" style={{ color: '#4B5668' }}>Three things. Finish all three, earn today's stamp.</div>
+          <div className="font-display font-black text-lg md:text-2xl" style={{ color: 'var(--jma-dark)' }} data-testid="academy-class-title">{tour ? 'Academy Tour' : 'Quest Board'}</div>
+          <div className="text-xs md:text-sm font-bold" style={{ color: '#4B5668' }}>{tour ? 'First things first — two quick quests to get you set up!' : 'Three quests a day. Finish all three, earn today\'s stamp.'}</div>
         </div>
         <div data-testid="academy-stamps" className="flex items-center gap-1 rounded-full px-3 py-1 font-black text-sm" style={{ background: '#FFF4D6', border: '3px solid var(--jma-dark)', color: 'var(--jma-dark)' }}><Stamp className="w-4 h-4" strokeWidth={3} /> {questDays}</div>
       </div>
@@ -52,11 +55,15 @@ function TodaysClass() {
           </li>
         ))}
       </ol>
-      {allDone ? (
+      {tour && tourDone ? (
+        <motion.button type="button" data-testid="academy-tour-done" onClick={finishTour} className="chunky-btn w-full py-3 text-base md:text-lg font-black flex items-center justify-center gap-2" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }} animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}>
+          <Sparkles className="w-5 h-5" strokeWidth={3} /> Tour complete! Show me today's quests
+        </motion.button>
+      ) : allDone ? (
         <div data-testid="academy-class-done" className="rounded-2xl px-4 py-3 text-center font-black" style={{ background: '#FFCC00', border: '3px solid var(--jma-dark)', color: 'var(--jma-dark)' }}>Class complete! Stamp #{questDays} is in your Yearbook. Free play till tomorrow!</div>
       ) : (
         <motion.button type="button" data-testid="academy-start-class" onClick={() => next && navigate(next.route)} className="chunky-btn w-full py-3 text-base md:text-lg font-black text-white flex items-center justify-center gap-2" style={{ background: '#1E9BFF' }} animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}>
-          <Play className="w-5 h-5" strokeWidth={3} fill="white" /> {doneCount === 0 ? 'Start class!' : 'Keep going!'}
+          <Play className="w-5 h-5" strokeWidth={3} fill="white" /> {tour ? (doneCount === 0 ? 'Start the tour!' : 'Next stop!') : doneCount === 0 ? 'Start class!' : 'Keep going!'}
         </motion.button>
       )}
     </Card>
@@ -180,7 +187,10 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard has today\'s class on it.', 'Your records are on the shelf over there.', 'The big yellow book on my desk is your Yearbook.', 'Tap the big clock — it chimes!', 'Rank up and a new friend pops out of the clock tower!'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The big round door takes you out to the plaza!', 'Your records are on the shelf over there.', 'The big yellow book on my desk is your Yearbook.', 'Rank up and a new friend pops out of the clock tower!'];
+const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
+const PORTAL = { left: '36.4%', top: '22.4%', width: '28.5%', height: '43.6%' };
+const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${38 + (i * 7.3) % 26}%`, top: `${55 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1264, h: 848 };
 const PANELS = { class: TodaysClass, album: MyAlbum, yearbook: Yearbook };
 const ding = (f) => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {}); };
@@ -197,10 +207,14 @@ function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
 }
 
 export default function AcademyPage() {
-  const [panel, setPanel] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [panel, setPanel] = useState(() => { const p = new URLSearchParams(location.search).get('panel'); return PANELS[p] ? p : null; });
+  const [leaving, setLeaving] = useState(false);
+  useStreetMusic(ACADEMY_TRACKS);
   const [pbj, setPbj] = useState(false);
   const [line, setLine] = useState(0);
-  const [wiggle, setWiggle] = useState({ bell: 0, plant: 0, clock: 0 });
+  const [wiggle, setWiggle] = useState({ bell: 0, plant: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
   useEffect(() => { say('charlie.academy.welcome', { minGapMs: 4000 }); }, []);
   // Size the hall like background-size: cover (anchored bottom-center) so % hotspots stay glued to the art.
@@ -217,15 +231,35 @@ export default function AcademyPage() {
   }, []);
   const Panel = panel ? PANELS[panel] : null;
   const poke = (k, sfx) => { setWiggle((o) => ({ ...o, [k]: o[k] + 1 })); if (sfx) ding(sfx); };
+  const goOut = () => { if (leaving) return; setLeaving(true); setTimeout(() => navigate('/home'), 650); };
 
   return (
     <div data-testid="academy-page" className="fixed inset-0 overflow-hidden" style={{ background: '#F7D9A8' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
-      <div data-testid="academy-hall" className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top }}>
+      <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '50.6% 44.2%' }}
+        initial={{ scale: 1.08, opacity: 0 }} animate={leaving ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : { duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}>
         <img src="assets/academy/hall.jpg" alt="" draggable={false} className="absolute inset-0 w-full h-full" />
 
-        {/* chalkboard → Today's Class */}
-        <Hotspot id="class" x={3} y={29} w={20} h={37} label="Today's Class" color="#1E9BFF" onClick={() => setPanel('class')} />
+        {/* the giant round door in the clock → out to the plaza */}
+        <AcademyPortal style={PORTAL} onEnter={goOut} disabled={leaving} />
+        {/* light spilling from the door onto the floor + drifting motes */}
+        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '22%', top: '55%', width: '58%', height: '45%', zIndex: 1, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.55) 0%, rgba(52,224,246,0.25) 35%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
+        {MOTES.map((m, i) => (
+          <motion.span key={i} aria-hidden="true" className="absolute rounded-full pointer-events-none" style={{ left: m.left, top: m.top, width: m.size, height: m.size, background: 'white', boxShadow: '0 0 6px 2px rgba(127,239,255,0.8)', zIndex: 2 }}
+            animate={{ y: [0, -40, -80], x: [0, i % 2 ? 10 : -10, 0], opacity: [0, 0.9, 0] }} transition={{ repeat: Infinity, duration: m.dur, delay: m.delay, ease: 'easeOut' }} />
+        ))}
+        {/* chalk notes drift off the board */}
+        {[0, 1, 2].map((n) => (
+          <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${8 + n * 5}%`, top: '40%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 2 }}
+            animate={{ y: [0, -70 - n * 15], x: [0, (n % 2 ? 1 : -1) * 14], opacity: [0, 0.9, 0], rotate: [0, n % 2 ? 20 : -20] }} transition={{ repeat: Infinity, duration: 3 + n * 0.6, delay: n * 1.1, ease: 'easeOut' }}>
+            <Music className="w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
+          </motion.span>
+        ))}
+        {/* the gold records catch the light */}
+        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '80%', top: '25%', width: '19%', height: '40%', zIndex: 1, background: 'linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%)', backgroundSize: '300% 100%', mixBlendMode: 'soft-light' }} animate={{ backgroundPosition: ['200% 0', '-100% 0'] }} transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', repeatDelay: 2 }} />
+
+        {/* chalkboard → Quest Board */}
+        <Hotspot id="class" x={3} y={29} w={20} h={37} label="Quest Board" color="#1E9BFF" onClick={() => setPanel('class')} />
         {/* record shelf → My Album */}
         <Hotspot id="album" x={80} y={65} w={16.5} h={28} label="My Album" color="#FF2D85" onClick={() => setPanel('album')} />
         {/* yearbook on the desk → Yearbook */}
@@ -240,8 +274,6 @@ export default function AcademyPage() {
           <img src="assets/academy/music101-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-5deg) scale(1.06)' }} />
         </motion.button>
 
-        {/* the big tower clock chimes when tapped */}
-        <motion.button type="button" data-testid="academy-clock" aria-label="Tower clock" onClick={() => { ding('xylo G.mp3'); setTimeout(() => ding('xylo b.mp3'), 180); setTimeout(() => ding('xylo High c.mp3'), 360); poke('clock'); }} className="absolute rounded-full" style={{ left: '31%', top: '15%', width: '38%', height: '58%', zIndex: 2 }} key={`clock-${wiggle.clock}`} animate={wiggle.clock ? { scale: [1, 1.02, 0.99, 1] } : {}} transition={{ duration: 0.5 }} />
         {/* desk bell — just for fun */}
         <motion.button type="button" data-testid="academy-bell" aria-label="Ring the bell" onClick={() => poke('bell', 'xylo High c.mp3')} className="absolute" style={{ left: '26.5%', top: '82%', width: '5%', height: '9%', zIndex: 3 }} key={`bell-${wiggle.bell}`} animate={wiggle.bell ? { rotate: [0, -14, 12, -8, 5, 0], y: [0, -6, 0] } : {}} transition={{ duration: 0.6 }}>
           <Bell className="w-full h-full opacity-0" />
@@ -256,7 +288,8 @@ export default function AcademyPage() {
           </AnimatePresence>
           <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
         </button>
-      </div>
+      </motion.div>
+      {leaving && <motion.div data-testid="academy-door-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
 
       <AnimatePresence>
         {pbj && (

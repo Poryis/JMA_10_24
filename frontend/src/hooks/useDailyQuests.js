@@ -5,12 +5,14 @@
 // celebration overlay) whenever progress changes.
 
 import { useEffect, useState, useCallback } from 'react';
-import { QUEST_MAP, GEM_MILESTONES, pickDailyQuests, questMatches } from '../data/dailyQuests';
+import { QUEST_MAP, TOUR_QUESTS, GEM_MILESTONES, pickDailyQuests, questMatches } from '../data/dailyQuests';
 import { earnSticker, readEarnedStickers } from './useStickers';
 import { readUnlockedSync } from './useUnlocks';
+import { AVATAR_KEY } from '../data/avatars';
 
 export const QUESTS_KEY = 'jma_daily_quests_v1';   // { date, ids, progress, completedAt, celebrated, gem }
 export const QUEST_DAYS_KEY = 'jma_quest_days_v1'; // { total, lastDate }
+export const TOUR_KEY = 'jma_tour_v1';             // { done: {id: true}, completedAt, seen }
 
 function todayKey() {
   const d = new Date();
@@ -45,11 +47,39 @@ export function ensureToday() {
   return next;
 }
 
+// The one-time Academy Tour. Kids who already picked a character / earned a
+// sticker before the tour existed get those steps credited automatically.
+export function readTour() {
+  const t = readJson(TOUR_KEY, null);
+  if (t) return t;
+  const done = {};
+  try { if (localStorage.getItem(AVATAR_KEY)) done.t_character = true; } catch (_) {}
+  if (Object.keys(readEarnedStickers()).length > 0) done.t_first_game = true;
+  const all = TOUR_QUESTS.every(q => done[q.id]);
+  const next = { done, completedAt: all ? new Date().toISOString() : null, seen: all };
+  writeJson(TOUR_KEY, next);
+  return next;
+}
+export function tourActive() { const t = readTour(); return !t.completedAt || !t.seen; }
+export function markTourSeen() { const t = readTour(); if (t.seen) return; t.seen = true; writeJson(TOUR_KEY, t); notify(); }
+
+function reportTourEvent(event) {
+  const t = readTour();
+  if (t.completedAt) return;
+  let changed = false;
+  for (const q of TOUR_QUESTS) { if (q.event === event && !t.done[q.id]) { t.done[q.id] = true; changed = true; } }
+  if (!changed) return;
+  if (TOUR_QUESTS.every(q => t.done[q.id])) t.completedAt = new Date().toISOString();
+  writeJson(TOUR_KEY, t);
+  notify();
+}
+
 export function readQuestDays() {
   return readJson(QUEST_DAYS_KEY, { total: 0, lastDate: null });
 }
 
 export function reportQuestEvent(event, payload = {}) {
+  reportTourEvent(event);
   const st = ensureToday();
   let changed = false;
   for (const id of st.ids) {
@@ -87,6 +117,11 @@ export function markQuestCelebrated() {
 }
 
 function buildView(st) {
+  const tour = readTour();
+  if (!tour.completedAt || !tour.seen) {
+    const quests = TOUR_QUESTS.map(q => ({ ...q, target: 1, progress: tour.done[q.id] ? 1 : 0, done: !!tour.done[q.id] }));
+    return { date: st.date, tour: true, quests, doneCount: quests.filter(q => q.done).length, allDone: false, tourDone: !!tour.completedAt, completedAt: null, celebrated: true, gem: null, questDays: readQuestDays().total || 0 };
+  }
   const quests = st.ids.map(id => {
     const q = QUEST_MAP[id];
     const target = q.target || 1;
@@ -95,6 +130,7 @@ function buildView(st) {
   });
   return {
     date: st.date,
+    tour: false,
     quests,
     doneCount: quests.filter(q => q.done).length,
     allDone: quests.length > 0 && quests.every(q => q.done),
@@ -115,5 +151,6 @@ export default function useDailyQuests() {
     return () => { listeners.delete(refresh); clearInterval(t); };
   }, []);
   const dismissCelebration = useCallback(() => markQuestCelebrated(), []);
-  return { ...view, dismissCelebration };
+  const finishTour = useCallback(() => markTourSeen(), []);
+  return { ...view, dismissCelebration, finishTour };
 }

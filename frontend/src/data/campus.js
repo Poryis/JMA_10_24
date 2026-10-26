@@ -13,6 +13,7 @@ export const CAMPUS_ZONES = [
 
 export const CAMPUS_BUILDINGS = [
   // PLAY
+  { id: 'bandstand',           zone: 'play',   name: 'Main Stage',           path: '/rank-hall',      art: 'assets/plaza/bandstand.png',          host: `${CH}charlie.png`,               starter: true,  size: 1.15, flat: true, custom: 'bandstand' },
   { id: 'jelly-jukebox',       zone: 'play',   name: 'Jelly Jukebox',        path: '/rhythm-game',    art: 'assets/campus/jukebox-diner.png',     host: `${CH}jazzy.png`,                 starter: true,  size: 1.0 },
   { id: 'shred-legend',        zone: 'play',   name: 'Shred City',           path: '/shred-legend',   art: 'assets/campus/shred-club.png',        host: `${CH}charlie-punk.png`,          starter: false, size: 1.0 },
   { id: 'stew-kazoo',          zone: 'play',   name: 'Stew Kazoo Says',      path: '/simon-says',     art: 'assets/campus/stew-room-kazoo.png',         host: `${CH}stew.png`,                  starter: true,  size: 0.95 },
@@ -40,17 +41,15 @@ export const PLAZA_ZONE = {
   strollers: [{ src: `${CH}dr-jellybone.png`, facing: 'left' }, `${CH}sharky-snorkel.png`],
 };
 export const PLAZA_BUILDINGS = [
-  // Foreground props sit small on the front sand; the three street gates + bandstand stand big on the back dune.
-  { id: 'quest-board',   zone: 'plaza', name: 'Quest Board',   action: 'quests',             art: `${PZ}quest-board.png`,    starter: true,  size: 0.7,  flat: true, hangSign: { text: 'QUESTS', x: 51.5, y: 67 } },
+  // The journey, left to right: Academy → Dressing Room → Sticker Shack → the three street gates → JMAtv.
+  { id: 'academy',       zone: 'plaza', name: 'The Academy',   path: '/academy',             art: `${PZ}academy.png`,   starter: true, size: 1.55, flat: true, custom: 'academy', sign: 'ACADEMY', signPos: { x: 50, y: 104 }, signColor: '#FFCC00' },
+  { id: 'dressing-room', zone: 'plaza', name: 'Dressing Room', path: '/dressing-room',       art: `${PZ}dressing-room.png`,  starter: true,  size: 1.55, flat: true, flip: true, sign: 'DRESSING ROOM', signPos: { x: 50, y: 104 }, signColor: '#F9A8D4' },
+  { id: 'sticker-shack', zone: 'plaza', name: 'Sticker Shack', path: '/sticker-book',        art: `${PZ}sticker-shack.png`,  host: `${CH}stew.png`,         starter: true,  size: 1.4, flat: true, sign: 'STICKERS', signPos: { x: 50, y: 104 }, signColor: '#FF2D85' },
   { id: 'gate-play',     zone: 'plaza', name: 'Play Street',   path: '/campus?zone=play',    art: `${PZ}gate-play.png`,      host: `${CH}chunk-disco.png`,  starter: true,  size: 1.45, flat: true, drop: 4, ribbon: { text: 'PLAY', bg: '#FFCC00', color: 'var(--jma-dark)' },
     portal: { box: { left: 27, width: 54, top: 14, bottom: 4 }, bg: 'radial-gradient(ellipse at 50% 85%, #FF2D85 0%, #5B1C8A 45%, #140B2E 100%)', art: ['jukebox-diner', 'shred-club'] } },
   { id: 'gate-learn',    zone: 'plaza', name: 'Learn Street',  path: '/campus?zone=learn',   art: `${PZ}gate-learn.png`,     host: `${CH}jazzy-marching.png`, starter: false, size: 1.45, flat: true, drop: 4, ribbon: { text: 'LEARN', bg: '#8E5BD9', color: 'white' },
     portal: { box: { left: 19, width: 62, top: 22, bottom: 4 }, bg: 'radial-gradient(ellipse at 50% 90%, #7ED957 0%, #2E7D32 40%, #0B2E4F 100%)', art: ['football-field', 'music-101'] } },
   { id: 'gate-create',   zone: 'plaza', name: 'Create Street', path: '/campus?zone=create',  art: `${PZ}gate-create.png`,    host: `${CH}sharky-hiphop.png`, starter: false, size: 1.45, flat: true, ribbonLift: 5, ribbon: { text: 'CREATE', bg: '#1FA38C', color: 'white' },
     portal: { box: { left: 17, width: 66, top: 8, bottom: 10 }, bg: 'radial-gradient(ellipse at 50% 85%, #FF4D4D 0%, #7A1E2E 35%, #120A1E 100%)', art: ['song-studio', 'beat-lab'], artScale: 0.8 } },
-  { id: 'academy',       zone: 'plaza', name: 'The Academy',   path: '/academy',             art: `${PZ}academy.png`,   starter: true, size: 1.55, flat: true, custom: 'academy', sign: 'ACADEMY', signPos: { x: 50, y: -3 }, signColor: '#FFCC00' },
-  { id: 'bandstand',     zone: 'plaza', name: 'The Stage',     path: '/rank-hall',           art: `${PZ}bandstand.png`, host: `${CH}charlie.png`, starter: true, size: 1.5, flat: true, lift: 1, custom: 'bandstand' },
-  { id: 'jmatv',         zone: 'plaza', name: 'JMAtv',         path: '/jmatv',               art: null, custom: 'tv',                                       starter: true,  size: 1.4, flat: true },
-  { id: 'sticker-shack', zone: 'plaza', name: 'Sticker Shack', path: '/sticker-book',        art: `${PZ}sticker-shack.png`,  host: `${CH}stew.png`,         starter: true,  size: 1.4, flat: true, sign: 'STICKERS', signPos: { x: 50, y: 7 }, signColor: '#FF2D85' },
-  { id: 'dressing-room', zone: 'plaza', name: 'Dressing Room', path: '/dressing-room',       art: `${PZ}dressing-room.png`,  starter: true,  size: 1.55, flat: true, flip: true, sign: 'DRESSING ROOM', signPos: { x: 50, y: 4 }, signColor: '#F9A8D4' },
+  { id: 'jmatv',         zone: 'plaza', name: 'JMAtv',         path: '/jmatv',               art: null, custom: 'tv',                                       starter: true,  size: 1.4, flat: true, sign: 'JMAtv', signPos: { x: 50, y: 104 }, signColor: '#1E9BFF' },
 ];

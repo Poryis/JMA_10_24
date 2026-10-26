@@ -40,11 +40,11 @@ import FullscreenButton from "./components/FullscreenButton";
 import FitStage from "./components/FitStage";
 import usePlayTime from "./hooks/usePlayTime";
 
-// RootGate — always send visitors straight to the app Home. The
-// parent-facing landing page (marketing pitch) is still reachable via
-// the "For Grown-ups" link in the header.
+// RootGate — every visit starts inside the Academy; the giant door in the
+// clock leads out to the plaza (/home). The parent-facing landing page is
+// still reachable via the "For Grown-ups" link in the header.
 function RootGate() {
-  return <Navigate to="/home" replace />;
+  return <Navigate to="/academy" replace />;
 }
 
 function App() {

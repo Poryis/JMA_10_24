@@ -5,7 +5,7 @@
 // swims over, shrinks into the doorway, then the camera zooms in.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, animate } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Music, ChevronsRight, ArrowLeft, ArrowRight, VolumeX, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
@@ -370,6 +370,7 @@ export default function CampusMapPage({ plaza = false }) {
   const params = new URLSearchParams(location.search);
   const goTo = params.get('go');          // swim straight into this building on arrival
   const panelParam = params.get('panel'); // handed on to the room (e.g. /academy?panel=class)
+  const dest = params.get('dest');        // after swimming into `go`, continue to this exact route (quest deep-link)
   const scroller = useRef(null);
   const shelfRef = useRef(null);
   const [leaving, setLeaving] = useState(null);
@@ -453,9 +454,8 @@ export default function CampusMapPage({ plaza = false }) {
     if (!goTo) return undefined;
     const b = buildings.find((x) => x.id === goTo);
     if (!b || (!unlocked && !b.starter)) return undefined;
-    const t1 = setTimeout(() => shelfRef.current?.querySelector(`[data-testid="campus-building-${b.id}"]`)?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 500);
-    const t2 = setTimeout(() => enterRef.current(b), 1500);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t = setTimeout(() => enterRef.current(b), 900);
+    return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [goTo, zone.id]);
 
@@ -489,7 +489,7 @@ export default function CampusMapPage({ plaza = false }) {
     const el = document.querySelector(`[data-testid="campus-building-${b.id}"]`);
     const r = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
     setLeaving({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
-    const path = panelParam && !b.path.includes('?') ? `${b.path}?panel=${panelParam}` : b.path;
+    const path = dest && b.id === goTo ? dest : panelParam && !b.path.includes('?') ? `${b.path}?panel=${panelParam}` : b.path;
     setTimeout(() => navigate(path), 520);
   };
 
@@ -502,8 +502,15 @@ export default function CampusMapPage({ plaza = false }) {
     const door = { x: el.offsetLeft + el.offsetWidth * 0.5, bottom: (parseFloat(el.style.marginBottom) || 0) + el.offsetWidth * 0.1 };
     const dx = door.x - (YOU_LEFT + YOU_W / 2);
     const dy = -(door.bottom - youBottom);
-    const dur = Math.min(1.5, Math.max(0.75, Math.abs(dx) / 800));
+    const dur = Math.min(2.2, Math.max(0.9, Math.abs(dx) / 650));
     setSwim({ x: dx, y: dy, dur, buildingId: b.id });
+    // camera follows: keep the swimming Jelly centred on screen (same easing as the swim)
+    const sc = scroller.current;
+    if (sc) {
+      const from = sc.scrollLeft, maxX = sc.scrollWidth - sc.clientWidth;
+      const you0 = YOU_LEFT + YOU_W / 2;
+      animate(0, 1, { duration: dur, ease: 'easeInOut', onUpdate: (p) => { const want = Math.max(0, Math.min(maxX, you0 + dx * p - sc.clientWidth / 2)); sc.scrollLeft = from + (want - from) * Math.min(1, p * 2.5); } });
+    }
     setTimeout(() => zoomIn(b), dur * 1000 + 120);
   };
   enterRef.current = enter;

@@ -22,6 +22,7 @@ import { readAvatarOutfit } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import { RANKS } from '../data/ranks';
+import { journeyTo } from '../data/campus';
 import { say } from '../lib/voice';
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
@@ -51,7 +52,7 @@ function TodaysClass() {
               <span className="block text-sm md:text-base font-black leading-tight truncate" style={{ color: 'var(--jma-dark)', textDecoration: q.done ? 'line-through' : 'none' }}>{q.title}</span>
               <span className="block text-[11px] md:text-xs font-bold" style={{ color: '#4B5668' }}>{q.where}{q.target > 1 ? ` · ${q.progress}/${q.target}` : ''}</span>
             </span>
-            {!q.done && <button type="button" data-testid={`academy-quest-go-${i}`} onClick={() => navigate(q.route)} className="chunky-btn px-3 py-1 text-xs font-black" style={{ background: 'white', color: 'var(--jma-dark)' }}>Go</button>}
+            {!q.done && <button type="button" data-testid={`academy-quest-go-${i}`} onClick={() => navigate(journeyTo(q.route))} className="chunky-btn px-3 py-1 text-xs font-black" style={{ background: 'white', color: 'var(--jma-dark)' }}>Go</button>}
           </li>
         ))}
       </ol>
@@ -62,7 +63,7 @@ function TodaysClass() {
       ) : allDone ? (
         <div data-testid="academy-class-done" className="rounded-2xl px-4 py-3 text-center font-black" style={{ background: '#FFCC00', border: '3px solid var(--jma-dark)', color: 'var(--jma-dark)' }}>Class complete! Stamp #{questDays} is in your Yearbook. Free play till tomorrow!</div>
       ) : (
-        <motion.button type="button" data-testid="academy-start-class" onClick={() => next && navigate(next.route)} className="chunky-btn w-full py-3 text-base md:text-lg font-black text-white flex items-center justify-center gap-2" style={{ background: '#1E9BFF' }} animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}>
+        <motion.button type="button" data-testid="academy-start-class" onClick={() => next && navigate(journeyTo(next.route))} className="chunky-btn w-full py-3 text-base md:text-lg font-black text-white flex items-center justify-center gap-2" style={{ background: '#1E9BFF' }} animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}>
           <Play className="w-5 h-5" strokeWidth={3} fill="white" /> {tour ? (doneCount === 0 ? 'Start the tour!' : 'Next stop!') : doneCount === 0 ? 'Start class!' : 'Keep going!'}
         </motion.button>
       )}

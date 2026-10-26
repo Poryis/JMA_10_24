@@ -33,6 +33,18 @@ export const CAMPUS_BUILDINGS = [
   { id: 'song-studio',         zone: 'create', name: "Charlie's Song Studio", path: '/song-studio',   art: 'assets/campus/song-studio.png',       host: `${CH}charlie-studio.png`,        size: 1.0 },
 ];
 
+// A quest route → the street/plaza URL that swims the kid into that game's door
+// first (the camera follows), then continues to the route itself.
+export function journeyTo(route) {
+  if (!route) return route;
+  if (route.includes('go=')) return route;
+  const path = route.split('?')[0];
+  const b = CAMPUS_BUILDINGS.find((x) => x.path === path) || PLAZA_BUILDINGS.find((x) => x.path && !x.path.includes('?') && path.startsWith(x.path));
+  if (!b) return route;
+  const base = b.zone === 'plaza' ? '/home?' : `/campus?zone=${b.zone}&`;
+  return `${base}go=${b.id}&dest=${encodeURIComponent(route)}`;
+}
+
 // Academy Plaza — the town square where the three streets meet. Home.
 const PZ = 'assets/plaza/';
 export const PLAZA_ZONE = {

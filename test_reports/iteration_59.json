@@ -1,0 +1,31 @@
+{
+  "summary": "Frontend-only Playwright E2E for the Academy-first journey + Academy Tour (1366x768 + 844x390). 12 of 12 requested scenarios pass functionally. The only strict-check miss: on the plaza, the ACADEMY / DRESSING ROOM / STICKERS pills start 5-17px above the bottom of the building art box, so they overlap the base a little instead of sitting fully below it. JMAtv passes. The console shows React duplicate-key and AnimatePresence 'wait' warnings. They don't block anything.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Plaza building signs (CampusMapPage Building, data/campus.js signPos y:104)", "issue": "Each sign is centred at 104% with translate(-50%,-50%), so its top edge is above the art bottom. Measured at 1366x768 (sign top vs art-box bottom): academy 665.5 vs 683.0, dressing-room 676.1 vs 681.6, sticker-shack 663.5 vs 680.3. jmatv passes (666.2 vs 683.0 box; its drive-in art ends at 570). Fix: use top:100% with translateY(0), or signPos.y of about 112.", "selector": "[data-testid=campus-building-academy-sign]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Plaza", "issues": ["The 'Start here!' badge [campus-building-academy-badge] floats at the upper right of the Academy, far from its door. Consider placing it nearer the entrance."]},
+      {"screen": "Academy panels", "issues": ["The close X [academy-panel-close] hangs over the top-right border of the panel and looks a little misaligned.", "Pressing Escape does not close the Album, Yearbook or Quest Board panels (keyboard accessibility)."]},
+      {"screen": "Academy at 844x390", "issues": ["The portal is partly cut off at the top (y=-49) and so is the Quest Board hotspot (y=-12). Both are still clickable. The panel fits: Start button bottom is 376 of 390 and the Go buttons are 48x32."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Move the plaza pill signs fully below the building art (signPos.y about 112, or anchor the sign's top at 100%).",
+    "Track down the React 'Encountered two children with the same key' warning. It fires on '/' and '/academy' at load, probably in a shared component, since the keys in AcademyPortal/AcademyPage are in separate arrays. Also fix the framer 'multiple children within AnimatePresence mode=wait' warning.",
+    "Optional: let Escape close Academy panels."
+  ],
+  "critical_code_review_comments": [
+    "readTour() writes jma_tour_v1 as a side effect of reading. It is called on every buildView and tourActive call, so the first render persists the tour state. That is fine, but it does mean the returning-kid auto-credit only ever happens once.",
+    "reportTourEvent returns early once completedAt is set, which is correct. Any 'detective_case' event credits t_first_game, including a case opened from the daily quests: this is intended."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% functional (12/12 scenarios); 1 strict sign-position check failed (3 of 4 signs overlap by 5-17px)"},
+  "seed_data_creation": "localStorage only: jma_player_v1, plus jma_tour_v1, jma_avatar_v1 and jma_stickers_v1 for the specific scenarios.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Verified: '/' redirects to /academy. The portal has data-open=true and the sign 'TO THE PLAZA'; clicking it reaches /home in about 700ms. The Quest Board hotspot opens the tour panel. Quest go-0 goes to /home?go=dressing-room, the Jelly swims (data-swimming=true) and lands on /dressing-room. Picking Finn shows the back-to-board button, which goes to /home?go=academy&panel=class and then /academy?panel=class with quest 0 done and the button reading 'Next stop!'. Quest go-1 goes to /campus?zone=play&go=detective-jellybone and then /detective. The tour-done button switches to 'Quest Board' with 3 quests. A returning kid's tour is auto-credited. Plaza order is correct, with no quest-board or bandstand building on the plaza. YOU is left of the Academy and the badge reads 'Start here!'. Play street's first building is the bandstand (Main Stage) with the MAIN STAGE marquee; it leads to /rank-hall. Tapping locked gate-learn opens /academy?panel=class. Album, Yearbook, Charlie bubbles and the dressing ghost hint (on top, not covered by the mirror) all still work. Note: the panel close testid is academy-panel-close; Escape does not close panels."
+}

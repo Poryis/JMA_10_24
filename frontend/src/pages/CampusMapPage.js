@@ -234,7 +234,7 @@ function Cuckoo() {
   }, [currentRank.id, paused]);
   const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (
-    <div ref={rootRef} aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '55%', width: '13.5%', top: '18%', height: '13.2%', zIndex: 2, perspective: 300 }}>
+    <div ref={rootRef} aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '60.3%', width: '7%', top: '29.3%', height: '7%', zIndex: 2, perspective: 300 }}>
       <div className="absolute inset-0 overflow-hidden">
         <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
           initial={false} animate={out ? { y: '0%', x: '-50%', scale: moment ? [1, 1.15, 1] : 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={moment ? { type: 'spring', stiffness: 260, damping: 14, scale: { repeat: 3, duration: 0.5 } } : { type: 'spring', stiffness: 260, damping: 18 }} />

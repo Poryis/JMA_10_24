@@ -267,7 +267,6 @@ export default function AcademyPage() {
   const [panel, setPanel] = useState(() => { const p = new URLSearchParams(location.search).get('panel'); return PANELS[p] ? p : null; });
   const [leaving, setLeaving] = useState(false);
   useStreetMusic(ACADEMY_TRACKS);
-  const [pbj, setPbj] = useState(false);
   const [line, setLine] = useState(0);
   const [wiggle, setWiggle] = useState({ harp: 0, trumpet: 0, guitar: 0, shield: 0, lanternL: 0, lanternR: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
@@ -350,14 +349,6 @@ export default function AcademyPage() {
         <Easels />
         <Hotspot id="album" x={70} y={50} w={23} h={36} label="Album Cover Studio" color="#FF2D85" onClick={() => setPanel('album')} />
 
-        {/* posters hang on the back wall either side of the archway */}
-        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer origin-top" style={{ left: '39.2%', top: '33%', width: '6.4%', zIndex: 3 }} animate={{ rotate: [-1.5, 1.5, -1.5] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
-          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid #3B2412', boxShadow: '0 4px 0 rgba(0,0,0,0.25)' }} />
-        </motion.button>
-        <motion.button type="button" data-testid="academy-m101-poster" aria-label="Music 101 poster" onClick={() => setPbj('m101')} className="absolute p-0 border-0 bg-transparent cursor-pointer origin-top" style={{ left: '66%', top: '33%', width: '6.4%', zIndex: 3 }} animate={{ rotate: [1.5, -1.5, 1.5] }} transition={{ repeat: Infinity, duration: 4.6, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
-          <img src="assets/academy/music101-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid #3B2412', boxShadow: '0 4px 0 rgba(0,0,0,0.25)' }} />
-        </motion.button>
-
         {/* Charlie on the rug */}
         <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '57%', bottom: '4%', width: '9%', zIndex: 6 }}>
           <AnimatePresence mode="wait">
@@ -369,11 +360,6 @@ export default function AcademyPage() {
       {leaving && <motion.div data-testid="academy-door-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
 
       <AnimatePresence>
-        {pbj && (
-          <motion.div key="pbj" data-testid="academy-pbj-modal" className="fixed inset-0 z-[60] flex items-center justify-center p-3 pt-14" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setPbj(false)}>
-            <motion.img src={pbj === 'm101' ? 'assets/academy/music101-poster.webp' : 'assets/academy/pbj-poster.webp'} alt={pbj === 'm101' ? 'Jelly of the Month Club — Music 101' : 'Peanut Butter Jellyfish Sandwich — the movie'} className="max-h-full max-w-full object-contain" style={{ border: '4px solid var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)', background: 'white' }} initial={{ scale: 0.6, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ type: 'spring', stiffness: 240, damping: 18 }} />
-          </motion.div>
-        )}
       </AnimatePresence>
 
       <AnimatePresence>

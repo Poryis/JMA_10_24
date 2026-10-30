@@ -14,9 +14,9 @@ cols = reg.sum(axis=0)
 pole_x = 1580 + int(np.argmax(cols))
 print('pole x', pole_x)
 # cloth bbox: alpha right of pole+12
-sub = a[480:792, pole_x+14:2000, 3] > 10
+sub = a[480:792, pole_x+26:2000, 3] > 10
 ys, xs = np.where(sub)
-fx0, fy0, fx1, fy1 = pole_x+14+xs.min()-2, 480+ys.min()-2, pole_x+14+xs.max()+3, 480+ys.max()+3
+fx0, fy0, fx1, fy1 = pole_x+26+xs.min(), 480+ys.min()-2, pole_x+26+xs.max()+3, 480+ys.max()+3
 print('flag bbox', fx0, fy0, fx1, fy1, pct(fx0, fy0, fx1, fy1))
 flag = src.crop((fx0, fy0, fx1, fy1))
 # weathervane: everything above the spire tip. find roof top y: first row where alpha spans > 150px wide

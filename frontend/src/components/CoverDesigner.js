@@ -33,6 +33,10 @@ export const TITLE_FONTS = [
   { id: 'block',   name: 'Block',   family: "'Fredoka', sans-serif", weight: 700, tracking: '0.14em', upper: true },
 ];
 export const TITLE_COLORS = ['#FFFFFF', '#0B1F3A', '#FFCC00', '#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF'];
+// Light letters get a navy outline/plate, dark letters a white one — so the title reads on any sleeve.
+const isLight = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) > 150; };
+const outline = (hex) => { const o = isLight(hex) ? 'rgba(11,31,58,0.95)' : 'rgba(255,255,255,0.95)'; return [[-1,-1],[1,-1],[-1,1],[1,1],[0,-1.3],[0,1.3],[-1.3,0],[1.3,0]].map(([x, y]) => `${x}px ${y}px 0 ${o}`).join(', ') + (isLight(hex) ? ', 0 3px 0 rgba(11,31,58,0.9)' : ', 0 3px 0 rgba(255,255,255,0.9)'); };
+const plateStyle = (hex) => (isLight(hex) ? { background: 'rgba(11,31,58,0.88)', border: '2px solid rgba(255,255,255,0.9)' } : { background: 'rgba(255,255,255,0.92)', border: '2px solid rgba(11,31,58,0.9)' });
 export const SLOTS = [
   { id: 'main', name: 'Big' },
   { id: 'tl',   name: 'Top left' },
@@ -77,7 +81,7 @@ export function Sleeve({ cover, avatar, kind, title, className = '', activeSlot,
       {slot('tl', 'left-1.5 top-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
       {slot('br', 'right-1.5 bottom-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
       {tf && title && (
-        <span data-testid="sleeve-title" className="absolute left-[6%] right-[26%] top-[7%] pointer-events-none leading-[1.05] break-words" style={{ fontFamily: tf.family, fontWeight: tf.weight, letterSpacing: tf.tracking, textTransform: tf.upper ? 'uppercase' : 'none', color: cover.title.color, fontSize: `clamp(8px, ${title.length > 14 ? 9 : 12}cqw, 40px)`, textShadow: cover.title.color === '#FFFFFF' || cover.title.color === '#FFCC00' ? '0 1px 0 rgba(2,36,63,0.7), 0 0 3px rgba(2,36,63,0.5)' : '0 1px 0 rgba(255,255,255,0.6)', containerType: 'normal' }}>{title}</span>
+        <span data-testid="sleeve-title" data-plate={cover.title.plate ? 'true' : 'false'} className="absolute left-[6%] right-[26%] top-[7%] pointer-events-none leading-[1.05] break-words" style={{ fontFamily: tf.family, fontWeight: tf.weight, letterSpacing: tf.tracking, textTransform: tf.upper ? 'uppercase' : 'none', color: cover.title.color, fontSize: `clamp(8px, ${title.length > 14 ? 9 : 12}cqw, 40px)`, textShadow: outline(cover.title.color), ...(cover.title.plate ? { ...plateStyle(cover.title.color), borderRadius: '0.6em', padding: '0.2em 0.45em', width: 'fit-content', maxWidth: '68%', transform: 'rotate(-3deg)', transformOrigin: 'left top' } : {}) }}>{title}</span>
       )}
       <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
     </div>
@@ -128,7 +132,7 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
   const setSticker = (v) => setCover((c) => ({ ...c, stickers: { ...c.stickers, [slot]: v } }));
   const shuffle = () => {
     const ids = COLLECTION_STICKERS.filter((s) => s.icon).map((s) => s.id);
-    set({ color: pick(SLEEVES), pattern: pick(PATTERNS).id, frame: pick(FRAMES).id, label: pick(LABELS), stickers: { main: pick(['me', 'me', ...ids]), tl: pick([null, ...ids]), br: pick([null, ...ids]) }, title: { font: pick(TITLE_FONTS).id, color: pick(TITLE_COLORS) } });
+    set({ color: pick(SLEEVES), pattern: pick(PATTERNS).id, frame: pick(FRAMES).id, label: pick(LABELS), stickers: { main: pick(['me', 'me', ...ids]), tl: pick([null, ...ids]), br: pick([null, ...ids]) }, title: { font: pick(TITLE_FONTS).id, color: pick(TITLE_COLORS), plate: Math.random() < 0.6 } });
   };
   return (
     <motion.div data-testid="cover-designer" className="fixed inset-0 z-[80] flex items-center justify-center p-2 sm:p-3" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
@@ -158,14 +162,21 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
                   <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Lettering</div>
                   <div className="grid grid-cols-5 gap-2 mb-3" data-testid="cover-title-fonts">
                     <button type="button" data-testid="cover-title-none" aria-pressed={!cover.title} onClick={() => set({ title: null })} className="rounded-xl h-14 flex flex-col items-center justify-center gap-0.5 text-[10px] font-black" style={{ background: '#F6F8FB', color: '#4B5668', ...sel(!cover.title) }}><X className="w-5 h-5" strokeWidth={3} />None</button>
-                    {TITLE_FONTS.map((f) => <button key={f.id} type="button" data-testid={`cover-title-font-${f.id}`} aria-pressed={cover.title?.font === f.id} onClick={() => set({ title: { font: f.id, color: cover.title?.color || '#FFFFFF' } })} className="rounded-xl h-14 flex flex-col items-center justify-center overflow-hidden" style={{ background: cover.color, ...sel(cover.title?.font === f.id) }}>
+                    {TITLE_FONTS.map((f) => <button key={f.id} type="button" data-testid={`cover-title-font-${f.id}`} aria-pressed={cover.title?.font === f.id} onClick={() => set({ title: { plate: true, ...cover.title, font: f.id, color: cover.title?.color || '#FFFFFF' } })} className="rounded-xl h-14 flex flex-col items-center justify-center overflow-hidden" style={{ background: cover.color, ...sel(cover.title?.font === f.id) }}>
                       <span className="leading-none" style={{ fontFamily: f.family, fontWeight: f.weight, letterSpacing: f.tracking, textTransform: f.upper ? 'uppercase' : 'none', fontSize: 15, color: cover.title?.color || '#FFFFFF', textShadow: '0 1px 0 rgba(2,36,63,0.7)' }}>Abc</span>
                       <span className="text-[9px] font-black text-white" style={{ textShadow: '0 1px 0 var(--jma-dark), 0 0 3px var(--jma-dark)' }}>{f.name}</span>
                     </button>)}
                   </div>
                   <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Letter color</div>
-                  <Swatches list={TITLE_COLORS} value={cover.title?.color} onPick={(color) => set({ title: { font: cover.title?.font || 'bubbly', color } })} prefix="cover-title-color" />
-                  <div className="text-[10px] font-bold mt-2 flex items-center gap-1" style={{ color: '#4B5668' }}><Type className="w-3 h-3" strokeWidth={3} /> Prints "{track.name}" on the sleeve.</div>
+                  <Swatches list={TITLE_COLORS} value={cover.title?.color} onPick={(color) => set({ title: { plate: true, ...cover.title, font: cover.title?.font || 'bubbly', color } })} prefix="cover-title-color" />
+                  {cover.title && (
+                    <div className="flex gap-2 mt-3" data-testid="cover-title-plates">
+                      {[{ v: true, name: 'On a sticker' }, { v: false, name: 'Straight on' }].map((o) => (
+                        <button key={String(o.v)} type="button" data-testid={`cover-title-plate-${o.v ? 'on' : 'off'}`} aria-pressed={!!cover.title.plate === o.v} onClick={() => set({ title: { ...cover.title, plate: o.v } })} className="flex-1 py-1.5 rounded-full text-[11px] font-black" style={{ background: !!cover.title.plate === o.v ? 'var(--jma-dark)' : '#F6F8FB', color: !!cover.title.plate === o.v ? 'white' : 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{o.name}</button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="text-[10px] font-bold mt-2 flex items-center gap-1" style={{ color: '#4B5668' }}><Type className="w-3 h-3" strokeWidth={3} /> Prints "{track.name}" on the sleeve. Letters always get a contrasting outline.</div>
                 </div>
               )}
               {tab === 'frame' && (

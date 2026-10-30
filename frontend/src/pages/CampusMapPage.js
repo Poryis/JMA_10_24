@@ -210,8 +210,8 @@ function AcademyFlair() {
   const whirl = (e) => { e.stopPropagation(); setSpin((n) => n + 1); const a = new Audio(encodeURI('assets/audio/sfx-twinkle.mp3')); a.volume = 0.4; a.play().catch(() => {}); };
   return (
     <>
-      <motion.img src="assets/plaza/academy-flag.png" alt="" draggable={false} aria-hidden="true" data-testid="academy-flag" className="absolute pointer-events-none" style={{ left: '80.05%', top: '34.5%', width: '17.35%', zIndex: 2, transformOrigin: '0% 20%' }}
-        animate={{ rotate: [0, 2.5, -1.5, 2, 0], skewY: [0, -3, 2, -2, 0], scaleX: [1, 0.97, 1, 0.98, 1] }} transition={{ repeat: Infinity, duration: 2.6, ease: 'easeInOut' }} />
+      <motion.img src="assets/plaza/academy-flag.png" alt="" draggable={false} aria-hidden="true" data-testid="academy-flag" className="absolute pointer-events-none" style={{ left: '80.75%', top: '34.6%', width: '16.65%', zIndex: 2, transformOrigin: '0% 50%' }}
+        animate={{ skewY: [0, -1.2, 0.8, -0.6, 0], scaleX: [1, 0.988, 1, 0.993, 1] }} transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }} />
       <motion.button type="button" data-testid="academy-vane" aria-label="Spin the weathervane" onClick={whirl} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '50.15%', top: '9.25%', width: '11.5%', zIndex: 3 }} whileHover={{ scale: 1.06 }}>
         <motion.img key={spin} src="assets/plaza/academy-vane.png" alt="" draggable={false} className="block w-full h-auto" style={{ transformOrigin: '50% 72%' }}
           animate={spin ? { rotateY: [0, 1080], scaleX: [1, 1.1, 1] } : { rotateY: [0, 25, -20, 0] }} transition={spin ? { duration: 1.4, ease: [0.2, 0.8, 0.3, 1] } : { repeat: Infinity, duration: 6, ease: 'easeInOut' }} />

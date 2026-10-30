@@ -6,7 +6,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Bell, Camera, Music, Sparkles } from 'lucide-react';
+import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Camera, Music, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
@@ -188,18 +188,39 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The big round door takes you out to the plaza!', 'Your records are on the shelf over there.', 'The big yellow book on my desk is your Yearbook.', 'Rank up and a new friend pops out of the clock tower!'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Design your record sleeves at the art table.', 'The big book on the stand is your Yearbook.', 'Rank up and a new friend pops out of the clock tower!'];
 const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
-const PORTAL = { left: '36.4%', top: '22.4%', width: '28.5%', height: '43.6%' };
-const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${38 + (i * 7.3) % 26}%`, top: `${55 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
-const HALL = { w: 1264, h: 848 };
+// Layer positions (% of the 1920x1080 room) measured straight from the PSD export.
+const ROOM = 'assets/academy/room/';
+const L = {
+  hole: { left: '46.9%', top: '27.9%', width: '17.8%', height: '40%' },
+  chalkboard: { left: '4.73%', top: '18.88%', width: '27.84%' }, doodles: { left: '7.66%', top: '27.41%', width: '21.25%' },
+  shield: { left: '77%', top: '11.52%', width: '19.19%' }, lectern: { left: '32.45%', top: '48.57%', width: '11.5%' }, book: { left: '32.05%', top: '42.84%', width: '11.79%' },
+  harp: { left: '0%', top: '57.94%', width: '14.62%' }, trumpet: { left: '19.08%', top: '64.71%', width: '11.9%' },
+  lanternL: { left: '34.29%', top: '24.93%', width: '3.88%' }, lanternR: { left: '73.74%', top: '24.93%', width: '3.88%' },
+  art: { left: '69.27%', top: '49.67%', width: '23.99%' }, guitar: { left: '86.63%', top: '49.35%', width: '13.22%' },
+};
+const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
+const HALL = { w: 1920, h: 1080 };
+
+// A painted prop layer pinned to the room; `wiggle` replays its tap animation.
+function Prop({ id, pos, z = 2, idle, tap, wiggle = 0, onClick, label, testId, className = '' }) {
+  const img = <motion.img src={`${ROOM}${id}.png`} alt="" draggable={false} className="block w-full h-auto" animate={idle} transition={idle ? { repeat: Infinity, duration: 3.4, ease: 'easeInOut' } : undefined} />;
+  if (!onClick) return <div aria-hidden="true" className={`absolute pointer-events-none ${className}`} style={{ ...pos, zIndex: z }}>{img}</div>;
+  return (
+    <motion.button type="button" data-testid={testId || `academy-${id}`} aria-label={label} onClick={onClick} className={`absolute p-0 border-0 bg-transparent cursor-pointer ${className}`} style={{ ...pos, zIndex: z, transformOrigin: 'bottom center' }}
+      key={`${id}-${wiggle}`} animate={wiggle ? tap : {}} transition={{ duration: 0.7 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+      {img}
+    </motion.button>
+  );
+}
 const PANELS = { class: TodaysClass, album: MyAlbum, yearbook: Yearbook };
 const ding = (f) => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {}); };
 
 // Hotspot pinned to a % of the painted hall, with a pulsing ring + label so kids find it.
 function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
   return (
-    <motion.button type="button" data-testid={testId || `academy-room-${id}`} aria-label={label} onClick={onClick} className="absolute flex flex-col items-center justify-end group" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, zIndex: 3 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+    <motion.button type="button" data-testid={testId || `academy-room-${id}`} aria-label={label} onClick={onClick} className="absolute flex flex-col items-center justify-end group" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, zIndex: 4 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
       {children}
       <motion.span aria-hidden="true" className="absolute inset-0 rounded-2xl pointer-events-none" style={{ border: `3px solid ${color}`, boxShadow: `0 0 0 3px rgba(255,255,255,0.6)` }} animate={{ opacity: [0.25, 0.85, 0.25], scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }} />
       {label && <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-black text-[10px] md:text-xs" style={{ background: color, color: id === 'class' || id === 'album' ? 'white' : 'var(--jma-dark)', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>{label}</span>}
@@ -215,7 +236,7 @@ export default function AcademyPage() {
   useStreetMusic(ACADEMY_TRACKS);
   const [pbj, setPbj] = useState(false);
   const [line, setLine] = useState(0);
-  const [wiggle, setWiggle] = useState({ bell: 0, plant: 0 });
+  const [wiggle, setWiggle] = useState({ harp: 0, trumpet: 0, guitar: 0, shield: 0, lanternL: 0, lanternR: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
   useEffect(() => { say('charlie.academy.welcome', { minGapMs: 4000 }); }, []);
   // Size the hall like background-size: cover (anchored bottom-center) so % hotspots stay glued to the art.
@@ -224,7 +245,7 @@ export default function AcademyPage() {
       const vw = window.innerWidth, vh = window.innerHeight;
       const sc = Math.max(vw / HALL.w, vh / HALL.h);
       const w = HALL.w * sc, h = HALL.h * sc;
-      setBox({ w, h, left: (vw - w) / 2, top: vh - h });
+      setBox({ w, h, left: (vw - w) / 2, top: (vh - h) * 0.6 });
     };
     fit();
     window.addEventListener('resize', fit);
@@ -237,57 +258,72 @@ export default function AcademyPage() {
   return (
     <div data-testid="academy-page" className="fixed inset-0 overflow-hidden" style={{ background: '#F7D9A8' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
-      <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '50.6% 44.2%' }}
+      <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '55.8% 48%' }}
         initial={{ scale: 1.08, opacity: 0 }} animate={leaving ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : { duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}>
-        <img src="assets/academy/hall.jpg" alt="" draggable={false} className="absolute inset-0 w-full h-full" />
-
-        {/* the giant round door in the clock → out to the plaza */}
-        <AcademyPortal style={PORTAL} onEnter={goOut} disabled={leaving} />
-        {/* light spilling from the door onto the floor + drifting motes */}
-        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '22%', top: '55%', width: '58%', height: '45%', zIndex: 1, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.55) 0%, rgba(52,224,246,0.25) 35%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
+        {/* the plaza, alive, seen through the archway (behind the plate) */}
+        <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} />
+        {/* the painted room — the archway is a transparent hole in this plate */}
+        <img src={`${ROOM}plate.webp`} alt="" draggable={false} className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }} />
+        {/* light spilling from the archway onto the floor + drifting motes */}
+        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '32%', top: '64%', width: '48%', height: '36%', zIndex: 2, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.5) 0%, rgba(52,224,246,0.22) 35%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
         {MOTES.map((m, i) => (
           <motion.span key={i} aria-hidden="true" className="absolute rounded-full pointer-events-none" style={{ left: m.left, top: m.top, width: m.size, height: m.size, background: 'white', boxShadow: '0 0 6px 2px rgba(127,239,255,0.8)', zIndex: 2 }}
             animate={{ y: [0, -40, -80], x: [0, i % 2 ? 10 : -10, 0], opacity: [0, 0.9, 0] }} transition={{ repeat: Infinity, duration: m.dur, delay: m.delay, ease: 'easeOut' }} />
         ))}
-        {/* chalk notes drift off the board */}
+
+        {/* chalkboard → Quest Board (chalk doodles shimmer on their own layer) */}
+        <Prop id="chalkboard" pos={L.chalkboard} />
+        <Prop id="chalk-doodles" pos={L.doodles} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
         {[0, 1, 2].map((n) => (
-          <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${8 + n * 5}%`, top: '40%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 2 }}
-            animate={{ y: [0, -70 - n * 15], x: [0, (n % 2 ? 1 : -1) * 14], opacity: [0, 0.9, 0], rotate: [0, n % 2 ? 20 : -20] }} transition={{ repeat: Infinity, duration: 3 + n * 0.6, delay: n * 1.1, ease: 'easeOut' }}>
+          <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${9 + n * 6}%`, top: '26%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 3 }}
+            animate={{ y: [0, -60 - n * 15], x: [0, (n % 2 ? 1 : -1) * 14], opacity: [0, 0.9, 0], rotate: [0, n % 2 ? 20 : -20] }} transition={{ repeat: Infinity, duration: 3 + n * 0.6, delay: n * 1.1, ease: 'easeOut' }}>
             <Music className="w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
           </motion.span>
         ))}
-        {/* the gold records catch the light */}
-        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '80%', top: '25%', width: '19%', height: '40%', zIndex: 1, background: 'linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%)', backgroundSize: '300% 100%', mixBlendMode: 'soft-light' }} animate={{ backgroundPosition: ['200% 0', '-100% 0'] }} transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', repeatDelay: 2 }} />
+        <Hotspot id="class" x={5} y={20} w={27} h={42} label="Quest Board" color="#1E9BFF" onClick={() => setPanel('class')} />
 
-        {/* chalkboard → Quest Board */}
-        <Hotspot id="class" x={3} y={29} w={20} h={37} label="Quest Board" color="#1E9BFF" onClick={() => setPanel('class')} />
-        {/* record shelf → My Album */}
-        <Hotspot id="album" x={80} y={65} w={16.5} h={28} label="My Album" color="#FF2D85" onClick={() => setPanel('album')} />
-        {/* yearbook on the desk → Yearbook */}
-        <Hotspot id="yearbook" x={12.5} y={80} w={13} h={12} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')} />
+        {/* lanterns sway and glow */}
+        {[['lanternL', 'lantern-left'], ['lanternR', 'lantern-right']].map(([k, id], i) => (
+          <Prop key={k} id={id} testId={`academy-${id}`} pos={L[k]} z={3} className="origin-top" label="Lantern" wiggle={wiggle[k]} tap={{ rotate: [0, -12, 10, -6, 3, 0] }} onClick={() => poke(k, 'sfx-bell-chime.mp3')}
+            idle={{ rotate: i ? [2.5, -2.5, 2.5] : [-2.5, 2.5, -2.5] }} />
+        ))}
+        {[L.lanternL, L.lanternR].map((p, i) => (
+          <motion.span key={i} aria-hidden="true" className="absolute rounded-full pointer-events-none" style={{ left: `calc(${p.left} - 2%)`, top: `calc(${p.top} + 3%)`, width: '8%', aspectRatio: '1 / 1', zIndex: 2, background: 'radial-gradient(circle, rgba(170,255,120,0.55) 0%, transparent 65%)', mixBlendMode: 'screen' }}
+            animate={{ opacity: [0.4, 1, 0.5, 0.9, 0.4] }} transition={{ repeat: Infinity, duration: 3.1 + i * 0.4, ease: 'easeInOut' }} />
+        ))}
 
-        {/* PBJ movie poster pinned over the back concert poster on the right wall — tap to see it big */}
-        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '75.6%', top: '38.6%', width: '4.5%', height: '17.9%', zIndex: 3, clipPath: 'polygon(0 11.4%, 100% 0, 100% 100%, 0 96.6%)' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-7deg) scale(1.08)' }} />
-        </motion.button>
-        {/* Music 101 cover art pinned over the front concert poster (among the gold records) */}
-        <motion.button type="button" data-testid="academy-m101-poster" aria-label="Music 101 poster" onClick={() => setPbj('m101')} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '86.6%', top: '45.7%', width: '6.8%', height: '17.2%', zIndex: 3, clipPath: 'polygon(0 7.7%, 100% 0, 100% 100%, 0 92.3%)' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-          <img src="assets/academy/music101-poster.webp" alt="" draggable={false} className="block w-full h-full" style={{ objectFit: 'fill', transform: 'skewY(-5deg) scale(1.06)' }} />
-        </motion.button>
+        {/* JMA shield plaque — tap for a twinkle */}
+        <Prop id="shield" pos={L.shield} z={3} label="JMA shield" wiggle={wiggle.shield} tap={{ rotate: [0, -3, 3, -2, 1, 0], scale: [1, 1.04, 1] }} onClick={() => poke('shield', 'sfx-twinkle.mp3')} />
+        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.shield, height: '40%', zIndex: 3, background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.5) 50%, transparent 65%)', backgroundSize: '300% 100%', mixBlendMode: 'soft-light' }} animate={{ backgroundPosition: ['200% 0', '-100% 0'] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', repeatDelay: 3 }} />
 
-        {/* desk bell — just for fun */}
-        <motion.button type="button" data-testid="academy-bell" aria-label="Ring the bell" onClick={() => poke('bell', 'xylo High c.mp3')} className="absolute" style={{ left: '26.5%', top: '82%', width: '5%', height: '9%', zIndex: 3 }} key={`bell-${wiggle.bell}`} animate={wiggle.bell ? { rotate: [0, -14, 12, -8, 5, 0], y: [0, -6, 0] } : {}} transition={{ duration: 0.6 }}>
-          <Bell className="w-full h-full opacity-0" />
+        {/* achievement book on its lectern → Yearbook */}
+        <Prop id="lectern" pos={L.lectern} z={3} />
+        <Prop id="book" pos={L.book} z={4} idle={{ y: [0, -4, 0] }} />
+        <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')} />
+
+        {/* instruments — tap to play them */}
+        <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />
+        <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3')} />
+        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3')} />
+
+        {/* seashell art table → My Album */}
+        <Prop id="art-station" pos={L.art} z={4} />
+        <Hotspot id="album" x={70} y={50} w={23} h={36} label="My Album" color="#FF2D85" onClick={() => setPanel('album')} />
+
+        {/* posters hang on the back wall either side of the archway */}
+        <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer origin-top" style={{ left: '39.2%', top: '33%', width: '6.4%', zIndex: 3 }} animate={{ rotate: [-1.5, 1.5, -1.5] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+          <img src="assets/academy/pbj-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid #3B2412', boxShadow: '0 4px 0 rgba(0,0,0,0.25)' }} />
         </motion.button>
-        {/* the plant wiggles */}
-        <motion.button type="button" data-testid="academy-plant" aria-label="Plant" onClick={() => poke('plant')} className="absolute" style={{ left: '0%', top: '70%', width: '7%', height: '27%', zIndex: 3 }} key={`plant-${wiggle.plant}`} animate={wiggle.plant ? { rotate: [0, -4, 4, -3, 2, 0] } : {}} transition={{ duration: 0.7 }} />
+        <motion.button type="button" data-testid="academy-m101-poster" aria-label="Music 101 poster" onClick={() => setPbj('m101')} className="absolute p-0 border-0 bg-transparent cursor-pointer origin-top" style={{ left: '66%', top: '33%', width: '6.4%', zIndex: 3 }} animate={{ rotate: [1.5, -1.5, 1.5] }} transition={{ repeat: Infinity, duration: 4.6, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+          <img src="assets/academy/music101-poster.webp" alt="" draggable={false} className="block w-full h-auto" style={{ border: '3px solid #3B2412', boxShadow: '0 4px 0 rgba(0,0,0,0.25)' }} />
+        </motion.button>
 
         {/* Charlie on the rug */}
-        <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '38%', bottom: '3%', width: '11%', zIndex: 4 }}>
+        <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '57%', bottom: '4%', width: '9%', zIndex: 6 }}>
           <AnimatePresence mode="wait">
             <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '160%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
           </AnimatePresence>
-          <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
+          <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" style={{ filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
         </button>
       </motion.div>
       {leaving && <motion.div data-testid="academy-door-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}

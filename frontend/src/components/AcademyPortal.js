@@ -25,17 +25,17 @@ export default function AcademyPortal({ style, onEnter, disabled }) {
       <div aria-hidden="true" className="absolute overflow-hidden" style={{ ...style, zIndex: 1, background: 'linear-gradient(180deg, #7FEFFF 0%, #34E0F6 40%, #1AA7D8 72%, #0E7FB8 100%)' }}>
         <motion.div className="absolute" style={{ left: '-50%', top: '-50%', width: '200%', height: '200%', background: 'conic-gradient(from 0deg, transparent 0 14%, rgba(255,255,255,0.22) 16% 20%, transparent 22% 48%, rgba(255,255,255,0.18) 50% 55%, transparent 57% 80%, rgba(255,255,255,0.2) 82% 86%, transparent 88%)' }}
           animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 40, ease: 'linear' }} />
+        {FISH.map((f, i) => (
+          <motion.img key={i} src={f.src} alt="" draggable={false} className="absolute object-contain" style={{ top: f.top, width: f.w, left: 0, scaleX: f.rev ? -1 : 1 }}
+            initial={{ x: f.rev ? '320%' : '-120%' }} animate={{ x: f.rev ? '-120%' : '320%', y: [0, -6, 0, 6, 0] }}
+            transition={{ x: { repeat: Infinity, duration: f.dur, ease: 'linear', delay: -f.delay }, y: { repeat: Infinity, duration: 3, ease: 'easeInOut' } }} />
+        ))}
         <div className="absolute inset-x-0 bottom-0" style={{ height: '22%', background: 'radial-gradient(ellipse at 50% 100%, #F2D9A0 0%, #E3C184 60%, #C9A469 100%)', borderTop: '3px solid rgba(2,36,63,0.35)' }} />
         <motion.img src="assets/plaza/dressing-room.png" alt="" draggable={false} className="absolute object-contain" style={{ left: '-4%', bottom: '12%', width: '62%', transform: 'scaleX(-1)', filter: 'drop-shadow(0 3px 0 rgba(2,36,63,0.35))' }} animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }} />
         <motion.img src="assets/plaza/sticker-shack.png" alt="" draggable={false} className="absolute object-contain" style={{ right: '-2%', bottom: '12%', width: '58%', filter: 'drop-shadow(0 3px 0 rgba(2,36,63,0.35))' }} animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 2.7, ease: 'easeInOut', delay: 0.6 }} />
         {[0, 1].map((n) => (
           <motion.img key={n} src={n ? UW_ASSETS.seaweed2 : UW_ASSETS.seaweed1} alt="" draggable={false} className="absolute object-contain object-bottom" style={{ [n ? 'right' : 'left']: '2%', bottom: '4%', width: '30%', transformOrigin: 'bottom center' }}
             animate={{ rotate: n ? [3, -3, 3] : [-3, 3, -3] }} transition={{ repeat: Infinity, duration: 3 + n, ease: 'easeInOut' }} />
-        ))}
-        {FISH.map((f, i) => (
-          <motion.img key={i} src={f.src} alt="" draggable={false} className="absolute object-contain" style={{ top: f.top, width: f.w, left: 0, scaleX: f.rev ? -1 : 1 }}
-            initial={{ x: f.rev ? '320%' : '-120%' }} animate={{ x: f.rev ? '-120%' : '320%', y: [0, -6, 0, 6, 0] }}
-            transition={{ x: { repeat: Infinity, duration: f.dur, ease: 'linear', delay: -f.delay }, y: { repeat: Infinity, duration: 3, ease: 'easeInOut' } }} />
         ))}
         {BUBBLES.map((b, i) => (
           <motion.span key={i} className="absolute rounded-full" style={{ left: b.left, bottom: '-6%', width: b.size, height: b.size, border: '1.5px solid rgba(255,255,255,0.85)', background: 'rgba(255,255,255,0.25)' }}

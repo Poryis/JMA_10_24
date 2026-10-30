@@ -13,6 +13,8 @@ import AvatarSprite from '../components/AvatarSprite';
 import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
 import CoverDesigner, { Sleeve, SLEEVES, loadCovers, saveCover, normalizeCover } from '../components/CoverDesigner';
 import AcademyPortal from '../components/AcademyPortal';
+import { Bubbles } from '../components/UnderwaterBackdrop';
+import { CORAL } from '../data/academyRoom';
 import { useStreetMusic } from './CampusMapPage';
 import useDailyQuests from '../hooks/useDailyQuests';
 import useRank from '../hooks/useRank';
@@ -188,7 +190,7 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Design your record sleeves at the art table.', 'The big book on the stand is your Yearbook.', 'Rank up and a new friend pops out of the clock tower!'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Design your album covers at the art table!', 'The big book on the stand is your Yearbook.', 'Rank up and a new friend pops out of the clock tower!'];
 const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
 // Layer positions (% of the 1920x1080 room) measured straight from the PSD export.
 const ROOM = 'assets/academy/room/';
@@ -203,6 +205,34 @@ const L = {
 const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1920, h: 1080 };
 
+// The two easels on the art table show the kid's two latest record sleeves
+// (or a "make one!" hint) so the station explains itself.
+const EASELS = [{ left: '26%', top: '21%', width: '17.5%', rot: -4 }, { left: '54.5%', top: '22.5%', width: '20%', rot: 3 }];
+function Easels() {
+  const avatar = readAvatarOutfit();
+  const latest = useMemo(() => {
+    const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
+    const covers = loadCovers();
+    return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 2).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
+  }, []);
+  return (
+    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '461 / 392', zIndex: 5 }} data-testid="academy-easels">
+      {EASELS.map((e, i) => {
+        const t = latest[i];
+        return (
+          <motion.div key={i} className="absolute" style={{ left: e.left, top: e.top, width: e.width, rotate: e.rot }} animate={{ y: [0, -1.5, 0] }} transition={{ repeat: Infinity, duration: 3 + i, ease: 'easeInOut' }}>
+            {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} className="w-full" />
+              : <div className="w-full aspect-square flex flex-col items-center justify-center gap-0.5 text-center" style={{ color: '#B8233A' }}>
+                  <Palette className="w-[40%] h-[40%]" strokeWidth={2.5} />
+                  <span className="font-black leading-none" style={{ fontSize: 'clamp(6px, 0.55vw, 11px)' }}>{i === 0 ? 'ALBUM' : 'COVERS'}</span>
+                </div>}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
 // A painted prop layer pinned to the room; `wiggle` replays its tap animation.
 function Prop({ id, pos, z = 2, idle, tap, wiggle = 0, onClick, label, testId, className = '' }) {
   const img = <motion.img src={`${ROOM}${id}.png`} alt="" draggable={false} className="block w-full h-auto" animate={idle} transition={idle ? { repeat: Infinity, duration: 3.4, ease: 'easeInOut' } : undefined} />;
@@ -215,7 +245,10 @@ function Prop({ id, pos, z = 2, idle, tap, wiggle = 0, onClick, label, testId, c
   );
 }
 const PANELS = { class: TodaysClass, album: MyAlbum, yearbook: Yearbook };
-const ding = (f) => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {}); };
+const ding = (f, maxMs) => {
+  const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.6; a.play().catch(() => {});
+  if (maxMs) setTimeout(() => { const fade = setInterval(() => { a.volume = Math.max(0, a.volume - 0.1); if (a.volume <= 0.01) { clearInterval(fade); a.pause(); } }, 30); }, maxMs);
+};
 
 // Hotspot pinned to a % of the painted hall, with a pulsing ring + label so kids find it.
 function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
@@ -252,7 +285,7 @@ export default function AcademyPage() {
     return () => window.removeEventListener('resize', fit);
   }, []);
   const Panel = panel ? PANELS[panel] : null;
-  const poke = (k, sfx) => { setWiggle((o) => ({ ...o, [k]: o[k] + 1 })); if (sfx) ding(sfx); };
+  const poke = (k, sfx, maxMs) => { setWiggle((o) => ({ ...o, [k]: o[k] + 1 })); if (sfx) ding(sfx, maxMs); };
   const goOut = () => { if (leaving) return; setLeaving(true); setTimeout(() => navigate('/home'), 650); };
 
   return (
@@ -264,6 +297,12 @@ export default function AcademyPage() {
         <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} />
         {/* the painted room — the archway is a transparent hole in this plate */}
         <img src={`${ROOM}plate.webp`} alt="" draggable={false} className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }} />
+        <Bubbles className="absolute inset-0" />
+        {/* every coral accent breathes very slightly on its own layer */}
+        {CORAL.map((c, i) => (
+          <motion.img key={c.id} src={`${ROOM}${c.id}.png`} alt="" draggable={false} aria-hidden="true" className="absolute pointer-events-none" style={{ left: c.left, top: c.top, width: c.width, zIndex: 2, transformOrigin: 'bottom center' }}
+            animate={{ scale: [1, 1.025, 1], rotate: [0, i % 2 ? 0.8 : -0.8, 0] }} transition={{ repeat: Infinity, duration: 3.6 + (i % 5) * 0.5, delay: -(i * 0.7), ease: 'easeInOut' }} />
+        ))}
         {/* light spilling from the archway onto the floor + drifting motes */}
         <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '32%', top: '64%', width: '48%', height: '36%', zIndex: 2, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.5) 0%, rgba(52,224,246,0.22) 35%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
         {MOTES.map((m, i) => (
@@ -303,12 +342,13 @@ export default function AcademyPage() {
 
         {/* instruments — tap to play them */}
         <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />
-        <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3')} />
-        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3')} />
+        <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3', 450)} />
+        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3', 900)} />
 
-        {/* seashell art table → My Album */}
+        {/* seashell art table → Album Cover Studio (latest sleeves sit on the easels) */}
         <Prop id="art-station" pos={L.art} z={4} />
-        <Hotspot id="album" x={70} y={50} w={23} h={36} label="My Album" color="#FF2D85" onClick={() => setPanel('album')} />
+        <Easels />
+        <Hotspot id="album" x={70} y={50} w={23} h={36} label="Album Cover Studio" color="#FF2D85" onClick={() => setPanel('album')} />
 
         {/* posters hang on the back wall either side of the archway */}
         <motion.button type="button" data-testid="academy-pbj-poster" aria-label="Peanut Butter Jellyfish Sandwich poster" onClick={() => setPbj(true)} className="absolute p-0 border-0 bg-transparent cursor-pointer origin-top" style={{ left: '39.2%', top: '33%', width: '6.4%', zIndex: 3 }} animate={{ rotate: [-1.5, 1.5, -1.5] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>

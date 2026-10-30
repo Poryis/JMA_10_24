@@ -8,6 +8,19 @@ Jelly of the Month Club Music Academy: screenshots and original artwork for the 
 
 01 Academy interior · 02 Plaza · 03 Play street (Main Stage, Jelly Jukebox, Shred City) · 04 Learn street · 05 Create street · 06 Dressing Room · 07 Jam Session (guitar) · 09 Jelly Jukebox · 10 Detective Dr. Jellybone · 14 JMAtv · 15 Sight-Reading Sprint · 16 Charlie's Song Studio
 
+## Hero loop video (`hero/`)
+A seamless 10-second loop of the underwater Plaza with no sound and no app buttons.
+- `jma-hero-loop-1920.webm` (2 MB) and `jma-hero-loop-1920.mp4` (5 MB): desktop
+- `jma-hero-loop-1280.mp4` (1.9 MB): phones and slower connections
+- `jma-hero-poster.jpg`: still frame to show while the video loads, and for reduced-motion visitors
+
+```html
+<video autoplay muted loop playsinline poster="jma-hero-poster.jpg">
+  <source src="jma-hero-loop-1920.webm" type="video/webm">
+  <source src="jma-hero-loop-1920.mp4" type="video/mp4">
+</video>
+```
+
 ## Artwork (transparent PNGs)
 - `logos/`: JMA crest, white crest, JMAtv logo, harp icon
 - `characters/`: Charlie, Dr. Jellybone, Finn, Jazzy, Chunk, Lou, Stew, Jelly Rap Trio

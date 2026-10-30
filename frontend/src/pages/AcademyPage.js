@@ -13,6 +13,7 @@ import AvatarSprite from '../components/AvatarSprite';
 import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
 import CoverDesigner, { Sleeve, SLEEVES, loadCovers, saveCover, normalizeCover } from '../components/CoverDesigner';
 import AcademyPortal from '../components/AcademyPortal';
+import QuestScroll from '../components/QuestScroll';
 import { Bubbles } from '../components/UnderwaterBackdrop';
 import { CORAL } from '../data/academyRoom';
 import { useStreetMusic } from './CampusMapPage';
@@ -208,26 +209,18 @@ const HALL = { w: 1920, h: 1080 };
 // The two parchment scrolls drawn on the chalkboard carry the next two unfinished
 // quests (finished ones stay until there's something new to show, with a chalk tick).
 const SCROLL_SPOTS = [
-  { left: '5.5%', top: '62.5%', width: '22%', height: '25%', color: '#5A3A14', rot: -2 },
-  { left: '79.5%', top: '41.5%', width: '17.5%', height: '19%', color: '#5A3A14', rot: 2 },
+  { left: '0.5%', top: '57%', width: '26.5%', height: '42%', rot: -3, font: '4.3cqw', icon: '8cqw' },
+  { left: '75%', top: '36%', width: '23.5%', height: '32%', rot: 3, font: '3.6cqw', icon: '6.5cqw' },
 ];
 function ChalkScrolls() {
   const { quests } = useDailyQuests();
+  // open quests first so a finished one makes room for the next
+  const shown = [...quests.filter((q) => !q.done), ...quests.filter((q) => q.done)].slice(0, SCROLL_SPOTS.length);
   return (
-    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '408 / 327', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls">
-      {SCROLL_SPOTS.map((s, i) => {
-        // two scrolls: show the open quests first so a finished one makes room for the next
-        const shown = [...quests.filter((q) => !q.done), ...quests.filter((q) => q.done)].slice(0, SCROLL_SPOTS.length);
-        const q = shown[i];
-        if (!q) return null;
-        return (
-          <div key={q.id} data-testid={`academy-chalk-quest-${i}`} data-done={q.done ? 'true' : 'false'} className="absolute flex items-center justify-center text-center font-display font-black leading-[1.05]" style={{ left: s.left, top: s.top, width: s.width, height: s.height, rotate: `${s.rot}deg`, color: s.color, fontSize: '3.1cqw', padding: '0 3%', textDecoration: q.done ? 'line-through' : 'none', textDecorationThickness: '0.12em', opacity: q.done ? 0.75 : 1 }}>
-            <span>{q.title}</span>
-            {q.done && <motion.span className="absolute inset-0 flex items-center justify-center" style={{ color: '#34A853', fontSize: '12cqw', textShadow: '0 0 2px white' }} initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 300, damping: 14 }}>✓</motion.span>}
-          </div>
-        );
-      })}
-    </div>
+    <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '408 / 327', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls"
+      animate={{ y: [0, -2, 0] }} transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}>
+      {shown.map((q, i) => <QuestScroll key={q.id} quest={q} spot={SCROLL_SPOTS[i]} index={i} isNext={!q.done && i === 0} />)}
+    </motion.div>
   );
 }
 

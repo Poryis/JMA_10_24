@@ -519,3 +519,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 
 - 2026-06: Chalkboard quest scrolls redrawn as hand-inked parchment (QuestScroll.js): centered icon + Caveat title with red drop cap, next quest sways + glows, done = wax seal.
 - 2026-06: Main Stage marquee (CampusMapPage StageMarquee): Bungee font, centred on bandstand.png cream panel (box 1:1 object-bottom => top offset 4.13%), 8deg tilt, 30 chasing bulbs (.marquee-bulb CSS in index.css).
+- 2026-06: Press kit at frontend/public/press/ (index.html, README layer guide, jma-press-kit.zip ~27MB, 12 desktop + 12 tablet screenshots, artwork folders). Regenerate: python3 memory/press_shots.py <URL>; python3 memory/press_index.py; zip. REMOVE public/press before GitHub Pages launch if size matters.

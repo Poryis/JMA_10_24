@@ -3,7 +3,7 @@
 // drawn from every sticker they've earned, 4 frames and a vinyl label color.
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Check, X, Shuffle, User } from 'lucide-react';
+import { Play, Check, X, Shuffle, User, Type } from 'lucide-react';
 import AvatarSprite from './AvatarSprite';
 import useStickers from '../hooks/useStickers';
 import { COLLECTION_STICKERS, STICKER_CATEGORIES } from '../data/stickers';
@@ -26,6 +26,13 @@ export const FRAMES = [
   { id: 'gold',  name: 'Gold',  style: { border: '5px solid #FFCC00' } },
   { id: 'candy', name: 'Candy', style: { border: '5px dashed white' } },
 ];
+export const TITLE_FONTS = [
+  { id: 'bubbly',  name: 'Bubbly',  family: "'Sniglet', cursive", weight: 800, tracking: '0.01em', upper: false },
+  { id: 'round',   name: 'Round',   family: "'Fredoka', sans-serif", weight: 700, tracking: '0.02em', upper: false },
+  { id: 'comic',   name: 'Comic',   family: "'Comic Kings', cursive", weight: 400, tracking: '0.03em', upper: false },
+  { id: 'block',   name: 'Block',   family: "'Fredoka', sans-serif", weight: 700, tracking: '0.14em', upper: true },
+];
+export const TITLE_COLORS = ['#FFFFFF', '#0B1F3A', '#FFCC00', '#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF'];
 export const SLOTS = [
   { id: 'main', name: 'Big' },
   { id: 'tl',   name: 'Top left' },
@@ -38,8 +45,8 @@ export function saveCover(id, cover) { const all = loadCovers(); all[id] = cover
 
 // Old covers were { color, sticker } with sticker=null meaning "my avatar".
 export function normalizeCover(c, fallbackColor) {
-  if (!c) return { color: fallbackColor, pattern: 'solid', frame: 'none', label: '#111111', stickers: { main: 'me', tl: null, br: null } };
-  return { color: c.color || fallbackColor, pattern: c.pattern || 'solid', frame: c.frame || 'none', label: c.label || '#111111', stickers: c.stickers || { main: c.sticker || 'me', tl: null, br: null } };
+  if (!c) return { color: fallbackColor, pattern: 'solid', frame: 'none', label: '#111111', stickers: { main: 'me', tl: null, br: null }, title: null };
+  return { color: c.color || fallbackColor, pattern: c.pattern || 'solid', frame: c.frame || 'none', label: c.label || '#111111', stickers: c.stickers || { main: c.sticker || 'me', tl: null, br: null }, title: c.title || null };
 }
 
 const ICON_OF = Object.fromEntries(COLLECTION_STICKERS.filter((s) => s.icon).map((s) => [s.id, s.icon]));
@@ -51,9 +58,10 @@ function SlotArt({ value, avatar, className }) {
   return src ? <img src={src} alt="" className={className} /> : null;
 }
 
-export function Sleeve({ cover, avatar, kind, className = '', activeSlot, onSlot }) {
+export function Sleeve({ cover, avatar, kind, title, className = '', activeSlot, onSlot }) {
   const pat = PATTERNS.find((p) => p.id === cover.pattern) || PATTERNS[0];
   const frame = FRAMES.find((f) => f.id === cover.frame) || FRAMES[0];
+  const tf = cover.title && TITLE_FONTS.find((f) => f.id === cover.title.font);
   const ring = (id) => (onSlot && activeSlot === id ? { outline: '3px dashed #FF9500', outlineOffset: 2, borderRadius: 8 } : {});
   const slot = (id, cls, imgCls) => {
     const art = <SlotArt value={cover.stickers[id]} avatar={avatar} className={imgCls} />;
@@ -62,18 +70,21 @@ export function Sleeve({ cover, avatar, kind, className = '', activeSlot, onSlot
       : <span className={`absolute flex ${cls}`}>{art}</span>;
   };
   return (
-    <div data-testid="sleeve" className={`relative aspect-square rounded-xl overflow-hidden ${className}`} style={{ background: cover.color, ...pat.css, border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
+    <div data-testid="sleeve" className={`relative aspect-square rounded-xl overflow-hidden ${className}`} style={{ containerType: 'inline-size', background: cover.color, ...pat.css, border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
       {frame.style && <span className="absolute inset-1 rounded-lg pointer-events-none" style={frame.style} />}
       <span data-testid="sleeve-label" className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: cover.label, border: '2px solid var(--jma-dark)' }}><span className="w-2 h-2 rounded-full" style={{ background: cover.label === '#111111' ? 'white' : 'var(--jma-dark)' }} /></span>
       {slot('main', 'inset-x-0 bottom-0 h-[76%] items-end justify-center', 'h-full w-auto max-w-[70%] object-contain object-bottom')}
       {slot('tl', 'left-1.5 top-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
       {slot('br', 'right-1.5 bottom-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
+      {tf && title && (
+        <span data-testid="sleeve-title" className="absolute left-[6%] right-[26%] top-[7%] pointer-events-none leading-[1.05] break-words" style={{ fontFamily: tf.family, fontWeight: tf.weight, letterSpacing: tf.tracking, textTransform: tf.upper ? 'uppercase' : 'none', color: cover.title.color, fontSize: `clamp(8px, ${title.length > 14 ? 9 : 12}cqw, 40px)`, textShadow: cover.title.color === '#FFFFFF' || cover.title.color === '#FFCC00' ? '0 1px 0 rgba(2,36,63,0.7), 0 0 3px rgba(2,36,63,0.5)' : '0 1px 0 rgba(255,255,255,0.6)', containerType: 'normal' }}>{title}</span>
+      )}
       <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
     </div>
   );
 }
 
-const TABS = [{ id: 'color', name: 'Color' }, { id: 'pattern', name: 'Pattern' }, { id: 'stickers', name: 'Stickers' }, { id: 'frame', name: 'Frame' }];
+const TABS = [{ id: 'color', name: 'Color' }, { id: 'pattern', name: 'Pattern' }, { id: 'stickers', name: 'Stickers' }, { id: 'frame', name: 'Frame' }, { id: 'title', name: 'Title' }];
 const sel = (on) => ({ border: `3px solid ${on ? '#FF9500' : 'var(--jma-dark)'}`, boxShadow: on ? '0 0 0 3px white, 0 0 0 5px #FF9500' : 'none' });
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -117,7 +128,7 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
   const setSticker = (v) => setCover((c) => ({ ...c, stickers: { ...c.stickers, [slot]: v } }));
   const shuffle = () => {
     const ids = COLLECTION_STICKERS.filter((s) => s.icon).map((s) => s.id);
-    set({ color: pick(SLEEVES), pattern: pick(PATTERNS).id, frame: pick(FRAMES).id, label: pick(LABELS), stickers: { main: pick(['me', 'me', ...ids]), tl: pick([null, ...ids]), br: pick([null, ...ids]) } });
+    set({ color: pick(SLEEVES), pattern: pick(PATTERNS).id, frame: pick(FRAMES).id, label: pick(LABELS), stickers: { main: pick(['me', 'me', ...ids]), tl: pick([null, ...ids]), br: pick([null, ...ids]) }, title: { font: pick(TITLE_FONTS).id, color: pick(TITLE_COLORS) } });
   };
   return (
     <motion.div data-testid="cover-designer" className="fixed inset-0 z-[80] flex items-center justify-center p-2 sm:p-3" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
@@ -127,7 +138,7 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
         <div className="text-xs font-bold mb-3" style={{ color: '#4B5668' }}>Design your record sleeve — tap a spot on the cover to put a sticker there.</div>
         <div className="flex gap-3 sm:gap-4">
           <div className="w-36 sm:w-44 md:w-52 flex-shrink-0">
-            <Sleeve cover={cover} avatar={avatar} kind={track.kind} activeSlot={tab === 'stickers' ? slot : null} onSlot={(id) => { setSlot(id); setTab('stickers'); }} />
+            <Sleeve cover={cover} avatar={avatar} kind={track.kind} title={track.name} activeSlot={tab === 'stickers' ? slot : null} onSlot={(id) => { setSlot(id); setTab('stickers'); }} />
             <button type="button" data-testid="cover-shuffle" onClick={shuffle} className="chunky-btn w-full mt-3 py-1.5 text-xs font-black flex items-center justify-center gap-1.5" style={{ background: '#8E5BFF', color: 'white' }}><Shuffle className="w-4 h-4" strokeWidth={3} /> Surprise me!</button>
           </div>
           <div className="flex-1 min-w-0">
@@ -142,6 +153,21 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
                 </div>
               )}
               {tab === 'stickers' && <StickerPicker cover={cover} avatar={avatar} slot={slot} setSlot={setSlot} onPick={setSticker} />}
+              {tab === 'title' && (
+                <div>
+                  <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Lettering</div>
+                  <div className="grid grid-cols-5 gap-2 mb-3" data-testid="cover-title-fonts">
+                    <button type="button" data-testid="cover-title-none" aria-pressed={!cover.title} onClick={() => set({ title: null })} className="rounded-xl h-14 flex flex-col items-center justify-center gap-0.5 text-[10px] font-black" style={{ background: '#F6F8FB', color: '#4B5668', ...sel(!cover.title) }}><X className="w-5 h-5" strokeWidth={3} />None</button>
+                    {TITLE_FONTS.map((f) => <button key={f.id} type="button" data-testid={`cover-title-font-${f.id}`} aria-pressed={cover.title?.font === f.id} onClick={() => set({ title: { font: f.id, color: cover.title?.color || '#FFFFFF' } })} className="rounded-xl h-14 flex flex-col items-center justify-center overflow-hidden" style={{ background: cover.color, ...sel(cover.title?.font === f.id) }}>
+                      <span className="leading-none" style={{ fontFamily: f.family, fontWeight: f.weight, letterSpacing: f.tracking, textTransform: f.upper ? 'uppercase' : 'none', fontSize: 15, color: cover.title?.color || '#FFFFFF', textShadow: '0 1px 0 rgba(2,36,63,0.7)' }}>Abc</span>
+                      <span className="text-[9px] font-black text-white" style={{ textShadow: '0 1px 0 var(--jma-dark), 0 0 3px var(--jma-dark)' }}>{f.name}</span>
+                    </button>)}
+                  </div>
+                  <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Letter color</div>
+                  <Swatches list={TITLE_COLORS} value={cover.title?.color} onPick={(color) => set({ title: { font: cover.title?.font || 'bubbly', color } })} prefix="cover-title-color" />
+                  <div className="text-[10px] font-bold mt-2 flex items-center gap-1" style={{ color: '#4B5668' }}><Type className="w-3 h-3" strokeWidth={3} /> Prints "{track.name}" on the sleeve.</div>
+                </div>
+              )}
               {tab === 'frame' && (
                 <div>
                   <div className="text-[11px] font-black uppercase mb-1" style={{ color: '#4B5668' }}>Frame</div>

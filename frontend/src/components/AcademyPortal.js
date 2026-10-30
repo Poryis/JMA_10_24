@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { UW_ASSETS } from './UnderwaterBackdrop';
+import AvatarSprite from './AvatarSprite';
 
 const FISH = [
   { src: UW_ASSETS.fish2, top: '20%', w: '34%', dur: 10, delay: 0 },
@@ -13,7 +14,7 @@ const FISH = [
 ];
 const BUBBLES = Array.from({ length: 9 }, (_, i) => ({ left: `${8 + (i * 10.3) % 84}%`, size: 4 + (i % 4) * 3, dur: 4 + (i % 3) * 1.4, delay: -(i * 0.9) }));
 
-export default function AcademyPortal({ style, onEnter, disabled }) {
+export default function AcademyPortal({ style, onEnter, disabled, avatar }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => { setOpen(true); const a = new Audio(encodeURI('assets/audio/sfx-twinkle.mp3')); a.volume = 0.4; a.play().catch(() => {}); }, 700);
@@ -37,6 +38,14 @@ export default function AcademyPortal({ style, onEnter, disabled }) {
           <motion.img key={n} src={n ? UW_ASSETS.seaweed2 : UW_ASSETS.seaweed1} alt="" draggable={false} className="absolute object-contain object-bottom" style={{ [n ? 'right' : 'left']: '2%', bottom: '4%', width: '30%', transformOrigin: 'bottom center' }}
             animate={{ rotate: n ? [3, -3, 3] : [-3, 3, -3] }} transition={{ repeat: Infinity, duration: 3 + n, ease: 'easeInOut' }} />
         ))}
+        {/* the kid's own Jelly swims past the doorway now and then */}
+        {avatar && (
+          <motion.div data-testid="academy-portal-me" className="absolute" style={{ left: 0, bottom: '18%', width: '34%' }}
+            initial={{ x: '-130%' }} animate={{ x: ['-130%', '330%'], y: [0, -8, 0, 6, 0] }}
+            transition={{ x: { repeat: Infinity, duration: 7, ease: 'linear', repeatDelay: 9, delay: 2.5 }, y: { repeat: Infinity, duration: 2.4, ease: 'easeInOut' } }}>
+            <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="w-full h-auto" style={{ filter: 'drop-shadow(0 3px 0 rgba(2,36,63,0.35))' }} />
+          </motion.div>
+        )}
         {BUBBLES.map((b, i) => (
           <motion.span key={i} className="absolute rounded-full" style={{ left: b.left, bottom: '-6%', width: b.size, height: b.size, border: '1.5px solid rgba(255,255,255,0.85)', background: 'rgba(255,255,255,0.25)' }}
             animate={{ y: ['0%', '-1600%'], x: [0, i % 2 ? 8 : -8, 0], opacity: [0, 0.9, 0] }} transition={{ repeat: Infinity, duration: b.dur, delay: b.delay, ease: 'easeOut' }} />

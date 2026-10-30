@@ -101,7 +101,7 @@ function MyAlbum() {
             const c = coverFor(t, i);
             return (
               <button key={t.id} type="button" data-testid={`academy-track-${i}`} onClick={() => setEditing(t)} className="text-left group">
-                <Sleeve cover={c} avatar={avatar} kind={t.kind} className="transition-transform group-hover:-translate-y-1" />
+                <Sleeve cover={c} avatar={avatar} kind={t.kind} title={t.name} className="transition-transform group-hover:-translate-y-1" />
                 <div className="mt-1 text-xs font-black truncate" style={{ color: 'var(--jma-dark)' }}>{t.name}</div>
                 <div className="text-[10px] font-bold truncate" style={{ color: '#4B5668' }}>{t.meta}</div>
               </button>
@@ -205,13 +205,38 @@ const L = {
 const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1920, h: 1080 };
 
+// The two parchment scrolls (and the little treasure map) drawn on the chalkboard
+// carry the real quest titles; finished ones get a chalk tick and a strike.
+const SCROLL_SPOTS = [
+  { left: '5.5%', top: '62.5%', width: '22%', height: '25%', color: '#5A3A14', rot: -2 },
+  { left: '79.5%', top: '41.5%', width: '17.5%', height: '19%', color: '#5A3A14', rot: 2 },
+  { left: '79.5%', top: '72.5%', width: '19.5%', height: '20%', color: '#FFFFFF', rot: 0 },
+];
+function ChalkScrolls() {
+  const { quests } = useDailyQuests();
+  return (
+    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '408 / 327', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls">
+      {SCROLL_SPOTS.map((s, i) => {
+        const q = quests[i];
+        if (!q) return null;
+        return (
+          <div key={q.id} data-testid={`academy-chalk-quest-${i}`} data-done={q.done ? 'true' : 'false'} className="absolute flex items-center justify-center text-center font-display font-black leading-[1.05]" style={{ left: s.left, top: s.top, width: s.width, height: s.height, rotate: `${s.rot}deg`, color: s.color, fontSize: '3.1cqw', padding: '0 3%', textDecoration: q.done ? 'line-through' : 'none', textDecorationThickness: '0.12em', opacity: q.done ? 0.75 : 1 }}>
+            <span>{q.title}</span>
+            {q.done && <motion.span className="absolute inset-0 flex items-center justify-center" style={{ color: '#34A853', fontSize: '12cqw', textShadow: '0 0 2px white' }} initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 300, damping: 14 }}>✓</motion.span>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // The two easels on the art table show the kid's two latest record sleeves
 // (or a "make one!" hint) so the station explains itself.
 const EASELS = [{ left: '26%', top: '21%', width: '17.5%', rot: -4 }, { left: '54.5%', top: '22.5%', width: '20%', rot: 3 }];
 function Easels() {
   const avatar = readAvatarOutfit();
   const latest = useMemo(() => {
-    const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
+    const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, name: t.name, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
     const covers = loadCovers();
     return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 2).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
   }, []);
@@ -221,7 +246,7 @@ function Easels() {
         const t = latest[i];
         return (
           <motion.div key={i} className="absolute" style={{ left: e.left, top: e.top, width: e.width, rotate: e.rot }} animate={{ y: [0, -1.5, 0] }} transition={{ repeat: Infinity, duration: 3 + i, ease: 'easeInOut' }}>
-            {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} className="w-full" />
+            {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
               : <div className="w-full aspect-square flex flex-col items-center justify-center gap-0.5 text-center" style={{ color: '#B8233A' }}>
                   <Palette className="w-[40%] h-[40%]" strokeWidth={2.5} />
                   <span className="font-black leading-none" style={{ fontSize: 'clamp(6px, 0.55vw, 11px)' }}>{i === 0 ? 'ALBUM' : 'COVERS'}</span>
@@ -293,7 +318,7 @@ export default function AcademyPage() {
       <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '55.8% 48%' }}
         initial={{ scale: 1.08, opacity: 0 }} animate={leaving ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : { duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}>
         {/* the plaza, alive, seen through the archway (behind the plate) */}
-        <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} />
+        <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} avatar={readAvatarOutfit()} />
         {/* the painted room — the archway is a transparent hole in this plate */}
         <img src={`${ROOM}plate.webp`} alt="" draggable={false} className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }} />
         <Bubbles className="absolute inset-0" />
@@ -312,6 +337,7 @@ export default function AcademyPage() {
         {/* chalkboard → Quest Board (chalk doodles shimmer on their own layer) */}
         <Prop id="chalkboard" pos={L.chalkboard} />
         <Prop id="chalk-doodles" pos={L.doodles} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
+        <ChalkScrolls />
         {[0, 1, 2].map((n) => (
           <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${9 + n * 6}%`, top: '26%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 3 }}
             animate={{ y: [0, -60 - n * 15], x: [0, (n % 2 ? 1 : -1) * 14], opacity: [0, 0.9, 0], rotate: [0, n % 2 ? 20 : -20] }} transition={{ repeat: Infinity, duration: 3 + n * 0.6, delay: n * 1.1, ease: 'easeOut' }}>

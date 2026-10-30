@@ -203,6 +203,23 @@ function Clammo({ left, width, bottom }) {
 }
 
 
+// The Academy's pennant ripples in the current; the note weathervane spins when tapped.
+// Both are cut out of the building art so the base image has holes where they sit.
+function AcademyFlair() {
+  const [spin, setSpin] = useState(0);
+  const whirl = (e) => { e.stopPropagation(); setSpin((n) => n + 1); const a = new Audio(encodeURI('assets/audio/sfx-twinkle.mp3')); a.volume = 0.4; a.play().catch(() => {}); };
+  return (
+    <>
+      <motion.img src="assets/plaza/academy-flag.png" alt="" draggable={false} aria-hidden="true" data-testid="academy-flag" className="absolute pointer-events-none" style={{ left: '80.05%', top: '34.5%', width: '17.35%', zIndex: 2, transformOrigin: '0% 20%' }}
+        animate={{ rotate: [0, 2.5, -1.5, 2, 0], skewY: [0, -3, 2, -2, 0], scaleX: [1, 0.97, 1, 0.98, 1] }} transition={{ repeat: Infinity, duration: 2.6, ease: 'easeInOut' }} />
+      <motion.button type="button" data-testid="academy-vane" aria-label="Spin the weathervane" onClick={whirl} className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ left: '50.15%', top: '9.25%', width: '11.5%', zIndex: 3 }} whileHover={{ scale: 1.06 }}>
+        <motion.img key={spin} src="assets/plaza/academy-vane.png" alt="" draggable={false} className="block w-full h-auto" style={{ transformOrigin: '50% 72%' }}
+          animate={spin ? { rotateY: [0, 1080], scaleX: [1, 1.1, 1] } : { rotateY: [0, 25, -20, 0] }} transition={spin ? { duration: 1.4, ease: [0.2, 0.8, 0.3, 1] } : { repeat: Infinity, duration: 6, ease: 'easeInOut' }} />
+      </motion.button>
+    </>
+  );
+}
+
 // The Academy's cuckoo: the kid's current rank character pops out onto the
 // clock-tower ledge (assets/plaza/academy.png — door ≈ x 61.6%, ledge y 31%).
 // The first time a NEW rank shows up here, the doors swing open with a chime.
@@ -302,7 +319,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
           {b.custom === 'tv'
             ? <DriveIn />
             : <img src={b.art} alt="" draggable={false} className="relative z-[1] w-full h-full object-contain object-bottom" style={{ filter: locked && b.flat ? 'grayscale(0.9) brightness(0.8) drop-shadow(0 8px 0 rgba(2,36,63,0.35))' : 'drop-shadow(0 8px 0 rgba(2,36,63,0.35))', transition: 'filter 0.6s', transform: [drop ? `translateY(${drop}%)` : '', b.flip ? 'scaleX(-1)' : ''].join(' ').trim() || undefined }} />}
-          {b.custom === 'academy' && <Cuckoo />}
+          {b.custom === 'academy' && <><AcademyFlair /><Cuckoo /></>}
           {b.sign && (
             <span data-testid={`campus-building-${b.id}-sign`} className="absolute -translate-x-1/2 -translate-y-1/2 font-black font-display whitespace-nowrap pointer-events-none"
               style={{ left: `${b.signPos.x}%`, top: `${b.signPos.y}%`, fontSize: Math.round(L.bw * b.size * (b.sign.length > 8 ? 0.055 : 0.085) * (b.signScale || 1)), color: 'var(--jma-dark)', zIndex: 5, letterSpacing: '0.04em',

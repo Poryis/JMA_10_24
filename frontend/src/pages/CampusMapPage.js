@@ -426,7 +426,7 @@ export default function CampusMapPage({ plaza = false }) {
   useEffect(() => { const f = () => setVp({ w: window.innerWidth, h: window.innerHeight }); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }, []);
   const L = layoutFor(vp.w, vp.h);
   // Plaza: the tall props (bandstand) must still clear the header on short phones.
-  const buildings = useMemo(() => (plaza ? rawBuildings.map((b) => ({ ...b, size: Math.min(b.size, Math.max(0.9, (vp.h * (b.hero ? 1.06 : 0.78) - L.floor) / (L.bw * (b.aspect || 1)))) })) : rawBuildings), [plaza, rawBuildings, vp.h, L.floor, L.bw]);
+  const buildings = useMemo(() => (plaza ? rawBuildings.map((b) => ({ ...b, size: Math.min(b.size, Math.max(0.9, (vp.h * (b.hero ? 0.92 : 0.78) - L.floor) / (L.bw * (b.aspect || 1)))) })) : rawBuildings), [plaza, rawBuildings, vp.h, L.floor, L.bw]);
   const { slot, sandBack, sandFront, floor } = L;
   const acc = Math.min(1.4, L.k); // accent art scale
   // Plaza props vary a lot in width, so pack them by size instead of fixed slots.

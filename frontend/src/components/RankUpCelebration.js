@@ -2,29 +2,62 @@
 // crosses into a new rank. Confetti + character + warm message.
 // Hooked into App.js so it works from any page.
 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import useRank from '../hooks/useRank';
 import { setOverlayActive } from '../hooks/useGamePause';
 import Confetti from './Confetti';
 import { say } from '../lib/voice';
 
+// The first rank-up arrives seconds into play, so it starts as a small corner chip.
+function RankUpChip({ rankUp, onOpen, onClose }) {
+  useEffect(() => { const t = setTimeout(onClose, 7000); return () => clearTimeout(t); }, [onClose]);
+  return (
+    <motion.button data-testid="rank-up-chip" onClick={onOpen} aria-label={`You ranked up to ${rankUp.title}. Tap to see.`}
+      className="fixed top-4 right-4 z-[100] flex items-center gap-2.5 bg-white rounded-2xl border-3 px-3 py-2 max-w-[280px] text-left"
+      style={{ borderColor: rankUp.color, boxShadow: `0 5px 0 0 ${rankUp.color}` }}
+      initial={{ x: 60, opacity: 0, scale: 0.85 }} animate={{ x: 0, opacity: 1, scale: 1 }} exit={{ x: 60, opacity: 0, scale: 0.85 }}
+      transition={{ type: 'spring', stiffness: 320, damping: 22 }}>
+      <motion.span className="rounded-full border-2 overflow-hidden flex-shrink-0" style={{ width: 40, height: 40, backgroundColor: rankUp.badgeBg, borderColor: rankUp.color }}
+        animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 0.9, repeat: Infinity, repeatDelay: 0.6 }}>
+        <img src={rankUp.icon} alt="" className="w-full h-full object-contain" />
+      </motion.span>
+      <span className="flex flex-col min-w-0">
+        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: rankUp.color }}>You ranked up!</span>
+        <span className="text-sm font-black leading-tight font-display" style={{ color: 'var(--jma-dark)' }}>{rankUp.title}</span>
+        <span className="text-[10px] font-bold opacity-60" style={{ color: 'var(--jma-dark)' }}>Tap to see →</span>
+      </span>
+    </motion.button>
+  );
+}
+
 export default function RankUpCelebration() {
   const { rankUp, dismissRankUp } = useRank({ withCelebration: true });
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const arrivedAt = useRef(Date.now());
+  useEffect(() => { arrivedAt.current = Date.now(); }, [pathname]);
+  const [expanded, setExpanded] = useState(false);
+  const soon = useMemo(() => !!rankUp && Date.now() - arrivedAt.current < 30000, [rankUp]);
+  useEffect(() => { if (!rankUp) setExpanded(false); }, [rankUp]);
+  const mini = !!rankUp && (rankUp.id === 'tadpole' || soon) && !expanded;
+  const full = !!rankUp && !mini;
 
   // Freeze any game underneath while the full-screen celebration is up.
   useEffect(() => {
-    setOverlayActive('rank-up', !!rankUp);
+    setOverlayActive('rank-up', full);
     if (rankUp) say('charlie.meta.rankup', { delayMs: 500 });
     return () => setOverlayActive('rank-up', false);
-  }, [rankUp]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [full]);
 
   return (
     <AnimatePresence>
-      {rankUp && (
+      {mini && <RankUpChip key="chip" rankUp={rankUp} onOpen={() => setExpanded(true)} onClose={dismissRankUp} />}
+      {full && (
         <motion.div
+          key="full"
           data-testid="rank-up-overlay"
           className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           initial={{ opacity: 0 }}

@@ -311,8 +311,8 @@ function LoopStudioPage() {
   const startPlayback = useCallback(() => {
     const ctx = initAudioContext();
     setIsPlaying(true);
-    earnAchievement('beat', 'cadet');
     const activeCount = Object.values(gridRef.current).filter((s) => s.some(Boolean)).length;
+    if (activeCount > 0) earnAchievement('beat', 'cadet');
     reportQuestEvent('beat_loop', { tracks: activeCount });
     say(activeCount >= 3 ? 'chunk.perfect' : 'chunk.correct', { minGapMs: 8000 });
     if (activeCount >= 3) earnAchievementUpTo('beat', 'pro');

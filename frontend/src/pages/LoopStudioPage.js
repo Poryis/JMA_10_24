@@ -308,6 +308,8 @@ function LoopStudioPage() {
     setCurrentStep(-1);
   }, [lab]);
 
+  const ownTapsRef = useRef(0);
+  const ownLanesRef = useRef(new Set());
   const startPlayback = useCallback(() => {
     const ctx = initAudioContext();
     setIsPlaying(true);
@@ -315,8 +317,11 @@ function LoopStudioPage() {
     if (activeCount > 0) earnAchievement('beat', 'cadet');
     reportQuestEvent('beat_loop', { tracks: activeCount });
     say(activeCount >= 3 ? 'chunk.perfect' : 'chunk.correct', { minGapMs: 8000 });
-    if (activeCount >= 3) earnAchievementUpTo('beat', 'pro');
-    if (activeCount >= 4 && bpm >= 140) earnAchievementUpTo('beat', 'master');
+    // Pro/Master need a beat the kid built: notes they placed themselves across lanes.
+    const ownLanes = Object.entries(gridRef.current).filter(([k, s]) => ownLanesRef.current.has(k) && s.some(Boolean)).length;
+    const built = ownTapsRef.current >= 8;
+    if (built && ownLanes >= 3) earnAchievementUpTo('beat', 'pro');
+    if (built && ownLanes >= 4 && bpm >= 140) earnAchievementUpTo('beat', 'master');
     try {
       const n = parseInt(localStorage.getItem('jma_loops_played_v1') || '0', 10) + 1;
       localStorage.setItem('jma_loops_played_v1', String(n));
@@ -338,6 +343,7 @@ function LoopStudioPage() {
   useEffect(() => () => { schedulerRef.current?.stop(); }, []);
 
   const toggleCell = useCallback((key, step) => {
+    if (!gridRef.current[key]?.[step]) { ownTapsRef.current += 1; ownLanesRef.current.add(key); }
     setGrid((prev) => {
       const next = { ...prev };
       const row = [...(next[key] || new Array(totalStepsRef.current).fill(0))];
@@ -414,6 +420,7 @@ function LoopStudioPage() {
     const longest = Math.max(16, ...Object.values(preset).map((s) => s.length));
     const target = longest > 32 ? 64 : longest > 16 ? 32 : 16;
     if (isPlaying) stopPlayback();
+    ownTapsRef.current = 0; ownLanesRef.current = new Set();
     setTotalSteps(target);
     setGrid(() => {
       const next = {};

@@ -370,8 +370,8 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
           {(!locked || b.flat) && b.host && !hideHost && <Host src={b.host} shout={shout} pos={b.custom === 'bandstand' ? { left: '30%', bottom: '21%', height: '36%', zIndex: 4 } : b.portal ? { left: '-10%', bottom: '2%', height: '34%', zIndex: 4 } : undefined} />}
         </motion.div>
         {!locked && badge && (
-          <motion.span data-testid={`campus-building-${b.id}-badge`} className="absolute -top-3 right-0 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] md:text-xs font-black whitespace-nowrap"
-            style={{ background: '#FFCC00', color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)', zIndex: 6 }}
+          <motion.span data-testid={`campus-building-${b.id}-badge`} className={`absolute ${b.hero ? '' : '-top-3 right-0'} flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] md:text-xs font-black whitespace-nowrap`}
+            style={{ background: '#FFCC00', color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)', zIndex: 6, ...(b.hero ? { top: '61%', left: '63%', x: '-50%' } : {}) }}
             initial={{ scale: 0 }} animate={{ scale: [1, 1.08, 1] }} transition={{ repeat: Infinity, duration: 1.6 }}>
             <Music className="w-3 h-3" strokeWidth={3} /> {badge}
           </motion.span>

@@ -394,7 +394,7 @@ export default function AcademyPage() {
             <motion.div className="relative w-full flex justify-center max-h-full overflow-y-auto" initial={{ y: 24, scale: 0.97 }} animate={{ y: 0, scale: 1 }} exit={{ y: 24, scale: 0.97 }} transition={{ duration: 0.2 }} onClick={(e) => e.stopPropagation()}>
               <div className="relative w-full flex justify-center">
                 <Panel />
-                <button type="button" data-testid="academy-panel-close" onClick={() => setPanel(null)} aria-label="Close" className="absolute -top-3 right-2 md:right-auto md:left-[calc(50%+22rem)] w-10 h-10 rounded-full bg-white flex items-center justify-center" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', zIndex: 2 }}><X className="w-5 h-5" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
+                <button type="button" data-testid="academy-panel-close" onClick={() => setPanel(null)} aria-label="Close" className="absolute top-2 right-2 md:right-auto md:left-[calc(50%+21.5rem)] w-10 h-10 rounded-full bg-white flex items-center justify-center" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', zIndex: 2 }}><X className="w-5 h-5" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
               </div>
             </motion.div>
           </motion.div>

@@ -205,19 +205,20 @@ const L = {
 const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1920, h: 1080 };
 
-// The two parchment scrolls (and the little treasure map) drawn on the chalkboard
-// carry the real quest titles; finished ones get a chalk tick and a strike.
+// The two parchment scrolls drawn on the chalkboard carry the next two unfinished
+// quests (finished ones stay until there's something new to show, with a chalk tick).
 const SCROLL_SPOTS = [
   { left: '5.5%', top: '62.5%', width: '22%', height: '25%', color: '#5A3A14', rot: -2 },
   { left: '79.5%', top: '41.5%', width: '17.5%', height: '19%', color: '#5A3A14', rot: 2 },
-  { left: '79.5%', top: '72.5%', width: '19.5%', height: '20%', color: '#FFFFFF', rot: 0 },
 ];
 function ChalkScrolls() {
   const { quests } = useDailyQuests();
   return (
     <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '408 / 327', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls">
       {SCROLL_SPOTS.map((s, i) => {
-        const q = quests[i];
+        // two scrolls: show the open quests first so a finished one makes room for the next
+        const shown = [...quests.filter((q) => !q.done), ...quests.filter((q) => q.done)].slice(0, SCROLL_SPOTS.length);
+        const q = shown[i];
         if (!q) return null;
         return (
           <div key={q.id} data-testid={`academy-chalk-quest-${i}`} data-done={q.done ? 'true' : 'false'} className="absolute flex items-center justify-center text-center font-display font-black leading-[1.05]" style={{ left: s.left, top: s.top, width: s.width, height: s.height, rotate: `${s.rot}deg`, color: s.color, fontSize: '3.1cqw', padding: '0 3%', textDecoration: q.done ? 'line-through' : 'none', textDecorationThickness: '0.12em', opacity: q.done ? 0.75 : 1 }}>

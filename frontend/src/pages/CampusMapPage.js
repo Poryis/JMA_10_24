@@ -17,7 +17,7 @@ import useUnlocks from '../hooks/useUnlocks';
 import useRank from '../hooks/useRank';
 import usePracticeStreak from '../hooks/usePracticeStreak';
 import useDailyQuests from '../hooks/useDailyQuests';
-import { readAvatarOutfit } from '../hooks/useAvatar';
+import { readAvatar, readAvatarOutfit } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { loadSavedSongs } from '../hooks/useSongLoopPlayer';
 import { say, voiceEnabled } from '../lib/voice';
@@ -156,6 +156,14 @@ function StageMarquee({ bw }) {
   );
 }
 
+// Which cast member a host sprite is, so the kid never meets their own character on the street.
+const hostCharacter = (src) => {
+  const f = src.split('/').pop().replace('.png', '');
+  if (f.startsWith('dr-jellybone')) return 'doctor';
+  if (f.startsWith('sharky')) return 'finn';
+  return f.split('-')[0];
+};
+
 // Chowda the clam (component kept as Clammo) sits on the sand. Every 8–15s he blinks to his state-2 art
 // for a beat; tapping him snaps him shut (with a click) and he pops back open.
 function Clammo({ left, width, bottom }) {
@@ -257,7 +265,7 @@ function GateRibbon({ ribbon, fontSize }) {
   );
 }
 
-function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, badge, x }) {
+function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, badge, x, hideHost }) {
   const [shake, setShake] = useState(0);
   const lift = b.flat ? (b.lift ? 58 * b.lift : 0) : index % 3 === 1 ? 54 : index % 3 === 2 ? 22 : 0; // varied depth on the shelf
   const scale = b.flat ? 1 : index % 3 === 1 ? 0.86 : 1;
@@ -330,7 +338,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
               <Music className="w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
             </motion.span>
           ))}
-          {(!locked || b.flat) && b.host && <Host src={b.host} shout={shout} pos={b.custom === 'bandstand' ? { left: '30%', bottom: '21%', height: '36%', zIndex: 4 } : b.portal ? { left: '-10%', bottom: '2%', height: '34%', zIndex: 4 } : undefined} />}
+          {(!locked || b.flat) && b.host && !hideHost && <Host src={b.host} shout={shout} pos={b.custom === 'bandstand' ? { left: '30%', bottom: '21%', height: '36%', zIndex: 4 } : b.portal ? { left: '-10%', bottom: '2%', height: '34%', zIndex: 4 } : undefined} />}
         </motion.div>
         {!locked && badge && (
           <motion.span data-testid={`campus-building-${b.id}-badge`} className="absolute -top-3 right-0 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] md:text-xs font-black whitespace-nowrap"
@@ -383,6 +391,8 @@ export default function CampusMapPage({ plaza = false }) {
   const rawBuildings = useMemo(() => (plaza ? PLAZA_BUILDINGS : CAMPUS_BUILDINGS.filter((b) => b.zone === zone.id)), [plaza, zone.id]);
   const night = useMemo(isNight, []);
   const avatar = useMemo(readAvatarOutfit, []);
+  const me = useMemo(readAvatar, []); // { character, outfit } — hosts of the same character stay home
+  const hostHidden = (b) => !!b.host && hostCharacter(b.host) === me.character;
   const [vp, setVp] = useState({ w: window.innerWidth, h: window.innerHeight });
   useEffect(() => { const f = () => setVp({ w: window.innerWidth, h: window.innerHeight }); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }, []);
   const L = layoutFor(vp.w, vp.h);
@@ -425,7 +435,9 @@ export default function CampusMapPage({ plaza = false }) {
     else if (streakCount >= 3) line = 'charlie.hub.streak';
     else if (doneCount === 0 && Math.random() < 0.5) line = 'charlie.hub.quests';
     say(line, { delayMs: 900, minGapMs: 0 });
-    const s = { id: Date.now(), buildingId: 'sticker-shack', text: hour < 12 ? 'Mornin\', kid!' : 'Welcome back!' };
+    const greeter = buildings.find((b) => b.host && !hostHidden(b));
+    if (!greeter) return;
+    const s = { id: Date.now(), buildingId: greeter.id, text: hour < 12 ? 'Mornin\', kid!' : 'Welcome back!' };
     const t1 = setTimeout(() => setShout(s), 700);
     const t2 = setTimeout(() => setShout((cur) => (cur && cur.id === s.id ? null : cur)), 3200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
@@ -612,10 +624,10 @@ export default function CampusMapPage({ plaza = false }) {
           {!plaza && <StreetSign zone={nextZone} dir="right" onClick={() => goStreet(nextZone, 'start')} style={{ left: width - Math.round(L.bw * 0.62), bottom: floor + 4, zIndex: 11 }} />}
           {/* buildings */}
           {buildings.map((b, i) => (
-            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => navigate('/academy?panel=class')} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
+            <Building key={b.id} b={b} index={i} L={L} x={xs ? xs[i] : undefined} badge={badgeFor(b)} locked={!unlocked && !b.starter} onEnter={enter} onLocked={() => navigate('/academy?panel=class')} hideHost={hostHidden(b)} entering={!!swim && swim.buildingId === b.id} shout={shout && shout.buildingId === b.id ? shout : null} />
           ))}
           {/* Chowda: blinks shut every so often; tap him and he snaps */}
-          {plaza && <Clammo left={Math.round(xs[4] - L.bw * 0.07 - L.bw * 0.13)} width={Math.round(L.bw * 0.26)} bottom={Math.round(sandFront * 0.55)} />}
+          {plaza && me.outfit !== 'clammo' && <Clammo left={Math.round(xs[6] + L.bw * 1.4 + L.bw * 0.1)} width={Math.round(L.bw * 0.26)} bottom={Math.round(sandFront * 0.55)} />}
           {/* near seaweed + shells (parallax, in front) */}
           <div className="absolute bottom-0 left-0 pointer-events-none" style={{ width: width + 600, height: sandFront + 120, transform: `translateX(${-scrollX * 0.2}px)`, zIndex: 7 }} data-testid="campus-front-accents">
             {frontAccents.map((a, i) => a.kind === 'weed'

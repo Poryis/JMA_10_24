@@ -322,7 +322,7 @@ export default function AcademyPage() {
             animate={{ scale: [1, 1.025, 1], rotate: [0, i % 2 ? 0.8 : -0.8, 0] }} transition={{ repeat: Infinity, duration: 3.6 + (i % 5) * 0.5, delay: -(i * 0.7), ease: 'easeInOut' }} />
         ))}
         {/* light spilling from the archway onto the floor + drifting motes */}
-        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '32%', top: '64%', width: '48%', height: '36%', zIndex: 2, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.5) 0%, rgba(52,224,246,0.22) 35%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
+        <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ left: '32%', top: '64%', width: '48%', height: '36%', zIndex: 2, background: 'radial-gradient(ellipse at 50% 0%, rgba(127,239,255,0.5) 0%, rgba(52,224,246,0.22) 35%, transparent 70%)', mixBlendMode: 'screen', WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 30%)', maskImage: 'linear-gradient(180deg, transparent 0%, black 30%)' }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }} />
         {MOTES.map((m, i) => (
           <motion.span key={i} aria-hidden="true" className="absolute rounded-full pointer-events-none" style={{ left: m.left, top: m.top, width: m.size, height: m.size, background: 'white', boxShadow: '0 0 6px 2px rgba(127,239,255,0.8)', zIndex: 2 }}
             animate={{ y: [0, -40, -80], x: [0, i % 2 ? 10 : -10, 0], opacity: [0, 0.9, 0] }} transition={{ repeat: Infinity, duration: m.dur, delay: m.delay, ease: 'easeOut' }} />

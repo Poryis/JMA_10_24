@@ -185,9 +185,9 @@ export default function DressingRoomPage() {
 
   return (
     <div className="dr-room relative overflow-hidden flex flex-col" data-testid="dressing-room-page" style={{ height: '100dvh', minHeight: '100vh', background: 'linear-gradient(180deg, #3B1F4E 0%, #2A1638 60%, #1B0F26 100%)' }}>
-      {/* backstage wall: vertical stripes + warm bulb glow; floor boards */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 28px, transparent 28px 56px)' }} />
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 pointer-events-none" style={{ height: '14%', background: 'repeating-linear-gradient(90deg, #A67B4C 0 64px, #8B6540 64px 66px)', borderTop: '4px solid var(--jma-dark)', boxShadow: 'inset 0 10px 20px rgba(0,0,0,0.35)' }} />
+      {/* painted backstage room (user art); the string lights get a soft twinkle */}
+      <img src="assets/dressing/room-bg.webp" alt="" draggable={false} aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none" />
+      <motion.div aria-hidden="true" className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: '16%', background: 'radial-gradient(ellipse at 50% 0%, rgba(255,214,120,0.35) 0%, transparent 70%)', mixBlendMode: 'screen' }} animate={{ opacity: [0.5, 1, 0.6, 0.9, 0.5] }} transition={{ repeat: Infinity, duration: 3.6, ease: 'easeInOut' }} />
       <GameHeader title="DRESSING ROOM" showHomeButton={true} backLink={{ to: '/sticker-book', label: 'Stickers' }} />
 
       <div className="dr-grid relative flex-1 min-h-0 flex items-stretch gap-3 px-3 md:px-6 pt-20 md:pt-24 pb-[12%] max-w-6xl mx-auto w-full" style={{ zIndex: 2 }}>

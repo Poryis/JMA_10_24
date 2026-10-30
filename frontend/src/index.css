@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=IM+Fell+English+SC&family=Bungee&display=swap');
 
 @font-face {
   font-family: 'Comic Kings';
@@ -1116,3 +1116,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
+.marquee-bulb {
+  transform: translate(-50%, -50%);
+  border: 1px solid #7A4A10;
+  animation: marquee-chase 0.9s steps(1, end) infinite;
+}
+@keyframes marquee-chase {
+  0% { background: #FFF6C8; box-shadow: 0 0 6px 2px rgba(255, 214, 90, 0.95); }
+  33% { background: #C99A3A; box-shadow: none; }
+}

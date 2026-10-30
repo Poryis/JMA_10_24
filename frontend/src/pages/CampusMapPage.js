@@ -146,12 +146,24 @@ function DriveIn({ live }) {
   );
 }
 
-// The Stage's marquee board reads MAIN STAGE with chasing bulbs.
+// The Stage's marquee board reads MAIN STAGE with chasing bulbs around the panel.
+// Box coords come from bandstand.png's cream panel (centre, 8° tilt) inside the 1:1 object-bottom box.
+const MARQUEE_BULBS = (() => {
+  const pts = [];
+  const top = 13, bot = 87, l = 3.5, r = 96.5;
+  for (let i = 0; i < 13; i++) pts.push([l + (r - l) * i / 12, top]);
+  for (let i = 1; i < 3; i++) pts.push([r, top + (bot - top) * i / 3]);
+  for (let i = 12; i >= 0; i--) pts.push([l + (r - l) * i / 12, bot]);
+  for (let i = 2; i > 0; i--) pts.push([l, top + (bot - top) * i / 3]);
+  return pts;
+})();
 function StageMarquee() {
   return (
-    <div data-testid="stage-marquee" className="absolute pointer-events-none flex items-center justify-center" style={{ width: '40.8%', height: '11.9%', left: '58.8%', top: '13.3%', zIndex: 5, transform: 'translate(-50%, -50%) rotate(8deg)', containerType: 'inline-size' }}>
-      <motion.span className="font-black font-display whitespace-nowrap" style={{ fontSize: '10.5cqw', lineHeight: 1, color: '#B8233A', letterSpacing: '0.06em', textShadow: '0 2px 0 rgba(0,0,0,0.12)' }}
-        animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>MAIN STAGE</motion.span>
+    <div data-testid="stage-marquee" className="absolute pointer-events-none flex items-center justify-center" style={{ width: '41%', height: '11.3%', left: '58.4%', top: '16.1%', zIndex: 5, transform: 'translate(-50%, -50%) rotate(8deg)', containerType: 'inline-size' }}>
+      {MARQUEE_BULBS.map(([x, y], i) => (
+        <span key={i} data-testid={`stage-marquee-bulb-${i}`} className="marquee-bulb absolute rounded-full" style={{ left: `${x}%`, top: `${y}%`, width: '2.6cqw', height: '2.6cqw', animationDelay: `${-(i % 3) * 0.3}s` }} />
+      ))}
+      <span data-testid="stage-marquee-text" className="whitespace-nowrap" style={{ fontFamily: '"Bungee", cursive', fontSize: '11.6cqw', lineHeight: 1, color: '#C2213B', letterSpacing: '0.03em', textShadow: '0 0.5cqw 0 #7A1022, 0 0 2cqw rgba(255,200,80,0.55)' }}>MAIN STAGE</span>
     </div>
   );
 }

@@ -518,3 +518,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Plaza art swap: dressing-room.webp (retro pink trailer, no flip) and sticker-shack.webp (striped STICKERS booth) replace the PNGs in campus.js + AcademyPortal mini scene.
 
 - 2026-06: Chalkboard quest scrolls redrawn as hand-inked parchment (QuestScroll.js): centered icon + Caveat title with red drop cap, next quest sways + glows, done = wax seal.
+- 2026-06: Main Stage marquee (CampusMapPage StageMarquee): Bungee font, centred on bandstand.png cream panel (box 1:1 object-bottom => top offset 4.13%), 8deg tilt, 30 chasing bulbs (.marquee-bulb CSS in index.css).

@@ -54,7 +54,7 @@ export const PLAZA_ZONE = {
 };
 export const PLAZA_BUILDINGS = [
   // The journey, left to right: Academy → Dressing Room → Sticker Shack → the three street gates → JMAtv.
-  { id: 'academy',       zone: 'plaza', name: 'The Academy',   path: '/academy',             art: `${PZ}academy.webp`,  starter: true, size: 2.1, flat: true, hero: true, aspect: 0.914, custom: 'academy', sign: 'THE ACADEMY', signPos: { x: 50, y: 104 }, signColor: '#FFCC00' },
+  { id: 'academy',       zone: 'plaza', name: 'The Academy',   path: '/academy',             art: `${PZ}academy.webp`,  starter: true, size: 2.6, flat: true, hero: true, aspect: 0.914, custom: 'academy', sign: 'THE ACADEMY', signPos: { x: 50, y: 104 }, signColor: '#FFCC00' },
   { id: 'dressing-room', zone: 'plaza', name: 'Dressing Room', path: '/dressing-room',       art: `${PZ}dressing-room.png`,  starter: true,  size: 1.55, flat: true, flip: true, sign: 'DRESSING ROOM', signPos: { x: 50, y: 104 }, signColor: '#F9A8D4' },
   { id: 'sticker-shack', zone: 'plaza', name: 'Sticker Shack', path: '/sticker-book',        art: `${PZ}sticker-shack.png`,  host: `${CH}stew.png`,         starter: true,  size: 1.4, flat: true, sign: 'STICKERS', signPos: { x: 50, y: 104 }, signColor: '#FF2D85' },
   { id: 'gate-play',     zone: 'plaza', name: 'Play Street',   path: '/campus?zone=play',    art: `${PZ}gate-play.png`,      host: `${CH}chunk-disco.png`,  starter: true,  size: 1.45, flat: true, drop: 4, ribbon: { text: 'PLAY', bg: '#FFCC00', color: 'var(--jma-dark)' },

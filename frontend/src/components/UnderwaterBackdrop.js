@@ -40,10 +40,12 @@ const BUBBLES = [
   { left: '97%', size: 8,  dur: 11, delay: 5 },
 ];
 
-export function Bubbles({ className = 'fixed inset-0 z-0' }) {
+// `density` repeats the set with shifted lefts/timings for busier water (e.g. the Academy).
+export function Bubbles({ className = 'fixed inset-0 z-0', density = 1 }) {
+  const all = Array.from({ length: density }, (_, d) => BUBBLES.map((b) => ({ ...b, left: `${(parseFloat(b.left) + d * 37) % 100}%`, size: Math.max(6, b.size - d * 2), dur: b.dur + d * 1.7, delay: b.delay + d * 4.3 }))).flat();
   return (
     <div aria-hidden="true" className={`${className} pointer-events-none overflow-hidden`}>
-      {BUBBLES.map((b, i) => {
+      {all.map((b, i) => {
         // Negative delay seeds every bubble mid-rise so the water is alive from t=0.
         const preRun = ((b.delay + b.dur * 0.5) % b.dur).toFixed(2);
         return (

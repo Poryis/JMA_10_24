@@ -322,7 +322,7 @@ export default function AcademyPage() {
         <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} avatar={readAvatarOutfit()} />
         {/* the painted room — the archway is a transparent hole in this plate */}
         <img src={`${ROOM}plate.webp`} alt="" draggable={false} className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }} />
-        <Bubbles className="absolute inset-0" />
+        <Bubbles className="absolute inset-0 z-[3]" density={3} />
         {/* every coral accent breathes very slightly on its own layer */}
         {CORAL.map((c, i) => (
           <motion.img key={c.id} src={`${ROOM}${c.id}.png`} alt="" draggable={false} aria-hidden="true" className="absolute pointer-events-none" style={{ left: c.left, top: c.top, width: c.width, zIndex: 2, transformOrigin: 'bottom center' }}

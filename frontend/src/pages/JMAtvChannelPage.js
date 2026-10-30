@@ -13,6 +13,7 @@ import { Play } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import SpaceBackdrop, { SPACE_BG_STYLE } from '../components/SpaceBackdrop';
 import { getChannel } from '../data/jmatv';
+import { JmaTv } from '../lib/brand';
 
 function EpisodeCard({ episode, index, channel, onClick }) {
   // Vumbnail returns the Vimeo poster JPEG given just the numeric ID.
@@ -103,7 +104,7 @@ export default function JMAtvChannelPage() {
             className="mt-2 px-4 py-2 rounded-full bg-yellow-400 text-gray-900 font-black"
             onClick={() => navigate('/jmatv')}
           >
-            Back to JMAtv
+            Back to <JmaTv />
           </button>
         </div>
       </div>

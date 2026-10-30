@@ -43,7 +43,7 @@ export default function AcademyPortal({ style, onEnter, disabled, avatar }) {
           <motion.div data-testid="academy-portal-me" className="absolute" style={{ left: 0, bottom: '18%', width: '34%' }}
             initial={{ x: '-130%' }} animate={{ x: ['-130%', '330%'], y: [0, -8, 0, 6, 0] }}
             transition={{ x: { repeat: Infinity, duration: 7, ease: 'linear', repeatDelay: 9, delay: 2.5 }, y: { repeat: Infinity, duration: 2.4, ease: 'easeInOut' } }}>
-            <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="w-full h-auto" style={{ filter: 'drop-shadow(0 3px 0 rgba(2,36,63,0.35))' }} />
+            <AvatarSprite src={avatar.src} helmet={avatar.helmet} className="w-full h-auto" style={{ filter: 'drop-shadow(0 3px 0 rgba(2,36,63,0.35))', transform: avatar.facesLeft ? 'scaleX(-1)' : undefined }} />
           </motion.div>
         )}
         {BUBBLES.map((b, i) => (

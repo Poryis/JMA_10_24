@@ -89,7 +89,7 @@ export const AVATARS = [
     { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true },
     { ...wfit('sal',     'Seahorse Sal',    'seahorse-sal',    { kind: 'sticker', value: 'lesson_3',         hint: 'Finish Lesson 3' }), hidden: true },
     { ...wfit('sun',     'The Sun',         'the-sun',         { kind: 'sticker', value: 'practice_buddy_7', hint: 'Practice 7 days in a row' }), hidden: true },
-    { ...wfit('gerald',  'Elephant Gerald', 'elephant-gerald', { kind: 'flag',    value: 'tempo_changed',    hint: 'Change the tempo in Beat Lab' }), hidden: true },
+    { ...wfit('gerald',  'Elephant Gerald', 'elephant-gerald', { kind: 'flag',    value: 'tempo_changed',    hint: 'Change the tempo in Beat Lab' }), hidden: true, facesLeft: true },
   ] },
 ];
 

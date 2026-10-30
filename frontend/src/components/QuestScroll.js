@@ -1,6 +1,7 @@
 // Hand-inked parchment scroll pinned to the Academy chalkboard (one per quest).
 import { motion } from 'framer-motion';
 import { Search, Piano, Disc3, Ear, BookOpen, Drum, Music, Bot, Sparkles, Tv, Headphones, Mic, Guitar, Shirt, Gamepad2 } from 'lucide-react';
+import { brand } from '../lib/brand';
 
 const ICONS = {
   detective: Search, stew: Piano, jukebox: Disc3, notematch: Ear, sightread: BookOpen, beatlab: Drum,
@@ -55,7 +56,7 @@ export default function QuestScroll({ quest, spot, isNext, index }) {
       <div className="absolute flex flex-col items-center justify-center text-center" style={{ left: '14%', right: '14%', top: '17%', bottom: '17%', gap: '4%', opacity: quest.done ? 0.6 : 1 }}>
         <Icon style={{ width: spot.icon, height: spot.icon, color: '#9C3D12', flexShrink: 0 }} strokeWidth={2.4} />
         <div data-testid={`academy-chalk-quest-title-${index}`} style={{ fontFamily: 'Caveat, cursive', fontWeight: 700, color: INK, fontSize: spot.font, lineHeight: 0.95, textWrap: 'balance' }}>
-          <span style={{ fontFamily: '"IM Fell English SC", serif', color: '#A3201F', fontSize: '1.45em', lineHeight: 0.8 }}>{first}</span>{rest.join('')}
+          <span style={{ fontFamily: '"IM Fell English SC", serif', color: '#A3201F', fontSize: '1.45em', lineHeight: 0.8 }}>{first}</span>{brand(rest.join(''))}
         </div>
       </div>
       {quest.done && <WaxSeal />}

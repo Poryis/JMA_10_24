@@ -18,6 +18,7 @@ import SpaceBackdrop, { SPACE_BG_STYLE } from '../components/SpaceBackdrop';
 import { getChannel, getEpisode } from '../data/jmatv';
 import { earnSticker } from '../hooks/useStickers';
 import { reportQuestEvent } from '../hooks/useDailyQuests';
+import { JmaTv } from '../lib/brand';
 
 export default function JMAtvPlayerPage() {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ export default function JMAtvPlayerPage() {
             className="mt-2 px-4 py-2 rounded-full bg-yellow-400 text-gray-900 font-black"
             onClick={() => navigate('/jmatv')}
           >
-            Back to JMAtv
+            Back to <JmaTv />
           </button>
         </div>
       </div>
@@ -340,7 +341,7 @@ export default function JMAtvPlayerPage() {
             <span
               className="text-[11px] font-black tracking-[0.18em] uppercase"
             >
-              JMAtv
+              <JmaTv />
             </span>
             <div className="flex items-center gap-1.5">
               {[0, 1].map((i) => (

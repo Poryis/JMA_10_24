@@ -13,6 +13,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
+import { brand } from '../lib/brand';
 
 // Character strip — the same faces the kid will meet in the app. Selling
 // personality is 80% of the "will my kid love this?" pitch.
@@ -241,7 +242,7 @@ export default function ForParentsPage() {
               viewport={{ once: true }}
             >
               <div className="text-4xl mb-2">{v.icon}</div>
-              <h3 className="font-black text-xl mb-2" style={{ color: 'var(--jma-dark, #1a1a2e)' }}>{v.title}</h3>
+              <h3 className="font-black text-xl mb-2" style={{ color: 'var(--jma-dark, #1a1a2e)' }}>{brand(v.title)}</h3>
               <p className="text-slate-600 text-sm md:text-base">{v.body}</p>
             </motion.div>
           ))}
@@ -456,7 +457,7 @@ export default function ForParentsPage() {
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-slate-700 text-sm md:text-base">
                     <span aria-hidden="true" style={{ color: '#4CD964' }}>✓</span>
-                    <span>{f}</span>
+                    <span>{brand(f)}</span>
                   </li>
                 ))}
               </ul>

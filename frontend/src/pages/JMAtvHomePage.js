@@ -15,6 +15,7 @@ import { GameHeader } from '../components/GameUI';
 import MiniCRT from '../components/MiniCRT';
 import SpaceBackdrop, { SPACE_BG_STYLE } from '../components/SpaceBackdrop';
 import { JMATV_CHANNELS } from '../data/jmatv';
+import { JmaTv } from '../lib/brand';
 
 const JMA_DARK = '#0A2540';
 
@@ -240,7 +241,7 @@ export default function JMAtvHomePage() {
           </span>
           <div className="relative flex-1 text-left min-w-0">
             <div className="font-black font-display uppercase text-white leading-tight" style={{ fontSize: 'clamp(16px, 3vw, 24px)' }}>
-              JMAtv Live Channel
+              <JmaTv /> Live Channel
             </div>
             <div className="text-[11px] md:text-xs font-bold text-white/90 truncate">
               Always on — one nonstop variety show

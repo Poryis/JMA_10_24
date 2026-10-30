@@ -27,6 +27,7 @@ import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import { RANKS } from '../data/ranks';
 import { journeyTo } from '../data/campus';
 import { say } from '../lib/voice';
+import { brand } from '../lib/brand';
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
 
@@ -52,8 +53,8 @@ function TodaysClass() {
           <li key={q.id} data-testid={`academy-quest-${i}`} data-done={q.done} className="flex items-center gap-3 rounded-2xl px-3 py-2" style={{ background: q.done ? '#E8F8EE' : '#F6F8FB', border: '3px solid var(--jma-dark)', opacity: q.done ? 0.85 : 1 }}>
             <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-black text-white" style={{ background: q.done ? '#34A853' : 'var(--jma-dark)' }}>{q.done ? <Check className="w-5 h-5" strokeWidth={4} /> : i + 1}</span>
             <span className="flex-1 min-w-0">
-              <span className="block text-sm md:text-base font-black leading-tight truncate" style={{ color: 'var(--jma-dark)', textDecoration: q.done ? 'line-through' : 'none' }}>{q.title}</span>
-              <span className="block text-[11px] md:text-xs font-bold" style={{ color: '#4B5668' }}>{q.where}{q.target > 1 ? ` · ${q.progress}/${q.target}` : ''}</span>
+              <span className="block text-sm md:text-base font-black leading-tight truncate" style={{ color: 'var(--jma-dark)', textDecoration: q.done ? 'line-through' : 'none' }}>{brand(q.title)}</span>
+              <span className="block text-[11px] md:text-xs font-bold" style={{ color: '#4B5668' }}>{brand(q.where)}{q.target > 1 ? ` · ${q.progress}/${q.target}` : ''}</span>
             </span>
             {!q.done && <button type="button" data-testid={`academy-quest-go-${i}`} onClick={() => navigate(journeyTo(q.route))} className="chunky-btn px-3 py-1 text-xs font-black" style={{ background: 'white', color: 'var(--jma-dark)' }}>Go</button>}
           </li>
@@ -270,12 +271,12 @@ const ding = (f, maxMs) => {
 };
 
 // Hotspot pinned to a % of the painted hall, with a pulsing ring + label so kids find it.
-function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId }) {
+function Hotspot({ id, x, y, w, h, label, color, onClick, children, testId, pill = true }) {
   return (
     <motion.button type="button" data-testid={testId || `academy-room-${id}`} aria-label={label} onClick={onClick} className="absolute flex flex-col items-center justify-end group" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, zIndex: 4 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
       {children}
       <motion.span aria-hidden="true" className="absolute inset-0 rounded-2xl pointer-events-none" style={{ border: `3px solid ${color}`, boxShadow: `0 0 0 3px rgba(255,255,255,0.6)` }} animate={{ opacity: [0.25, 0.85, 0.25], scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }} />
-      {label && <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-black text-[10px] md:text-xs" style={{ background: color, color: id === 'class' || id === 'album' ? 'white' : 'var(--jma-dark)', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>{label}</span>}
+      {label && pill && <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 font-black text-[10px] md:text-xs" style={{ background: color, color: id === 'class' || id === 'album' ? 'white' : 'var(--jma-dark)', border: '2.5px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>{label}</span>}
     </motion.button>
   );
 }
@@ -338,7 +339,7 @@ export default function AcademyPage() {
             <Music className="w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
           </motion.span>
         ))}
-        <Hotspot id="class" x={5} y={20} w={27} h={42} label="Quest Board" color="#1E9BFF" onClick={() => setPanel('class')} />
+        <Hotspot id="class" x={5} y={20} w={27} h={42} label="Quest Board" pill={false} color="#1E9BFF" onClick={() => setPanel('class')} />
 
         {/* lanterns sway and glow */}
         {[['lanternL', 'lantern-left'], ['lanternR', 'lantern-right']].map(([k, id], i) => (
@@ -357,7 +358,7 @@ export default function AcademyPage() {
         {/* achievement book on its lectern → Yearbook */}
         <Prop id="lectern" pos={L.lectern} z={3} />
         <Prop id="book" pos={L.book} z={4} idle={{ y: [0, -4, 0] }} />
-        <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Yearbook" color="#FFCC00" onClick={() => setPanel('yearbook')} />
+        <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Yearbook" pill={false} color="#FFCC00" onClick={() => setPanel('yearbook')} />
 
         {/* instruments — tap to play them */}
         <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />

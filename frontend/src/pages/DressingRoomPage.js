@@ -15,6 +15,7 @@ import { AVATARS } from '../data/avatars';
 import { VOICE_MAP } from '../data/voiceLines';
 import { say } from '../lib/voice';
 import { playFanfare } from './RankHallPage';
+import { brand } from '../lib/brand';
 
 const SEEN_KEY = 'jma_outfits_seen_v1';
 const PHOTOS_KEY = 'jma_polaroids_v1';
@@ -51,7 +52,7 @@ function HangerCard({ o, worn, color, isNew, onTap, cardRef }) {
           <AvatarSprite src={o.src} helmet={!!o.helmet} className="w-full" imgStyle={{ width: '100%', height: 'clamp(54px, 6.5vw, 84px)', objectFit: 'contain', filter: o.unlocked ? 'drop-shadow(0 2px 0 rgba(0,0,0,0.25))' : mystery ? 'brightness(0) opacity(0.9)' : 'grayscale(1) brightness(0.55) opacity(0.6)' }} />
         )}
         <span className="mt-0.5 text-[10px] md:text-xs font-black leading-tight text-center" style={{ color: mystery ? '#FFCC00' : 'var(--jma-dark)' }}>{isNew ? 'NEW!' : mystery ? '???' : o.name}</span>
-        {!o.unlocked && !isNew && <span className="flex items-center gap-0.5 text-[8px] md:text-[9px] font-bold leading-tight text-center" style={{ color: mystery ? '#FFE48A' : 'var(--jma-dark)', opacity: mystery ? 0.95 : 0.7 }}><Lock className="w-2.5 h-2.5 flex-shrink-0" />{o.unlock.hint}</span>}
+        {!o.unlocked && !isNew && <span className="flex items-center gap-0.5 text-[8px] md:text-[9px] font-bold leading-tight text-center" style={{ color: mystery ? '#FFE48A' : 'var(--jma-dark)', opacity: mystery ? 0.95 : 0.7 }}><Lock className="w-2.5 h-2.5 flex-shrink-0" />{brand(o.unlock.hint)}</span>}
         {worn && <span className="absolute -top-1 right-1 rounded-full px-1.5 text-[8px] font-black" style={{ background: '#FFCC00', border: '2px solid var(--jma-dark)', color: 'var(--jma-dark)' }}>ON</span>}
       </div>
     </motion.button>
@@ -212,7 +213,7 @@ export default function DressingRoomPage() {
               {ghost && (
                 <motion.div key="ghost" data-testid="dressing-ghost-hint" className="absolute rounded-xl px-2 py-1 text-[10px] md:text-xs font-black text-center leading-tight" style={{ left: '12%', right: '12%', bottom: '19%', zIndex: 6, background: 'var(--jma-dark)', color: '#FFCC00', border: '2px solid #FFCC00', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)' }}
                   initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }}>
-                  <Lock className="inline w-3 h-3 -mt-0.5 mr-1" />Earn it: {ghost.unlock.hint}
+                  <Lock className="inline w-3 h-3 -mt-0.5 mr-1" />Earn it: {brand(ghost.unlock.hint)}
                 </motion.div>
               )}
             </AnimatePresence>

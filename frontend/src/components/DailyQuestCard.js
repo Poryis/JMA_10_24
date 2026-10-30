@@ -11,6 +11,7 @@ import { DOMAIN_MAP } from '../data/achievements';
 import { STICKER_MAP } from '../data/stickers';
 import { say } from '../lib/voice';
 import { questVoiceId } from '../data/voiceLines';
+import { brand } from '../lib/brand';
 
 const WEEKDAY = new Date().toLocaleDateString(undefined, { weekday: 'long' });
 const SEEN_KEY = 'jma_quest_seen_done_v1'; // { date, done } — last doneCount the kid saw
@@ -134,10 +135,10 @@ function QuestRow({ quest, index, navigate, baseDelay = 0.5 }) {
           style={{ color: 'var(--jma-dark)', textDecoration: done ? 'line-through' : 'none', textDecorationColor: '#34A853' }}
           data-testid={`daily-quest-title-${index}`}
         >
-          {quest.title}
+          {brand(quest.title)}
         </span>
         <span className="text-[9px] md:text-[10px] uppercase tracking-wide font-black" style={{ color: done ? '#1F7A36' : domain.color }}>
-          {quest.where}{target > 1 && !done ? ` · ${progress}/${target}` : ''}
+          {brand(quest.where)}{target > 1 && !done ? ` · ${progress}/${target}` : ''}
         </span>
       </div>
 

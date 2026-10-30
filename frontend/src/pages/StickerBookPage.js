@@ -23,6 +23,7 @@ import FitBox from '../components/FitBox';
 import PrintReport from '../components/PrintReport';
 import ManageDataModal from '../components/ManageDataModal';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
+import { brand } from '../lib/brand';
 
 const TEACHER_VIEW_KEY = 'jma_teacher_view_v1';
 
@@ -103,7 +104,7 @@ function StickerDetailModal({ sticker, earned, allEarned, teacherView, onClose, 
           {isEarned ? sticker.name : 'Locked'}
         </h3>
         <p className="text-sm mt-2 font-medium" style={{ color: 'var(--jma-dark)' }}>
-          {isEarned ? `Earned on ${new Date(earned.earnedAt).toLocaleDateString()}` : sticker.hint}
+          {isEarned ? `Earned on ${new Date(earned.earnedAt).toLocaleDateString()}` : brand(sticker.hint)}
         </p>
 
         {/* Achievement-only: teacher description (always shown when
@@ -278,7 +279,7 @@ export default function StickerBookPage() {
       </div>
 
 
-      <main className="relative flex-1 pt-20 pb-10 px-3 md:px-6 max-w-6xl mx-auto w-full">
+      <main className="relative flex-1 pt-20 [@media(max-height:500px)]:pt-36 pb-10 px-3 md:px-6 max-w-6xl mx-auto w-full">
           {/* Rank badge with progress meter inside it, plus a compact
               "How ranks work?" affordance. Passive help — not a
               notification, so no bounce or red dot. */}

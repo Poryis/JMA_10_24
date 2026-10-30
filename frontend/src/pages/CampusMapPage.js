@@ -24,6 +24,7 @@ import { say, voiceEnabled } from '../lib/voice';
 import { pickFeaturedEpisode } from '../data/jmatv';
 import useGamePaused from '../hooks/useGamePause';
 import { readFlags, setFlag } from '../data/avatars';
+import { brand } from '../lib/brand';
 
 // Shelf layout scales with the viewport: a building is ~46% of the screen
 // height (capped by width) and everything else is derived from that.
@@ -336,7 +337,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
             <span data-testid={`campus-building-${b.id}-sign`} className="absolute -translate-x-1/2 -translate-y-1/2 font-black font-display whitespace-nowrap pointer-events-none"
               style={{ left: `${b.signPos.x}%`, top: `${b.signPos.y}%`, fontSize: Math.round(L.bw * b.size * (b.sign.length > 8 ? 0.055 : 0.085) * (b.signScale || 1)), color: 'var(--jma-dark)', zIndex: 5, letterSpacing: '0.04em',
                 ...(b.signColor ? { background: b.signColor, border: '3px solid var(--jma-dark)', borderRadius: 999, padding: '2px 10px', boxShadow: '0 3px 0 0 var(--jma-dark)' } : {}) }}>
-              {b.signSub ? <span className="flex flex-col items-center" style={{ lineHeight: 0.95 }}><span>{b.sign}</span><span style={{ fontSize: '0.5em', letterSpacing: '0.18em', opacity: 0.85 }}>{b.signSub}</span></span> : b.sign}
+              {b.signSub ? <span className="flex flex-col items-center" style={{ lineHeight: 0.95 }}><span>{brand(b.sign)}</span><span style={{ fontSize: '0.5em', letterSpacing: '0.18em', opacity: 0.85 }}>{b.signSub}</span></span> : brand(b.sign)}
             </span>
           )}
           {b.hangSign && (
@@ -645,7 +646,7 @@ export default function CampusMapPage({ plaza = false }) {
             transition={swim ? { duration: swim.dur, ease: 'easeInOut', scale: { duration: swim.dur, times: [0, 0.7, 1] }, opacity: { duration: swim.dur, times: [0, 0.7, 0.92, 1] } } : { duration: 0 }}>
             <motion.span className="rounded-full px-1.5 text-[9px] font-black text-white mb-0.5" style={{ background: '#FF2D85', border: '2px solid var(--jma-dark)' }} animate={{ opacity: swim ? 0 : 1 }}>YOU</motion.span>
             <motion.div animate={swim ? { y: [0, -8, 0, -8, 0], rotate: [0, 6, 0, 6, 0] } : { y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: swim ? 0.7 : 1.6, ease: 'easeInOut' }}>
-              <AvatarSprite src={avatar.src} helmet={!!avatar.helmet} width={Math.round((avatar.helmet ? 44 : 60) * (YOU_W / 64))} imgStyle={{ filter: 'drop-shadow(0 4px 4px rgba(0,0,0,0.35))' }} />
+              <AvatarSprite src={avatar.src} helmet={!!avatar.helmet} width={Math.round((avatar.helmet ? 44 : 60) * (YOU_W / 64))} style={{ transform: !!avatar.facesLeft !== !!(swim && swim.x < 0) ? 'scaleX(-1)' : undefined }} imgStyle={{ filter: 'drop-shadow(0 4px 4px rgba(0,0,0,0.35))' }} />
             </motion.div>
           </motion.div>
           {/* street signs → previous / next street */}

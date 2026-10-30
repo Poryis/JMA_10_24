@@ -147,11 +147,11 @@ function DriveIn({ live }) {
 }
 
 // The Stage's marquee board reads MAIN STAGE with chasing bulbs.
-function StageMarquee({ bw }) {
+function StageMarquee() {
   return (
-    <div data-testid="stage-marquee" className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style={{ width: '38%', height: '12%', left: '58.5%', top: '11.5%', zIndex: 5 }}>
-      <motion.span className="font-black font-display whitespace-nowrap" style={{ fontSize: Math.round(bw * 0.058), color: '#B8233A', letterSpacing: '0.08em', textShadow: '0 2px 0 rgba(0,0,0,0.12)' }}
-        animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>MAIN STAGE</motion.span>
+    <div data-testid="stage-marquee" className="absolute pointer-events-none flex items-center justify-center" style={{ width: '40.8%', height: '11.9%', left: '58.8%', top: '13.3%', zIndex: 5, transform: 'translate(-50%, -50%) rotate(8deg)', containerType: 'inline-size' }}>
+      <motion.span className="font-black font-display whitespace-nowrap" style={{ fontSize: '10.5cqw', lineHeight: 1, color: '#B8233A', letterSpacing: '0.06em', textShadow: '0 2px 0 rgba(0,0,0,0.12)' }}
+        animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}>MAIN STAGE</motion.span>
     </div>
   );
 }
@@ -345,7 +345,7 @@ function Building({ b, index, locked, onEnter, onLocked, shout, L, entering, bad
               <GateRibbon ribbon={b.ribbon} fontSize={Math.round(L.bw * b.size * 0.085)} />
             </div>
           )}
-          {b.custom === 'bandstand' && <StageMarquee bw={L.bw * b.size} />}
+          {b.custom === 'bandstand' && <StageMarquee />}
           {!locked && b.custom !== 'tv' && <RoofBubbles index={index} />}
           {/* floating notes from the door */}
           {!locked && [0, 1, 2].map((n) => (

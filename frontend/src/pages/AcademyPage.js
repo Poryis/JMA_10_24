@@ -198,7 +198,7 @@ const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src
 const ROOM = 'assets/academy/room/';
 const L = {
   hole: { left: '46.9%', top: '27.9%', width: '17.8%', height: '40%' },
-  chalkboard: { left: '4.73%', top: '18.88%', width: '27.84%' }, doodles: { left: '7.66%', top: '27.41%', width: '21.25%' }, doodlesArt: { left: '7.88%', top: '27.73%', width: '20.80%' },
+  chalkboard: { left: '4.73%', top: '18.88%', width: '27.84%' }, doodles: { left: '7.80%', top: '27.27%', width: '21.15%' },
   shield: { left: '77%', top: '11.52%', width: '19.19%' }, lectern: { left: '32.45%', top: '48.57%', width: '11.5%' }, book: { left: '32.05%', top: '42.84%', width: '11.79%' },
   harp: { left: '0%', top: '57.94%', width: '14.62%' }, trumpet: { left: '19.08%', top: '64.71%', width: '11.9%' },
   lanternL: { left: '34.29%', top: '24.93%', width: '3.88%' }, lanternR: { left: '73.74%', top: '24.93%', width: '3.88%' },
@@ -210,15 +210,15 @@ const HALL = { w: 1920, h: 1080 };
 // The two parchment scrolls drawn on the chalkboard carry the next two unfinished
 // quests (finished ones stay until there's something new to show, with a chalk tick).
 const SCROLL_SPOTS = [
-  { left: '0.5%', top: '57%', width: '26.5%', height: '42%', rot: -3, font: '4.3cqw', icon: '8cqw' },
-  { left: '75%', top: '36%', width: '23.5%', height: '32%', rot: 3, font: '3.6cqw', icon: '6.5cqw' },
+  { left: '0.7%', top: '60.6%', width: '22.3%', height: '33.1%', rot: -3, font: '3.4cqw', icon: '5.4cqw', art: 1 },
+  { left: '78%', top: '31.8%', width: '18.2%', height: '28.6%', rot: 3, font: '2.9cqw', icon: '4.6cqw', art: 2 },
 ];
 function ChalkScrolls() {
   const { quests } = useDailyQuests();
   // open quests first so a finished one makes room for the next
   const shown = [...quests.filter((q) => !q.done), ...quests.filter((q) => q.done)].slice(0, SCROLL_SPOTS.length);
   return (
-    <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '408 / 327', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls"
+    <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.doodles, aspectRatio: '1000 / 786', zIndex: 4, containerType: 'inline-size' }} data-testid="academy-chalk-scrolls"
       animate={{ y: [0, -2, 0] }} transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}>
       {shown.map((q, i) => <QuestScroll key={q.id} quest={q} spot={SCROLL_SPOTS[i]} index={i} isNext={!q.done && i === 0} />)}
     </motion.div>
@@ -331,7 +331,7 @@ export default function AcademyPage() {
 
         {/* chalkboard → Quest Board (chalk doodles shimmer on their own layer) */}
         <Prop id="chalkboard" pos={L.chalkboard} />
-        <Prop id="chalk-doodles" pos={L.doodlesArt} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
+        <Prop id="chalk-doodles" pos={L.doodles} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
         <ChalkScrolls />
         {[0, 1, 2].map((n) => (
           <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${9 + n * 6}%`, top: '26%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 3 }}

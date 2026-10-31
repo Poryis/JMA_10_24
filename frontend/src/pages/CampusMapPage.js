@@ -37,8 +37,8 @@ const SHOUTS = ['Hey!', 'Come in!', 'Over here!', 'Woo!', 'Jam time!', 'Psst!'];
 
 function isNight() { const h = new Date().getHours(); return h >= 20 || h < 5; }
 
-// Street music: a Jelly instrumental playlist per street. Shuffles, fades
-// in, never repeats the same track back-to-back, stops when you leave.
+// Street music: a Jelly instrumental playlist per street. Each visit starts on
+// the next song in the rotation, fades in, stops when you leave.
 const MUTE_KEY = 'jma_street_music_muted';
 export function useStreetMusic(tracks) {
   const [nowPlaying, setNowPlaying] = useState(null);
@@ -50,8 +50,16 @@ export function useStreetMusic(tracks) {
     setNowPlaying(null);
     if (!tracks || !tracks.length || !voiceEnabled()) return undefined;
     const a = new Audio(); a.preload = 'auto'; a.volume = 0; a.muted = muted; audioRef.current = a;
-    let last = -1; let fade = null; let armed = false; let alive = true;
-    const pick = () => { let i; do { i = Math.floor(Math.random() * tracks.length); } while (tracks.length > 1 && i === last); last = i; return tracks[i]; };
+    let fade = null; let armed = false; let alive = true;
+    // Rotate through the playlist across visits so each entry starts on the next song.
+    const rotKey = `jma_music_rot_${tracks.map((t) => t.src).join('|')}`;
+    const pick = () => {
+      let i; let prev = []; try { prev = (localStorage.getItem(rotKey) || '').split(':').map(Number); } catch (_) { /* ignore */ }
+      if (prev.length === 2 && Date.now() - prev[1] < 1500) i = prev[0] % tracks.length; // same visit (remount)
+      else i = Number.isFinite(prev[0]) && prev.length === 2 ? (prev[0] + 1) % tracks.length : Math.floor(Math.random() * tracks.length);
+      try { localStorage.setItem(rotKey, `${i}:${Date.now()}`); } catch (_) { /* ignore */ }
+      return tracks[i];
+    };
     const fadeIn = () => { clearInterval(fade); fade = setInterval(() => { if (!alive) return clearInterval(fade); a.volume = Math.min(0.16, a.volume + 0.02); if (a.volume >= 0.16) clearInterval(fade); }, 80); };
     const start = () => { if (!alive) return; const t = pick(); a.src = t.src; a.play().then(() => { fadeIn(); setNowPlaying(t.title); }).catch(() => {}); };
     a.addEventListener('ended', start);

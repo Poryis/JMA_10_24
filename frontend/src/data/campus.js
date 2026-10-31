@@ -6,7 +6,7 @@ const T = (file, title) => ({ src: `${MU}${file}.mp3`, title });
 const CH = 'assets/characters/';
 
 export const CAMPUS_ZONES = [
-  { id: 'play',   label: 'PLAY',   street: 'Jelly Jam Boulevard', color: '#FFCC00', ground: '#9BE27A', tracks: [T('play-one-skip-one', 'Play One, Skip One'), T('goody-bag', 'Goody Bag'), T('food-fight', 'Food Fight')],   strollers: [`${CH}charlie-surf.png`, `${CH}sharky-snorkel.png`] },
+  { id: 'play',   label: 'PLAY',   street: 'Jelly Jam Boulevard', color: '#FFCC00', ground: '#9BE27A', tracks: [T('play-one-skip-one', 'Play One, Skip One'), T('goody-bag', 'Goody Bag'), T('food-fight', 'Food Fight'), T('dough-is-in-pizza', 'Dough Is in Pizza')],   strollers: [`${CH}charlie-surf.png`, `${CH}sharky-snorkel.png`] },
   { id: 'learn',  label: 'LEARN',  street: 'Music 101 Lane',      color: '#C8A8F2', ground: '#7FD1B9', tracks: [T('magic', 'Magic'), T('brand-new-friend', 'Brand New Friend')],  strollers: [`${CH}charlie-surf.png`, `${CH}sharky-snorkel.png`] },
   { id: 'create', label: 'CREATE', street: 'Studio Row',          color: '#7DD3C0', ground: '#F2C878', tracks: [T('faster-as-we-go', 'Faster As We Go'), T('food-fight', 'Food Fight'), T('goody-bag', 'Goody Bag')], strollers: [`${CH}charlie-surf.png`, `${CH}sharky-snorkel.png`] },
 ];
@@ -49,7 +49,7 @@ export function journeyTo(route) {
 const PZ = 'assets/plaza/';
 export const PLAZA_ZONE = {
   id: 'plaza', label: 'ACADEMY PLAZA', street: 'Academy Plaza', color: '#FFCC00', ground: '#9BE27A',
-  tracks: [T('goody-bag', 'Goody Bag'), T('magic', 'Magic'), T('faster-as-we-go', 'Faster As We Go'), T('brand-new-friend', 'Brand New Friend')],
+  tracks: [T('jelly-jamboree', 'Jelly Jamboree'), T('goody-bag', 'Goody Bag'), T('magic', 'Magic'), T('faster-as-we-go', 'Faster As We Go'), T('brand-new-friend', 'Brand New Friend')],
   strollers: [{ src: `${CH}dr-jellybone.png`, facing: 'left' }, `${CH}sharky-snorkel.png`],
 };
 export const PLAZA_BUILDINGS = [

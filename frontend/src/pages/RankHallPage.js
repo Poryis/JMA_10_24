@@ -3,7 +3,7 @@
 // behind, and "TAKE A BOW!" sets off the crowd. Tap a trophy → Charlie explains it.
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Star, BookOpen, Hand, Heart, Music, VolumeX, ListMusic, Square, Zap, Camera } from 'lucide-react';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import useRank from '../hooks/useRank';
@@ -13,6 +13,7 @@ import { useAudio } from '../hooks/useAudio';
 import useBeatLabAudio from '../hooks/useBeatLabAudio';
 import useBeatLoopPlayer from '../hooks/useBeatLoopPlayer';
 import useSongLoopPlayer from '../hooks/useSongLoopPlayer';
+import { loadSavedJams, getJamAudioUrl } from '../hooks/useSavedJams';
 import { TOTAL_SLOTS, MOODS } from '../data/songStudio';
 import stageLayout from '../data/stageLayout.json';
 import { useStreetMusic } from './CampusMapPage';
@@ -110,6 +111,7 @@ export function playFanfare() {
 
 export default function RankHallPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { currentRank } = useRank();
   const { earned } = useStickers();
   const { player } = usePlayer();
@@ -134,6 +136,7 @@ export default function RankHallPage() {
   const [perf, setPerf] = useState(null);
   const [perfPct, setPerfPct] = useState(0);
   const perfTimer = useRef(null);
+  const jamAudioElRef = useRef(null);
   const lastSong = useRef(null);
   const { playBellNote, playDrumSound, initAudioContext, getAudioGraph } = useAudio();
   const lab = useBeatLabAudio(getAudioGraph, initAudioContext);
@@ -149,7 +152,7 @@ export default function RankHallPage() {
     const fit = () => { const vw = window.innerWidth, vh = window.innerHeight; const sc = Math.max(vw / 1920, vh / 1080); const w = 1920 * sc, h = 1080 * sc; setScene({ w, h, left: (vw - w) / 2, top: (vh - h) * 0.45 }); };
     fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit);
   }, []);
-  useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); clearInterval(showTimer.current); clearInterval(perfTimer.current); }, []);
+  useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); clearInterval(showTimer.current); clearInterval(perfTimer.current); if (jamAudioElRef.current) { try { jamAudioElRef.current.audio.pause(); } catch (_) { /* ignore */ } } }, []);
 
   const cheer = useCallback((big) => {
     setBow((b) => b + 1); setEnergy(1); setConfetti((c) => c + 1); playFanfare();
@@ -182,6 +185,11 @@ export default function RankHallPage() {
   const endPerf = useCallback((early) => {
     clearInterval(perfTimer.current);
     beatPlayer.stop(); songPlayer.stop();
+    if (jamAudioElRef.current) {
+      try { jamAudioElRef.current.audio.pause(); } catch (_) { /* ignore */ }
+      try { URL.revokeObjectURL(jamAudioElRef.current.url); } catch (_) { /* ignore */ }
+      jamAudioElRef.current = null;
+    }
     stopShow();
     setPerf(null); setPerfPct(0);
     cheer(!early);
@@ -189,9 +197,23 @@ export default function RankHallPage() {
   const perform = useCallback(async (t) => {
     setPicker(false);
     initAudioContext();
+    lastSong.current = t.name;
+    if (t.kind === 'jam') {
+      const url = await getJamAudioUrl(t.data.id);
+      if (!url) return;
+      const audio = new Audio(url);
+      jamAudioElRef.current = { audio, url };
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration && isFinite(audio.duration)) setPerfPct(Math.min(100, (audio.currentTime / audio.duration) * 100));
+      });
+      audio.addEventListener('ended', () => endPerf(false));
+      setPerf({ name: t.name, total: 0 });
+      try { await audio.play(); } catch (_) { /* ignore — needs a tap to unlock audio */ }
+      startShow();
+      return;
+    }
     const passSec = t.kind === 'beat' ? (60 / t.data.bpm / 4) * t.data.totalSteps : TOTAL_SLOTS * 60 / (t.data.bpm || MOODS[t.data.moodId]?.bpm || 100);
     const total = Math.max(2, Math.round(20 / passSec)) * passSec * 1000;
-    lastSong.current = t.name;
     setPerf({ name: t.name, total });
     if (t.kind === 'beat') await beatPlayer.start(t.data); else await songPlayer.start(t.data);
     startShow();
@@ -203,6 +225,22 @@ export default function RankHallPage() {
       if (pct >= 100) endPerf(false);
     }, 200);
   }, [initAudioContext, beatPlayer, songPlayer, startShow, endPerf]);
+
+  // Deep-link from My Album ("Play at the Stage") — auto-performs that saved jam.
+  const jamDeepLinkRef = useRef(false);
+  useEffect(() => {
+    if (jamDeepLinkRef.current) return;
+    const jamId = new URLSearchParams(location.search).get('jam');
+    if (!jamId) return;
+    const jam = loadSavedJams().find((j) => j.id === jamId);
+    if (!jam) return;
+    jamDeepLinkRef.current = true;
+    const go = () => perform({ id: jam.id, name: jam.name, kind: 'jam', data: jam });
+    try { if (sessionStorage.getItem('jma_audio_unlocked_v1') === '1') { setTimeout(go, 1600); return undefined; } } catch (_) { /* ignore */ }
+    const once = () => setTimeout(go, 150);
+    document.addEventListener('pointerdown', once, { once: true, capture: true });
+    return () => document.removeEventListener('pointerdown', once, { capture: true });
+  }, [location.search, perform]);
 
   // SNAP! camera flash → poster saved for the Yearbook wall.
   const snap = useCallback(() => {
@@ -269,7 +307,7 @@ export default function RankHallPage() {
       <motion.button type="button" data-testid="rank-hall-you" onClick={takeBow} aria-label="Take a bow"
         className="rank-hall-you absolute bg-transparent border-0 p-0 cursor-pointer flex flex-col items-center" style={{ left: scene.left + scene.w * 0.505, top: scene.top + scene.h * 0.70, transform: 'translate(-50%, -100%)', height: scene.h * 0.3, zIndex: 5 }}>
         <motion.div key={bow} className="h-full flex items-end" style={{ transformOrigin: 'bottom center' }}
-          animate={bow ? { rotate: [0, 0, -22, -22, 0], y: [0, -26, 0, 0, 0] } : { y: [0, -4, 0] }} transition={bow ? { duration: 1.4, times: [0, 0.2, 0.45, 0.8, 1] } : { repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}>
+          animate={perf ? { y: [0, -14, 0, -14, 0], rotate: [-9, 9, -9, 9, -9] } : bow ? { rotate: [0, 0, -22, -22, 0], y: [0, -26, 0, 0, 0] } : { y: [0, -4, 0] }} transition={perf ? { repeat: Infinity, duration: 0.55, ease: 'easeInOut' } : bow ? { duration: 1.4, times: [0, 0.2, 0.45, 0.8, 1] } : { repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}>
           <AvatarSprite src={avatar.src} helmet={!!avatar.helmet} className="h-full w-auto" imgStyle={{ height: '100%', width: 'auto', filter: 'drop-shadow(0 6px 0 rgba(0,0,0,0.45))' }} />
         </motion.div>
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[10px] font-black text-white whitespace-nowrap" style={{ background: '#FF2D85', border: '2px solid var(--jma-dark)' }}>YOU</span>

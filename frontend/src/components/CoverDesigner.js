@@ -193,7 +193,7 @@ export default function CoverDesigner({ track, cover: saved, avatar, onSave, onC
         </div>
         <div className="flex flex-wrap gap-2 mt-4">
           <button type="button" data-testid="cover-save" onClick={() => onSave(cover)} className="chunky-btn flex-1 py-2 text-sm font-black text-white flex items-center justify-center gap-1.5" style={{ background: '#34A853' }}><Check className="w-4 h-4" strokeWidth={3} /> Save cover</button>
-          <button type="button" data-testid="cover-open" onClick={onOpen} className="chunky-btn flex-1 py-2 text-sm font-black flex items-center justify-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><Play className="w-4 h-4" strokeWidth={3} /> Open in {track.kind === 'beat' ? 'Beat Lab' : 'Song Studio'}</button>
+          <button type="button" data-testid="cover-open" onClick={onOpen} className="chunky-btn flex-1 py-2 text-sm font-black flex items-center justify-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><Play className="w-4 h-4" strokeWidth={3} /> {track.kind === 'jam' ? 'Play at the Stage' : `Open in ${track.kind === 'beat' ? 'Beat Lab' : 'Song Studio'}`}</button>
         </div>
       </motion.div>
     </motion.div>

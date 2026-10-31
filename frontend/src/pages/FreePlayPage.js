@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Music, Circle, Square, Play, RotateCcw, ChevronRight, Headphones, Download, Mic } from 'lucide-react';
+import { Music, Circle, Square, Play, RotateCcw, ChevronRight, Headphones, Download, Mic, Disc3 } from 'lucide-react';
 import { BELLS, KEY_TO_NOTE } from '../components/JellyBells';
 import { GameHeader } from '../components/GameUI';
 import { XylophoneInstrument, PianoInstrument } from '../components/Instruments';
@@ -18,6 +18,8 @@ import useBeatLoopPlayer from '../hooks/useBeatLoopPlayer';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import useSongLoopPlayer, { loadSavedSongs } from '../hooks/useSongLoopPlayer';
 import useBeatLabAudio from '../hooks/useBeatLabAudio';
+import { saveJam, renameSavedJam, loadSavedJams } from '../hooks/useSavedJams';
+import { getPlayerDisplayName } from '../hooks/usePlayer';
 import MyMusicShelf from '../components/MyMusicShelf';
 
 const GUIDED_SONGS = [
@@ -498,11 +500,12 @@ function JamAlongControls({ jamTrackId, onPick, audioRef, getAudioGraph, beatPla
 
 function FreePlayPage() {
   useVoiceTagline('jazzy.tag.jam');
+  const navigate = useNavigate();
   const { playBellNote, playDrumSound, initAudioContext, getAudioGraph } = useAudio();
   const recorder = useMp3Recorder(getAudioGraph);
   const lab = useBeatLabAudio(getAudioGraph, initAudioContext);
   const beatPlayer = useBeatLoopPlayer({ playBellNote, playDrumSound, initAudioContext, lab });
-  const songPlayer = useSongLoopPlayer();
+  const songPlayer = useSongLoopPlayer(getAudioGraph);
 
   const [particles, setParticles] = useState([]);
   const [streak, setStreak] = useState(0);
@@ -521,6 +524,10 @@ function FreePlayPage() {
   // Jam-along: play a JMA Original backing track while jamming on any instrument
   const [jamTrackId, setJamTrackId] = useState(null);
   const jamAudioRef = useRef(null);
+  // Saving a finished recording to My Album
+  const [namingJam, setNamingJam] = useState(null);
+  const [jamNameInput, setJamNameInput] = useState('');
+  const [savedJamName, setSavedJamName] = useState(null);
   // Stop jam-along audio when this page unmounts
   useEffect(() => {
     return () => {
@@ -727,8 +734,36 @@ function FreePlayPage() {
 
   useEffect(() => { const t = setTimeout(() => setStreak(0), 3000); return () => clearTimeout(t); }, [streak]);
 
-  const startRecording = useCallback(() => { setRecording([]); setIsRecording(true); recordStartRef.current = Date.now(); }, []);
+  const startRecording = useCallback(() => { setRecording([]); setIsRecording(true); recordStartRef.current = Date.now(); setNamingJam(null); setSavedJamName(null); }, []);
   const stopRecording = useCallback(() => setIsRecording(false), []);
+
+  // Save the just-recorded MP3 (track + live performance together) into My
+  // Album so it can get a cover and get played at the Stage.
+  const handleSaveJam = useCallback(async () => {
+    if (!recorder.lastMp3Url) return;
+    try {
+      const blob = await fetch(recorder.lastMp3Url).then((r) => r.blob());
+      const sourceName = jamTrackId
+        ? (jamTrackId.startsWith('beat:') ? loadSavedBeats().find((b) => `beat:${b.id}` === jamTrackId)?.name
+          : jamTrackId.startsWith('song:') ? loadSavedSongs().find((sg) => `song:${sg.id}` === jamTrackId)?.name
+          : SONG_LIBRARY.find((s) => s.id === jamTrackId)?.name) || null
+        : null;
+      const n = loadSavedJams().length + 1;
+      const who = getPlayerDisplayName();
+      const name = `${who ? `${who}'s ` : ''}Jam ${n}`;
+      const jam = await saveJam({ name, blob, sourceName });
+      setNamingJam(jam);
+      setJamNameInput('');
+    } catch (_) { /* ignore — recording is still available via Download */ }
+  }, [jamTrackId, recorder.lastMp3Url]);
+
+  const confirmJamName = useCallback(() => {
+    if (!namingJam) return;
+    const name = jamNameInput.trim().slice(0, 24) || namingJam.name;
+    if (name !== namingJam.name) renameSavedJam(namingJam.id, name);
+    setSavedJamName(name);
+    setNamingJam(null);
+  }, [namingJam, jamNameInput]);
 
   // Helper to briefly flash the pressed frame for playback (toggles both refs)
   const flashBell = useCallback((note, ms = 120) => {
@@ -889,11 +924,32 @@ function FreePlayPage() {
                 )}
                 {recorder.lastMp3Url && (
                   <button
-                    data-testid="capture-save-btn"
+                    data-testid="capture-download-btn"
                     className="chunky-btn bg-[var(--jma-yellow)] text-[var(--jma-dark)] px-2 py-0.5 md:py-1 flex items-center gap-1 text-[10px] md:text-xs font-bold touch-manipulation"
                     onClick={() => recorder.download(`my-jam-${Date.now()}.mp3`)}
                   >
-                    <Download className="w-3 h-3" /> Save
+                    <Download className="w-3 h-3" /> Download
+                  </button>
+                )}
+                {recorder.lastMp3Url && !namingJam && !savedJamName && (
+                  <button
+                    data-testid="capture-save-album-btn"
+                    className="chunky-btn text-white px-2 py-0.5 md:py-1 flex items-center gap-1 text-[10px] md:text-xs font-bold touch-manipulation"
+                    style={{ background: '#1E9BFF' }}
+                    onClick={handleSaveJam}
+                  >
+                    <Disc3 className="w-3 h-3" /> Save to Album
+                  </button>
+                )}
+                {namingJam && (
+                  <form data-testid="jam-name-form" className="flex items-center gap-1" onSubmit={(e) => { e.preventDefault(); confirmJamName(); }}>
+                    <input data-testid="jam-name-input" autoFocus maxLength={24} value={jamNameInput} onChange={(e) => setJamNameInput(e.target.value)} placeholder={`Name it! (${namingJam.name})`} className="px-2 py-1 rounded-lg text-[10px] md:text-xs font-bold w-28 md:w-36 outline-none" style={{ background: '#fff', color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }} />
+                    <button type="submit" data-testid="jam-name-save" className="chunky-btn bg-[var(--jma-yellow)] text-[var(--jma-dark)] px-2 py-0.5 md:py-1 text-[10px] md:text-xs font-black touch-manipulation">Save</button>
+                  </form>
+                )}
+                {savedJamName && (
+                  <button type="button" data-testid="jam-go-to-album" className="chunky-btn bg-[var(--jma-green)] text-white px-2 py-0.5 md:py-1 flex items-center gap-1 text-[10px] md:text-xs font-bold touch-manipulation" onClick={() => navigate('/academy?panel=album')}>
+                    <Disc3 className="w-3 h-3" /> "{savedJamName}" saved! My Album →
                   </button>
                 )}
               </>

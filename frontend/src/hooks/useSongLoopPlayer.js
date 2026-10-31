@@ -6,9 +6,9 @@ import { MOODS, TOTAL_SLOTS, SLOTS_PER_ROW } from '../data/songStudio';
 
 const REST = 'REST';
 
-export default function useSongLoopPlayer() {
+export default function useSongLoopPlayer(getAudioGraph) {
   const piano = useRef(null);
-  piano.current = usePianoAudio();
+  piano.current = usePianoAudio(getAudioGraph);
   const [playingId, setPlayingId] = useState(null);
   const st = useRef({ timer: null, sources: [], drum: null, token: 0 });
 

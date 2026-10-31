@@ -24,6 +24,7 @@ import useStickers from '../hooks/useStickers';
 import usePlayer from '../hooks/usePlayer';
 import { readAvatarOutfit } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
+import { loadSavedJams } from '../hooks/useSavedJams';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import { RANKS } from '../data/ranks';
 import { journeyTo } from '../data/campus';
@@ -84,6 +85,7 @@ function MyAlbum() {
   const tracks = useMemo(() => [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: '/loop-studio', at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: '/song-studio', at: Date.parse(s.createdAt) || 0 })),
+    ...loadSavedJams().map((j) => ({ id: j.id, name: j.name, kind: 'jam', meta: j.sourceName ? `Jammed to: ${j.sourceName}` : 'Jam Session', route: `/rank-hall?jam=${j.id}`, at: j.createdAt || 0 })),
   ].sort((a, b) => b.at - a.at), []);
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
@@ -232,7 +234,7 @@ function Easels({ onEmpty }) {
   const avatar = readAvatarOutfit();
   const [idx, setIdx] = useState(0);
   const latest = useMemo(() => {
-    const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, name: t.name, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
+    const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, name: t.name, kind: 'song', at: Date.parse(t.createdAt) || 0 })), ...loadSavedJams().map((j) => ({ id: j.id, name: j.name, kind: 'jam', at: j.createdAt || 0 }))];
     const covers = loadCovers();
     return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
   }, []);

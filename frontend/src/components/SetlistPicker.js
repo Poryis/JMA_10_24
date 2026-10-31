@@ -2,14 +2,16 @@
 // beats and Song Studio songs, newest first. Picking one starts the show.
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Drum, Music2, Play, X } from 'lucide-react';
+import { Drum, Music2, Mic, Play, X } from 'lucide-react';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { loadSavedSongs } from '../hooks/useSongLoopPlayer';
+import { loadSavedJams } from '../hooks/useSavedJams';
 
 export function loadSetlist() {
   return [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, at: b.createdAt || 0, data: b })),
     ...loadSavedSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', at: Date.parse(s.createdAt) || 0, data: s })),
+    ...loadSavedJams().map((j) => ({ id: j.id, name: j.name, kind: 'jam', meta: j.sourceName ? `Jammed to: ${j.sourceName}` : 'My Album', at: j.createdAt || 0, data: j })),
   ].sort((a, b) => b.at - a.at);
 }
 
@@ -35,7 +37,7 @@ export default function SetlistPicker({ onPick, onClose }) {
           <div className="flex flex-col gap-2">
             {tracks.map((t) => (
               <button key={t.id} type="button" data-testid={`stage-setlist-${t.id}`} onClick={() => onPick(t)} className="flex items-center gap-3 rounded-2xl px-3 py-2 text-left" style={{ background: '#F6F8FB', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }}>
-                <span className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white" style={{ background: t.kind === 'beat' ? '#FF2D85' : '#1E9BFF', border: '2.5px solid var(--jma-dark)' }}>{t.kind === 'beat' ? <Drum className="w-4 h-4" strokeWidth={3} /> : <Music2 className="w-4 h-4" strokeWidth={3} />}</span>
+                <span className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white" style={{ background: t.kind === 'beat' ? '#FF2D85' : t.kind === 'jam' ? '#8E5BFF' : '#1E9BFF', border: '2.5px solid var(--jma-dark)' }}>{t.kind === 'beat' ? <Drum className="w-4 h-4" strokeWidth={3} /> : t.kind === 'jam' ? <Mic className="w-4 h-4" strokeWidth={3} /> : <Music2 className="w-4 h-4" strokeWidth={3} />}</span>
                 <span className="flex-1 min-w-0">
                   <span className="block font-black truncate text-sm md:text-base" style={{ color: 'var(--jma-dark)' }}>{t.name}</span>
                   <span className="block text-[11px] font-bold" style={{ color: '#4B5668' }}>{t.meta}</span>

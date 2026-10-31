@@ -6,13 +6,24 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { ALL_PIANO_NOTE_IDS, noteFile } from '../data/songStudio';
 
-export default function usePianoAudio() {
+// `getAudioGraph` (optional) shares a caller's { ctx, masterNode } — e.g. Jam
+// Session passes its master gain so a saved song's notes land on the same
+// tap the MP3 recorder reads from, instead of this hook's own silent-to-the-
+// recorder AudioContext. Song Studio calls this with no args (standalone).
+export default function usePianoAudio(getAudioGraph) {
   const ctxRef = useRef(null);
   const buffersRef = useRef({});       // note id   -> AudioBuffer
   const loopBuffersRef = useRef({});   // loop url  -> AudioBuffer
   const masterGainRef = useRef(null);
 
   const initContext = useCallback(() => {
+    if (getAudioGraph) {
+      const { ctx, masterNode } = getAudioGraph();
+      ctxRef.current = ctx;
+      masterGainRef.current = masterNode;
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
     if (!ctxRef.current) {
       const Ctx = window.AudioContext || window.webkitAudioContext;
       ctxRef.current = new Ctx();
@@ -22,7 +33,7 @@ export default function usePianoAudio() {
     }
     if (ctxRef.current.state === 'suspended') ctxRef.current.resume();
     return ctxRef.current;
-  }, []);
+  }, [getAudioGraph]);
 
   const decodeUrl = useCallback(async (url) => {
     const ctx = initContext();
@@ -109,9 +120,10 @@ export default function usePianoAudio() {
 
   useEffect(() => {
     return () => {
+      if (getAudioGraph) return; // shared context — owner closes it, not us
       try { ctxRef.current?.close(); } catch { /* ignore */ }
     };
-  }, []);
+  }, [getAudioGraph]);
 
   return { preload, preloadLoop, playPianoNote, playLoop, initContext, now };
 }

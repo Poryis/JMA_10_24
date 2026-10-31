@@ -10,7 +10,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Trophy, Clock, RotateCcw, Sparkles, ChevronUp } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
-import RoomCharacters from '../components/RoomCharacters';
 import { BELLS } from '../components/JellyBells';
 import useAudio from '../hooks/useAudio';
 import { earnSticker, earnAchievement, earnAchievementUpTo } from '../hooks/useStickers';
@@ -288,7 +287,6 @@ export default function NoteMatchPage() {
       style={{ backgroundImage: 'url(assets/backgrounds/boat.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       <GameHeader title="NOTE MATCH" showHomeButton={true} backLink={{ to: '/play', label: 'Play' }} />
-      <RoomCharacters room="note-match" />
 
       <main className="flex-1 flex flex-col items-center pt-20 md:pt-20 pb-6 px-3">
         {/* HUD chips */}

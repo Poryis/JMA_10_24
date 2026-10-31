@@ -6,7 +6,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Camera, Music, Sparkles } from 'lucide-react';
+import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Camera, Music, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
@@ -143,7 +143,7 @@ function Yearbook() {
           <div data-testid="academy-yearbook-rank" className="mt-1 flex items-center gap-1.5 rounded-full px-3 py-1 font-black text-xs md:text-sm text-white" style={{ background: currentRank.color, border: '2px solid var(--jma-dark)' }}><Star className="w-3.5 h-3.5" strokeWidth={3} /> {currentRank.title}</div>
         </div>
         <div className="flex-1 min-w-0">
-          <div className="font-display font-black text-lg md:text-2xl" style={{ color: 'var(--jma-dark)' }}>Yearbook</div>
+          <div className="font-display font-black text-lg md:text-2xl" style={{ color: 'var(--jma-dark)' }}>Achievement Book</div>
           <div className="flex gap-1.5 my-2 flex-wrap" data-testid="academy-rank-ladder">
             {RANKS.map((r, i) => (
               <span key={r.id} title={r.title} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center overflow-hidden" style={{ background: i <= curIdx ? r.badgeBg : '#E5E9F0', border: `2.5px solid ${i <= curIdx ? r.color : '#B8C0CC'}`, opacity: i <= curIdx ? 1 : 0.6 }}>
@@ -193,7 +193,7 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Make album covers at the Creation Station!', 'The big book on the stand is your Yearbook.'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Make album covers at the Creation Station!', 'The big book on the stand is your Achievement Book.'];
 const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
 // Layer positions (% of the 1920x1080 room) measured straight from the PSD export.
 const ROOM = 'assets/academy/room/';
@@ -228,19 +228,25 @@ function ChalkScrolls() {
 
 // The Creation Station easel shows the kid's latest record sleeve (or a "make one!" hint), warped onto the tilted canvas.
 const EASEL_QUAD = [[67.9, 23.6], [83.6, 25.6], [79.1, 52.6], [62.9, 48.4]];
-function Easels() {
+function Easels({ onEmpty }) {
   const avatar = readAvatarOutfit();
+  const [idx, setIdx] = useState(0);
   const latest = useMemo(() => {
     const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, name: t.name, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
     const covers = loadCovers();
-    return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 1).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
+    return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
   }, []);
-  const t = latest[0];
+  const t = latest[idx % Math.max(latest.length, 1)];
+  const flip = () => (latest.length ? setIdx((i) => (i + 1) % latest.length) : onEmpty());
   return (
     <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 5 }} data-testid="academy-easels"
       animate={{ y: [0, -1.5, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
+      <button type="button" data-testid="academy-easel-flip" aria-label={latest.length > 1 ? 'Flip to your next album cover' : 'Album cover easel'} onClick={flip}
+        className="absolute pointer-events-auto cursor-pointer border-0 p-0 bg-transparent" style={{ left: '62.9%', top: '23.6%', width: '20.7%', height: '29%', clipPath: 'polygon(24% 0, 100% 7%, 78% 100%, 0 85%)' }} />
       <QuadFit quad={EASEL_QUAD} testId="academy-easel-canvas">
-        {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
+        {t ? <motion.div key={`${t.id}-${idx}`} style={{ transformOrigin: 'left center' }} initial={latest.length > 1 ? { rotateY: -90, opacity: 0 } : false} animate={{ rotateY: 0, opacity: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}>
+              <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
+            </motion.div>
           : <div className="w-full h-full flex flex-col items-center justify-center gap-1 text-center" style={{ color: '#B8233A' }}>
               <Palette style={{ width: 80, height: 80 }} strokeWidth={2.5} />
               <span className="font-black leading-none" style={{ fontSize: 22 }}>MAKE A COVER!</span>
@@ -307,7 +313,7 @@ export default function AcademyPage() {
   const location = useLocation();
   const [panel, setPanel] = useState(() => { const p = new URLSearchParams(location.search).get('panel'); return PANELS[p] ? p : null; });
   const [leaving, setLeaving] = useState(false);
-  useStreetMusic(ACADEMY_TRACKS);
+  const { muted, toggleMute } = useStreetMusic(ACADEMY_TRACKS);
   const [line, setLine] = useState(0);
   const [wiggle, setWiggle] = useState({ harp: 0, trumpet: 0, guitar: 0, shield: 0, lanternL: 0, lanternR: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
@@ -331,6 +337,12 @@ export default function AcademyPage() {
   return (
     <div data-testid="academy-page" className="fixed inset-0 overflow-hidden" style={{ background: '#F7D9A8' }}>
       <GameHeader title="The Academy" showHomeButton={true} backTo="/home" />
+      <motion.button type="button" data-testid="academy-mute" data-muted={muted ? 'true' : 'false'} aria-label={muted ? 'Unmute music' : 'Mute music'} onClick={toggleMute} whileTap={{ scale: 0.9 }}
+        className="fixed bottom-4 left-3 z-20 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] md:text-xs font-black cursor-pointer"
+        style={{ background: 'rgba(10,37,64,0.85)', color: 'white', border: '2px solid white', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)' }}>
+        {muted ? <VolumeX className="w-4 h-4" strokeWidth={3} /> : <Volume2 className="w-4 h-4" strokeWidth={3} />}
+        {muted ? 'Music off' : 'Music on'}
+      </motion.button>
       <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '55.8% 48%' }}
         initial={{ scale: 1.08, opacity: 0 }} animate={leaving ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : { duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}>
         {/* the plaza, alive, seen through the archway (behind the plate) */}
@@ -379,7 +391,7 @@ export default function AcademyPage() {
         {/* achievement book on its lectern → Yearbook */}
         <Prop id="lectern" pos={L.lectern} z={3} />
         <Prop id="book" pos={L.book} z={4} idle={{ y: [0, -4, 0] }} />
-        <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Yearbook" pill={false} color="#FFCC00" onClick={() => setPanel('yearbook')} />
+        <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Achievement Book" pill={false} color="#FFCC00" onClick={() => setPanel('yearbook')} />
 
         {/* instruments — tap to play them */}
         <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />
@@ -394,15 +406,15 @@ export default function AcademyPage() {
         </div>
         <Prop id="creation-top" pos={L.art} z={4} />
         <LaptopEQ />
-        <Easels />
+        <Easels onEmpty={() => setPanel('album')} />
         <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" color="#FF2D85" onClick={() => setPanel('album')} />
 
         {/* Charlie on the rug */}
-        <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '57%', bottom: '4%', width: '9%', zIndex: 6 }}>
+        <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '56%', bottom: '14%', width: '11%', zIndex: 6 }}>
           <AnimatePresence mode="wait">
-            <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '160%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
+            <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '115%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
           </AnimatePresence>
-          <motion.img src="assets/characters/charlie-grad.png" alt="" draggable={false} className="w-full h-auto" style={{ filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
+          <motion.img src="assets/characters/charlie.png" alt="" draggable={false} className="w-full h-auto" style={{ filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
         </button>
       </motion.div>
       {leaving && <motion.div data-testid="academy-door-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}

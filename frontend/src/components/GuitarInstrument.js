@@ -471,15 +471,16 @@ export default function GuitarInstrument({ getAudioGraph, initAudioContext, onPl
     return label;
   }, [graphOrNull, onPlay, triggerStrings, releaseGuitarVoices, setGuitarHeld]);
 
+  // Map via the on-screen rect (getScreenCTM ignores the stage's CSS scale on iOS Safari).
   const svgPoint = useCallback((e) => {
     const svg = svgRef.current;
     if (!svg) return null;
-    const ctm = svg.getScreenCTM();
-    if (!ctm) return null;
-    const pt = svg.createSVGPoint();
-    pt.x = e.clientX; pt.y = e.clientY;
-    const p = pt.matrixTransform(ctm.inverse());
-    return { x: p.x, y: p.y };
+    const r = svg.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    if (!r.width || !vb || !vb.width) return null;
+    const s = Math.min(r.width / vb.width, r.height / vb.height);
+    const ox = r.left + (r.width - vb.width * s) / 2, oy = r.top + (r.height - vb.height * s) / 2;
+    return { x: vb.x + (e.clientX - ox) / s, y: vb.y + (e.clientY - oy) / s };
   }, []);
 
   const zoneCount = () => (modeRef.current === 'chords' ? CHORDS.length : NOTES.length);

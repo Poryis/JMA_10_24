@@ -287,7 +287,7 @@ export default function RankHallPage() {
         )}
         <button type="button" data-testid="rank-hall-light-show" data-on={show ? 'true' : 'false'} onClick={lightShow} disabled={!!perf} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: show ? 'var(--jma-dark)' : '#8E44AD', color: 'white', opacity: perf ? 0.6 : 1 }}><Zap className="w-4 h-4" strokeWidth={3} fill={show ? 'currentColor' : 'none'} /> LIGHT SHOW</button>
         <button type="button" data-testid="rank-hall-snap" onClick={snap} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: 'white', color: 'var(--jma-dark)' }}><Camera className="w-4 h-4" strokeWidth={3} /> SNAP!</button>
-        <button type="button" data-testid="rank-hall-academy" onClick={() => navigate('/academy')} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><BookOpen className="w-4 h-4" strokeWidth={3} /> My Yearbook</button>
+        <button type="button" data-testid="rank-hall-academy" onClick={() => navigate('/academy')} className="chunky-btn px-3 py-1.5 text-xs md:text-sm font-black flex items-center gap-1.5" style={{ background: '#FFCC00', color: 'var(--jma-dark)' }}><BookOpen className="w-4 h-4" strokeWidth={3} /> My Achievement Book</button>
       </div>
 
       {/* the band cheers from the pit */}

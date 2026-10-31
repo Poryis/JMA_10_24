@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 import { Music2, MapPin, Clock, RotateCcw, Play, Volume2, Check, Lightbulb, Star, X } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
-import RoomCharacters from '../components/RoomCharacters';
 import SolfegeStaff, { NOTE_Y, STAFF_NOTE_AREA_LEFT } from '../components/SolfegeStaff';
 import { BELLS } from '../components/JellyBells';
 import useAudio from '../hooks/useAudio';
@@ -677,7 +676,6 @@ export default function NameThatNotePage() {
       style={{ backgroundImage: 'url(assets/backgrounds/chalkboard.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       <GameHeader title={modeMeta.label} subtitle={level.name} showHomeButton={true} />
-      <RoomCharacters room="name-that-note" />
 
       <main className="flex-1 flex flex-col items-center pt-20 md:pt-24 pb-6 px-3">
         {/* Progress dots */}

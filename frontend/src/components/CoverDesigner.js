@@ -83,7 +83,6 @@ export function Sleeve({ cover, avatar, kind, title, className = '', activeSlot,
       {tf && title && (
         <span data-testid="sleeve-title" data-plate={cover.title.plate ? 'true' : 'false'} className="absolute left-[6%] right-[26%] top-[7%] pointer-events-none leading-[1.05] break-words" style={{ fontFamily: tf.family, fontWeight: tf.weight, letterSpacing: tf.tracking, textTransform: tf.upper ? 'uppercase' : 'none', color: cover.title.color, fontSize: `clamp(8px, ${title.length > 14 ? 9 : 12}cqw, 40px)`, textShadow: outline(cover.title.color), ...(cover.title.plate ? { ...plateStyle(cover.title.color), borderRadius: '0.6em', padding: '0.2em 0.45em', width: 'fit-content', maxWidth: '68%', transform: 'rotate(-3deg)', transformOrigin: 'left top' } : {}) }}>{title}</span>
       )}
-      <span className="absolute left-1.5 bottom-1.5 text-[9px] font-black uppercase px-1.5 rounded-full bg-white" style={{ color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }}>{kind}</span>
     </div>
   );
 }

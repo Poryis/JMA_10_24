@@ -13,6 +13,7 @@ import AvatarSprite from '../components/AvatarSprite';
 import { Poster, PosterModal, loadPosters } from '../components/StagePoster';
 import CoverDesigner, { Sleeve, SLEEVES, loadCovers, saveCover, normalizeCover } from '../components/CoverDesigner';
 import AcademyPortal from '../components/AcademyPortal';
+import QuadFit from '../components/QuadFit';
 import QuestScroll from '../components/QuestScroll';
 import { Bubbles } from '../components/UnderwaterBackdrop';
 import { CORAL } from '../data/academyRoom';
@@ -225,48 +226,48 @@ function ChalkScrolls() {
   );
 }
 
-// The Creation Station easel shows the kid's latest record sleeve (or a "make one!" hint).
-const EASELS = [{ left: '64.2%', top: '23.2%', width: '18%', rot: 2 }];
+// The Creation Station easel shows the kid's latest record sleeve (or a "make one!" hint), warped onto the tilted canvas.
+const EASEL_QUAD = [[67.9, 23.6], [83.6, 25.6], [79.1, 52.6], [62.9, 48.4]];
 function Easels() {
   const avatar = readAvatarOutfit();
   const latest = useMemo(() => {
     const tracks = [...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', at: b.createdAt || 0 })), ...loadSongs().map((t) => ({ id: t.id, name: t.name, kind: 'song', at: Date.parse(t.createdAt) || 0 }))];
     const covers = loadCovers();
-    return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 2).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
+    return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 1).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
   }, []);
+  const t = latest[0];
   return (
-    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 5 }} data-testid="academy-easels">
-      {EASELS.map((e, i) => {
-        const t = latest[i];
-        return (
-          <motion.div key={i} className="absolute" style={{ left: e.left, top: e.top, width: e.width, rotate: e.rot }} animate={{ y: [0, -1.5, 0] }} transition={{ repeat: Infinity, duration: 3 + i, ease: 'easeInOut' }}>
-            {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
-              : <div className="w-full aspect-square flex flex-col items-center justify-center gap-0.5 text-center" style={{ color: '#B8233A' }}>
-                  <Palette className="w-[40%] h-[40%]" strokeWidth={2.5} />
-                  <span className="font-black leading-none" style={{ fontSize: 'clamp(6px, 0.55vw, 11px)' }}>MAKE A COVER!</span>
-                </div>}
-          </motion.div>
-        );
-      })}
-    </div>
+    <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 5 }} data-testid="academy-easels"
+      animate={{ y: [0, -1.5, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
+      <QuadFit quad={EASEL_QUAD} testId="academy-easel-canvas">
+        {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
+          : <div className="w-full h-full flex flex-col items-center justify-center gap-1 text-center" style={{ color: '#B8233A' }}>
+              <Palette style={{ width: 80, height: 80 }} strokeWidth={2.5} />
+              <span className="font-black leading-none" style={{ fontSize: 22 }}>MAKE A COVER!</span>
+            </div>}
+      </QuadFit>
+    </motion.div>
   );
 }
 
-// The Creation Station laptop plays a bouncing equaliser; tap it to open Beat Lab.
+// The Creation Station laptop plays a bouncing equaliser on its tilted screen; tap it to open Beat Lab.
 const EQ_BARS = ['#FF2D85', '#FFCC00', '#7CFF6B', '#FFFFFF', '#FF9500', '#B36BFF', '#FF2D85'];
+const SCREEN_QUAD = [[4.4, 0], [100, 12.2], [97.1, 100], [0, 76.2]];
 function LaptopEQ() {
   const navigate = useNavigate();
   return (
     <div className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 6 }}>
       <button type="button" data-testid="academy-laptop-beatlab" aria-label="Open Beat Lab" onClick={() => navigate('/loop-studio')}
-        className="absolute pointer-events-auto cursor-pointer border-0 p-0"
-        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)', background: 'linear-gradient(180deg, rgba(10,37,64,0.15), rgba(10,37,64,0.45))' }}>
-        <span className="absolute flex items-end justify-center gap-[6%]" style={{ left: '8%', right: '8%', top: '22%', bottom: '30%' }}>
-        {EQ_BARS.map((c, i) => (
-          <motion.span key={i} className="block rounded-t-sm" style={{ width: '9%', height: '100%', background: c, transformOrigin: 'bottom', boxShadow: `0 0 6px ${c}` }}
-            animate={{ scaleY: [0.25, 1, 0.45, 0.85, 0.3] }} transition={{ repeat: Infinity, duration: 0.9 + (i % 3) * 0.25, delay: -i * 0.17, ease: 'easeInOut' }} />
-        ))}
-        </span>
+        className="absolute pointer-events-auto cursor-pointer border-0 p-0 bg-transparent"
+        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}>
+        <QuadFit quad={SCREEN_QUAD}>
+          <span className="absolute inset-0 flex items-end justify-center" style={{ gap: 10, padding: '40px 22px 40px', background: 'linear-gradient(180deg, rgba(10,37,64,0.1), rgba(10,37,64,0.4))' }}>
+            {EQ_BARS.map((c, i) => (
+              <motion.span key={i} className="block rounded-t-sm" style={{ width: 14, height: '100%', background: c, transformOrigin: 'bottom', boxShadow: `0 0 8px ${c}` }}
+                animate={{ scaleY: [0.25, 1, 0.45, 0.85, 0.3] }} transition={{ repeat: Infinity, duration: 0.9 + (i % 3) * 0.25, delay: -i * 0.17, ease: 'easeInOut' }} />
+            ))}
+          </span>
+        </QuadFit>
       </button>
     </div>
   );

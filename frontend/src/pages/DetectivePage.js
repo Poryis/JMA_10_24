@@ -9,6 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, Heart, Volume2, Trophy, RotateCcw, ArrowRight, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
+import CaseSolvedBurst from '../components/CaseSolvedBurst';
 import RoomCharacters from '../components/RoomCharacters';
 import { BELLS } from '../components/JellyBells';
 import { DETECTIVE_TUNES, SCALE_ORDER } from '../data/detectiveMelodies';
@@ -211,6 +212,8 @@ export default function DetectivePage() {
   const [phase, setPhase] = useState('listen_original'); // listen_original | gap | listen_corrupted | guess | reveal
   const [guessSlot, setGuessSlot] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const [solved, setSolved] = useState(null);
+  useEffect(() => { if (!solved) return undefined; const t = setTimeout(() => setSolved(null), 1700); return () => clearTimeout(t); }, [solved]);
   // Rest Quiz only — countdown for the guess phase
   const [secsLeft, setSecsLeft] = useState(0);
 
@@ -376,6 +379,7 @@ export default function DetectivePage() {
       reportQuestEvent('detective_case');
       playFeedbackSound('perfect');
       say(streak + 1 >= 3 ? 'doctor.perfect' : 'doctor.correct');
+      setSolved({ key: Date.now(), points: total, streak: newStreak });
     } else {
       setLives((l) => l - 1);
       setStreak(0);
@@ -659,6 +663,7 @@ export default function DetectivePage() {
         backgroundPosition: 'center',
       }}
     >
+      <AnimatePresence>{solved && <CaseSolvedBurst key={solved.key} solved={solved} />}</AnimatePresence>
       <GameHeader
         title="DR. JELLYBONE"
         subtitle={LEVELS[difficulty].name}

@@ -1126,3 +1126,10 @@ h1, h2, h3, h4, h5, h6 {
   0% { background: #FFF6C8; box-shadow: 0 0 6px 2px rgba(255, 214, 90, 0.95); }
   33% { background: #C99A3A; box-shadow: none; }
 }
+
+
+/* Who's Got the Rhythm: on short landscape phones Stew stands in the bottom-left corner instead of below the strips. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .boom-stew-zone { position: fixed !important; left: -3%; bottom: 4px; padding: 0 !important; margin: 0 !important; z-index: 30; }
+  .boom-stew-zone [data-testid="boom-stew-drummer"] { width: clamp(240px, 34vw, 310px) !important; }
+}

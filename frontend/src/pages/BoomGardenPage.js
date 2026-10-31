@@ -1342,7 +1342,7 @@ export default function BoomGardenPage() {
             his feet rest on the football field background instead of
             floating mid-air. */}
         <div
-          className="flex justify-center items-end mt-auto pt-4 relative"
+          className="boom-stew-zone flex justify-center items-end mt-auto pt-4 relative"
           style={{ paddingBottom: 'clamp(48px, 8vw, 96px)' }}
         >
           {/* Multiplier badge — shows live x1.5/x2/x3 over Stew's left

@@ -252,14 +252,35 @@ function Easels() {
   );
 }
 
+// The Creation Station laptop plays a bouncing equaliser; tap it to open Beat Lab.
+const EQ_BARS = ['#FF2D85', '#FFCC00', '#7CFF6B', '#FFFFFF', '#FF9500', '#B36BFF', '#FF2D85'];
+function LaptopEQ() {
+  const navigate = useNavigate();
+  return (
+    <div className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 6 }}>
+      <button type="button" data-testid="academy-laptop-beatlab" aria-label="Open Beat Lab" onClick={() => navigate('/loop-studio')}
+        className="absolute pointer-events-auto cursor-pointer border-0 p-0"
+        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)', background: 'linear-gradient(180deg, rgba(10,37,64,0.15), rgba(10,37,64,0.45))' }}>
+        <span className="absolute flex items-end justify-center gap-[6%]" style={{ left: '8%', right: '8%', top: '22%', bottom: '30%' }}>
+        {EQ_BARS.map((c, i) => (
+          <motion.span key={i} className="block rounded-t-sm" style={{ width: '9%', height: '100%', background: c, transformOrigin: 'bottom', boxShadow: `0 0 6px ${c}` }}
+            animate={{ scaleY: [0.25, 1, 0.45, 0.85, 0.3] }} transition={{ repeat: Infinity, duration: 0.9 + (i % 3) * 0.25, delay: -i * 0.17, ease: 'easeInOut' }} />
+        ))}
+        </span>
+      </button>
+    </div>
+  );
+}
+
 // A painted prop layer pinned to the room; `wiggle` replays its tap animation.
-function Prop({ id, pos, z = 2, idle, tap, wiggle = 0, onClick, label, testId, className = '' }) {
+function Prop({ id, pos, z = 2, idle, tap, wiggle = 0, onClick, label, testId, className = '', hit }) {
   const img = <motion.img src={`${ROOM}${id}.png`} alt="" draggable={false} className="block w-full h-auto" animate={idle} transition={idle ? { repeat: Infinity, duration: 3.4, ease: 'easeInOut' } : undefined} />;
   if (!onClick) return <div aria-hidden="true" className={`absolute pointer-events-none ${className}`} style={{ ...pos, zIndex: z }}>{img}</div>;
   return (
-    <motion.button type="button" data-testid={testId || `academy-${id}`} aria-label={label} onClick={onClick} className={`absolute p-0 border-0 bg-transparent cursor-pointer ${className}`} style={{ ...pos, zIndex: z, transformOrigin: 'bottom center' }}
+    <motion.button type="button" data-testid={testId || `academy-${id}`} aria-label={label} onClick={onClick} className={`absolute p-0 border-0 bg-transparent cursor-pointer ${className}`} style={{ ...pos, zIndex: z, transformOrigin: 'bottom center', pointerEvents: hit ? 'none' : undefined }}
       key={`${id}-${wiggle}`} animate={wiggle ? tap : {}} transition={{ duration: 0.7 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
       {img}
+      {hit && <span aria-hidden="true" data-testid={`${testId || `academy-${id}`}-hit`} className="absolute" style={{ ...hit, pointerEvents: 'auto' }} />}
     </motion.button>
   );
 }
@@ -362,7 +383,7 @@ export default function AcademyPage() {
         {/* instruments — tap to play them */}
         <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />
         <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3', 450)} />
-        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3', 900)} />
+        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3', 900)} hit={{ left: '32%', right: 0, top: 0, bottom: 0 }} />
 
         {/* clam desk → Creation Station (speakers thump, latest sleeve sits on the easel) */}
         <Prop id="creation-station" pos={L.art} z={4} />
@@ -371,6 +392,7 @@ export default function AcademyPage() {
             animate={{ scale: [1, 1.03, 1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut' }} />
         </div>
         <Prop id="creation-top" pos={L.art} z={4} />
+        <LaptopEQ />
         <Easels />
         <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" color="#FF2D85" onClick={() => setPanel('album')} />
 

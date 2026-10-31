@@ -1,0 +1,848 @@
+[
+  {
+    "tag": "feedback:name:1",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 15.93638801574707,
+      "y": 151.8840789794922,
+      "w": 201.15847778320312,
+      "h": 134.16139221191406,
+      "right": 217.0948657989502,
+      "bottom": 286.04547119140625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:2",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-answer-C",
+        "text": "C",
+        "content": {
+          "x": 286.27667236328125,
+          "y": 240,
+          "w": 68,
+          "h": 36
+        },
+        "box": {
+          "id": "ntn-answer-C",
+          "x": 233.2923126220703,
+          "y": 246,
+          "w": 114.98435974121094,
+          "h": 44,
+          "right": 348.27667236328125,
+          "bottom": 290
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.5528106689453,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 826.5215606689453,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 12.448774337768555,
+      "y": 142.24594116210938,
+      "w": 208.13369750976562,
+      "h": 149.68914794921875,
+      "right": 220.58247184753418,
+      "bottom": 291.9350891113281,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:3",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.95448303222656,
+      "y": 66.18507385253906,
+      "w": 605.122314453125,
+      "h": 173.62985229492188,
+      "right": 837.0767974853516,
+      "bottom": 239.81492614746094
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.151825904846191,
+      "y": 138.6549530029297,
+      "w": 214.72760009765625,
+      "h": 150.77894592285156,
+      "right": 223.87942600250244,
+      "bottom": 289.43389892578125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:4",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.127433776855469,
+      "y": 138.60089111328125,
+      "w": 214.77639770507812,
+      "h": 150.83001708984375,
+      "right": 223.9038314819336,
+      "bottom": 289.430908203125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:5",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:6",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.95448303222656,
+      "y": 66.18507385253906,
+      "w": 605.122314453125,
+      "h": 173.62985229492188,
+      "right": 837.0767974853516,
+      "bottom": 239.81492614746094
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.921046257019043,
+      "y": 132.00936889648438,
+      "w": 221.18914794921875,
+      "h": 158.61093139648438,
+      "right": 227.1101942062378,
+      "bottom": 290.62030029296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:7",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.94456481933594,
+      "y": 66.26090240478516,
+      "w": 605.14208984375,
+      "h": 173.47821044921875,
+      "right": 837.0866546630859,
+      "bottom": 239.7391128540039
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.870668888092041,
+      "y": 131.9143524169922,
+      "w": 221.2899169921875,
+      "h": 158.75257873535156,
+      "right": 227.16058588027954,
+      "bottom": 290.66693115234375,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:8",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.95448303222656,
+      "y": 66.18507385253906,
+      "w": 605.122314453125,
+      "h": 173.62985229492188,
+      "right": 837.0767974853516,
+      "bottom": 239.81492614746094
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.921046257019043,
+      "y": 132.00936889648438,
+      "w": 221.18914794921875,
+      "h": 158.61093139648438,
+      "right": 227.1101942062378,
+      "bottom": 290.62030029296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:9",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.94456481933594,
+      "y": 66.26090240478516,
+      "w": 605.14208984375,
+      "h": 173.47821044921875,
+      "right": 837.0866546630859,
+      "bottom": 239.7391128540039
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.870668888092041,
+      "y": 131.9143524169922,
+      "w": 221.2899169921875,
+      "h": 158.75257873535156,
+      "right": 227.16058588027954,
+      "bottom": 290.66693115234375,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:10",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "round:name",
+    "summary": "9 / 10 notes \u00b7 120 pts \u00b7 best 120",
+    "pass": true
+  },
+  {
+    "tag": "feedback:place:1",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 232.05999755859375,
+      "y": 65.36390686035156,
+      "w": 604.9112548828125,
+      "h": 175.27218627929688,
+      "right": 836.9712524414062,
+      "bottom": 240.63609313964844
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 152,
+      "w": 201.03125,
+      "h": 134,
+      "right": 217.03125,
+      "bottom": 286,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:2",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 230.05393981933594,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 825.0226898193359,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 12.421929359436035,
+      "y": 141.0648651123047,
+      "w": 208.1873779296875,
+      "h": 149.55067443847656,
+      "right": 220.60930728912354,
+      "bottom": 290.61553955078125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:3",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85081481933594,
+      "y": 67.47400665283203,
+      "w": 397.56396484375,
+      "h": 131.05197143554688,
+      "right": 559.4147796630859,
+      "bottom": 198.5259780883789
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 11.365321159362793,
+      "y": 141.66796875,
+      "w": 138.53497314453125,
+      "h": 104.89016723632812,
+      "right": 149.90029430389404,
+      "bottom": 246.55813598632812,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:4",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.8532257080078,
+      "y": 67.41925811767578,
+      "w": 397.55914306640625,
+      "h": 131.16146850585938,
+      "right": 559.4123687744141,
+      "bottom": 198.58072662353516
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 11.34669017791748,
+      "y": 141.61471557617188,
+      "w": 138.57223510742188,
+      "h": 104.927978515625,
+      "right": 149.91892528533936,
+      "bottom": 246.54269409179688,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:5",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.84654235839844,
+      "y": 67.52339935302734,
+      "w": 397.572509765625,
+      "h": 130.95321655273438,
+      "right": 559.4190521240234,
+      "bottom": 198.47661590576172
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.03243637084961,
+      "y": 136.08120727539062,
+      "w": 143.20074462890625,
+      "h": 110.336181640625,
+      "right": 152.23318099975586,
+      "bottom": 246.41738891601562,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:6",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.86463928222656,
+      "y": 67.58042907714844,
+      "w": 397.536376953125,
+      "h": 130.83914184570312,
+      "right": 559.4010162353516,
+      "bottom": 198.41957092285156
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.004171371459961,
+      "y": 136.024658203125,
+      "w": 143.25729370117188,
+      "h": 110.41014099121094,
+      "right": 152.26146507263184,
+      "bottom": 246.43479919433594,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:7",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85081481933594,
+      "y": 67.47400665283203,
+      "w": 397.56396484375,
+      "h": 131.05197143554688,
+      "right": 559.4147796630859,
+      "bottom": 198.5259780883789
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.061774253845215,
+      "y": 136.139892578125,
+      "w": 143.14208984375,
+      "h": 110.25942993164062,
+      "right": 152.20386409759521,
+      "bottom": 246.39932250976562,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:8",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.8880157470703,
+      "y": 66.98165893554688,
+      "w": 397.4896240234375,
+      "h": 132.03668212890625,
+      "right": 559.3776397705078,
+      "bottom": 199.01834106445312
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.434200286865234,
+      "y": 136.8828582763672,
+      "w": 142.397216796875,
+      "h": 109.28718566894531,
+      "right": 151.83141708374023,
+      "bottom": 246.1700439453125,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:9",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.89613342285156,
+      "y": 66.88621520996094,
+      "w": 397.473388671875,
+      "h": 132.22756958007812,
+      "right": 559.3695220947266,
+      "bottom": 199.11378479003906
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.521835327148438,
+      "y": 137.0571746826172,
+      "w": 142.22195434570312,
+      "h": 109.05892944335938,
+      "right": 151.74378967285156,
+      "bottom": 246.11610412597656,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:10",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.90028381347656,
+      "y": 66.84149169921875,
+      "w": 397.465087890625,
+      "h": 132.3170166015625,
+      "right": 559.3653717041016,
+      "bottom": 199.15850830078125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.5696382522583,
+      "y": 137.1521759033203,
+      "w": 142.1263427734375,
+      "h": 108.93450927734375,
+      "right": 151.6959810256958,
+      "bottom": 246.08668518066406,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "round:place",
+    "summary": "9 / 10 notes \u00b7 120 pts \u00b7 best 120",
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:C",
+    "expected": 77,
+    "actual": 76.369,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:D",
+    "expected": 71.5,
+    "actual": 70.9038,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:E",
+    "expected": 66,
+    "actual": 65.4842,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:F",
+    "expected": 60.5,
+    "actual": 59.804,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:G",
+    "expected": 55,
+    "actual": 54.2266,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:A",
+    "expected": 49.5,
+    "actual": 48.704,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:B",
+    "expected": 44,
+    "actual": 43.0225,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:High C",
+    "expected": 38.5,
+    "actual": 37.5978,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:C",
+    "expected": 77,
+    "actual": 76.28330000000001,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:D",
+    "expected": 71.5,
+    "actual": 70.9959,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:E",
+    "expected": 66,
+    "actual": 65.4051,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:F",
+    "expected": 60.5,
+    "actual": 59.9328,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:G",
+    "expected": 55,
+    "actual": 54.1912,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:A",
+    "expected": 49.5,
+    "actual": 48.6207,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:B",
+    "expected": 44,
+    "actual": 43.1122,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:High C",
+    "expected": 38.5,
+    "actual": 37.3958,
+    "pass": false
+  },
+  {
+    "tag": "visualViewport:290",
+    "size": [
+      844,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 156,
+      "right": 832,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 8.523948669433594,
+      "y": 136.34292602539062,
+      "w": 215.98336791992188,
+      "h": 142.01473999023438,
+      "right": 224.50731658935547,
+      "bottom": 278.357666015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "restart-during-feedback",
+    "state": "tour",
+    "question": "Note 1 / 10",
+    "pass": true
+  }
+]

@@ -1,0 +1,605 @@
+[
+  {
+    "tag": "picker",
+    "size": [
+      568,
+      260
+    ],
+    "scrollHeight": 260,
+    "clientHeight": 260,
+    "blurbBottom": 252,
+    "controls": [
+      {
+        "id": "boom-mode-copy",
+        "bottom": 149
+      },
+      {
+        "id": "boom-mode-match",
+        "bottom": 149.04742813110352
+      },
+      {
+        "id": "boom-mode-trail",
+        "bottom": 149
+      },
+      {
+        "id": "boom-level-cadet",
+        "bottom": 225
+      },
+      {
+        "id": "boom-level-pro",
+        "bottom": 227
+      },
+      {
+        "id": "boom-level-master",
+        "bottom": 227
+      },
+      {
+        "id": "boom-tempo-easy",
+        "bottom": 231
+      },
+      {
+        "id": "boom-tempo-medium",
+        "bottom": 233
+      },
+      {
+        "id": "boom-tempo-turbo",
+        "bottom": 233
+      }
+    ]
+  },
+  {
+    "tag": "picker",
+    "size": [
+      320,
+      568
+    ],
+    "scrollHeight": 568,
+    "clientHeight": 568,
+    "blurbBottom": 560,
+    "controls": [
+      {
+        "id": "boom-mode-copy",
+        "bottom": 236.828125
+      },
+      {
+        "id": "boom-mode-match",
+        "bottom": 315.65625
+      },
+      {
+        "id": "boom-mode-trail",
+        "bottom": 394.5
+      },
+      {
+        "id": "boom-level-cadet",
+        "bottom": 460.5
+      },
+      {
+        "id": "boom-level-pro",
+        "bottom": 462.5
+      },
+      {
+        "id": "boom-level-master",
+        "bottom": 462.5
+      },
+      {
+        "id": "boom-tempo-easy",
+        "bottom": 538.5
+      },
+      {
+        "id": "boom-tempo-medium",
+        "bottom": 540.5
+      },
+      {
+        "id": "boom-tempo-turbo",
+        "bottom": 540.5
+      }
+    ]
+  },
+  {
+    "tag": "portrait-instructions:copy",
+    "start": {
+      "x": 31.85603904724121,
+      "y": 396.17657470703125,
+      "width": 256.28794288635254,
+      "height": 40.0450439453125
+    },
+    "card": {
+      "scrollHeight": 369,
+      "clientHeight": 369
+    }
+  },
+  {
+    "tag": "portrait-instructions:trail",
+    "start": {
+      "x": 31.89565658569336,
+      "y": 397.2664794921875,
+      "width": 256.2086524963379,
+      "height": 40.0325927734375
+    },
+    "card": {
+      "scrollHeight": 371,
+      "clientHeight": 371
+    }
+  },
+  {
+    "tag": "portrait-instructions:match",
+    "start": {
+      "x": 31.86843490600586,
+      "y": 396.20452880859375,
+      "width": 256.263126373291,
+      "height": 40.04107666015625
+    },
+    "card": {
+      "scrollHeight": 369,
+      "clientHeight": 369
+    }
+  },
+  {
+    "tag": "picker",
+    "size": [
+      390,
+      844
+    ],
+    "scrollHeight": 844,
+    "clientHeight": 844,
+    "blurbBottom": 836,
+    "controls": [
+      {
+        "id": "boom-mode-copy",
+        "bottom": 310.15911865234375
+      },
+      {
+        "id": "boom-mode-match",
+        "bottom": 490.45465087890625
+      },
+      {
+        "id": "boom-mode-trail",
+        "bottom": 672.4548950195312
+      },
+      {
+        "id": "boom-level-cadet",
+        "bottom": 736.5
+      },
+      {
+        "id": "boom-level-pro",
+        "bottom": 738.5
+      },
+      {
+        "id": "boom-level-master",
+        "bottom": 738.5
+      },
+      {
+        "id": "boom-tempo-easy",
+        "bottom": 814.5
+      },
+      {
+        "id": "boom-tempo-medium",
+        "bottom": 816.5
+      },
+      {
+        "id": "boom-tempo-turbo",
+        "bottom": 816.5
+      }
+    ]
+  },
+  {
+    "tag": "match-readability:cadet",
+    "level": "Master",
+    "notes": [
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 11.8125,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Shh",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 11.8125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Shh",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 11.8125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Shh",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      }
+    ],
+    "overlap": [
+      0,
+      0,
+      0
+    ],
+    "headerFullscreenOverlap": 0
+  },
+  {
+    "tag": "match-readability:pro",
+    "level": "Master",
+    "notes": [
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.5625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.5625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.578125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.578125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      }
+    ],
+    "overlap": [
+      0,
+      0,
+      0
+    ],
+    "headerFullscreenOverlap": 0
+  },
+  {
+    "tag": "match-readability:master",
+    "level": "Master",
+    "notes": [
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.5625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Eighth",
+        "w": 10.5625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ti",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.0625,
+        "h": 20.65625,
+        "blockH": 36.65625,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 8.078125,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Ta",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Half",
+        "w": 7.90625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      },
+      {
+        "note": "Whole",
+        "w": 23.265625,
+        "h": 20.671875,
+        "blockH": 36.671875,
+        "label": "Toe-ee--O-ee",
+        "labelClipped": false,
+        "imageClipped": false
+      }
+    ],
+    "overlap": [
+      0,
+      0,
+      0
+    ],
+    "headerFullscreenOverlap": 0
+  },
+  {
+    "tag": "score:copy:auto",
+    "header": "475",
+    "summary": "475",
+    "pass": true
+  },
+  {
+    "tag": "score:copy:manual",
+    "header": "771",
+    "summary": "771",
+    "pass": true
+  },
+  {
+    "tag": "score:trail:auto",
+    "header": "699",
+    "summary": "699",
+    "pass": true
+  },
+  {
+    "tag": "score:trail:manual",
+    "header": "663",
+    "summary": "663",
+    "pass": true
+  }
+]

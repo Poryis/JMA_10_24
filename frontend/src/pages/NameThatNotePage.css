@@ -1,0 +1,142 @@
+.ntn-room {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--ntn-visible-height, 100dvh);
+  min-height: 0;
+  overflow: hidden;
+}
+.ntn-room header {
+  position: absolute;
+  padding-top: max(8px, env(safe-area-inset-top));
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(64px, calc(env(safe-area-inset-right) + 52px));
+}
+.ntn-main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 96px max(24px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+}
+.ntn-status { flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 24px; min-height: 34px; }
+.ntn-status [data-testid="ntn-progress-dots"] { margin: 0; }
+.ntn-stage { display: grid; grid-template-columns: minmax(0, 27fr) minmax(0, 73fr); gap: 32px; flex: 1; min-height: 0; }
+.ntn-coach { display: flex; flex-direction: column; min-height: 0; min-width: 0; gap: 12px; }
+.ntn-speech-slot { flex: 0 0 104px; display: flex; align-items: center; justify-content: center; }
+.ntn-speech { position: relative; background: white; color: var(--jma-dark); border-color: var(--jma-dark); box-shadow: 0 4px 0 var(--jma-dark); padding: 12px; font-size: 16px; width: 100%; }
+.ntn-speech::after { content: ''; position: absolute; bottom: -12px; left: calc(50% - 10px); border-top: 10px solid var(--jma-dark); border-left: 10px solid transparent; border-right: 10px solid transparent; }
+.ntn-finn-art { flex: 1; min-height: 0; padding: 18px 12px 8px; display: flex; align-items: center; justify-content: center; }
+.ntn-finn-art img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 5px 4px rgba(0,0,0,.35)); user-select: none; }
+.ntn-play-area { display: flex; flex-direction: column; gap: 16px; min-height: 0; min-width: 0; }
+.ntn-staff-stage { flex: 1; min-height: 0; width: 100%; }
+.ntn-staff-box { height: 100%; }
+.ntn-room [data-testid="solfege-staff"] { max-width: none; }
+.ntn-room [data-testid="solfege-staff"] svg { height: 100%; width: auto; max-width: 64px; }
+.ntn-answer-actions { flex: 0 0 58px; min-height: 58px; }
+.ntn-answers { grid-template-columns: repeat(var(--ntn-answer-count), minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); }
+.ntn-answers button { min-width: 0; min-height: 0; height: 100%; padding: 4px 3px; overflow-wrap: anywhere; }
+.ntn-answer-label { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; line-height: 1.1; font-size: 16px; }
+.ntn-answer-label > span { white-space: nowrap; }
+.ntn-room[data-compact="true"] .ntn-answer-label { font-size: 13px; }
+.ntn-room[data-wide="false"] .ntn-answer-label { font-size: 11px; }
+.ntn-tools { flex: 0 0 44px; }
+.ntn-tools button { min-height: 44px; }
+.ntn-room [data-testid="ntn-round-complete"] { position: absolute; z-index: 70; overflow: hidden; }
+body:has(.ntn-room) [data-testid="fullscreen-button"] {
+  bottom: auto !important;
+  top: max(10px, env(safe-area-inset-top)) !important;
+  right: max(12px, env(safe-area-inset-right)) !important;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+}
+
+/* Phone landscape: score and utility buttons live above the field, not below it. */
+.ntn-room[data-compact="true"] header .game-title-pill { display: none; }
+.ntn-room[data-compact="true"] .ntn-main {
+  padding: max(70px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  gap: 0;
+}
+.ntn-room[data-compact="true"] .ntn-status {
+  position: absolute;
+  top: max(8px, env(safe-area-inset-top));
+  left: max(76px, calc(env(safe-area-inset-left) + 64px));
+  right: max(226px, calc(env(safe-area-inset-right) + 214px));
+  flex-direction: column;
+  gap: 5px;
+  height: 48px;
+}
+.ntn-room[data-compact="true"] [data-testid="ntn-progress-dots"] { gap: 4px; }
+.ntn-room[data-compact="true"] [data-testid="ntn-progress-dots"] > div { width: 10px !important; height: 10px !important; border-width: 1px; }
+.ntn-room[data-compact="true"] .ntn-hud { gap: 4px; }
+.ntn-room[data-compact="true"] .ntn-hud > div { font-size: 11px; padding: 3px 6px; white-space: nowrap; }
+.ntn-room[data-compact="true"] .ntn-hud svg { width: 12px; height: 12px; }
+.ntn-room[data-compact="true"] .ntn-tools { position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(56px, calc(env(safe-area-inset-right) + 44px)); gap: 5px; height: 40px; z-index: 51; }
+.ntn-room[data-compact="true"] .ntn-tools button { width: 36px; height: 40px; min-height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; }
+.ntn-room[data-compact="true"] .ntn-tools span { display: none; }
+.ntn-room[data-compact="true"] .ntn-stage { grid-template-columns: minmax(0, 26fr) minmax(0, 74fr); gap: 16px; }
+.ntn-room[data-compact="true"] .ntn-coach { gap: 4px; }
+.ntn-room[data-compact="true"] .ntn-speech-slot { flex-basis: 66px; }
+.ntn-room[data-compact="true"] .ntn-speech { font-size: 12px; padding: 6px 8px; border-width: 2px; }
+.ntn-room[data-compact="true"] .ntn-finn-art { padding: 12px 4px 4px; }
+.ntn-room[data-compact="true"] .ntn-play-area { gap: 10px; }
+.ntn-room[data-compact="true"] .ntn-answer-actions { flex-basis: 44px; min-height: 44px; }
+.ntn-room[data-compact="true"] .ntn-answers { gap: 5px; }
+.ntn-room[data-compact="true"] .ntn-answers button { font-size: 14px; border-width: 2px; border-radius: 10px; }
+.ntn-room[data-compact="true"] .ntn-answer-actions .chunky-btn { min-height: 44px; padding: 4px 12px; font-size: 13px; }
+.ntn-room[data-compact="true"] [data-testid="ntn-hint-ghosts"] > div { font-size: 9px; padding: 0 2px; border-width: 1px; line-height: 1; }
+
+/* Local compact menu rules also apply when Safari's visible viewport is shorter
+   than the CSS media-query viewport. Keep all choices on one screen. */
+.ntn-menu[data-compact="true"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  align-content: center;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 6px;
+  padding: 8px max(60px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(72px, env(safe-area-inset-left)) !important;
+}
+.ntn-menu[data-compact="true"] > .intro-head { grid-column: 1 / -1; grid-row: 1; font-size: 24px !important; margin: 0 !important; }
+.ntn-menu[data-compact="true"] > .intro-sub { grid-column: 1 / -1; grid-row: 2; font-size: 12px !important; margin: 0 !important; }
+.ntn-menu[data-compact="true"] > .intro-card { grid-column: 1; grid-row: 3; padding: 0 !important; }
+.ntn-menu[data-compact="true"] > .intro-under { grid-column: 1; grid-row: 4; padding: 6px !important; justify-content: center; }
+.ntn-menu[data-compact="true"] > .intro-levels { grid-column: 2; grid-row: 3 / 5; gap: 8px !important; }
+.ntn-menu[data-compact="true"] > .intro-card,
+.ntn-menu[data-compact="true"] > .intro-under,
+.ntn-menu[data-compact="true"] > .intro-levels { max-width: none; margin: 0 !important; }
+.ntn-menu[data-compact="true"] .intro-card button { padding: 6px !important; min-height: 68px; }
+.ntn-menu[data-compact="true"] .intro-card button > div:first-child { font-size: 14px; }
+.ntn-menu[data-compact="true"] .intro-levels button { min-height: 46px; padding: 4px 8px !important; }
+.ntn-menu[data-compact="true"] .intro-levels h3 { font-size: 14px; }
+.ntn-menu[data-compact="true"] .intro-levels p { font-size: 10px; }
+.ntn-menu[data-compact="true"] .intro-under > span { display: none; }
+.ntn-menu[data-compact="true"] .intro-under button { padding: 6px; font-size: 10px; min-height: 32px; }
+
+/* Portrait fallback keeps the staff wide; Finn stays visible beside his bubble. */
+.ntn-room[data-wide="false"] .ntn-main { padding: 76px 12px max(12px, env(safe-area-inset-bottom)); gap: 12px; }
+.ntn-room[data-wide="false"] .ntn-status { flex-direction: column; gap: 8px; }
+.ntn-room[data-wide="false"] .ntn-stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: 150px minmax(0, 1fr); gap: 12px; }
+.ntn-room[data-wide="false"] .ntn-coach { flex-direction: row-reverse; align-items: stretch; gap: 12px; }
+.ntn-room[data-wide="false"] .ntn-speech-slot { flex: 1; }
+.ntn-room[data-wide="false"] .ntn-speech { font-size: 13px; padding: 8px; }
+.ntn-room[data-wide="false"] .ntn-finn-art { flex: 0 0 100px; padding: 8px 2px; }
+.ntn-room[data-wide="false"] .ntn-play-area { gap: 10px; }
+.ntn-room[data-wide="false"] .ntn-answer-actions { min-height: 48px; flex-basis: 48px; }
+.ntn-room[data-wide="false"] .ntn-answers { grid-template-columns: repeat(var(--ntn-answer-count), minmax(0, 1fr)); gap: 4px; }
+.ntn-room[data-wide="false"] .ntn-answers button { font-size: 11px; padding: 4px 1px; border-width: 2px; }
+.ntn-room[data-wide="false"] .ntn-tools { gap: 6px; }
+.ntn-room[data-wide="false"] .ntn-tools button { width: 44px; padding: 0; justify-content: center; }
+.ntn-room[data-wide="false"] .ntn-tools span { display: none; }
+@media (max-width: 380px) and (orientation: portrait) {
+  .ntn-room[data-wide="false"] .ntn-stage { grid-template-rows: 106px minmax(0, 1fr); }
+  .ntn-menu { padding: 72px 12px 10px; }
+  .ntn-menu .intro-head { font-size: 26px; }
+  .ntn-menu .intro-sub { font-size: 12px; margin-bottom: 8px; }
+  .ntn-menu .intro-levels button { padding: 6px 10px; }
+}

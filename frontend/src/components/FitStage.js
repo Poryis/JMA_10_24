@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 
 const MIN_SCALE = 0.55;
 // Pages with their own landscape layout are left alone.
-const EXCLUDED = ['/', '/home', '/campus', '/fun-facts', '/rhythm-game', '/free-play'];
+const EXCLUDED = ['/', '/home', '/campus', '/fun-facts', '/rhythm-game', '/free-play', '/boom-garden', '/name-that-note'];
 // Rooms that would rather be small than scroll (Robot Boogie needs dance room).
 const MIN_BY_ROUTE = { '/robot-boogie': 0.4 };
 const isShort = () => window.innerHeight < 520 && window.innerWidth > window.innerHeight;

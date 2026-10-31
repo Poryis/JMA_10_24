@@ -1,0 +1,7956 @@
+[
+  {
+    "tag": "menu:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": null,
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": null,
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": null,
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": null,
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": null,
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": null,
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": null,
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": null,
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": null,
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": null,
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "menu:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": null,
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 495.21875,
+      "right": 1576,
+      "bottom": 643.21875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 347.8305969238281,
+      "y": 253.9702606201172,
+      "w": 316.3388366699219,
+      "h": 447.33074951171875,
+      "right": 664.16943359375,
+      "bottom": 701.3010101318359,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.519630432128906,
+      "y": 254.6518096923828,
+      "w": 334.96075439453125,
+      "h": 424.6463623046875,
+      "right": 396.48038482666016,
+      "bottom": 679.2981719970703,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 33.55059814453125,
+      "y": 279.00225830078125,
+      "w": 235.7738037109375,
+      "h": 397.55645751953125,
+      "right": 269.32440185546875,
+      "bottom": 676.5587158203125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.50230407714844,
+      "w": 201.03125,
+      "h": 224.00001525878906,
+      "right": 217.03125,
+      "bottom": 374.5023193359375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.7630615234375,
+      "w": 201.03125,
+      "h": 134,
+      "right": 217.03125,
+      "bottom": 279.7630615234375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00088500976562,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0008850097656,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.98175048828125,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 255.98175048828125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.02903747558594,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.02903747558594,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.68280029296875,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 240.68280029296875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.09010314941406,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 274.090087890625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 495.21875,
+      "right": 1576,
+      "bottom": 643.21875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 349.1960144042969,
+      "y": 254.8961181640625,
+      "w": 313.6079406738281,
+      "h": 445.4334716796875,
+      "right": 662.803955078125,
+      "bottom": 700.32958984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 60.961029052734375,
+      "y": 253.0741424560547,
+      "w": 336.07794189453125,
+      "h": 425.84381103515625,
+      "right": 397.0389709472656,
+      "bottom": 678.9179534912109,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.011734008789062,
+      "y": 275.8680725097656,
+      "w": 240.85154724121094,
+      "h": 401.2298278808594,
+      "right": 271.86328125,
+      "bottom": 677.097900390625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.1821746826172,
+      "w": 201.03125,
+      "h": 224.00001525878906,
+      "right": 217.03125,
+      "bottom": 374.18218994140625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.89842224121094,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.8984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.0218963623047,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.02191162109375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.34925842285156,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 256.3492431640625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.2599334716797,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.2599334716797,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.56666564941406,
+      "w": 96,
+      "h": 89.99998474121094,
+      "right": 110,
+      "bottom": 240.566650390625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.99607849121094,
+      "w": 96,
+      "h": 134.00001525878906,
+      "right": 110,
+      "bottom": 274.99609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 347.04522705078125,
+      "y": 253.4684600830078,
+      "w": 317.9095458984375,
+      "h": 447.28662109375,
+      "right": 664.9547729492188,
+      "bottom": 700.7550811767578,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.0276985168457,
+      "y": 253.2804412841797,
+      "w": 335.944580078125,
+      "h": 425.695068359375,
+      "right": 396.9722785949707,
+      "bottom": 678.9755096435547,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.195343017578125,
+      "y": 276.0946044921875,
+      "w": 240.48431396484375,
+      "h": 400.96502685546875,
+      "right": 271.6796569824219,
+      "bottom": 677.0596313476562,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.8813171386719,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.7630615234375,
+      "w": 201.03125,
+      "h": 134,
+      "right": 217.03125,
+      "bottom": 279.7630615234375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00155639648438,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0015563964844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.46827697753906,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 255.46826171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.34701538085938,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.34701538085938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 151.53021240234375,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 241.53021240234375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:cadet:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 141.06790161132812,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 275.0679016113281,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 495.21875,
+      "right": 1576,
+      "bottom": 643.21875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 350,
+      "y": 255.45562744140625,
+      "w": 312,
+      "h": 444.3074951171875,
+      "right": 662,
+      "bottom": 699.7631225585938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.066062927246094,
+      "y": 253.39486694335938,
+      "w": 335.86785888671875,
+      "h": 425.6108703613281,
+      "right": 396.93392181396484,
+      "bottom": 679.0057373046875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.29107666015625,
+      "y": 276.20947265625,
+      "w": 240.2928466796875,
+      "h": 400.828369140625,
+      "right": 271.58392333984375,
+      "bottom": 677.037841796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.2369384765625,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.2369384765625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.95957946777344,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.9595947265625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.01609802246094,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.01611328125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.22047424316406,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 255.22047424316406,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 244.88131713867188,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.22113037109375,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 240.22113037109375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 139.55084228515625,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 273.55084228515625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 347.04522705078125,
+      "y": 253.4684600830078,
+      "w": 317.9095458984375,
+      "h": 447.28662109375,
+      "right": 664.9547729492188,
+      "bottom": 700.7550811767578,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.0276985168457,
+      "y": 253.2804412841797,
+      "w": 335.944580078125,
+      "h": 425.695068359375,
+      "right": 396.9722785949707,
+      "bottom": 678.9755096435547,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.66233444213867,
+      "y": 277.9145812988281,
+      "w": 237.55030822753906,
+      "h": 398.8405456542969,
+      "right": 270.21264266967773,
+      "bottom": 676.755126953125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.2369384765625,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.2369384765625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.95957946777344,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.9595947265625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.01609802246094,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.01611328125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.27987670898438,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 256.2798767089844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.2238311767578,
+      "w": 129.265625,
+      "h": 94.00001525878906,
+      "right": 145.265625,
+      "bottom": 245.22384643554688,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.7854766845703,
+      "w": 96,
+      "h": 90.00001525878906,
+      "right": 110,
+      "bottom": 239.78549194335938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.09010314941406,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 274.090087890625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.67572021484375,
+      "y": 253.2274627685547,
+      "w": 318.6485595703125,
+      "h": 447.79510498046875,
+      "right": 665.3242797851562,
+      "bottom": 701.0225677490234,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 62.88115310668945,
+      "y": 257.77728271484375,
+      "w": 332.2376708984375,
+      "h": 421.9608154296875,
+      "right": 395.11882400512695,
+      "bottom": 679.7380981445312,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.816062927246094,
+      "y": 278.1058654785156,
+      "w": 237.24288940429688,
+      "h": 398.6171569824219,
+      "right": 270.05895233154297,
+      "bottom": 676.7230224609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.5256805419922,
+      "w": 201.03125,
+      "h": 224.00001525878906,
+      "right": 217.03125,
+      "bottom": 374.52569580078125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.35031127929688,
+      "w": 201.03125,
+      "h": 134,
+      "right": 217.03125,
+      "bottom": 279.3503112792969,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.0352325439453,
+      "w": 192.71875,
+      "h": 123.99998474121094,
+      "right": 208.71875,
+      "bottom": 268.03521728515625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.5176544189453,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 256.51763916015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.32997131347656,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.32997131347656,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 151.57711791992188,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 241.57711791992188,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:pro:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 141.1279754638672,
+      "w": 96,
+      "h": 134.00001525878906,
+      "right": 110,
+      "bottom": 275.12799072265625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.67572021484375,
+      "y": 253.2274627685547,
+      "w": 318.6485595703125,
+      "h": 447.79510498046875,
+      "right": 665.3242797851562,
+      "bottom": 701.0225677490234,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.139183044433594,
+      "y": 253.60757446289062,
+      "w": 335.72161865234375,
+      "h": 425.4521179199219,
+      "right": 396.86080169677734,
+      "bottom": 679.0596923828125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.474227905273438,
+      "y": 276.4449157714844,
+      "w": 239.92652893066406,
+      "h": 400.5598449707031,
+      "right": 271.4007568359375,
+      "bottom": 677.0047607421875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.4740753173828,
+      "w": 201.03125,
+      "h": 223.99998474121094,
+      "right": 217.03125,
+      "bottom": 374.47406005859375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.32777404785156,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.3277587890625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.038818359375,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.038818359375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.98175048828125,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 255.98175048828125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.34701538085938,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.34701538085938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.72854614257812,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 239.72854614257812,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.09010314941406,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 274.090087890625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 495.21875,
+      "right": 1576,
+      "bottom": 643.21875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 350,
+      "y": 255.45562744140625,
+      "w": 312,
+      "h": 444.3074951171875,
+      "right": 662,
+      "bottom": 699.7631225585938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.066062927246094,
+      "y": 253.39486694335938,
+      "w": 335.86785888671875,
+      "h": 425.6108703613281,
+      "right": 396.93392181396484,
+      "bottom": 679.0057373046875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.29107666015625,
+      "y": 276.20947265625,
+      "w": 240.2928466796875,
+      "h": 400.828369140625,
+      "right": 271.58392333984375,
+      "bottom": 677.037841796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.8813171386719,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.73341369628906,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.7333984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00155639648438,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0015563964844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.46827697753906,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 255.46826171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.69908142089844,
+      "w": 129.265625,
+      "h": 94.00001525878906,
+      "right": 145.265625,
+      "bottom": 244.6990966796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.6301727294922,
+      "w": 96,
+      "h": 90.00001525878906,
+      "right": 110,
+      "bottom": 240.63018798828125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 138.98748779296875,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 272.98748779296875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.4810791015625,
+      "y": 253.10093688964844,
+      "w": 319.037841796875,
+      "h": 448.0626220703125,
+      "right": 665.5189208984375,
+      "bottom": 701.1635589599609,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 64.15184020996094,
+      "y": 260.27899169921875,
+      "w": 329.69635009765625,
+      "h": 419.5870361328125,
+      "right": 393.8481903076172,
+      "bottom": 679.8660278320312,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 34.92002868652344,
+      "y": 280.67822265625,
+      "w": 233.03492736816406,
+      "h": 395.571044921875,
+      "right": 267.9549560546875,
+      "bottom": 676.249267578125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.29116821289062,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.2911682128906,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.6020965576172,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.60211181640625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.066162109375,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.066162109375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.75697326660156,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 256.7569580078125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.44223022460938,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.44223022460938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 151.57711791992188,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 241.57711791992188,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:name:master:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.0227508544922,
+      "w": 96,
+      "h": 134.00001525878906,
+      "right": 110,
+      "bottom": 274.02276611328125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 495.21875,
+      "right": 1576,
+      "bottom": 643.21875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 350,
+      "y": 255.45562744140625,
+      "w": 312,
+      "h": 444.3074951171875,
+      "right": 662,
+      "bottom": 699.7631225585938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.066062927246094,
+      "y": 253.39486694335938,
+      "w": 335.86785888671875,
+      "h": 425.6108703613281,
+      "right": 396.93392181396484,
+      "bottom": 679.0057373046875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.7395133972168,
+      "y": 278.01068115234375,
+      "w": 237.39598083496094,
+      "h": 398.72833251953125,
+      "right": 270.13549423217773,
+      "bottom": 676.739013671875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.4740753173828,
+      "w": 201.03125,
+      "h": 223.99998474121094,
+      "right": 217.03125,
+      "bottom": 374.47406005859375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.30091857910156,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.3009033203125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.0425567626953,
+      "w": 192.71875,
+      "h": 123.99998474121094,
+      "right": 208.71875,
+      "bottom": 268.04254150390625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.01589965820312,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 256.0158996582031,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.3638916015625,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.3638916015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.53321838378906,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 239.53321838378906,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 139.9001922607422,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 273.9001770019531,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.5,
+      "right": 1576,
+      "bottom": 642.5
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 350,
+      "y": 255.47000122070312,
+      "w": 312,
+      "h": 443.5600280761719,
+      "right": 662,
+      "bottom": 699.030029296875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.76240921020508,
+      "y": 255.2650909423828,
+      "w": 334.47515869140625,
+      "h": 424.1494140625,
+      "right": 396.2375679016113,
+      "bottom": 679.4145050048828,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 33.8787956237793,
+      "y": 279.40386962890625,
+      "w": 235.11741638183594,
+      "h": 397.08135986328125,
+      "right": 268.99621200561523,
+      "bottom": 676.4852294921875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.1571044921875,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.1571044921875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.8731231689453,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.87310791015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.02474975585938,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0247497558594,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.38401794433594,
+      "w": 155.015625,
+      "h": 109.00001525878906,
+      "right": 171.015625,
+      "bottom": 256.384033203125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.2777099609375,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.2777099609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.85348510742188,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 239.85348510742188,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.14651489257812,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 274.1465148925781,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.8711242675781,
+      "y": 253.3551025390625,
+      "w": 318.2577819824219,
+      "h": 447.52618408203125,
+      "right": 665.12890625,
+      "bottom": 700.8812866210938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.066062927246094,
+      "y": 253.39486694335938,
+      "w": 335.86785888671875,
+      "h": 425.6108703613281,
+      "right": 396.93392181396484,
+      "bottom": 679.0057373046875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.7395133972168,
+      "y": 278.01068115234375,
+      "w": 237.39598083496094,
+      "h": 398.72833251953125,
+      "right": 270.13549423217773,
+      "bottom": 676.739013671875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.50230407714844,
+      "w": 201.03125,
+      "h": 224.00001525878906,
+      "right": 217.03125,
+      "bottom": 374.5023193359375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.7878875732422,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.78790283203125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00088500976562,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0008850097656,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.43556213378906,
+      "w": 155.015625,
+      "h": 109.00001525878906,
+      "right": 171.015625,
+      "bottom": 255.43557739257812,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.02903747558594,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.02903747558594,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.7854766845703,
+      "w": 96,
+      "h": 90.00001525878906,
+      "right": 110,
+      "bottom": 239.78549194335938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:cadet:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.14651489257812,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 274.1465148925781,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.5,
+      "right": 1576,
+      "bottom": 642.5
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 349.60369873046875,
+      "y": 255.19256591796875,
+      "w": 312.7926025390625,
+      "h": 444.11676025390625,
+      "right": 662.3963012695312,
+      "bottom": 699.309326171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.0276985168457,
+      "y": 253.2804412841797,
+      "w": 335.944580078125,
+      "h": 425.695068359375,
+      "right": 396.9722785949707,
+      "bottom": 678.9755096435547,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.195343017578125,
+      "y": 276.0946044921875,
+      "w": 240.48431396484375,
+      "h": 400.96502685546875,
+      "right": 271.6796569824219,
+      "bottom": 677.0596313476562,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.8813171386719,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.73341369628906,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.7333984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00155639648438,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0015563964844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 147.01589965820312,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 256.0158996582031,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.0489044189453,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.0489044189453,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 149.90989685058594,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 239.90989685058594,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.27145385742188,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 274.2714538574219,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 347.836181640625,
+      "y": 253.99208068847656,
+      "w": 316.32763671875,
+      "h": 446.193359375,
+      "right": 664.163818359375,
+      "bottom": 700.1854400634766,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.568138122558594,
+      "y": 254.7769775390625,
+      "w": 334.86370849609375,
+      "h": 424.54620361328125,
+      "right": 396.43184661865234,
+      "bottom": 679.3231811523438,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.33900451660156,
+      "y": 277.516845703125,
+      "w": 238.19700622558594,
+      "h": 399.3079833984375,
+      "right": 270.5360107421875,
+      "bottom": 676.8248291015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.26658630371094,
+      "w": 201.03125,
+      "h": 224.00001525878906,
+      "right": 217.03125,
+      "bottom": 374.2666015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.5259246826172,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.52593994140625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.0824432373047,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.08245849609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 148,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 257,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 151.70936584472656,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 245.70936584472656,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.0998077392578,
+      "w": 96,
+      "h": 90.00001525878906,
+      "right": 110,
+      "bottom": 240.09982299804688,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 139.43333435058594,
+      "w": 96,
+      "h": 134.00001525878906,
+      "right": 110,
+      "bottom": 273.433349609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.8711242675781,
+      "y": 253.3551025390625,
+      "w": 318.2577819824219,
+      "h": 447.52618408203125,
+      "right": 665.12890625,
+      "bottom": 700.8812866210938,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.863643646240234,
+      "y": 255.50579833984375,
+      "w": 334.272705078125,
+      "h": 423.94708251953125,
+      "right": 396.13634872436523,
+      "bottom": 679.452880859375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 31.29107666015625,
+      "y": 276.20947265625,
+      "w": 240.2928466796875,
+      "h": 400.828369140625,
+      "right": 271.58392333984375,
+      "bottom": 677.037841796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.8813171386719,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.22047424316406,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 280.220458984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.01609802246094,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.01611328125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.46827697753906,
+      "w": 155.015625,
+      "h": 108.99998474121094,
+      "right": 171.015625,
+      "bottom": 255.46826171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.67222595214844,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 244.67222595214844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.03311157226562,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 240.03311157226562,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:pro:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 139.3698272705078,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 273.36981201171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 344.6502380371094,
+      "y": 251.95681762695312,
+      "w": 322.6994934082031,
+      "h": 450.5533142089844,
+      "right": 667.3497314453125,
+      "bottom": 702.5101318359375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 63.600467681884766,
+      "y": 259.22930908203125,
+      "w": 330.799072265625,
+      "h": 420.605712890625,
+      "right": 394.39953994750977,
+      "bottom": 679.8350219726562,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 33.61953353881836,
+      "y": 279.0873107910156,
+      "w": 235.63592529296875,
+      "h": 397.4563903808594,
+      "right": 269.2554588317871,
+      "bottom": 676.543701171875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.86016845703125,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.86016845703125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.73341369628906,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 279.7333984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.00155639648438,
+      "w": 192.71875,
+      "h": 124,
+      "right": 208.71875,
+      "bottom": 268.0015563964844,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.9852294921875,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 254.9852294921875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.69908142089844,
+      "w": 129.265625,
+      "h": 94.00001525878906,
+      "right": 145.265625,
+      "bottom": 244.6990966796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.56666564941406,
+      "w": 96,
+      "h": 89.99998474121094,
+      "right": 110,
+      "bottom": 240.566650390625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:letters:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 140.92453002929688,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 274.9245300292969,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.125,
+      "right": 1576,
+      "bottom": 642.125
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 346.67572021484375,
+      "y": 253.2274627685547,
+      "w": 318.6485595703125,
+      "h": 447.79510498046875,
+      "right": 665.3242797851562,
+      "bottom": 701.0225677490234,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 61.10348129272461,
+      "y": 253.5089569091797,
+      "w": 335.79302978515625,
+      "h": 425.52789306640625,
+      "right": 396.89651107788086,
+      "bottom": 679.0368499755859,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 32.816062927246094,
+      "y": 278.1058654785156,
+      "w": 237.24288940429688,
+      "h": 398.6171569824219,
+      "right": 270.05895233154297,
+      "bottom": 676.7230224609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.2369384765625,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.2369384765625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.95957946777344,
+      "w": 201.03125,
+      "h": 134.00001525878906,
+      "right": 217.03125,
+      "bottom": 279.9595947265625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.01609802246094,
+      "w": 192.71875,
+      "h": 124.00001525878906,
+      "right": 208.71875,
+      "bottom": 268.01611328125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.22047424316406,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 255.22047424316406,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.88131713867188,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 244.88131713867188,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 150.56666564941406,
+      "w": 96,
+      "h": 89.99998474121094,
+      "right": 110,
+      "bottom": 240.566650390625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:solfege:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 138.98748779296875,
+      "w": 96,
+      "h": 134,
+      "right": 110,
+      "bottom": 272.98748779296875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:1920x800",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "playing",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494.5,
+      "right": 1576,
+      "bottom": 642.5
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 349.807373046875,
+      "y": 255.3348846435547,
+      "w": 312.38525390625,
+      "h": 443.83074951171875,
+      "right": 662.192626953125,
+      "bottom": 699.1656341552734,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:1366x768",
+    "size": [
+      1366,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 423,
+      "y": 148,
+      "w": 876,
+      "h": 462,
+      "right": 1299,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 64.0708999633789,
+      "y": 260.1330261230469,
+      "w": 329.85821533203125,
+      "h": 419.7339172363281,
+      "right": 393.92911529541016,
+      "bottom": 679.866943359375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:1024x768",
+    "size": [
+      1024,
+      768
+    ],
+    "state": "playing",
+    "height": 768,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 310.875,
+      "y": 148,
+      "w": 689.125,
+      "h": 462,
+      "right": 1000,
+      "bottom": 610
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 34.875492095947266,
+      "y": 280.6204833984375,
+      "w": 233.1240234375,
+      "h": 395.63720703125,
+      "right": 267.99951553344727,
+      "bottom": 676.2576904296875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:768x1024",
+    "size": [
+      768,
+      1024
+    ],
+    "state": "playing",
+    "height": 1024,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 241.75,
+      "y": 148,
+      "w": 502.25,
+      "h": 718,
+      "right": 744,
+      "bottom": 866
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 36,
+      "y": 282,
+      "w": 161.75,
+      "h": 650,
+      "right": 197.75,
+      "bottom": 932,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:844x390",
+    "size": [
+      844,
+      390
+    ],
+    "state": "playing",
+    "height": 390,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 256,
+      "right": 832,
+      "bottom": 326
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.86016845703125,
+      "w": 201.03125,
+      "h": 224,
+      "right": 217.03125,
+      "bottom": 374.86016845703125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:844x300",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 832,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 146.1886749267578,
+      "w": 201.03125,
+      "h": 133.99998474121094,
+      "right": 217.03125,
+      "bottom": 280.18865966796875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:812x290",
+    "size": [
+      812,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-staff-box",
+        "text": "\ud83d\udc46 Drag me!",
+        "content": {
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 157.015625
+        },
+        "box": {
+          "id": "ntn-staff-box",
+          "x": 228.71875,
+          "y": 70,
+          "w": 571.28125,
+          "h": 156,
+          "right": 800,
+          "bottom": 226
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 228.71875,
+      "y": 70,
+      "w": 571.28125,
+      "h": 156,
+      "right": 800,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 144.0097198486328,
+      "w": 192.71875,
+      "h": 123.99998474121094,
+      "right": 208.71875,
+      "bottom": 268.00970458984375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:667x275",
+    "size": [
+      667,
+      275
+    ],
+    "state": "playing",
+    "height": 275,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 191.015625,
+      "y": 70,
+      "w": 463.984375,
+      "h": 141,
+      "right": 655,
+      "bottom": 211
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 145.9852294921875,
+      "w": 155.015625,
+      "h": 109,
+      "right": 171.015625,
+      "bottom": 254.9852294921875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:568x260",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 150.29116821289062,
+      "w": 129.265625,
+      "h": 94,
+      "right": 145.265625,
+      "bottom": 244.29116821289062,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:320x568",
+    "size": [
+      320,
+      568
+    ],
+    "state": "playing",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 151.4353790283203,
+      "w": 96,
+      "h": 90,
+      "right": 110,
+      "bottom": 241.4353790283203,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "play:place:master:both:390x844",
+    "size": [
+      390,
+      844
+    ],
+    "state": "playing",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14,
+      "y": 139.8448944091797,
+      "w": 96,
+      "h": 133.99998474121094,
+      "right": 110,
+      "bottom": 273.8448791503906,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:1",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.95448303222656,
+      "y": 66.18507385253906,
+      "w": 605.122314453125,
+      "h": 173.62985229492188,
+      "right": 837.0767974853516,
+      "bottom": 239.81492614746094
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 15.93638801574707,
+      "y": 151.8840789794922,
+      "w": 201.15847778320312,
+      "h": 134.16139221191406,
+      "right": 217.0948657989502,
+      "bottom": 286.04547119140625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:2",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [
+      {
+        "id": "ntn-answer-C",
+        "text": "C",
+        "content": {
+          "x": 286.27667236328125,
+          "y": 240,
+          "w": 68,
+          "h": 36
+        },
+        "box": {
+          "id": "ntn-answer-C",
+          "x": 233.2923126220703,
+          "y": 246,
+          "w": 114.98435974121094,
+          "h": 44,
+          "right": 348.27667236328125,
+          "bottom": 290
+        }
+      }
+    ],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.5528106689453,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 826.5215606689453,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 12.448774337768555,
+      "y": 142.24594116210938,
+      "w": 208.13369750976562,
+      "h": 149.68914794921875,
+      "right": 220.58247184753418,
+      "bottom": 291.9350891113281,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:3",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.97274780273438,
+      "y": 66.02670288085938,
+      "w": 605.0858154296875,
+      "h": 173.94659423828125,
+      "right": 837.0585632324219,
+      "bottom": 239.97329711914062
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.100309371948242,
+      "y": 138.53945922851562,
+      "w": 214.83062744140625,
+      "h": 150.88458251953125,
+      "right": 223.9309368133545,
+      "bottom": 289.4240417480469,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:4",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.97274780273438,
+      "y": 66.02670288085938,
+      "w": 605.0858154296875,
+      "h": 173.94659423828125,
+      "right": 837.0585632324219,
+      "bottom": 239.97329711914062
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.100309371948242,
+      "y": 138.53945922851562,
+      "w": 214.83062744140625,
+      "h": 150.88458251953125,
+      "right": 223.9309368133545,
+      "bottom": 289.4240417480469,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:5",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:6",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:7",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.97274780273438,
+      "y": 66.02670288085938,
+      "w": 605.0858154296875,
+      "h": 173.94659423828125,
+      "right": 837.0585632324219,
+      "bottom": 239.97329711914062
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 6.0163798332214355,
+      "y": 132.1890411376953,
+      "w": 220.99850463867188,
+      "h": 158.34312438964844,
+      "right": 227.0148844718933,
+      "bottom": 290.53216552734375,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:8",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 232.10264587402344,
+      "y": 65.09394073486328,
+      "w": 604.825927734375,
+      "h": 175.81210327148438,
+      "right": 836.9285736083984,
+      "bottom": 240.90604400634766
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 6.849833965301514,
+      "y": 133.75234985351562,
+      "w": 219.33157348632812,
+      "h": 156.0113525390625,
+      "right": 226.18140745162964,
+      "bottom": 289.7637023925781,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:9",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:name:10",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.96229553222656,
+      "y": 66.10133361816406,
+      "w": 605.106689453125,
+      "h": 173.79733276367188,
+      "right": 837.0689849853516,
+      "bottom": 239.89866638183594
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 5.967972278594971,
+      "y": 132.0978240966797,
+      "w": 221.09530639648438,
+      "h": 158.4790802001953,
+      "right": 227.06327867507935,
+      "bottom": 290.576904296875,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "round:name",
+    "summary": "9 / 10 notes \u00b7 120 pts \u00b7 best 120",
+    "pass": true
+  },
+  {
+    "tag": "feedback:place:1",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.95448303222656,
+      "y": 66.18507385253906,
+      "w": 605.122314453125,
+      "h": 173.62985229492188,
+      "right": 837.0767974853516,
+      "bottom": 239.81492614746094
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 16,
+      "y": 152,
+      "w": 201.03125,
+      "h": 134,
+      "right": 217.03125,
+      "bottom": 286,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:2",
+    "size": [
+      844,
+      300
+    ],
+    "state": "playing",
+    "height": 300,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 231.25833129882812,
+      "y": 70,
+      "w": 594.96875,
+      "h": 166,
+      "right": 826.2270812988281,
+      "bottom": 236
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 12.44293212890625,
+      "y": 141.0368194580078,
+      "w": 208.1453857421875,
+      "h": 149.6745147705078,
+      "right": 220.58831787109375,
+      "bottom": 290.7113342285156,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:3",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85731506347656,
+      "y": 67.37042236328125,
+      "w": 397.551025390625,
+      "h": 131.2591552734375,
+      "right": 559.4083404541016,
+      "bottom": 198.62957763671875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 11.328242301940918,
+      "y": 141.56178283691406,
+      "w": 138.609130859375,
+      "h": 104.96528625488281,
+      "right": 149.93737316131592,
+      "bottom": 246.52706909179688,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:4",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85731506347656,
+      "y": 67.37042236328125,
+      "w": 397.551025390625,
+      "h": 131.2591552734375,
+      "right": 559.4083404541016,
+      "bottom": 198.62957763671875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 11.328242301940918,
+      "y": 141.56178283691406,
+      "w": 138.609130859375,
+      "h": 104.96528625488281,
+      "right": 149.93737316131592,
+      "bottom": 246.52706909179688,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:5",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85731506347656,
+      "y": 67.37042236328125,
+      "w": 397.551025390625,
+      "h": 131.2591552734375,
+      "right": 559.4083404541016,
+      "bottom": 198.62957763671875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.127176284790039,
+      "y": 136.2706298828125,
+      "w": 143.01126098632812,
+      "h": 110.08842468261719,
+      "right": 152.13843727111816,
+      "bottom": 246.3590545654297,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:6",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.8597869873047,
+      "y": 67.31639099121094,
+      "w": 397.54608154296875,
+      "h": 131.36721801757812,
+      "right": 559.4058685302734,
+      "bottom": 198.68360900878906
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.159780502319336,
+      "y": 136.33575439453125,
+      "w": 142.94607543945312,
+      "h": 110.00321960449219,
+      "right": 152.10585594177246,
+      "bottom": 246.33897399902344,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:7",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85731506347656,
+      "y": 67.37042236328125,
+      "w": 397.551025390625,
+      "h": 131.2591552734375,
+      "right": 559.4083404541016,
+      "bottom": 198.62957763671875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.127176284790039,
+      "y": 136.2706298828125,
+      "w": 143.01126098632812,
+      "h": 110.08842468261719,
+      "right": 152.13843727111816,
+      "bottom": 246.3590545654297,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:8",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85731506347656,
+      "y": 67.37042236328125,
+      "w": 397.551025390625,
+      "h": 131.2591552734375,
+      "right": 559.4083404541016,
+      "bottom": 198.62957763671875
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.127176284790039,
+      "y": 136.2706298828125,
+      "w": 143.01126098632812,
+      "h": 110.08842468261719,
+      "right": 152.13843727111816,
+      "bottom": 246.3590545654297,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:9",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.85081481933594,
+      "y": 67.47400665283203,
+      "w": 397.56396484375,
+      "h": 131.05197143554688,
+      "right": 559.4147796630859,
+      "bottom": 198.5259780883789
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.061774253845215,
+      "y": 136.139892578125,
+      "w": 143.14208984375,
+      "h": 110.25942993164062,
+      "right": 152.20386409759521,
+      "bottom": 246.39932250976562,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "feedback:place:10",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 161.8532257080078,
+      "y": 67.41925811767578,
+      "w": 397.55914306640625,
+      "h": 131.16146850585938,
+      "right": 559.4123687744141,
+      "bottom": 198.58072662353516
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 9.092170715332031,
+      "y": 136.20066833496094,
+      "w": 143.08126831054688,
+      "h": 110.17994689941406,
+      "right": 152.1734390258789,
+      "bottom": 246.380615234375,
+      "src": "assets/characters/fit/finn-disco.webp"
+    },
+    "broken": []
+  },
+  {
+    "tag": "round:place",
+    "summary": "9 / 10 notes \u00b7 120 pts \u00b7 best 120",
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:C",
+    "expected": 77,
+    "actual": 76.21640000000001,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:D",
+    "expected": 71.5,
+    "actual": 70.9927,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:E",
+    "expected": 66,
+    "actual": 65.3991,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:F",
+    "expected": 60.5,
+    "actual": 59.9781,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:G",
+    "expected": 55,
+    "actual": 54.1927,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:A",
+    "expected": 49.5,
+    "actual": 48.6239,
+    "pass": true
+  },
+  {
+    "tag": "drag:812x290:B",
+    "expected": 44,
+    "actual": 42.9336,
+    "pass": false
+  },
+  {
+    "tag": "drag:812x290:High C",
+    "expected": 38.5,
+    "actual": 37.408699999999996,
+    "pass": false
+  },
+  {
+    "tag": "drag:568x260:C",
+    "expected": 77,
+    "actual": 76.1777,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:D",
+    "expected": 71.5,
+    "actual": 71.0181,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:E",
+    "expected": 66,
+    "actual": 65.39710000000001,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:F",
+    "expected": 60.5,
+    "actual": 59.946,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:G",
+    "expected": 55,
+    "actual": 54.364599999999996,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:A",
+    "expected": 49.5,
+    "actual": 48.5986,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:B",
+    "expected": 44,
+    "actual": 43.2537,
+    "pass": true
+  },
+  {
+    "tag": "drag:568x260:High C",
+    "expected": 38.5,
+    "actual": 37.3948,
+    "pass": false
+  },
+  {
+    "tag": "visualViewport:290",
+    "size": [
+      844,
+      290
+    ],
+    "state": "playing",
+    "height": 290,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 237.03125,
+      "y": 70,
+      "w": 594.96875,
+      "h": 156,
+      "right": 832,
+      "bottom": 226
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 8.523948669433594,
+      "y": 136.34292602539062,
+      "w": 215.98336791992188,
+      "h": 142.01473999023438,
+      "right": 224.50731658935547,
+      "bottom": 278.357666015625,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "restart-during-feedback",
+    "state": "tour",
+    "question": "Note 1 / 10",
+    "pass": true
+  },
+  {
+    "tag": "page-errors",
+    "errors": []
+  },
+  {
+    "tag": "webkit",
+    "available": false,
+    "error": "BrowserType.launch: Executable doesn't exist at /pw-browsers/webkit-2370/pw_run.sh\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 Looks like Playwright was just installed or updated.       \u2551\n\u2551 Please run the following command to download new browsers: \u2551\n\u2551                                                            \u2551\n\u2551     playwright install                                     \u2551\n\u2551                                                            \u2551\n\u2551 <3 Playwright Team                                         \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+  }
+]

@@ -1,0 +1,310 @@
+[
+  {
+    "tag": "short-match-readability",
+    "notes": [
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 4.5625,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.125,
+        "h": 8,
+        "blockH": 21.34375,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.125,
+        "h": 8,
+        "blockH": 21.34375,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 4.5625,
+        "h": 8,
+        "blockH": 21.34375,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.125,
+        "h": 8,
+        "blockH": 21.34375,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "rest",
+        "w": 4.5625,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      },
+      {
+        "note": "Quarter",
+        "w": 3.109375,
+        "h": 7.984375,
+        "blockH": 21.328125,
+        "labelClipped": true,
+        "imageClipped": false
+      }
+    ],
+    "overlap": [
+      0,
+      704.25,
+      1311.75
+    ]
+  },
+  {
+    "tag": "detail:copy:countin",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 78.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 266,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 116,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 235,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "tap-keyboard-animation",
+    "before": {
+      "x": 69.140625,
+      "y": 94,
+      "width": 128.109375,
+      "height": 168
+    },
+    "after": {
+      "x": 69.140625,
+      "y": 94,
+      "width": 128.109375,
+      "height": 168
+    },
+    "hitsBefore": "3",
+    "hitsAfter": "6",
+    "spaceRepeatPrevented": true
+  },
+  {
+    "tag": "detail:orientation:portrait",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 152,
+        "y": 188,
+        "w": 156,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 152.984375,
+        "y": 804,
+        "w": 84,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 227.5,
+        "w": 366,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "detail:orientation:landscape",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 498.1875,
+        "y": 78.84375,
+        "w": 182,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.1875,
+        "y": 266,
+        "w": 84,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 116,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  }
+]

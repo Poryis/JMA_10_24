@@ -19,6 +19,7 @@ export default function RhythmStrip({
   hitStates = null,    // optional array of 'perfect' | 'miss' per index
   height = 110,
   testIdPrefix = 'rhythm-block',
+  testId = 'rhythm-strip',
   onBlockTap = null,   // optional handler: called with index when a block is tapped
 }) {
   const totalBeats = patternBeats(pattern);
@@ -26,8 +27,8 @@ export default function RhythmStrip({
 
   return (
     <div
-      className="flex items-stretch gap-1 rounded-2xl border-4 p-2 bg-white/85 backdrop-blur"
-      data-testid="rhythm-strip"
+      data-testid={testId}
+      className="rhythm-strip flex items-stretch gap-1 rounded-2xl border-4 p-2 bg-white/85 backdrop-blur"
       style={{
         borderColor: 'var(--jma-dark)',
         boxShadow: '0 4px 0 0 var(--jma-dark)',

@@ -1,0 +1,204 @@
+/* A room-sized layout, never a scaled desktop page. Height follows the visible
+   Safari viewport, with separate notch/home-indicator insets inside that space. */
+.boom-room {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--boom-visible-height, 100dvh);
+  min-height: 0;
+  overflow: hidden;
+  --boom-side: 24px;
+}
+.boom-room header {
+  position: absolute;
+  padding-top: max(8px, env(safe-area-inset-top));
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(64px, calc(env(safe-area-inset-right) + 52px));
+}
+.boom-play-shell { min-height: 0; }
+.boom-play-main {
+  flex: 1;
+  min-height: 0;
+  max-width: 1360px;
+  padding: max(104px, env(safe-area-inset-top)) max(var(--boom-side), env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(var(--boom-side), env(safe-area-inset-left));
+}
+.boom-toolbar { flex: 0 0 44px; gap: 12px; margin-bottom: 8px; }
+.boom-toolbar button { min-height: 40px; transition: background-color .15s, transform .15s; }
+.boom-toolbar button:active { transform: translateY(2px); }
+.boom-play-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 32fr) minmax(0, 68fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 28px;
+  flex: 1;
+  min-height: 0;
+}
+.boom-controls {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.boom-status { flex: 0 0 auto; min-height: 42px; }
+.boom-status > div { min-width: 0; }
+.boom-status [data-testid="boom-round-counter"] { flex-shrink: 0; }
+.boom-status [data-testid="boom-phase-banner"] { line-height: 1.3; }
+.boom-strips { min-height: 0; gap: 12px; }
+.boom-strips .rhythm-strip { flex-shrink: 0; }
+.boom-strips .rhythm-strip > [data-testid*="-block-"]:not([aria-hidden]) {
+  min-width: 0 !important;
+  flex-shrink: 1;
+}
+.boom-timing { flex: 0 0 106px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; }
+.boom-beat-pulse { height: 24px; flex-shrink: 0; }
+.boom-countin { min-height: 66px; }
+.boom-countin [data-testid="count-in-overlay"] { margin: 0; gap: 14px; }
+.boom-countin [data-testid^="count-in-tile-"] { width: 52px !important; height: 52px !important; font-size: 30px !important; }
+.boom-room[data-mode="match"] .boom-timing { flex-basis: 24px; }
+.boom-stew-zone {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 26px 12px 32px;
+  isolation: isolate;
+}
+.boom-stew-zone [data-testid="streak-arc"] { bottom: auto !important; top: 2px; }
+.boom-stew-zone [data-testid="streak-multiplier"] { bottom: auto !important; top: 0; left: 0 !important; font-size: 18px !important; }
+.boom-stew-zone [data-testid="streak-banner"] { bottom: auto !important; top: 28px; font-size: 16px !important; padding: 6px 8px; }
+.boom-stew-zone [data-testid^="floating-score-"] { z-index: 5; }
+.boom-room [data-testid="boom-round-summary"] { top: 40%; }
+.boom-room [data-testid="boom-feedback"] { bottom: max(12px, env(safe-area-inset-bottom)); }
+.boom-room [data-testid="boom-how-to-play"],
+.boom-room [data-testid="boom-session-summary"] {
+  position: absolute;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  z-index: 70;
+}
+.boom-room [data-testid="boom-how-to-play-card"] { max-height: 100%; overflow-y: auto; }
+.boom-room [data-testid="boom-session-summary"] > div { max-height: 100%; }
+
+/* Short screens: controls share the header's middle, leaving the full field
+   below for Stew and notation. Layout follows visualViewport, not device size. */
+.boom-room[data-compact="true"] { --boom-side: 12px; }
+.boom-room[data-compact="true"] header .game-title-pill { display: none; }
+.boom-room[data-compact="true"] header .back-shield { width: 40px !important; height: 40px !important; }
+.boom-room[data-compact="true"] header .game-card { padding: 4px 8px; }
+.boom-room[data-compact="true"] .boom-play-main { padding-top: max(68px, env(safe-area-inset-top)); padding-bottom: max(6px, env(safe-area-inset-bottom)); }
+.boom-room[data-compact="true"] .boom-toolbar {
+  position: absolute;
+  top: max(10px, env(safe-area-inset-top));
+  left: max(76px, calc(env(safe-area-inset-left) + 64px));
+  right: max(180px, calc(env(safe-area-inset-right) + 168px));
+  height: 44px;
+  margin: 0;
+  gap: 8px;
+  justify-content: center;
+  z-index: 51;
+}
+.boom-room[data-compact="true"] .boom-levels { gap: 4px; }
+.boom-room[data-compact="true"] .boom-levels > span { display: none; }
+.boom-room[data-compact="true"] .boom-toolbar button { min-height: 44px; padding: 4px 8px; font-size: 12px; }
+.boom-room[data-compact="true"] .boom-play-stage { grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); gap: 12px; }
+.boom-room[data-compact="true"] .boom-controls { gap: 8px; }
+.boom-room[data-compact="true"] .boom-status { min-height: 28px; gap: 6px; }
+.boom-room[data-compact="true"] .boom-status > div { font-size: 11px; padding: 4px 8px; border-width: 2px; }
+.boom-room[data-compact="true"] .boom-timing { flex-basis: 66px; flex-direction: row; justify-content: center; gap: 16px; }
+.boom-room[data-compact="true"] .boom-countin { min-height: 58px; }
+.boom-room[data-compact="true"] .boom-countin [data-testid^="count-in-tile-"] { width: 36px !important; height: 36px !important; font-size: 22px !important; border-width: 3px; border-radius: 10px; }
+.boom-room[data-compact="true"] .boom-countin [data-testid="count-in-overlay"] { gap: 10px; }
+.boom-room[data-compact="true"][data-mode="match"] .boom-controls { justify-content: flex-start; }
+.boom-room[data-compact="true"][data-mode="match"] .boom-strips { flex: 1; gap: 6px; }
+.boom-room[data-compact="true"][data-mode="match"] .rhythm-strip { flex: 1 1 0; height: auto !important; max-height: 92px !important; min-height: 0; }
+.boom-room[data-compact="true"][data-mode="match"] .boom-timing { display: none; }
+.boom-room[data-compact="true"] .boom-match-replay-row { flex: 0 0 32px; }
+.boom-room[data-compact="true"] .boom-match-replay-row > span { display: none; }
+.boom-room[data-compact="true"] [data-testid="boom-match-replay"] { min-height: 32px; padding: 4px 12px; }
+.boom-room[data-compact="true"] .rhythm-strip { padding: 3px; border-width: 3px; gap: 3px; }
+.boom-room[data-compact="true"] .rhythm-strip > [data-testid*="-block-"]:not([aria-hidden]) { border-width: 2px; padding: 2px !important; border-radius: 6px; }
+.boom-room[data-compact="true"] .rhythm-strip span { font-size: 10px; }
+.boom-room[data-compact="true"][data-mode="match"] .rhythm-strip { padding: 2px; border-width: 2px; }
+.boom-room[data-compact="true"][data-mode="match"] .rhythm-strip > [data-testid*="-block-"]:not([aria-hidden]) { border-width: 1px; padding: 1px !important; justify-content: center; }
+.boom-room[data-compact="true"][data-mode="match"] .rhythm-strip img { height: calc(100% - 12px); max-height: calc(100% - 12px) !important; min-height: 0; width: auto; }
+.boom-room[data-compact="true"][data-mode="match"] .rhythm-strip span { margin-top: 0 !important; line-height: 10px; flex-shrink: 0; }
+.boom-replay { flex-shrink: 0; min-height: 40px; }
+.boom-room[data-compact="true"] .boom-replay { min-height: 32px; padding: 3px 6px; }
+.boom-picker[data-compact="true"] .bg-picker-controls > div:first-child button > div { display: none; }
+.boom-picker[data-compact="true"] .bg-picker-controls > div { min-width: 0; }
+.boom-picker[data-compact="true"] .bg-picker-controls > div > div:last-child { flex-wrap: nowrap; }
+.boom-room[data-wide="false"] header .game-title-pill { display: none; }
+body:has(.boom-room) [data-testid="fullscreen-button"] {
+  bottom: auto !important;
+  top: max(10px, env(safe-area-inset-top)) !important;
+  right: max(12px, env(safe-area-inset-right)) !important;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+}
+.boom-room[data-compact="true"] .boom-stew-zone [data-testid="streak-arc"] { gap: 6px; }
+.boom-room[data-compact="true"] .boom-stew-zone [data-testid="streak-arc"] > div { width: 14px !important; height: 14px !important; }
+.boom-room[data-compact="true"] [data-testid="boom-round-summary"] { top: 30%; padding: 10px 18px; }
+
+/* The menu uses the same viewport budget now that FitStage is not involved. */
+.boom-picker .bg-picker-main { min-height: 0; overflow-y: auto; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+.boom-picker[data-compact="true"] .bg-picker-main { padding-top: 10px !important; padding-bottom: max(8px, env(safe-area-inset-bottom)) !important; }
+.boom-picker[data-compact="true"] .bg-picker-head { padding-left: 64px; padding-right: 64px; }
+.boom-picker[data-compact="true"] .bg-picker-head h1 { font-size: 24px !important; }
+.boom-picker[data-compact="true"] .bg-picker-head p { display: none; }
+.boom-picker[data-compact="true"] .bg-picker-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: 78px; flex: 1 1 0 !important; padding-top: 8px; padding-bottom: 4px; }
+.boom-picker[data-compact="true"] .bg-mode-tile { height: 100%; min-height: 78px !important; padding: 8px !important; }
+.boom-picker[data-compact="true"] .bg-mode-tile h2 { font-size: 13px !important; white-space: normal; line-height: 1.1; }
+.boom-picker[data-compact="true"] .bg-picker-controls { gap: 24px; flex-shrink: 0; margin-top: 12px; }
+.boom-picker[data-compact="true"] .bg-picker-controls button { min-height: 44px; }
+.boom-picker[data-compact="true"] .bg-picker-controls > div > div:first-child { margin-bottom: 3px; }
+.boom-picker[data-compact="true"] .bg-picker-blurb { font-size: 10px; }
+
+/* Portrait remains usable when a family dismisses the rotate prompt. */
+.boom-room[data-wide="false"] { --boom-side: 12px; }
+.boom-room[data-wide="false"] .boom-play-main { padding-top: 94px; }
+.boom-room[data-wide="false"] .boom-toolbar { gap: 6px; }
+.boom-room[data-wide="false"] .boom-levels { gap: 4px; }
+.boom-room[data-wide="false"] .boom-levels > span { display: none; }
+.boom-room[data-wide="false"] .boom-play-stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(160px, 1fr); gap: 12px; }
+.boom-room[data-wide="false"] .boom-controls { grid-column: 1; grid-row: 1; gap: 8px; }
+.boom-room[data-wide="false"] .boom-stew-zone { grid-row: 2; }
+.boom-room[data-wide="false"] .boom-status > div { font-size: 10px; padding: 4px 6px; }
+.boom-room[data-wide="false"] .boom-timing { flex-basis: 52px; flex-direction: row; gap: 14px; }
+.boom-room[data-wide="false"] .boom-countin [data-testid^="count-in-tile-"] { width: 32px !important; height: 32px !important; font-size: 20px !important; }
+.boom-room[data-wide="false"] .boom-countin [data-testid="count-in-overlay"] { gap: 8px; }
+.boom-room[data-wide="false"] .rhythm-strip { min-height: 0; padding: 3px; }
+.boom-room[data-wide="false"] .rhythm-strip > [data-testid*="-block-"]:not([aria-hidden]) { padding: 2px !important; }
+.boom-room[data-wide="false"][data-mode="match"] .boom-strips { gap: 6px; flex: 1; }
+.boom-room[data-wide="false"][data-mode="match"] .rhythm-strip { flex: 1 1 0; height: auto !important; max-height: 80px !important; }
+.boom-room[data-wide="false"][data-mode="match"] .boom-timing { display: none; }
+.boom-room[data-wide="false"] .boom-match-replay-row > span { display: none; }
+.boom-room[data-wide="false"] .boom-match-replay-row { flex-shrink: 0; }
+.boom-room[data-wide="false"] .rhythm-strip span { font-size: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .boom-toolbar button { transition: none; }
+}
+
+.boom-room[data-wide="false"] [data-testid="boom-how-to-play-card"] { padding: 12px; gap: 8px; }
+.boom-room[data-wide="false"] [data-testid="boom-how-to-play-card"] > div { gap: 8px; }
+.boom-room[data-wide="false"] [data-testid="boom-how-to-play-card"] h2 { font-size: 24px; }
+.boom-room[data-wide="false"] [data-testid="boom-how-to-play-card"] img { max-height: 64px !important; }
+.boom-room[data-wide="false"] [data-testid^="how-to-play-step-"] { padding: 4px 6px; gap: 6px; }
+.boom-room[data-wide="false"] [data-testid^="how-to-play-step-"] > div:first-child { width: 28px !important; height: 28px !important; font-size: 14px !important; }
+.boom-room[data-wide="false"] [data-testid^="how-to-play-step-"] > div:last-child { font-size: 12px; }
+.boom-room[data-wide="false"] [data-testid="boom-how-to-play-start"] { padding: 8px; font-size: 14px; }
+.boom-picker[data-wide="false"] .bg-picker-main { padding-top: 76px; padding-bottom: 8px; }
+.boom-picker[data-wide="false"] .bg-picker-head { margin-bottom: 8px; }
+.boom-picker[data-wide="false"] .bg-picker-head h1 { font-size: 26px !important; }
+.boom-picker[data-wide="false"] .bg-picker-head p { font-size: 10px; padding: 2px 8px; margin-top: 4px; }
+.boom-picker[data-wide="false"] .bg-picker-tiles { min-height: 0; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.boom-picker[data-wide="false"] .bg-mode-tile { min-height: 62px !important; height: 100%; padding: 8px !important; }
+.boom-picker[data-wide="false"] .bg-mode-tile h2 { font-size: 14px !important; }
+.boom-picker[data-wide="false"] .bg-picker-controls > div { margin-top: 10px; }
+.boom-picker[data-wide="false"] .bg-picker-controls > div > div:first-child { margin-bottom: 3px; }
+.boom-picker[data-wide="false"] .bg-picker-controls button { min-height: 40px; padding: 4px 10px; }
+.boom-picker[data-wide="false"] .bg-picker-controls > div:first-child button > div { display: none; }
+.boom-picker[data-wide="false"] .bg-picker-blurb { margin-top: 6px; font-size: 9px; }

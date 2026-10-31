@@ -1,0 +1,10340 @@
+[
+  {
+    "tag": "chromium:copy:1920x800:instructions",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1215.4375,
+        "y": 397,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 453.4375,
+        "y": 726.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 440,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 736,
+        "y": 107,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 772,
+        "y": 585,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 82.984375
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:1440x900:instructions",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 975.4375,
+        "y": 447,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 213.4375,
+        "y": 776.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 490,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 496,
+        "y": 157,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 532,
+        "y": 635,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:1366x768:instructions",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 938.4375,
+        "y": 381,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 176.4375,
+        "y": 710.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 424,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 459,
+        "y": 91,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 495,
+        "y": 569,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:1024x768:instructions",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 713.671875,
+        "y": 381,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 119.671875,
+        "y": 639.921875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 424,
+        "w": 644.625,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 288,
+        "y": 91,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 324,
+        "y": 569,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:844x390:instructions",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 179,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 356,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 209,
+        "w": 565.609375,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 59,
+        "w": 672,
+        "h": 272
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 247,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:844x300:instructions",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 134,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 266,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 164,
+        "w": 565.609375,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 16,
+        "w": 672,
+        "h": 268
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 202,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:812x290:instructions",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 558.390625,
+        "y": 129,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 72.390625,
+        "y": 256,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 159,
+        "w": 543.203125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 70,
+        "y": 16,
+        "w": 672,
+        "h": 258
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 333.515625,
+        "y": 197,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:667x275:instructions",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 464.140625,
+        "y": 121.5,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.640625,
+        "y": 241,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 149.5,
+        "w": 441.703125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 635,
+        "h": 243
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 266.1875,
+        "y": 186.75,
+        "w": 364.8125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:568x260:instructions",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 399.796875,
+        "y": 114,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 35.78125,
+        "y": 226,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 142,
+        "w": 372.40625,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 536,
+        "h": 228
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 230.546875,
+        "y": 190.125,
+        "w": 301.453125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:320x568:instructions",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 189,
+        "y": 200.5,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 103.984375,
+        "y": 528,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 233.5,
+        "w": 296,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 288,
+        "h": 536
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 540,
+        "w": 232,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [
+      "boom-how-to-play-start"
+    ],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:390x844:instructions",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 224,
+        "y": 269.5,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 138.984375,
+        "y": 804,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 302.5,
+        "w": 366,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 137.875,
+        "w": 358,
+        "h": 568.25
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 610.125,
+        "w": 302,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:768x1024:instructions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 544.71875,
+        "y": 509,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 78.71875,
+        "y": 714.15625,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 552,
+        "w": 470.5625,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 160,
+        "y": 219,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 196,
+        "y": 697,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1150.9375,
+        "y": 311.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 467.9375,
+        "y": 726.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 365,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 910.9375,
+        "y": 361.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 227.9375,
+        "y": 776.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 415,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 873.9375,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 190.9375,
+        "y": 710.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 349,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 649.171875,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 134.171875,
+        "y": 639.921875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 349,
+        "w": 644.625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 123.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 356,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 161,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 78.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 266,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 116,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 514.890625,
+        "y": 73.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 86.890625,
+        "y": 256,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 111,
+        "w": 543.203125,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 420.640625,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 65.140625,
+        "y": 241,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 356.296875,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.28125,
+        "y": 226,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 149.5,
+        "y": 156.5,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 118.484375,
+        "y": 528,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 184.5,
+        "y": 188,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 153.484375,
+        "y": 804,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 227.5,
+        "w": 366,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:cadet:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 480.21875,
+        "y": 423.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 93.21875,
+        "y": 714.15625,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 477,
+        "w": 470.5625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1150.9375,
+        "y": 311.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 467.9375,
+        "y": 726.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 365,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 910.9375,
+        "y": 361.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 227.9375,
+        "y": 776.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 415,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 873.9375,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 190.9375,
+        "y": 710.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 349,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 649.171875,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 134.171875,
+        "y": 639.921875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 349,
+        "w": 644.625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 123.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 356,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 161,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 78.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 266,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 116,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 514.890625,
+        "y": 73.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 86.890625,
+        "y": 256,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 111,
+        "w": 543.203125,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 420.640625,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 65.140625,
+        "y": 241,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 356.296875,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.28125,
+        "y": 226,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 149.5,
+        "y": 156.5,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 118.484375,
+        "y": 528,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 184.5,
+        "y": 188,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 153.484375,
+        "y": 804,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 227.5,
+        "w": 366,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:pro:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 480.21875,
+        "y": 423.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 93.21875,
+        "y": 714.15625,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 477,
+        "w": 470.5625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1150.9375,
+        "y": 311.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 467.9375,
+        "y": 726.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 365,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 910.9375,
+        "y": 361.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 227.9375,
+        "y": 776.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 415,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 873.9375,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 190.9375,
+        "y": 710.71875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 349,
+        "w": 873.125,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 649.171875,
+        "y": 295.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 134.171875,
+        "y": 639.921875,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 349,
+        "w": 644.625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 123.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 356,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 161,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 535.6875,
+        "y": 78.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 91.6875,
+        "y": 266,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 116,
+        "w": 565.609375,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 514.890625,
+        "y": 73.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 86.890625,
+        "y": 256,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 111,
+        "w": 543.203125,
+        "h": 96
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 420.640625,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 65.140625,
+        "y": 241,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 356.296875,
+        "y": 68.84375,
+        "w": 107,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.28125,
+        "y": 226,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 149.5,
+        "y": 156.5,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 118.484375,
+        "y": 528,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 184.5,
+        "y": 188,
+        "w": 91,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 153.484375,
+        "y": 804,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 227.5,
+        "w": 366,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:copy:master:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 480.21875,
+        "y": 423.59375,
+        "w": 161,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 93.21875,
+        "y": 714.15625,
+        "w": 83,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 477,
+        "w": 470.5625,
+        "h": 150
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:1920x800:instructions",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1215.4375,
+        "y": 438,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 453.4375,
+        "y": 726.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 481,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 736,
+        "y": 107,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 772,
+        "y": 585,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:1440x900:instructions",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 975.4375,
+        "y": 488,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 213.4375,
+        "y": 776.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 531,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 496,
+        "y": 157,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 532,
+        "y": 635,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:1366x768:instructions",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 938.4375,
+        "y": 422,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 176.4375,
+        "y": 710.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 465,
+        "w": 873.125,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 459,
+        "y": 91,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 495,
+        "y": 569,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:1024x768:instructions",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 713.671875,
+        "y": 422,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 119.671875,
+        "y": 639.921875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 465,
+        "w": 644.625,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 288,
+        "y": 91,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 324,
+        "y": 569,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:844x390:instructions",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 78,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 356,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 276
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 59,
+        "w": 672,
+        "h": 272
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 247,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:844x300:instructions",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 78,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 266,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 186
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 16,
+        "w": 672,
+        "h": 268
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 202,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:812x290:instructions",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 558.390625,
+        "y": 78,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 72.390625,
+        "y": 256,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 176
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 70,
+        "y": 16,
+        "w": 672,
+        "h": 258
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 333.515625,
+        "y": 197,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:667x275:instructions",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 464.140625,
+        "y": 76,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.640625,
+        "y": 241,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 165
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 635,
+        "h": 243
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 266.1875,
+        "y": 186.75,
+        "w": 364.8125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:568x260:instructions",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 399.796875,
+        "y": 76,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 35.78125,
+        "y": 226,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 150
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 536,
+        "h": 228
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 230.546875,
+        "y": 180.5,
+        "w": 301.453125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:320x568:instructions",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 189,
+        "y": 163,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 103.984375,
+        "y": 528,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 149
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 288,
+        "h": 536
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 490.75,
+        "w": 232,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:390x844:instructions",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 224,
+        "y": 163,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 138.984375,
+        "y": 804,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 366,
+        "h": 287
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 147.5,
+        "w": 358,
+        "h": 549
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 600.5,
+        "w": 302,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:768x1024:instructions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 544.71875,
+        "y": 550,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 78.71875,
+        "y": 714.15625,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 593,
+        "w": 470.5625,
+        "h": 0
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 160,
+        "y": 219,
+        "w": 448,
+        "h": 586
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 196,
+        "y": 697,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1132.4375,
+        "y": 277.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 476.4375,
+        "y": 726.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 330.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 1196.4375,
+        "y": 330.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 742.875,
+        "y": 367.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 742.875,
+        "y": 459.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 742.875,
+        "y": 551.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 892.4375,
+        "y": 327.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 236.4375,
+        "y": 776.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 380.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 956.4375,
+        "y": 380.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 502.875,
+        "y": 417.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 502.875,
+        "y": 509.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 502.875,
+        "y": 601.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 855.4375,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 199.4375,
+        "y": 710.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 314.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 919.4375,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 465.875,
+        "y": 351.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 465.875,
+        "y": 443.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 465.875,
+        "y": 535.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 630.671875,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 142.671875,
+        "y": 639.921875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 314.75,
+        "w": 644.625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 694.671875,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 355.359375,
+        "y": 351.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 355.359375,
+        "y": 443.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 355.359375,
+        "y": 535.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 356,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 276
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 227.328125,
+        "w": 565.609375,
+        "h": 75.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 308.671875,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 266,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 186
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 197.328125,
+        "w": 565.609375,
+        "h": 45.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 248.671875,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 501.890625,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 95.390625,
+        "y": 256,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 176
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 505.390625,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 256.796875,
+        "y": 146,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 256.796875,
+        "y": 194,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 256.796875,
+        "y": 242,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 407.640625,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 73.640625,
+        "y": 241,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 165
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 411.140625,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 213.296875,
+        "y": 142,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 213.296875,
+        "y": 186.328125,
+        "w": 441.703125,
+        "h": 38.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 213.296875,
+        "y": 230.671875,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 343.296875,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 58.78125,
+        "y": 226,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 150
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 346.796875,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 183.59375,
+        "y": 142,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 183.59375,
+        "y": 181.328125,
+        "w": 372.40625,
+        "h": 33.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 183.59375,
+        "y": 220.671875,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 137.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 126.984375,
+        "y": 528,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 149
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 139,
+        "y": 196,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 226.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 268,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 309.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 172.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 161.984375,
+        "y": 804,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 366,
+        "h": 287
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 174,
+        "y": 198.25,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 228.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 314.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 400.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:cadet:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 461.71875,
+        "y": 389.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 101.71875,
+        "y": 714.15625,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 442.75,
+        "w": 470.5625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 525.71875,
+        "y": 442.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 273.4375,
+        "y": 479.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 273.4375,
+        "y": 571.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 273.4375,
+        "y": 663.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1132.4375,
+        "y": 277.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 476.4375,
+        "y": 726.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 330.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 1196.4375,
+        "y": 330.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 742.875,
+        "y": 367.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 742.875,
+        "y": 459.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 742.875,
+        "y": 551.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 892.4375,
+        "y": 327.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 236.4375,
+        "y": 776.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 380.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 956.4375,
+        "y": 380.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 502.875,
+        "y": 417.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 502.875,
+        "y": 509.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 502.875,
+        "y": 601.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 855.4375,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 199.4375,
+        "y": 710.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 314.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 919.4375,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 465.875,
+        "y": 351.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 465.875,
+        "y": 443.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 465.875,
+        "y": 535.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 630.671875,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 142.671875,
+        "y": 639.921875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 314.75,
+        "w": 644.625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 694.671875,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 355.359375,
+        "y": 351.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 355.359375,
+        "y": 443.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 355.359375,
+        "y": 535.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 356,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 276
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 227.328125,
+        "w": 565.609375,
+        "h": 75.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 308.671875,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 266,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 186
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 197.328125,
+        "w": 565.609375,
+        "h": 45.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 248.671875,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 501.890625,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 95.390625,
+        "y": 256,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 176
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 505.390625,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 256.796875,
+        "y": 146,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 256.796875,
+        "y": 194,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 256.796875,
+        "y": 242,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 407.640625,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 73.640625,
+        "y": 241,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 165
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 411.140625,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 213.296875,
+        "y": 142,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 213.296875,
+        "y": 186.328125,
+        "w": 441.703125,
+        "h": 38.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 213.296875,
+        "y": 230.671875,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 343.296875,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 58.78125,
+        "y": 226,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 150
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 346.796875,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 183.59375,
+        "y": 142,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 183.59375,
+        "y": 181.328125,
+        "w": 372.40625,
+        "h": 33.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 183.59375,
+        "y": 220.671875,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 137.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 126.984375,
+        "y": 528,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 149
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 139,
+        "y": 196,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 226.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 268,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 309.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 172.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 161.984375,
+        "y": 804,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 366,
+        "h": 287
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 174,
+        "y": 198.25,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 228.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 314.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 400.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:pro:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 461.71875,
+        "y": 389.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 101.71875,
+        "y": 714.15625,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 442.75,
+        "w": 470.5625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 525.71875,
+        "y": 442.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 273.4375,
+        "y": 479.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 273.4375,
+        "y": 571.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 273.4375,
+        "y": 663.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1132.4375,
+        "y": 277.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 476.4375,
+        "y": 726.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 330.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 1196.4375,
+        "y": 330.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 742.875,
+        "y": 367.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 742.875,
+        "y": 459.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 742.875,
+        "y": 551.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 892.4375,
+        "y": 327.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 236.4375,
+        "y": 776.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 380.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 956.4375,
+        "y": 380.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 502.875,
+        "y": 417.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 502.875,
+        "y": 509.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 502.875,
+        "y": 601.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 855.4375,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 199.4375,
+        "y": 710.71875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 314.75,
+        "w": 873.125,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 919.4375,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 465.875,
+        "y": 351.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 465.875,
+        "y": 443.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 465.875,
+        "y": 535.25,
+        "w": 873.125,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 630.671875,
+        "y": 261.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 142.671875,
+        "y": 639.921875,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 314.75,
+        "w": 644.625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 694.671875,
+        "y": 314.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 355.359375,
+        "y": 351.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 355.359375,
+        "y": 443.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 355.359375,
+        "y": 535.25,
+        "w": 644.625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 356,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 276
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 227.328125,
+        "w": 565.609375,
+        "h": 75.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 308.671875,
+        "w": 565.609375,
+        "h": 75.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 522.6875,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 100.1875,
+        "y": 266,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 186
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 526.1875,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 266.390625,
+        "y": 197.328125,
+        "w": 565.609375,
+        "h": 45.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 266.390625,
+        "y": 248.671875,
+        "w": 565.609375,
+        "h": 45.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 501.890625,
+        "y": 70.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 95.390625,
+        "y": 256,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 176
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 505.390625,
+        "y": 108,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 256.796875,
+        "y": 146,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 256.796875,
+        "y": 194,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 256.796875,
+        "y": 242,
+        "w": 543.203125,
+        "h": 42
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 407.640625,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 73.640625,
+        "y": 241,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 165
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 411.140625,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 213.296875,
+        "y": 142,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 213.296875,
+        "y": 186.328125,
+        "w": 441.703125,
+        "h": 38.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 213.296875,
+        "y": 230.671875,
+        "w": 441.703125,
+        "h": 38.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 343.296875,
+        "y": 68.84375,
+        "w": 133,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 58.78125,
+        "y": 226,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 150
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 346.796875,
+        "y": 104,
+        "w": 78,
+        "h": 32
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 183.59375,
+        "y": 142,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 183.59375,
+        "y": 181.328125,
+        "w": 372.40625,
+        "h": 33.34375
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 183.59375,
+        "y": 220.671875,
+        "w": 372.40625,
+        "h": 33.328125
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 137.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 126.984375,
+        "y": 528,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 149
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 139,
+        "y": 196,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 226.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 268,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 309.5,
+        "w": 296,
+        "h": 35.5
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 172.5,
+        "y": 156.5,
+        "w": 115,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 161.984375,
+        "y": 804,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 366,
+        "h": 287
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 174,
+        "y": 198.25,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 12,
+        "y": 228.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 12,
+        "y": 314.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 12,
+        "y": 400.75,
+        "w": 366,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:match:master:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 461.71875,
+        "y": 389.34375,
+        "w": 198,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 101.71875,
+        "y": 714.15625,
+        "w": 66,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 442.75,
+        "w": 470.5625,
+        "h": 300.5
+      },
+      {
+        "id": "boom-match-replay",
+        "x": 525.71875,
+        "y": 442.75,
+        "w": 74,
+        "h": 24.5
+      },
+      {
+        "id": "boom-match-strip-0",
+        "x": 273.4375,
+        "y": 479.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-1",
+        "x": 273.4375,
+        "y": 571.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "boom-match-strip-2",
+        "x": 273.4375,
+        "y": 663.25,
+        "w": 470.5625,
+        "h": 80
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:1920x800:instructions",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1215.4375,
+        "y": 302,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 453.4375,
+        "y": 726.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 345,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 736,
+        "y": 95,
+        "w": 448,
+        "h": 610
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 772,
+        "y": 597,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:1440x900:instructions",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 975.4375,
+        "y": 352,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 213.4375,
+        "y": 776.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 395,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 496,
+        "y": 145,
+        "w": 448,
+        "h": 610
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 532,
+        "y": 647,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:1366x768:instructions",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 938.4375,
+        "y": 286,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 176.4375,
+        "y": 710.71875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 329,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 459,
+        "y": 79,
+        "w": 448,
+        "h": 610
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 495,
+        "y": 581,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:1024x768:instructions",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 713.671875,
+        "y": 286,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 119.671875,
+        "y": 639.921875,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 329,
+        "w": 644.625,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 288,
+        "y": 79,
+        "w": 448,
+        "h": 610
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 324,
+        "y": 581,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:844x390:instructions",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 116,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 356,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 126
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 47,
+        "w": 672,
+        "h": 296
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 259,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:844x300:instructions",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 579.1875,
+        "y": 78,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 77.1875,
+        "y": 266,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 112
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 86,
+        "y": 16,
+        "w": 672,
+        "h": 268
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 349.515625,
+        "y": 214,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:812x290:instructions",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 558.390625,
+        "y": 78,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 72.390625,
+        "y": 256,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 102
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 70,
+        "y": 16,
+        "w": 672,
+        "h": 258
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 333.515625,
+        "y": 209,
+        "w": 388.484375,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:667x275:instructions",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 464.140625,
+        "y": 76,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 50.640625,
+        "y": 241,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 635,
+        "h": 243
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 266.1875,
+        "y": 188,
+        "w": 364.8125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:568x260:instructions",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 399.796875,
+        "y": 76,
+        "w": 20,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 35.78125,
+        "y": 226,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 536,
+        "h": 228
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 230.546875,
+        "y": 181.75,
+        "w": 301.453125,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:320x568:instructions",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 189,
+        "y": 163,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 103.984375,
+        "y": 528,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 16,
+        "w": 288,
+        "h": 536
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 529.25,
+        "w": 232,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [
+      "boom-how-to-play-start"
+    ],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:390x844:instructions",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 224,
+        "y": 174.5,
+        "w": 12,
+        "h": 8
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 138.984375,
+        "y": 804,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 207.5,
+        "w": 366,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 16,
+        "y": 146.25,
+        "w": 358,
+        "h": 551.5
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 44,
+        "y": 601.75,
+        "w": 302,
+        "h": 44
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:768x1024:instructions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 544.71875,
+        "y": 414,
+        "w": 32,
+        "h": 12
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 78.71875,
+        "y": 714.15625,
+        "w": 112,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 457,
+        "w": 470.5625,
+        "h": 190
+      },
+      {
+        "id": "boom-how-to-play-card",
+        "x": 160,
+        "y": 207,
+        "w": 448,
+        "h": 610
+      },
+      {
+        "id": "boom-how-to-play-start",
+        "x": 196,
+        "y": 709,
+        "w": 376,
+        "h": 48
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1142.4375,
+        "y": 291.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 465.4375,
+        "y": 726.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 345,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 1054.4375,
+        "y": 594,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 902.4375,
+        "y": 341.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 225.4375,
+        "y": 776.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 395,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 814.4375,
+        "y": 644,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 865.4375,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 188.4375,
+        "y": 710.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 329,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 777.4375,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 640.671875,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 131.671875,
+        "y": 639.921875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 329,
+        "w": 644.625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 552.671875,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 108.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 356,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 126
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 295,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 266,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 112
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 243,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 509.890625,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 84.390625,
+        "y": 256,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 102
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 503.390625,
+        "y": 233,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 415.640625,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 62.640625,
+        "y": 241,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 403.140625,
+        "y": 218,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 351.296875,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 47.78125,
+        "y": 226,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 338.796875,
+        "y": 203,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 145.5,
+        "y": 156.5,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 115.984375,
+        "y": 528,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 296,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 180.5,
+        "y": 168,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 150.984375,
+        "y": 804,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 207.5,
+        "w": 366,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 422.5,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:cadet:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 471.71875,
+        "y": 403.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 90.71875,
+        "y": 714.15625,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 457,
+        "w": 470.5625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 383.71875,
+        "y": 706,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1142.4375,
+        "y": 291.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 465.4375,
+        "y": 726.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 345,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 1054.4375,
+        "y": 594,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 902.4375,
+        "y": 341.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 225.4375,
+        "y": 776.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 395,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 814.4375,
+        "y": 644,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 865.4375,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 188.4375,
+        "y": 710.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 329,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 777.4375,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 640.671875,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 131.671875,
+        "y": 639.921875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 329,
+        "w": 644.625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 552.671875,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 108.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 356,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 126
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 295,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 266,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 112
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 243,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 509.890625,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 84.390625,
+        "y": 256,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 102
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 503.390625,
+        "y": 233,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 415.640625,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 62.640625,
+        "y": 241,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 403.140625,
+        "y": 218,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 351.296875,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 47.78125,
+        "y": 226,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 338.796875,
+        "y": 203,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 145.5,
+        "y": 156.5,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 115.984375,
+        "y": 528,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 296,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 180.5,
+        "y": 168,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 150.984375,
+        "y": 804,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 207.5,
+        "w": 366,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 422.5,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:pro:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 471.71875,
+        "y": 403.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 90.71875,
+        "y": 714.15625,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 457,
+        "w": 470.5625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 383.71875,
+        "y": 706,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:1920x800:play",
+    "viewport": [
+      1920,
+      800
+    ],
+    "roomHeight": 800,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 304,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 1142.4375,
+        "y": 291.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 315.9375,
+        "y": 215.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 465.4375,
+        "y": 726.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 742.875,
+        "y": 345,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 1054.4375,
+        "y": 594,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 320,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:1440x900:play",
+    "viewport": [
+      1440,
+      900
+    ],
+    "roomHeight": 900,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 64,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 902.4375,
+        "y": 341.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 75.9375,
+        "y": 265.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 225.4375,
+        "y": 776.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 502.875,
+        "y": 395,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 814.4375,
+        "y": 644,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 80,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:1366x768:play",
+    "viewport": [
+      1366,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 27,
+        "y": 104,
+        "w": 1312,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 865.4375,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 38.9375,
+        "y": 199.265625,
+        "w": 387,
+        "h": 507.453125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 188.4375,
+        "y": 710.71875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 465.875,
+        "y": 329,
+        "w": 873.125,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 777.4375,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 43,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:1024x768:play",
+    "viewport": [
+      1024,
+      768
+    ],
+    "roomHeight": 768,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 976,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 640.671875,
+        "y": 275.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.171875,
+        "y": 270.078125,
+        "w": 279,
+        "h": 365.84375
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 131.671875,
+        "y": 639.921875,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 355.359375,
+        "y": 329,
+        "w": 644.625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 552.671875,
+        "y": 578,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 64,
+        "h": 83
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:844x390:play",
+    "viewport": [
+      844,
+      390
+    ],
+    "roomHeight": 390,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 108.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 34.8125,
+        "y": 94,
+        "w": 196.75,
+        "h": 258
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 356,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 146,
+        "w": 565.609375,
+        "h": 126
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 295,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:844x300:play",
+    "viewport": [
+      844,
+      300
+    ],
+    "roomHeight": 300,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 69.140625,
+        "y": 94,
+        "w": 128.109375,
+        "h": 168
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 266,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 112
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 243,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:812x290:play",
+    "viewport": [
+      812,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 600,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 509.890625,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 68.15625,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 84.390625,
+        "y": 256,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 256.796875,
+        "y": 108,
+        "w": 543.203125,
+        "h": 102
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 503.390625,
+        "y": 233,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:667x275:play",
+    "viewport": [
+      667,
+      275
+    ],
+    "roomHeight": 275,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 455,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 415.640625,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 52.125,
+        "y": 94,
+        "w": 109.046875,
+        "h": 143
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 62.640625,
+        "y": 241,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 213.296875,
+        "y": 104,
+        "w": 441.703125,
+        "h": 91
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 403.140625,
+        "y": 218,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:568x260:play",
+    "viewport": [
+      568,
+      260
+    ],
+    "roomHeight": 260,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 356,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 351.296875,
+        "y": 68.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 42.984375,
+        "y": 94,
+        "w": 97.609375,
+        "h": 128
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 47.78125,
+        "y": 226,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 183.59375,
+        "y": 104,
+        "w": 372.40625,
+        "h": 76
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 338.796875,
+        "y": 203,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:320x568:play",
+    "viewport": [
+      320,
+      568
+    ],
+    "roomHeight": 568,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 296,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 145.5,
+        "y": 156.5,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 106.234375,
+        "y": 383,
+        "w": 107.515625,
+        "h": 141
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 115.984375,
+        "y": 528,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 196,
+        "w": 296,
+        "h": 75
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 296,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:390x844:play",
+    "viewport": [
+      390,
+      844
+    ],
+    "roomHeight": 844,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 12,
+        "y": 94,
+        "w": 366,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 180.5,
+        "y": 168,
+        "w": 99,
+        "h": 21
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 88.609375,
+        "y": 521,
+        "w": 212.765625,
+        "h": 279
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 150.984375,
+        "y": 804,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 12,
+        "y": 207.5,
+        "w": 366,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 122,
+        "y": 422.5,
+        "w": 152,
+        "h": 32
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 59
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:trail:master:768x1024:play",
+    "viewport": [
+      768,
+      1024
+    ],
+    "roomHeight": 1024,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 24,
+        "y": 104,
+        "w": 720,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 471.71875,
+        "y": 403.59375,
+        "w": 178,
+        "h": 32.796875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 36.21875,
+        "y": 451.84375,
+        "w": 197,
+        "h": 258.3125
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 90.71875,
+        "y": 714.15625,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 273.4375,
+        "y": 457,
+        "w": 470.5625,
+        "h": 190
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 383.71875,
+        "y": 706,
+        "w": 250,
+        "h": 52
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 54.3125,
+        "h": 67
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium:visualViewport_override_290",
+    "viewport": [
+      844,
+      290
+    ],
+    "roomHeight": 290,
+    "fitStage": false,
+    "items": [
+      {
+        "id": "boom-toolbar",
+        "x": 76,
+        "y": 10,
+        "w": 632,
+        "h": 44
+      },
+      {
+        "id": "boom-phase-banner",
+        "x": 530.6875,
+        "y": 70.84375,
+        "w": 117,
+        "h": 26.296875
+      },
+      {
+        "id": "boom-stew-art",
+        "x": 72.953125,
+        "y": 94,
+        "w": 120.484375,
+        "h": 158
+      },
+      {
+        "id": "boom-stew-hint",
+        "x": 89.1875,
+        "y": 256,
+        "w": 88,
+        "h": 20
+      },
+      {
+        "id": "boom-strips",
+        "x": 266.390625,
+        "y": 108,
+        "w": 565.609375,
+        "h": 102
+      },
+      {
+        "id": "count-in-overlay",
+        "x": 524.1875,
+        "y": 233,
+        "w": 174,
+        "h": 36
+      },
+      {
+        "id": "back-button",
+        "x": 12,
+        "y": 8,
+        "w": 52.203125,
+        "h": 60
+      }
+    ],
+    "outside": [],
+    "clipped": [],
+    "overflows": [
+      "boom-stew-art"
+    ],
+    "brokenImages": []
+  },
+  {
+    "tag": "chromium",
+    "failure": "Locator.click: Element is outside of the viewport\nCall log:\n  - waiting for get_by_test_id(\"boom-tempo-turbo\")\n    - locator resolved to <button type=\"button\" x-column=\"16\" x-dynamic=\"true\" x-array-line=\"46\" x-source-line=\"46\" x-line-number=\"1131\" x-component=\"button\" x-array-var=\"TEMPOS\" x-source-var=\"TEMPOS\" x-source-path=\"label\" x-array-item-param=\"t\" x-source-editable=\"true\" x-file-name=\"BoomGardenPage\" x-id=\"BoomGardenPage_1131_16\" data-testid=\"boom-tempo-turbo\" x-source-type=\"static-imported\" x-source-file-abs=\"/app/frontend/src/pages/BoomGardenPage.js\" class=\"rounded-2xl border-3 px-3 md:px-4 py-2 font-black font-display text-sm\u2026>\u2026</button>\n  - attempting click action\n    - scrolling into view if needed\n    - done scrolling\n"
+  },
+  {
+    "tag": "webkit",
+    "failure": "BrowserType.launch: Executable doesn't exist at /pw-browsers/webkit-2370/pw_run.sh\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 Looks like Playwright was just installed or updated.       \u2551\n\u2551 Please run the following command to download new browsers: \u2551\n\u2551                                                            \u2551\n\u2551     playwright install                                     \u2551\n\u2551                                                            \u2551\n\u2551 <3 Playwright Team                                         \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+  }
+]

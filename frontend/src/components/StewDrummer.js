@@ -111,12 +111,13 @@ export const StewDrummer = forwardRef(function StewDrummer({ onTap, disabled, hi
       aria-label="Tap Stew to play the drum"
       className="relative bg-transparent border-0 p-0 select-none block"
       style={{
-        width: 'clamp(220px, 42vw, 360px)',
+        width: 'calc(var(--boom-stew-height, 300px) * 816 / 1070)',
+        height: 'var(--boom-stew-height, 300px)',
         // Explicit aspect-ratio so the button always has height even when
         // every <img> child is `position: absolute` — otherwise the moment
         // we flip frame 0 to display:none mid-animation, the parent
         // collapses to 0 px high and Stew vanishes.
-        aspectRatio: '16 / 9',
+        aspectRatio: '816 / 1070',
         cursor: 'pointer',
         // No opacity dim when disabled — Stew should always look alive and
         // ready (Twin Beats picks strips, not Stew, but he's still part of
@@ -127,20 +128,27 @@ export const StewDrummer = forwardRef(function StewDrummer({ onTap, disabled, hi
       }}
       whileTap={!disabled ? { y: 4 } : undefined}
     >
+      {/* All animation frames share the SAME crop. Only transparent margins
+          are removed; sticks, ears and feet stay inside in every pose. */}
+      <span className="absolute inset-0 overflow-hidden pointer-events-none" data-testid="boom-stew-art">
       {ALL_FRAMES.map((src, idx) => (
         <img
           key={idx}
           ref={(el) => { frameRefs.current[idx] = el; }}
           src={src}
+          data-testid={`boom-stew-frame-${idx}`}
           alt={idx === 0 ? 'Stew on drums' : ''}
           aria-hidden={idx === 0 ? undefined : 'true'}
           draggable={false}
-          className={`stew-drum-frame${idx === 0 ? ' stew-drum-frame-default' : ''} absolute inset-0 w-full h-full object-contain pointer-events-none select-none`}
+          className={`stew-drum-frame${idx === 0 ? ' stew-drum-frame-default' : ''} absolute pointer-events-none select-none`}
+          style={{ width: '235.294118%', height: '100.934579%', maxWidth: 'none', left: '-74.387255%', top: 0 }}
         />
       ))}
+      </span>
       {hint && (
         <div
-          className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full border-3 px-3 py-0.5 text-xs font-black font-display whitespace-nowrap"
+          data-testid="boom-stew-hint"
+          className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-full border-3 px-3 py-0.5 text-xs font-black font-display whitespace-nowrap"
           style={{
             borderColor: 'var(--jma-dark)',
             backgroundColor: 'white',

@@ -1,0 +1,114 @@
+[
+  {
+    "frame": "left-1.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1409,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "left-2.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      629,
+      12,
+      1409,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "left-3.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      635,
+      12,
+      1409,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "left-4.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1409,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "right-1.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1409,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "right-2.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1357,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "right-3.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1401,
+      1054
+    ],
+    "crop_intact": true
+  },
+  {
+    "frame": "right-4.png",
+    "original": [
+      1920,
+      1080
+    ],
+    "alpha_bounds": [
+      621,
+      12,
+      1404,
+      1054
+    ],
+    "crop_intact": true
+  }
+]

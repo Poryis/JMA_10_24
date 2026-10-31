@@ -113,7 +113,7 @@ function GameHeader({ title, subtitle, score, streak, showHomeButton = true, bac
   const BackIcon = insideJMAtv ? RetroTVIcon : HarpIcon;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-2 md:px-4 py-1 md:py-3 pointer-events-none">
+    <header data-testid="game-header" className="fixed top-0 left-0 right-0 z-50 px-2 md:px-4 py-1 md:py-3 pointer-events-none">
       <div className="max-w-7xl mx-auto flex items-start justify-between gap-2">
         {renderBackButton && (
           <div className="flex flex-row md:flex-col items-end md:items-center gap-1.5 md:gap-1.5 flex-shrink-0">
@@ -226,7 +226,7 @@ function GameHeader({ title, subtitle, score, streak, showHomeButton = true, bac
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
             >
-              <span className="text-lg font-bold streak-fire">
+              <span data-testid="game-header-streak" className="text-lg font-bold streak-fire">
                 {streak}x
               </span>
             </motion.div>
@@ -234,7 +234,7 @@ function GameHeader({ title, subtitle, score, streak, showHomeButton = true, bac
           
           {score !== undefined && (
             <div className="game-card px-4 py-2">
-              <span className="text-xl font-bold" style={{ color: 'var(--jma-dark)' }}>
+              <span data-testid="game-header-score" className="text-xl font-bold" style={{ color: 'var(--jma-dark)' }}>
                 {score.toLocaleString()}
               </span>
             </div>

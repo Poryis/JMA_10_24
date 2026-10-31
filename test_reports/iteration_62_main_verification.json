@@ -1,0 +1,40 @@
+{
+  "source": "Main-agent verification by rerunning testing-agent-authored regression scripts after fixes; not a new testing-agent review",
+  "date": "2026-10-31",
+  "status": "pass_with_device_verification_remaining",
+  "resolved_reports": ["iteration_60.json", "iteration_61.json"],
+  "verified": {
+    "name_that_note_gameplay_bounds": "198/198 across 18 mode/difficulty/label combinations and 11 viewports; no outer overflow, gameplay scroll or HUD overlap",
+    "name_that_note_menu_bounds": "11/11 viewports",
+    "note_rounds": "Name It and Place It each completed 10 questions; summary and play again pass",
+    "restart_during_feedback": "Opening tour remains Note 1 / 10 after old answer delay elapses",
+    "long_both_labels": "Two-line solfege/letter labels fit, including compact 568x260",
+    "drag": "16/16 exact settled staff locations at 812x290 and 568x260",
+    "viewport_resize": "visualViewport height shrink to 290px preserves the active question",
+    "rhythm_copy_summary": "Automatic 475=475; manual 771=771",
+    "rhythm_trail_summary": "Automatic 699=699; manual 663=663; independent full auto run ends after exactly five rounds at 547=547, manual 714=714",
+    "rhythm_match": "Cadet/pro/master notation and syllables fit at 568x260; Replay and answering pass; no fullscreen overlap",
+    "rhythm_portrait": "320x568 and 390x844 pickers fit; all three instruction cards fit without internal scrolling",
+    "build": "CI=false yarn build passes; pre-existing unrelated hooks warnings remain",
+    "page_errors": []
+  },
+  "non_bug_measurements": [
+    "Name That Note intentional wrong-answer X badge extends beyond the answer-key box but not the page",
+    "Place It Drag me chip extends about 1px below the staff box at 812x290 into the reserved gap, without clipping or overlap",
+    "Early spring-animation drag samples can differ from target; settled 600ms samples pass all positions"
+  ],
+  "limitations": [
+    "No physical iPhone Safari test; WebKit unavailable. Browser chrome tested only with reduced viewport sizes and visualViewport simulation.",
+    "No audible listening assessment; interaction/animation/timing flows exercised.",
+    "Backend/accounts/payments remained paused; existing progression is localStorage, MOCKED backend integration."
+  ],
+  "evidence": [
+    "ntn_review_results.json",
+    "ntn_followup_results.json",
+    "review_final_results.json",
+    "review_followup_results.json",
+    "test_ntn_review.py",
+    "test_review_final_checks.py",
+    "test_review_followup.py"
+  ]
+}

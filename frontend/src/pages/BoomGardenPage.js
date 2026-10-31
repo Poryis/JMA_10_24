@@ -15,10 +15,10 @@
 // Notation syllables match Lesson 4 exactly:
 //   Whole = Toe-ee--O-ee · Half = Toe-ee · Quarter = Ta · Eighth = Ti
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FitBox from '../components/FitBox';
-import { ArrowLeft, Volume2, RotateCcw, Sparkles } from 'lucide-react';
+import { ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
 import { GameHeader, FeedbackPopup } from '../components/GameUI';
 import Confetti from '../components/Confetti';
 import RhythmStrip from '../components/RhythmStrip';
@@ -32,6 +32,8 @@ import { reportQuestEvent } from '../hooks/useDailyQuests';
 import { say } from '../lib/voice';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import HowToVoiceButton from '../components/HowToVoiceButton';
+import useBoomLayout from '../hooks/useBoomLayout';
+import './BoomGardenPage.css';
 import {
   PATTERNS, TRAIL_PATTERNS, DIFFICULTIES, BEAT_MS as BASE_BEAT_MS, TOLERANCE_MS,
   patternBeats, noteStartTimes, ROUNDS_PER_SESSION,
@@ -209,6 +211,10 @@ export default function BoomGardenPage() {
   const { playDrumSound, playCountInBeep, initAudioContext } = useAudio();
 
   const [mode, setMode] = useState(null);
+  const { viewport, stewZoneRef } = useBoomLayout(mode);
+  const compact = viewport.height <= 520 && viewport.width > viewport.height;
+  const wide = viewport.width > viewport.height || viewport.width >= 768;
+  const roomStyle = { '--boom-visible-height': `${viewport.height}px` };
   const [level, setLevel] = useState('cadet');
   const [pattern, setPattern] = useState(null);
   const [matchOptions, setMatchOptions] = useState([]);
@@ -218,6 +224,8 @@ export default function BoomGardenPage() {
   const [tapCue, setTapCue] = useState(null);       // {key} — one-shot "tap now" pulse on the drum
   const [hitStates, setHitStates] = useState([]);
   const [score, setScore] = useState(0);
+  const scoreRef = useRef(score);
+  useEffect(() => { scoreRef.current = score; }, [score]);
   const [streak, setStreak] = useState(0);
   // Round tracking for the fixed-length session. ROUNDS_PER_SESSION (5)
   // rounds per visit, then a Session Summary card pops with total score +
@@ -293,6 +301,7 @@ export default function BoomGardenPage() {
   // fell on the rest = no rest reward).
   const tapTimesRef = useRef([]);
   const snareRef = useRef(null);
+  const finishRoundRef = useRef(null);
   // Wall-clock Date.now() of beat-0 of the click track currently running.
   // Drives the BeatPulse visual metronome so it stays in lock-step with the
   // hi-hat without any drift.
@@ -517,7 +526,7 @@ export default function BoomGardenPage() {
         setSessionStats({
           perfects: sessionTallyRef.current.perfects,
           totalNotes: sessionTallyRef.current.totalNotes,
-          score,
+          score: scoreRef.current,
         });
         setSessionComplete(true);
         setPhase('idle');
@@ -529,6 +538,10 @@ export default function BoomGardenPage() {
     }, 3000);
     timeoutsRef.current.push(next);
   }, [clearTimeouts, level, mode, currentRound, score, streak]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Natural timeouts must finish the CURRENT round, not the callback captured
+  // by the previous round's automatic start (which otherwise recurses forever).
+  useLayoutEffect(() => { finishRoundRef.current = finishCopyRound; }, [finishCopyRound]);
 
   const startCopy = useCallback(() => {
     const pat = randomPattern(level, PATTERNS);
@@ -597,11 +610,11 @@ export default function BoomGardenPage() {
       // kid would never actually SEE "GO!".
       const goHold = setTimeout(() => setShowCountIn(false), 600);
       timeoutsRef.current.push(goHold);
-      const failsafe = setTimeout(finishCopyRound, totalBeats * beatMsRef.current + 1200);
+      const failsafe = setTimeout(() => finishRoundRef.current?.(), totalBeats * beatMsRef.current + 1200);
       timeoutsRef.current.push(failsafe);
     }, demoMs + countInMs);
     timeoutsRef.current.push(handoff);
-  }, [level, initAudioContext, clearTimeouts, scheduleMetronome, schedulePatternAudio, scheduleVisualPlayhead, finishCopyRound]);
+  }, [level, initAudioContext, clearTimeouts, scheduleMetronome, schedulePatternAudio, scheduleVisualPlayhead, playCountInBeep]);
 
   // Helper: pop a per-tap feedback popup (PERFECT! / GREAT! / GOOD! / MISS!)
   // and a floating score chip (+25 / +15 / +10) that drifts up. Both auto
@@ -739,10 +752,10 @@ export default function BoomGardenPage() {
     }
     const allNonRest = pat.map((k, i) => (k === 'rest' ? null : i)).filter((x) => x !== null);
     if (allNonRest.every((i) => claimed.has(i))) {
-      const fin = setTimeout(finishCopyRound, 280);
+      const fin = setTimeout(() => finishRoundRef.current?.(), 280);
       timeoutsRef.current.push(fin);
     }
-  }, [phase, level, playDrumSound, finishCopyRound, popHitFeedback, streak]);
+  }, [phase, level, playDrumSound, popHitFeedback, streak]);
 
   // ---- TWIN BEATS ----
   const startMatch = useCallback(() => {
@@ -800,7 +813,7 @@ export default function BoomGardenPage() {
         setSessionStats({
           perfects: sessionTallyRef.current.perfects,
           totalNotes: sessionTallyRef.current.totalNotes,
-          score: score + (correct ? 100 : 0),
+          score: scoreRef.current,
         });
         setSessionComplete(true);
         setPhase('idle');
@@ -810,7 +823,7 @@ export default function BoomGardenPage() {
       startMatch();
     }, 3000);
     timeoutsRef.current.push(next);
-  }, [phase, playDrumSound, matchAnswer, level, startMatch, currentRound, score]);
+  }, [phase, playDrumSound, matchAnswer, level, startMatch, currentRound]);
 
   const replayMatch = useCallback(() => {
     if (phase !== 'input') return;
@@ -876,12 +889,12 @@ export default function BoomGardenPage() {
       timeoutsRef.current.push(goHold);
       const fin = setTimeout(() => {
         setHighlightIndex(-1);
-        finishCopyRound();
+        finishRoundRef.current?.();
       }, totalBeats * beatMsRef.current + 600);
       timeoutsRef.current.push(fin);
     }, countInMs);
     timeoutsRef.current.push(trailStart);
-  }, [level, initAudioContext, clearTimeouts, scheduleMetronome, scheduleVisualPlayhead, finishCopyRound]);
+  }, [level, initAudioContext, clearTimeouts, scheduleMetronome, scheduleVisualPlayhead, playCountInBeep]);
 
   // ---- LIFECYCLE ----
   const enterMode = useCallback((m) => {
@@ -1027,8 +1040,11 @@ export default function BoomGardenPage() {
     return (
       <div
         data-testid="boom-garden-page"
-        className="min-h-screen flex flex-col relative"
+        data-compact={compact}
+        data-wide={wide}
+        className="boom-room boom-picker flex flex-col"
         style={{
+          ...roomStyle,
           backgroundImage: 'url(assets/backgrounds/football-field.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -1156,8 +1172,13 @@ export default function BoomGardenPage() {
   return (
     <div
       data-testid={`boom-mode-page-${mode}`}
-      className="min-h-screen flex flex-col relative"
+      data-compact={compact}
+      data-wide={wide}
+      data-mode={mode}
+      data-phase={phase}
+      className="boom-room flex flex-col"
       style={{
+        ...roomStyle,
         backgroundImage: 'url(assets/backgrounds/football-field.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -1171,11 +1192,11 @@ export default function BoomGardenPage() {
           background: `linear-gradient(180deg, ${modeConfig.color}22 0%, rgba(255,255,255,0.55) 60%, ${modeConfig.color}33 100%)`,
         }}
       />
-      <div className="relative z-10 flex flex-col flex-1">
+      <div className="boom-play-shell relative z-10 flex flex-col flex-1">
       <GameHeader title="Who's Got the Rhythm" subtitle={modeConfig.label} showHomeButton={true} score={score} streak={streak} />
-      <main className="flex-1 pt-20 md:pt-24 pb-4 px-3 md:px-6 max-w-4xl mx-auto w-full flex flex-col">
+      <main className="boom-play-main mx-auto w-full flex flex-col" data-testid="boom-play-main">
         {/* Back + level row */}
-        <div className="flex items-center justify-between mb-3 md:mb-4">
+        <div className="boom-toolbar flex items-center justify-between" data-testid="boom-toolbar">
           <button
             data-testid="boom-back-modes"
             type="button"
@@ -1185,7 +1206,7 @@ export default function BoomGardenPage() {
           >
             <ArrowLeft className="w-4 h-4" /> Modes
           </button>
-          <div className="flex items-center gap-2">
+          <div className="boom-levels flex items-center gap-2">
             <span className="text-[10px] md:text-xs uppercase font-black opacity-60" style={{ color: 'var(--jma-dark)' }}>
               Level
             </span>
@@ -1208,8 +1229,10 @@ export default function BoomGardenPage() {
           </div>
         </div>
 
+        <div className="boom-play-stage" data-testid="boom-play-stage">
+        <div className="boom-controls" data-testid="boom-controls">
         {/* Phase banner + round counter */}
-        <div className="text-center mb-3 md:mb-4 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
+        <div className="boom-status text-center flex items-center justify-center gap-2 md:gap-3">
           <div
             data-testid="boom-round-counter"
             className="inline-block rounded-full border-3 px-3 py-1.5 font-black font-display text-xs md:text-sm"
@@ -1243,17 +1266,24 @@ export default function BoomGardenPage() {
             {mode === 'trail' && phase === 'input'   && 'Read & play as each note hits the line'}
             {mode === 'trail' && phase === 'reveal'  && 'Round complete'}
           </div>
+          {mode === 'match' && (
+            <button data-testid="boom-match-replay" type="button" onClick={replayMatch} disabled={phase !== 'input'}
+              className="boom-replay rounded-full border-2 px-3 py-1 text-xs font-black font-display flex items-center gap-1 disabled:opacity-40"
+              style={{ borderColor: 'var(--jma-dark)', color: 'var(--jma-dark)', backgroundColor: 'white' }}>
+              <RotateCcw className="w-3 h-3" /> Replay
+            </button>
+          )}
         </div>
 
         {/* Strip(s) */}
-        <div className="flex flex-col items-stretch justify-center gap-3 md:gap-4 mb-4">
+        <div className="boom-strips flex flex-col items-stretch justify-center" data-testid="boom-strips">
           {mode === 'copy' && pattern && (
             <RhythmStrip
               key={`copy-${roundKey}`}
               pattern={pattern}
               highlightIndex={highlightIndex}
               hitStates={hitStates}
-              height={120}
+              height={compact ? 96 : 150}
             />
           )}
           {mode === 'trail' && pattern && (
@@ -1261,28 +1291,12 @@ export default function BoomGardenPage() {
               key={`trail-${roundKey}`}
               pattern={pattern}
               kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'}
-              height={170}
+              height={compact ? Math.min(126, Math.max(80, viewport.height - 170)) : 190}
               beatMs={BEAT_MS}
             />
           )}
           {mode === 'match' && matchOptions.length === 3 && (
             <>
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <Volume2 className="w-4 h-4" style={{ color: 'var(--jma-dark)' }} />
-                <span className="text-xs md:text-sm font-bold" style={{ color: 'var(--jma-dark)' }}>
-                  {phase === 'demo' ? 'Listening...' : 'Tap the strip that matches what you heard'}
-                </span>
-                <button
-                  data-testid="boom-match-replay"
-                  type="button"
-                  onClick={replayMatch}
-                  disabled={phase !== 'input'}
-                  className="ml-2 rounded-full border-2 px-2.5 py-0.5 text-[11px] font-black font-display flex items-center gap-1 disabled:opacity-40"
-                  style={{ borderColor: 'var(--jma-dark)', color: 'var(--jma-dark)', backgroundColor: 'white' }}
-                >
-                  <RotateCcw className="w-3 h-3" /> Replay
-                </button>
-              </div>
               {matchOptions.map((p, idx) => (
                 <RhythmStrip
                   key={idx}
@@ -1294,6 +1308,7 @@ export default function BoomGardenPage() {
                       : null
                   }
                   height={80}
+                  testId={`boom-match-strip-${idx}`}
                   testIdPrefix={`match-${idx}-block`}
                   onBlockTap={phase === 'input' ? () => handleMatchPick(idx) : null}
                 />
@@ -1305,8 +1320,8 @@ export default function BoomGardenPage() {
         {/* Visual metronome — bright dot pulses on each beat so kids can SEE
             the tempo, not just hear the click underneath. Active during
             count-in, demo, AND the kid's input window. */}
-        {(phase === 'countin' || phase === 'demo' || phase === 'input') && (
-          <div className="flex justify-center mb-2">
+        <div className="boom-timing" data-testid="boom-timing">
+          <div className="boom-beat-pulse flex justify-center" data-testid="boom-beat-pulse">
             <BeatPulse
               running={metronomeRunning}
               startAtMs={metronomeStartMs}
@@ -1315,7 +1330,6 @@ export default function BoomGardenPage() {
               beatMs={BEAT_MS}
             />
           </div>
-        )}
 
         {/* Musical count-in: a row of 4 numbered tiles that light up
             "1 → 2 → 3 → 4" on each click track beat. Lives BELOW the
@@ -1326,13 +1340,12 @@ export default function BoomGardenPage() {
             even when not visible — otherwise Stew would jump up into the
             empty space the instant input begins, and the kid's intended
             Stew tap would miss. */}
-        <div
-          className="flex items-center justify-center"
-          style={{ minHeight: 'clamp(80px, 14vw, 120px)' }}
-        >
+        {mode !== 'match' && <div className="boom-countin flex items-center justify-center" data-testid="boom-countin-slot">
           {showCountIn && (
             <CountInOverlay running={true} startAtMs={countinStartMs} beatMs={BEAT_MS} />
           )}
+        </div>}
+        </div>
         </div>
 
         {/* Stew the llama — performs every drum hit (demo + kid's input).
@@ -1342,8 +1355,9 @@ export default function BoomGardenPage() {
             his feet rest on the football field background instead of
             floating mid-air. */}
         <div
-          className={`boom-stew-zone ${mode === 'match' || mode === 'trail' ? 'boom-stew-zone--tall' : ''} flex justify-center items-end mt-auto pt-4 relative`}
-          style={{ paddingBottom: 'clamp(48px, 8vw, 96px)' }}
+          ref={stewZoneRef}
+          data-testid="boom-stew-zone"
+          className="boom-stew-zone flex justify-center items-center relative"
         >
           {/* Multiplier badge — shows live x1.5/x2/x3 over Stew's left
               shoulder when streak ≥ 3. Reinforces the "your streak is
@@ -1487,7 +1501,7 @@ export default function BoomGardenPage() {
           <motion.div
             data-testid="stew-pop-wrap"
             className="relative"
-            animate={{ scale: stewPop ? 1.15 : victoryDance ? 1.06 : 1 }}
+            animate={{ scale: stewPop ? 1.04 : victoryDance ? 1.02 : 1 }}
             transition={{ type: 'spring', stiffness: 480, damping: 14 }}
           >
             {/* Sustain-glow ring: appears while the Spacebar is held.
@@ -1538,7 +1552,7 @@ export default function BoomGardenPage() {
               disabled={mode === 'match'}
               hint={
                 mode === 'match' && phase === 'demo'    ? 'Listen...' :
-                mode === 'match' && phase === 'input'   ? 'Pick a strip ↑' :
+                mode === 'match' && phase === 'input'   ? 'Pick a strip' :
                 mode === 'match' && phase === 'reveal'  ? 'Round complete' :
                 phase === 'input'   ? 'TAP STEW!' :
                 phase === 'countin' ? 'Get ready...' :
@@ -1548,6 +1562,7 @@ export default function BoomGardenPage() {
               }
             />
           </motion.div>
+        </div>
         </div>
 
         {/* Per-tap PERFECT! / GREAT! / GOOD! / MISS! popup — center of
@@ -1577,6 +1592,7 @@ export default function BoomGardenPage() {
               transition={{ type: 'spring', stiffness: 260, damping: 22 }}
               className="fixed left-1/2 -translate-x-1/2 top-24 md:top-28 z-30 rounded-3xl border-4 px-5 py-3 md:px-7 md:py-4 flex flex-col items-center gap-1.5 max-w-[92%]"
               style={{
+                x: '-50%',
                 borderColor: 'var(--jma-dark)',
                 backgroundColor: roundSummary.correct >= Math.ceil(roundSummary.total * 0.8) ? '#34A853' : '#FFCC00',
                 color: roundSummary.correct >= Math.ceil(roundSummary.total * 0.8) ? 'white' : 'var(--jma-dark)',
@@ -1603,7 +1619,7 @@ export default function BoomGardenPage() {
                     setSessionStats({
                       perfects: sessionTallyRef.current.perfects,
                       totalNotes: sessionTallyRef.current.totalNotes,
-                      score,
+                      score: scoreRef.current,
                     });
                     setSessionComplete(true);
                     setPhase('idle');
@@ -1721,6 +1737,7 @@ export default function BoomGardenPage() {
               style={{ backgroundColor: 'rgba(10,37,64,0.65)' }}
             >
               <motion.div
+                data-testid="boom-how-to-play-card"
                 initial={{ y: 40, opacity: 0, scale: 0.9 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: -20, opacity: 0, scale: 0.9 }}
@@ -1834,6 +1851,7 @@ export default function BoomGardenPage() {
               exit={{ y: -10, opacity: 0 }}
               className="fixed left-1/2 -translate-x-1/2 bottom-6 rounded-2xl border-4 px-4 py-2 font-black font-display z-30"
               style={{
+                x: '-50%',
                 borderColor: 'var(--jma-dark)',
                 backgroundColor: feedback.tone === 'great' ? '#34A853' : '#FF3B30',
                 color: 'white',

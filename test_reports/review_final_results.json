@@ -1,0 +1,422 @@
+[
+  {
+    "tag": "asset-crop",
+    "src": "assets/characters/finn-danger.png",
+    "size": [
+      523,
+      700
+    ],
+    "alphaBounds": [
+      0,
+      0,
+      523,
+      700
+    ]
+  },
+  {
+    "tag": "asset-crop",
+    "src": "assets/characters/fit/finn-disco.webp",
+    "size": [
+      533,
+      700
+    ],
+    "alphaBounds": [
+      0,
+      0,
+      533,
+      700
+    ]
+  },
+  {
+    "tag": "both-label-repro",
+    "size": [
+      568,
+      260
+    ],
+    "state": "playing",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 15.929422378540039,
+      "y": 151.8587188720703,
+      "w": 129.40676879882812,
+      "h": 94.17076110839844,
+      "right": 145.33619117736816,
+      "bottom": 246.02947998046875,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "settled-drag:812:C",
+    "expected": 77,
+    "actual": 77,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:D",
+    "expected": 71.5,
+    "actual": 71.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:E",
+    "expected": 66,
+    "actual": 66,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:F",
+    "expected": 60.5,
+    "actual": 60.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:G",
+    "expected": 55,
+    "actual": 55,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:A",
+    "expected": 49.5,
+    "actual": 49.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:B",
+    "expected": 44,
+    "actual": 44,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:812:High C",
+    "expected": 38.5,
+    "actual": 38.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:C",
+    "expected": 77,
+    "actual": 77,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:D",
+    "expected": 71.5,
+    "actual": 71.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:E",
+    "expected": 66,
+    "actual": 66,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:F",
+    "expected": 60.5,
+    "actual": 60.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:G",
+    "expected": 55,
+    "actual": 55,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:A",
+    "expected": 49.5,
+    "actual": 49.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:B",
+    "expected": 44,
+    "actual": 44,
+    "pass": true
+  },
+  {
+    "tag": "settled-drag:568:High C",
+    "expected": 38.5,
+    "actual": 38.5,
+    "pass": true
+  },
+  {
+    "tag": "settled-menu:568",
+    "size": [
+      568,
+      260
+    ],
+    "state": null,
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "tour:568",
+    "size": [
+      568,
+      260
+    ],
+    "state": "tour",
+    "height": 260,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 165.265625,
+      "y": 70,
+      "w": 390.734375,
+      "h": 126,
+      "right": 556,
+      "bottom": 196
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 14.504692077636719,
+      "y": 164.57315063476562,
+      "w": 132.25625610351562,
+      "h": 82.05299377441406,
+      "right": 146.76094818115234,
+      "bottom": 246.6261444091797,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "settled-menu:320",
+    "size": [
+      320,
+      568
+    ],
+    "state": null,
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "tour:320",
+    "size": [
+      320,
+      568
+    ],
+    "state": "tour",
+    "height": 568,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 264,
+      "w": 296,
+      "h": 178,
+      "right": 308,
+      "bottom": 442
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 12.425379753112793,
+      "y": 149.15966796875,
+      "w": 99.14924621582031,
+      "h": 93.27569580078125,
+      "right": 111.5746259689331,
+      "bottom": 242.43536376953125,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "settled-menu:390",
+    "size": [
+      390,
+      844
+    ],
+    "state": null,
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "tour:390",
+    "size": [
+      390,
+      844
+    ],
+    "state": "tour",
+    "height": 844,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 12,
+      "y": 308,
+      "w": 366,
+      "h": 410,
+      "right": 378,
+      "bottom": 718
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 11.813557624816895,
+      "y": 149.0115509033203,
+      "w": 100.37287902832031,
+      "h": 137.5719451904297,
+      "right": 112.1864366531372,
+      "bottom": 286.58349609375,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "settled-menu:1920",
+    "size": [
+      1920,
+      800
+    ],
+    "state": null,
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": null,
+    "finn": null,
+    "broken": []
+  },
+  {
+    "tag": "tour:1920",
+    "size": [
+      1920,
+      800
+    ],
+    "state": "tour",
+    "height": 800,
+    "outside": [],
+    "clipped": [],
+    "scrolls": [],
+    "overlaps": [],
+    "documentScroll": false,
+    "staff": {
+      "id": "ntn-staff-box",
+      "x": 700,
+      "y": 148,
+      "w": 876,
+      "h": 494,
+      "right": 1576,
+      "bottom": 642
+    },
+    "finn": {
+      "id": "ntn-finn-image",
+      "x": 349.8333435058594,
+      "y": 274.1880187988281,
+      "w": 312.3332824707031,
+      "h": 435.9692687988281,
+      "right": 662.1666259765625,
+      "bottom": 710.1572875976562,
+      "src": "assets/characters/finn-danger.png"
+    },
+    "broken": []
+  },
+  {
+    "tag": "trail:auto",
+    "rounds": [
+      {
+        "round": "Round 1 / 5",
+        "score": "159"
+      },
+      {
+        "round": "Round 2 / 5",
+        "score": "229"
+      },
+      {
+        "round": "Round 3 / 5",
+        "score": "367"
+      },
+      {
+        "round": "Round 4 / 5",
+        "score": "457"
+      },
+      {
+        "round": "Round 5 / 5",
+        "score": "547"
+      }
+    ],
+    "summary": "547",
+    "scorePass": true,
+    "roundCountPass": true,
+    "complete": true
+  },
+  {
+    "tag": "trail:manual",
+    "rounds": [
+      {
+        "round": "Round 1 / 5",
+        "score": "138"
+      },
+      {
+        "round": "Round 2 / 5",
+        "score": "312"
+      },
+      {
+        "round": "Round 3 / 5",
+        "score": "402"
+      },
+      {
+        "round": "Round 4 / 5",
+        "score": "540"
+      },
+      {
+        "round": "Round 5 / 5",
+        "score": "714"
+      }
+    ],
+    "summary": "714",
+    "scorePass": true,
+    "roundCountPass": true,
+    "complete": true
+  }
+]

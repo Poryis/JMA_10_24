@@ -12,7 +12,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FitBox from '../components/FitBox';
 import { useNavigate } from 'react-router-dom';
-import { Music2, MapPin, Clock, RotateCcw, Play, Volume2, Check, Lightbulb, Star, X } from 'lucide-react';
+import { Music2, MapPin, Clock, RotateCcw, Play, Volume2, Check, Lightbulb, Star, X, ListMusic } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
 import SolfegeStaff, { NOTE_Y, STAFF_NOTE_AREA_LEFT } from '../components/SolfegeStaff';
@@ -25,6 +25,9 @@ import { say } from '../lib/voice';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import HowToVoiceButton from '../components/HowToVoiceButton';
 import { formatNoteName, getNoteNameMode, NOTE_NAME_MODES } from '../hooks/useNoteNames';
+import useVisibleViewport from '../hooks/useVisibleViewport';
+import { FinnCoach } from '../components/FinnCoach';
+import './NameThatNotePage.css';
 
 const ALL_NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'High C'];
 const QUESTIONS_PER_ROUND = 10;
@@ -32,7 +35,6 @@ const PASS_MARK = 8;
 const BELL_BY_NOTE = Object.fromEntries(BELLS.map((b) => [b.note, b]));
 const HEAD_Y_NUDGE = 0.6;      // tiny downward nudge so heads sit dead-centre on their line/space
 const PARK_Y = 93;             // where the draggable note waits (below the staff)
-const STAFF_HEIGHT = 'clamp(220px, 34vh, 320px)';
 
 const LEVELS = {
   cadet:  { name: 'Cadet',  description: 'C D E F G · no timer · hints',   pool: ['C', 'D', 'E', 'F', 'G'], secs: 0,  hints: Infinity },
@@ -227,55 +229,16 @@ function HintGhosts({ answerMode }) {
   );
 }
 
-// Finn + speech bubble. mood: idle | cheer | shrug | party
-function FinnBubble({ text, mood }) {
-  const anim = {
-    idle:  { y: [0, -4, 0], rotate: 0, scale: 1 },
-    cheer: { y: [0, -22, 0, -10, 0], rotate: [0, -6, 6, 0], scale: [1, 1.12, 1] },
-    shrug: { y: 0, rotate: [0, -10, 8, -4, 0], scale: [1, 0.96, 1] },
-    party: { y: [0, -26, 0, -26, 0], rotate: [0, -12, 12, -12, 0], scale: [1, 1.15, 1, 1.15, 1] },
-  }[mood] || {};
-  const dur = { idle: 2.2, cheer: 0.7, shrug: 0.6, party: 1.2 }[mood] || 1;
-  return (
-    <div className="flex items-center gap-2 md:gap-3 w-full max-w-2xl mb-2" data-testid="ntn-finn-row">
-      <motion.img
-        key={mood === 'party' ? 'disco' : 'danger'}
-        src={mood === 'party' ? 'assets/characters/finn-disco.png' : 'assets/characters/finn-danger.png'}
-        alt="Finn"
-        draggable={false}
-        className="flex-shrink-0 select-none"
-        style={{ height: 'clamp(64px, 11vh, 96px)', filter: 'drop-shadow(0 5px 4px rgba(0,0,0,0.35))' }}
-        animate={anim}
-        transition={{ duration: dur, repeat: mood === 'idle' ? Infinity : 0, ease: 'easeInOut' }}
-      />
-      <div className="relative flex-1 min-w-0">
-        <div
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[9px] w-0 h-0"
-          style={{ borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderRight: '11px solid var(--jma-dark)' }}
-        />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={text}
-            data-testid="ntn-bubble"
-            className="rounded-2xl border-3 px-3 py-2 font-black text-sm md:text-base leading-snug"
-            style={{ backgroundColor: 'white', borderColor: 'var(--jma-dark)', color: 'var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}
-            initial={{ opacity: 0, y: 6, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.18 }}
-          >
-            {text}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
-
 // ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 export default function NameThatNotePage() {
   useVoiceTagline('finn.tag.namenote', 'charlie.howto.namenote.name');
   const navigate = useNavigate();
+  const viewport = useVisibleViewport();
+  const compact = viewport.height <= 520 && viewport.width > viewport.height;
+  const wide = viewport.width > viewport.height || viewport.width >= 768;
+  const roomStyle = { '--ntn-visible-height': `${viewport.height}px`, backgroundImage: 'url(assets/backgrounds/chalkboard.png)', backgroundSize: 'cover', backgroundPosition: 'center' };
   const { playBellNote, playFeedbackSound, initAudioContext } = useAudio();
 
   const [gameState, setGameState] = useState('menu'); // menu | tour | playing | round-complete
@@ -314,6 +277,7 @@ export default function NameThatNotePage() {
 
   const tickRef = useRef(null);
   const timerRef = useRef(null);
+  const advanceRef = useRef(null);
   const tourRef = useRef(null);
   const moodRef = useRef(null);
   const hintRef = useRef(null);
@@ -323,7 +287,7 @@ export default function NameThatNotePage() {
 
   const clearTimers = useCallback(() => {
     for (const r of [tickRef, tourRef]) if (r.current) { clearInterval(r.current); r.current = null; }
-    for (const r of [timerRef, moodRef, hintRef]) if (r.current) { clearTimeout(r.current); r.current = null; }
+    for (const r of [timerRef, advanceRef, moodRef, hintRef]) if (r.current) { clearTimeout(r.current); r.current = null; }
   }, []);
   useEffect(() => clearTimers, [clearTimers]);
 
@@ -505,7 +469,8 @@ export default function NameThatNotePage() {
       timerRef.current = setTimeout(() => setReveal(true), 600);
     }
 
-    setTimeout(() => {
+    advanceRef.current = setTimeout(() => {
+      advanceRef.current = null;
       if (qIndex + 1 >= QUESTIONS_PER_ROUND) finishRound(nextResults, nextScore);
       else { setQIndex(qIndex + 1); nextQuestion(difficulty, mode); }
     }, isCorrect ? 1000 : 2300);
@@ -570,8 +535,10 @@ export default function NameThatNotePage() {
     return (
       <div
         data-testid="name-that-note-menu"
-        className="game-intro min-h-screen flex flex-col items-center justify-center jma-safe-center p-4 pt-20 md:pt-24 lg:pt-32 pb-8 relative"
-        style={{ backgroundImage: 'url(assets/backgrounds/chalkboard.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+        data-compact={compact}
+        data-wide={wide}
+        className="ntn-room ntn-menu game-intro flex flex-col items-center justify-center p-4 pt-20 md:pt-24 lg:pt-32 pb-8"
+        style={roomStyle}
       >
         <GameHeader showHomeButton={true} />
 
@@ -672,12 +639,17 @@ export default function NameThatNotePage() {
   return (
     <div
       data-testid="name-that-note-playing"
-      className="min-h-screen flex flex-col relative"
-      style={{ backgroundImage: 'url(assets/backgrounds/chalkboard.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+      data-compact={compact}
+      data-wide={wide}
+      data-game-state={gameState}
+      data-mode={mode}
+      className="ntn-room flex flex-col"
+      style={roomStyle}
     >
       <GameHeader title={modeMeta.label} subtitle={level.name} showHomeButton={true} />
 
-      <main className="flex-1 flex flex-col items-center pt-20 md:pt-24 pb-6 px-3">
+      <main className="ntn-main" data-testid="ntn-main">
+        <div className="ntn-status" data-testid="ntn-status">
         {/* Progress dots */}
         <div className="flex items-center justify-center gap-1.5 mb-2" data-testid="ntn-progress-dots">
           {Array.from({ length: QUESTIONS_PER_ROUND }).map((_, i) => {
@@ -698,7 +670,7 @@ export default function NameThatNotePage() {
         </div>
 
         {/* HUD */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
+        <div className="ntn-hud flex items-center justify-center gap-2">
           <div data-testid="ntn-question" className="px-3 py-1 rounded-full font-black text-sm border-2" style={{ backgroundColor: 'white', color: 'var(--jma-dark)', borderColor: 'var(--jma-dark)' }}>
             Note {Math.min(qIndex + 1, QUESTIONS_PER_ROUND)} / {QUESTIONS_PER_ROUND}
           </div>
@@ -720,19 +692,23 @@ export default function NameThatNotePage() {
             </motion.div>
           )}
         </div>
+        </div>
 
         {/* Finn drives every step */}
-        <FinnBubble text={bubble} mood={finnMood} />
+        <div className="ntn-stage" data-testid="ntn-stage">
+        <FinnCoach text={bubble} mood={finnMood} compact={compact} />
+        <div className="ntn-play-area" data-testid="ntn-play-area">
 
         {/* Staff stage */}
         <motion.div
           key={`shake-${shakeKey}-w-${wobbleKey}`}
-          className="w-full max-w-2xl mx-auto"
+          className="ntn-staff-stage"
+          data-testid="ntn-staff-stage"
           animate={shakeKey && !isRight ? { x: [0, -10, 10, -7, 7, -3, 0] } : wobbleKey ? { rotate: [0, -1.2, 1.2, 0], scale: [1, 1.015, 1] } : {}}
           transition={{ duration: 0.45 }}
         >
-          <div ref={staffBoxRef} className="relative w-full">
-            <SolfegeStaff sequence={[]} height={STAFF_HEIGHT} />
+          <div ref={staffBoxRef} className="ntn-staff-box relative w-full" data-testid="ntn-staff-box">
+            <SolfegeStaff sequence={[]} height="100%" />
 
             {/* Note area overlay: heads, chips, hints, bursts live here */}
             <div className="absolute inset-y-0 right-2 pointer-events-none" style={{ left: STAFF_NOTE_AREA_LEFT, zIndex: 3 }}>
@@ -806,13 +782,13 @@ export default function NameThatNotePage() {
 
         {/* Answers / actions */}
         {isTour ? (
-          <div className="mt-4 flex items-center justify-center">
+          <div className="ntn-answer-actions flex items-center justify-center" data-testid="ntn-tour-actions">
             <button data-testid="ntn-skip-tour-btn" onClick={skipTour} className="chunky-btn bg-[var(--jma-green)] text-white px-5 py-2 flex items-center gap-1.5 text-base">
               <Play className="w-4 h-4" /> Start!
             </button>
           </div>
         ) : mode === 'name' ? (
-          <div className="mt-4 w-full max-w-2xl grid grid-cols-4 md:grid-cols-8 gap-2" data-testid="ntn-answers">
+          <div className="ntn-answer-actions ntn-answers w-full grid gap-2" data-testid="ntn-answers" style={{ '--ntn-answer-count': level.pool.length }}>
             {level.pool.map((note) => {
               const bell = BELL_BY_NOTE[note];
               const isPick = picked === note;
@@ -822,6 +798,7 @@ export default function NameThatNotePage() {
                   key={note}
                   type="button"
                   data-testid={`ntn-answer-${note.replace(' ', '-')}`}
+                  aria-label={labelFor(note, answerMode)}
                   onClick={() => answer(note)}
                   disabled={locked}
                   whileTap={{ scale: 0.92 }}
@@ -831,12 +808,17 @@ export default function NameThatNotePage() {
                   style={{
                     borderColor: 'var(--jma-dark)',
                     backgroundColor: isAnswer ? '#34A853' : isPick ? '#FF3B30' : 'white',
-                    color: isAnswer || isPick ? 'white' : bell.color,
-                    boxShadow: '0 4px 0 0 var(--jma-dark)',
+                    color: isAnswer || isPick ? 'white' : 'var(--jma-dark)',
+                    boxShadow: `0 4px 0 0 var(--jma-dark), inset 0 4px 0 ${bell.color}`,
                     opacity: locked && !isPick && !isAnswer ? 0.5 : 1,
                   }}
                 >
-                  {labelFor(note, answerMode)}
+                  {answerMode === 'both' ? (
+                    <span className="ntn-answer-label" data-testid={`ntn-answer-label-${note.replace(' ', '-')}`}>
+                      <span>{bell.solfege}{note === 'High C' ? '↑' : ''}</span>
+                      <span>{note === 'High C' ? 'C↑' : note}</span>
+                    </span>
+                  ) : labelFor(note, answerMode)}
                   {isPick && !isAnswer && (
                     <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-white border-2 flex items-center justify-center" style={{ borderColor: '#FF3B30' }}>
                       <X className="w-3 h-3" style={{ color: '#FF3B30' }} strokeWidth={4} />
@@ -847,7 +829,7 @@ export default function NameThatNotePage() {
             })}
           </div>
         ) : (
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <div className="ntn-answer-actions flex items-center justify-center gap-2" data-testid="ntn-place-actions">
             <button data-testid="ntn-hear-btn" onClick={() => { try { playBellNote(target); } catch { /* ignore */ } }} className="chunky-btn bg-[var(--jma-blue)] text-white px-4 py-2 flex items-center gap-1.5">
               <Volume2 className="w-4 h-4" /> Hear {targetName}
             </button>
@@ -864,35 +846,39 @@ export default function NameThatNotePage() {
             </motion.button>
           </div>
         )}
+        </div>
+        </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+        <div className="ntn-tools flex items-center justify-center gap-2" data-testid="ntn-tools">
           {!isTour && (
             <button
               data-testid="ntn-review-btn"
+              title="Replay Notes" aria-label="Replay Notes"
               onClick={reviewTour}
               disabled={locked}
               className="chunky-btn bg-[var(--jma-blue)] text-white px-4 py-2 flex items-center gap-1.5"
               style={{ opacity: locked ? 0.5 : 1 }}
             >
-              <Music2 className="w-4 h-4" /> Replay Notes
+              <Music2 className="w-4 h-4" /> <span>Replay Notes</span>
             </button>
           )}
           {!isTour && level.hints > 0 && (
             <button
               data-testid="ntn-hint-btn"
+              title={`Hint${hintsLeft !== Infinity ? ` (${hintsLeft})` : ''}`} aria-label={`Hint${hintsLeft !== Infinity ? ` (${hintsLeft})` : ''}`}
               onClick={useHint}
               disabled={hintsLeft <= 0 || locked}
               className="chunky-btn bg-white text-[var(--jma-dark)] px-4 py-2 flex items-center gap-1.5"
               style={{ opacity: hintsLeft <= 0 || locked ? 0.5 : 1 }}
             >
-              <Lightbulb className="w-4 h-4" style={{ color: 'var(--jma-orange)' }} /> Hint{hintsLeft !== Infinity ? ` (${hintsLeft})` : ''}
+              <Lightbulb className="w-4 h-4" style={{ color: 'var(--jma-orange)' }} /> <span>Hint{hintsLeft !== Infinity ? ` (${hintsLeft})` : ''}</span>
             </button>
           )}
-          <button data-testid="ntn-restart-btn" onClick={() => startRound(difficulty, mode)} className="chunky-btn bg-[var(--jma-yellow)] text-[var(--jma-dark)] px-4 py-2 flex items-center gap-2">
-            <RotateCcw className="w-4 h-4" /> Restart
+          <button data-testid="ntn-restart-btn" title="Restart" aria-label="Restart" onClick={() => startRound(difficulty, mode)} className="chunky-btn bg-[var(--jma-yellow)] text-[var(--jma-dark)] px-4 py-2 flex items-center gap-2">
+            <RotateCcw className="w-4 h-4" /> <span>Restart</span>
           </button>
-          <button data-testid="ntn-menu-btn" onClick={() => { clearTimers(); setGameState('menu'); }} className="chunky-btn bg-white text-[var(--jma-dark)] px-4 py-2">
-            Change Mode
+          <button data-testid="ntn-menu-btn" title="Change Mode" aria-label="Change Mode" onClick={() => { clearTimers(); setGameState('menu'); }} className="chunky-btn bg-white text-[var(--jma-dark)] px-4 py-2 flex items-center gap-2">
+            <ListMusic className="w-4 h-4" /> <span>Change Mode</span>
           </button>
         </div>
 

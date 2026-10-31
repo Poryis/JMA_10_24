@@ -1342,7 +1342,7 @@ export default function BoomGardenPage() {
             his feet rest on the football field background instead of
             floating mid-air. */}
         <div
-          className="boom-stew-zone flex justify-center items-end mt-auto pt-4 relative"
+          className={`boom-stew-zone ${mode === 'match' || mode === 'trail' ? 'boom-stew-zone--tall' : ''} flex justify-center items-end mt-auto pt-4 relative`}
           style={{ paddingBottom: 'clamp(48px, 8vw, 96px)' }}
         >
           {/* Multiplier badge — shows live x1.5/x2/x3 over Stew's left
@@ -1725,13 +1725,14 @@ export default function BoomGardenPage() {
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: -20, opacity: 0, scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 240, damping: 20 }}
-                className="rounded-3xl border-4 px-6 py-5 md:px-8 md:py-7 flex flex-col items-center gap-4 max-w-md w-full bg-white relative"
+                className="rounded-3xl border-4 px-6 py-5 md:px-8 md:py-7 flex flex-col items-center gap-4 max-w-md w-full bg-white relative [@media(max-height:520px)]:flex-row [@media(max-height:520px)]:max-w-2xl [@media(max-height:520px)]:py-3 [@media(max-height:520px)]:px-4"
                 style={{
                   borderColor: 'var(--jma-dark)',
                   boxShadow: '0 10px 0 0 var(--jma-dark)',
                   color: 'var(--jma-dark)',
                 }}
               >
+                <div className="flex flex-col items-center gap-4 [@media(max-height:520px)]:gap-2 [@media(max-height:520px)]:w-[36%] flex-shrink-0">
                 {/* Mode header chip + character */}
                 <div
                   className="rounded-full border-3 px-4 py-1 font-black font-display text-xs uppercase tracking-widest"
@@ -1745,7 +1746,7 @@ export default function BoomGardenPage() {
                   How to play
                 </div>
                 <HowToVoiceButton lineId={`charlie.howto.boom.${mode}`} className="absolute top-3 right-3 z-10" />
-                <h2 className="text-3xl md:text-4xl font-black font-display leading-none text-center">
+                <h2 className="text-3xl md:text-4xl [@media(max-height:520px)]:text-2xl font-black font-display leading-none text-center">
                   {modeConfig.label}
                 </h2>
                 {modeConfig.character && (
@@ -1753,10 +1754,12 @@ export default function BoomGardenPage() {
                     src={modeConfig.character}
                     alt=""
                     draggable={false}
-                    className="object-contain pointer-events-none select-none"
+                    className="object-contain pointer-events-none select-none [@media(max-height:520px)]:!max-h-[110px]"
                     style={{ maxHeight: 130, filter: 'drop-shadow(0 4px 0 rgba(10,37,64,0.25))' }}
                   />
                 )}
+                </div>
+                <div className="w-full flex flex-col items-center gap-4 [@media(max-height:520px)]:gap-2">
 
                 {/* Three numbered steps */}
                 <ol className="w-full flex flex-col gap-2">
@@ -1764,7 +1767,7 @@ export default function BoomGardenPage() {
                     <li
                       key={i}
                       data-testid={`how-to-play-step-${i}`}
-                      className="flex items-center gap-3 rounded-2xl border-3 px-3 py-2"
+                      className="flex items-center gap-3 rounded-2xl border-3 px-3 py-2 [@media(max-height:520px)]:py-1 [@media(max-height:520px)]:gap-2"
                       style={{
                         borderColor: 'var(--jma-dark)',
                         backgroundColor: '#FFF7E5',
@@ -1814,6 +1817,7 @@ export default function BoomGardenPage() {
                 >
                   ← Back to modes
                 </button>
+                </div>
               </motion.div>
             </motion.div>
           )}

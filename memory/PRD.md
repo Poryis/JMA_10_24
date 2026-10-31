@@ -533,3 +533,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - 2026-06: Added instrumentals jelly-jamboree.mp3 (Plaza) + dough-is-in-pizza.mp3 (Play street): WAV 134MB/42MB -> 96kbps 44.1k MP3 ~2MB, gain-matched (~-10 LUFS) to existing tracks.
 - 2026-06: useStreetMusic rotates playlists across visits (localStorage jma_music_rot_<srcs> = 'index:timestamp'; remount within 1.5s reuses same song).
 - 2026-06: Boom Garden (Who's Got the Rhythm) Stew zone is fixed bottom-left on short landscape (.boom-stew-zone CSS). Detective: CaseSolvedBurst overlay (Dr. Jellybone jump, CASE SOLVED/SUPER SLEUTH stamp, +points, streak, sunburst, confetti) for 1.7s on correct guess.
+- 2026-06: Boom Garden Stew corner placement: all modes at heights <=760; Beat Finder + Rhythm Run at <=1000 (.boom-stew-zone--tall); phones <=520 landscape. How-to-play modal goes 2-column (title+character | steps+buttons) at max-height 520.

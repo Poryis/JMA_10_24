@@ -1128,7 +1128,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Who's Got the Rhythm: on short landscape phones Stew stands in the bottom-left corner instead of below the strips. */
+/* Who's Got the Rhythm: on short landscape phones Stew stands in the bottom-left corner instead of below the strips.
+   Beat Finder stacks 3 strips, so on laptop-height screens he moves to the corner too. */
+@media (max-height: 760px) and (min-height: 521px) {
+  .boom-stew-zone { position: fixed !important; left: 1%; bottom: 4px; padding: 0 !important; margin: 0 !important; z-index: 30; }
+  .boom-stew-zone [data-testid="boom-stew-drummer"] { width: clamp(260px, 24vw, 360px) !important; }
+}
+@media (max-height: 1000px) and (min-height: 521px) {
+  .boom-stew-zone--tall { position: fixed !important; left: 1%; bottom: 4px; padding: 0 !important; margin: 0 !important; z-index: 30; }
+  .boom-stew-zone--tall [data-testid="boom-stew-drummer"] { width: clamp(260px, 24vw, 360px) !important; }
+}
 @media (max-height: 520px) and (orientation: landscape) {
   .boom-stew-zone { position: fixed !important; left: -3%; bottom: 4px; padding: 0 !important; margin: 0 !important; z-index: 30; }
   .boom-stew-zone [data-testid="boom-stew-drummer"] { width: clamp(240px, 34vw, 310px) !important; }

@@ -87,7 +87,7 @@ function MyAlbum() {
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
     <Card testId="academy-album" className="w-full max-w-3xl">
-      <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>My Album</div>
+      <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>Creation Station · My Album</div>
       <div className="text-xs md:text-sm font-bold mb-3 flex items-center gap-1.5" style={{ color: '#4B5668' }}><Palette className="w-4 h-4" strokeWidth={3} /> Tap a record to design its cover.</div>
       {tracks.length === 0 ? (
         <div data-testid="academy-album-empty" className="rounded-2xl p-4 text-center" style={{ background: '#F6F8FB', border: '3px dashed var(--jma-dark)' }}>
@@ -192,7 +192,7 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Design your album covers at the art table!', 'The big book on the stand is your Yearbook.'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Make album covers at the Creation Station!', 'The big book on the stand is your Yearbook.'];
 const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }];
 // Layer positions (% of the 1920x1080 room) measured straight from the PSD export.
 const ROOM = 'assets/academy/room/';
@@ -202,7 +202,7 @@ const L = {
   shield: { left: '77%', top: '11.52%', width: '19.19%' }, lectern: { left: '32.45%', top: '48.57%', width: '11.5%' }, book: { left: '32.05%', top: '42.84%', width: '11.79%' },
   harp: { left: '0%', top: '57.94%', width: '14.62%' }, trumpet: { left: '19.08%', top: '64.71%', width: '11.9%' },
   lanternL: { left: '34.29%', top: '24.93%', width: '3.88%' }, lanternR: { left: '73.74%', top: '24.93%', width: '3.88%' },
-  art: { left: '69.27%', top: '49.67%', width: '23.99%' }, guitar: { left: '86.63%', top: '49.35%', width: '13.22%' },
+  art: { left: '65.68%', top: '49.98%', width: '29.07%' }, guitar: { left: '86.63%', top: '49.35%', width: '13.22%' },
 };
 const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1920, h: 1080 };
@@ -225,9 +225,8 @@ function ChalkScrolls() {
   );
 }
 
-// The two easels on the art table show the kid's two latest record sleeves
-// (or a "make one!" hint) so the station explains itself.
-const EASELS = [{ left: '26%', top: '21%', width: '17.5%', rot: -4 }, { left: '54.5%', top: '22.5%', width: '20%', rot: 3 }];
+// The Creation Station easel shows the kid's latest record sleeve (or a "make one!" hint).
+const EASELS = [{ left: '64.2%', top: '23.2%', width: '18%', rot: 2 }];
 function Easels() {
   const avatar = readAvatarOutfit();
   const latest = useMemo(() => {
@@ -236,7 +235,7 @@ function Easels() {
     return tracks.filter((t) => covers[t.id]).sort((a, b) => b.at - a.at).slice(0, 2).map((t) => ({ ...t, cover: normalizeCover(covers[t.id], SLEEVES[0]) }));
   }, []);
   return (
-    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '461 / 392', zIndex: 5 }} data-testid="academy-easels">
+    <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 5 }} data-testid="academy-easels">
       {EASELS.map((e, i) => {
         const t = latest[i];
         return (
@@ -244,7 +243,7 @@ function Easels() {
             {t ? <Sleeve cover={t.cover} avatar={avatar} kind={t.kind} title={t.name} className="w-full" />
               : <div className="w-full aspect-square flex flex-col items-center justify-center gap-0.5 text-center" style={{ color: '#B8233A' }}>
                   <Palette className="w-[40%] h-[40%]" strokeWidth={2.5} />
-                  <span className="font-black leading-none" style={{ fontSize: 'clamp(6px, 0.55vw, 11px)' }}>{i === 0 ? 'ALBUM' : 'COVERS'}</span>
+                  <span className="font-black leading-none" style={{ fontSize: 'clamp(6px, 0.55vw, 11px)' }}>MAKE A COVER!</span>
                 </div>}
           </motion.div>
         );
@@ -365,10 +364,15 @@ export default function AcademyPage() {
         <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3', 450)} />
         <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3', 900)} />
 
-        {/* seashell art table → Album Cover Studio (latest sleeves sit on the easels) */}
-        <Prop id="art-station" pos={L.art} z={4} />
+        {/* clam desk → Creation Station (speakers thump, latest sleeve sits on the easel) */}
+        <Prop id="creation-station" pos={L.art} z={4} />
+        <div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.art, zIndex: 4 }}>
+          <motion.img src={`${ROOM}creation-speakers.png`} alt="" draggable={false} className="block w-full h-auto" style={{ transformOrigin: '43% 50%' }}
+            animate={{ scale: [1, 1.03, 1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut' }} />
+        </div>
+        <Prop id="creation-top" pos={L.art} z={4} />
         <Easels />
-        <Hotspot id="album" x={70} y={50} w={23} h={36} label="Album Cover Studio" color="#FF2D85" onClick={() => setPanel('album')} />
+        <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" color="#FF2D85" onClick={() => setPanel('album')} />
 
         {/* Charlie on the rug */}
         <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '57%', bottom: '4%', width: '9%', zIndex: 6 }}>

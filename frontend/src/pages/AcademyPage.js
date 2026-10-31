@@ -198,7 +198,7 @@ const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src
 const ROOM = 'assets/academy/room/';
 const L = {
   hole: { left: '46.9%', top: '27.9%', width: '17.8%', height: '40%' },
-  chalkboard: { left: '4.73%', top: '18.88%', width: '27.84%' }, doodles: { left: '7.66%', top: '27.41%', width: '21.25%' },
+  chalkboard: { left: '4.73%', top: '18.88%', width: '27.84%' }, doodles: { left: '7.66%', top: '27.41%', width: '21.25%' }, doodlesArt: { left: '7.88%', top: '27.73%', width: '20.80%' },
   shield: { left: '77%', top: '11.52%', width: '19.19%' }, lectern: { left: '32.45%', top: '48.57%', width: '11.5%' }, book: { left: '32.05%', top: '42.84%', width: '11.79%' },
   harp: { left: '0%', top: '57.94%', width: '14.62%' }, trumpet: { left: '19.08%', top: '64.71%', width: '11.9%' },
   lanternL: { left: '34.29%', top: '24.93%', width: '3.88%' }, lanternR: { left: '73.74%', top: '24.93%', width: '3.88%' },
@@ -331,7 +331,7 @@ export default function AcademyPage() {
 
         {/* chalkboard → Quest Board (chalk doodles shimmer on their own layer) */}
         <Prop id="chalkboard" pos={L.chalkboard} />
-        <Prop id="chalk-doodles" pos={L.doodles} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
+        <Prop id="chalk-doodles" pos={L.doodlesArt} z={3} idle={{ opacity: [0.85, 1, 0.85], y: [0, -2, 0] }} />
         <ChalkScrolls />
         {[0, 1, 2].map((n) => (
           <motion.span key={n} aria-hidden="true" className="absolute pointer-events-none" style={{ left: `${9 + n * 6}%`, top: '26%', color: ['#FFFFFF', '#FFCC00', '#7FEFFF'][n], zIndex: 3 }}

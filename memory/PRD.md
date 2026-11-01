@@ -1,5 +1,12 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-01 — Fixed "blank MPC" / blank Song Studio when opening a saved track from My Album (tested, pass)
+- **Bug**: Creation Station → tap a saved Beat or Song → cover's "Open in Beat Lab"/"Open in Song Studio" button navigated to `/loop-studio` or `/song-studio` with no identifier at all, so the editor always opened a fresh/empty session instead of that track.
+- **Fix**: `AcademyPage.js` routes now carry the id (`/loop-studio?beat=<id>`, `/song-studio?song=<id>`, matching the existing `/rank-hall?jam=<id>` pattern).
+  - `LoopStudioPage.js`: new mount effect reads `?beat=`, finds it via `loadSavedBeats()`, restores `bpm`/`totalSteps`/`grid` (rebuilt from `track.id → track.steps`, the exact inverse of the existing `toSavedTrack` save mapping). Guarded the pre-existing "first visit auto-loads Basic Beat" effect so it doesn't stomp a deep-linked beat.
+  - `SongStudioPage.js`: new mount effect reads `?song=`, finds it via the page's own `loadSongs()`, calls the already-existing internal `loadSong(song)` (previously only reachable by clicking it in the in-page "My Songs" gallery).
+- **Verified** (self-tested, scripted Playwright): drew a 4-cell drum pattern → REC → stop (auto-saves) → My Album → "Open in Beat Lab" → grid reloaded with the identical kick/snare cells. Same for Song Studio: filled 5 notes → Save → My Album → "Open in Song Studio" → all 5 notes (Do Re Mi Fa So) reloaded correctly.
+
 ## 2026-10-31 (latest) — Jam Session recording fix + Save to My Album + Main Stage playback (tested, all pass)
 - **Bug root cause**: jamming over a saved Song Studio song used `useSongLoopPlayer` → `usePianoAudio()`, which created its OWN isolated `AudioContext`/destination — never touching the shared master gain node the MP3 recorder taps. So recordings only captured the kid's live playing, never the song track. (Beat Lab tracks and built-in Jelly Songs were already correctly routed through the shared graph.)
 - **Fix**: `usePianoAudio(getAudioGraph)` now optionally shares the caller's `{ ctx, masterNode }` (same pattern as `useBeatLabAudio`); `useSongLoopPlayer(getAudioGraph)` forwards it. `FreePlayPage.js` passes its `getAudioGraph` through. Song Studio's own standalone usage (`usePianoAudio()` with no args) is untouched.

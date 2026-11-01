@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Play, Square, Plus, Minus, Circle, Download, Drum, Music2, ChevronLeft, ChevronRight, Eraser, Headphones } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import useAudio from '../hooks/useAudio';
@@ -233,6 +233,7 @@ const StepRow = memo(function StepRow({ voiceKey, color, steps, totalSteps, mute
 function LoopStudioPage() {
   useVoiceTagline('chunk.tag.beatlab');
   const navigate = useNavigate();
+  const location = useLocation();
   const { getAudioGraph, initAudioContext } = useAudio();
   const lab = useBeatLabAudio(getAudioGraph, initAudioContext);
   const recorder = useMp3Recorder(getAudioGraph);
@@ -436,10 +437,25 @@ function LoopStudioPage() {
   // First visit — start with Basic Beat so the grid isn't empty.
   useEffect(() => {
     const KEY = 'jma_beat_lab_first_visit_v2';
-    if (typeof window === 'undefined' || localStorage.getItem(KEY)) return;
+    if (typeof window === 'undefined' || localStorage.getItem(KEY) || new URLSearchParams(location.search).get('beat')) return;
     const t = setTimeout(() => { try { loadPreset('Basic Beat'); localStorage.setItem(KEY, '1'); } catch (_) {} }, 80);
     return () => clearTimeout(t);
-  }, [loadPreset]);
+  }, [loadPreset, location.search]);
+
+  // Deep-link from My Album ("Open in Beat Lab") — load that saved beat's pattern.
+  const beatDeepLinkRef = useRef(false);
+  useEffect(() => {
+    if (beatDeepLinkRef.current) return;
+    const id = new URLSearchParams(location.search).get('beat');
+    if (!id) return;
+    const beat = loadSavedBeats().find((b) => b.id === id);
+    if (!beat) return;
+    beatDeepLinkRef.current = true;
+    if (isPlaying) stopPlayback();
+    setBpm(beat.bpm);
+    setTotalSteps(beat.totalSteps);
+    setGrid(Object.fromEntries((beat.tracks || []).map((t) => [t.id, t.steps])));
+  }, [location.search, isPlaying, stopPlayback]);
 
   const clearAll = useCallback(() => setGrid({}), []);
 

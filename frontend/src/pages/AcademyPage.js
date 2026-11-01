@@ -83,8 +83,8 @@ function MyAlbum() {
   const [covers, setCovers] = useState(loadCovers);
   const [editing, setEditing] = useState(null);
   const tracks = useMemo(() => [
-    ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: '/loop-studio', at: b.createdAt || 0 })),
-    ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: '/song-studio', at: Date.parse(s.createdAt) || 0 })),
+    ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: `/loop-studio?beat=${b.id}`, at: b.createdAt || 0 })),
+    ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: `/song-studio?song=${s.id}`, at: Date.parse(s.createdAt) || 0 })),
     ...loadSavedJams().map((j) => ({ id: j.id, name: j.name, kind: 'jam', meta: j.sourceName ? `Jammed to: ${j.sourceName}` : 'Jam Session', route: `/rank-hall?jam=${j.id}`, at: j.createdAt || 0 })),
   ].sort((a, b) => b.at - a.at), []);
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);

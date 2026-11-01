@@ -4,7 +4,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Play, Trash2, Save, ArrowLeft, BookOpen, Music, Drum, Piano, Dices } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
@@ -72,6 +72,7 @@ export default function SongStudioPage() {
   const { nameFor } = useNoteNames();
   useVoiceTagline('charlie.tag.songstudio');
   const navigate = useNavigate();
+  const location = useLocation();
   const { preload, preloadLoop, playPianoNote, playLoop, initContext, now } = usePianoAudio();
 
   const [view, setView] = useState('compose');       // compose | gallery
@@ -314,6 +315,17 @@ export default function SongStudioPage() {
     setCursor(song.slots.findIndex((s) => s == null) >= 0 ? song.slots.findIndex((s) => s == null) : TOTAL_SLOTS);
     setView('compose');
   }, [stopPlayback]);
+
+  // Deep-link from My Album ("Open in Song Studio") — load that saved song.
+  const songDeepLinkRef = useRef(false);
+  useEffect(() => {
+    if (songDeepLinkRef.current) return;
+    const id = new URLSearchParams(location.search).get('song');
+    if (!id) return;
+    songDeepLinkRef.current = true;
+    const song = loadSongs().find((s) => s.id === id);
+    if (song) loadSong(song);
+  }, [location.search, loadSong]);
 
   const deleteSong = useCallback((id) => {
     const next = songs.filter((s) => s.id !== id);

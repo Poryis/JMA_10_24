@@ -3,7 +3,7 @@
 // drawn from every sticker they've earned, 4 frames and a vinyl label color.
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Check, X, Shuffle, User, Type } from 'lucide-react';
+import { Play, Check, X, Shuffle, User, Type, Mic } from 'lucide-react';
 import AvatarSprite from './AvatarSprite';
 import useStickers from '../hooks/useStickers';
 import { COLLECTION_STICKERS, STICKER_CATEGORIES } from '../data/stickers';
@@ -76,7 +76,14 @@ export function Sleeve({ cover, avatar, kind, title, className = '', activeSlot,
   return (
     <div data-testid="sleeve" className={`relative aspect-square rounded-xl overflow-hidden ${className}`} style={{ containerType: 'inline-size', background: cover.color, ...pat.css, border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)' }}>
       {frame.style && <span className="absolute inset-1 rounded-lg pointer-events-none" style={frame.style} />}
+      {kind === 'jam' && <span className="absolute inset-0 rounded-xl pointer-events-none" style={{ boxShadow: 'inset 0 0 0 3px #8E5BFF' }} />}
       <span data-testid="sleeve-label" className="absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: cover.label, border: '2px solid var(--jma-dark)' }}><span className="w-2 h-2 rounded-full" style={{ background: cover.label === '#111111' ? 'white' : 'var(--jma-dark)' }} /></span>
+      {kind === 'jam' && (
+        <span data-testid="sleeve-jam-badge" className="absolute left-1.5 top-1.5 flex items-center gap-1 pl-1 pr-1.5 py-0.5 rounded-full" style={{ background: '#8E5BFF', border: '2px solid var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}>
+          <span className="w-3.5 h-3.5 rounded-full flex items-center justify-center bg-white"><Mic className="w-2 h-2" strokeWidth={4} style={{ color: '#8E5BFF' }} /></span>
+          <span className="text-white font-black leading-none" style={{ fontSize: 'clamp(6px, 4.5cqw, 10px)' }}>JAM</span>
+        </span>
+      )}
       {slot('main', 'inset-x-0 bottom-0 h-[76%] items-end justify-center', 'h-full w-auto max-w-[70%] object-contain object-bottom')}
       {slot('tl', 'left-1.5 top-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}
       {slot('br', 'right-1.5 bottom-1.5 w-[30%] h-[30%] items-center justify-center', 'h-full w-full object-contain')}

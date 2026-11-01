@@ -1,5 +1,8 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-01 (later) — Jam cover accents (tested, pass)
+- Saved jam covers in My Album now get a purple "JAM" mic badge (top-left) and a purple inner ring (`CoverDesigner.js` `Sleeve` — uses the already-passed `kind` prop) so they're instantly distinguishable from Beat/Song covers in the grid and in the designer. Verified via screenshot: jam cover shows badge+ring, beat cover does not.
+
 ## 2026-11-01 — Fixed "blank MPC" / blank Song Studio when opening a saved track from My Album (tested, pass)
 - **Bug**: Creation Station → tap a saved Beat or Song → cover's "Open in Beat Lab"/"Open in Song Studio" button navigated to `/loop-studio` or `/song-studio` with no identifier at all, so the editor always opened a fresh/empty session instead of that track.
 - **Fix**: `AcademyPage.js` routes now carry the id (`/loop-studio?beat=<id>`, `/song-studio?song=<id>`, matching the existing `/rank-hall?jam=<id>` pattern).

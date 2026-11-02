@@ -25,7 +25,17 @@ export default function FitStage({ children }) {
   useEffect(() => {
     const f = () => { setActive(isShort()); steps.current = 0; };
     window.addEventListener('resize', f); window.addEventListener('orientationchange', f);
-    return () => { window.removeEventListener('resize', f); window.removeEventListener('orientationchange', f); };
+    window.visualViewport?.addEventListener('resize', f);
+    // iOS can report stale window dimensions for a moment right after a home-screen
+    // launch (especially landscape) — self-correct shortly after mount instead of
+    // waiting for the user to physically rotate the device to fix it.
+    const t1 = setTimeout(f, 150);
+    const t2 = setTimeout(f, 600);
+    return () => {
+      window.removeEventListener('resize', f); window.removeEventListener('orientationchange', f);
+      window.visualViewport?.removeEventListener('resize', f);
+      clearTimeout(t1); clearTimeout(t2);
+    };
   }, []);
 
   // New page → start from 1 and let the observer settle.

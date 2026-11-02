@@ -452,7 +452,20 @@ export default function CampusMapPage({ plaza = false }) {
   const me = useMemo(readAvatar, []); // { character, outfit } — hosts of the same character stay home
   const hostHidden = (b) => !!b.host && hostCharacter(b.host) === me.character;
   const [vp, setVp] = useState({ w: window.innerWidth, h: window.innerHeight });
-  useEffect(() => { const f = () => setVp({ w: window.innerWidth, h: window.innerHeight }); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }, []);
+  useEffect(() => {
+    const f = () => setVp({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener('resize', f); window.addEventListener('orientationchange', f);
+    window.visualViewport?.addEventListener('resize', f);
+    // iOS can report stale window dimensions for a moment right after a home-screen
+    // launch — self-correct shortly after mount instead of waiting on a real rotation.
+    const t1 = setTimeout(f, 150);
+    const t2 = setTimeout(f, 600);
+    return () => {
+      window.removeEventListener('resize', f); window.removeEventListener('orientationchange', f);
+      window.visualViewport?.removeEventListener('resize', f);
+      clearTimeout(t1); clearTimeout(t2);
+    };
+  }, []);
   const L = layoutFor(vp.w, vp.h);
   // Plaza: the tall props (bandstand) must still clear the header on short phones.
   const buildings = useMemo(() => (plaza ? rawBuildings.map((b) => ({ ...b, size: Math.min(b.size, Math.max(0.9, (vp.h * (b.hero ? 0.92 : 0.78) - L.floor) / (L.bw * (b.aspect || 1)))) })) : rawBuildings), [plaza, rawBuildings, vp.h, L.floor, L.bw]);

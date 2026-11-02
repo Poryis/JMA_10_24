@@ -82,8 +82,6 @@ function MyAlbum() {
   const avatar = readAvatarOutfit();
   const [covers, setCovers] = useState(loadCovers);
   const [editing, setEditing] = useState(null);
-  const [travel, setTravel] = useState(null);
-  const goTravel = (route) => { if (travel) return; setTravel(route); setTimeout(() => navigate(route), 650); };
   const tracks = useMemo(() => [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: `/loop-studio?beat=${b.id}`, at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: `/song-studio?song=${s.id}`, at: Date.parse(s.createdAt) || 0 })),
@@ -91,16 +89,15 @@ function MyAlbum() {
   ].sort((a, b) => b.at - a.at), []);
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
-    <motion.div className="w-full max-w-3xl" animate={travel ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={travel ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : {}}>
-    <Card testId="academy-album" className="w-full">
+    <Card testId="academy-album" className="w-full max-w-3xl">
       <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>Creation Station · My Album</div>
       <div className="text-xs md:text-sm font-bold mb-3 flex items-center gap-1.5" style={{ color: '#4B5668' }}><Palette className="w-4 h-4" strokeWidth={3} /> Tap a record to design its cover.</div>
       {tracks.length === 0 ? (
         <div data-testid="academy-album-empty" className="rounded-2xl p-4 text-center" style={{ background: '#F6F8FB', border: '3px dashed var(--jma-dark)' }}>
           <div className="font-black mb-3" style={{ color: 'var(--jma-dark)' }}>No tracks yet — go make your first one!</div>
           <div className="flex flex-wrap justify-center gap-2">
-            <button type="button" data-testid="academy-album-beatlab" onClick={() => goTravel('/loop-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF2D85' }}><Drum className="w-4 h-4" strokeWidth={3} /> Beat Lab</button>
-            <button type="button" data-testid="academy-album-songstudio" onClick={() => goTravel('/song-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF9500' }}><Music2 className="w-4 h-4" strokeWidth={3} /> Song Studio</button>
+            <button type="button" data-testid="academy-album-beatlab" onClick={() => navigate(journeyTo('/loop-studio'))} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF2D85' }}><Drum className="w-4 h-4" strokeWidth={3} /> Beat Lab</button>
+            <button type="button" data-testid="academy-album-songstudio" onClick={() => navigate(journeyTo('/song-studio'))} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF9500' }}><Music2 className="w-4 h-4" strokeWidth={3} /> Song Studio</button>
           </div>
         </div>
       ) : (
@@ -119,15 +116,11 @@ function MyAlbum() {
       )}
       <AnimatePresence>
         {editing && (
-          <CoverDesigner track={editing} cover={covers[editing.id]} avatar={avatar} onClose={() => setEditing(null)} onOpen={() => goTravel(editing.route)}
+          <CoverDesigner track={editing} cover={covers[editing.id]} avatar={avatar} onClose={() => setEditing(null)} onOpen={() => navigate(journeyTo(editing.route))}
             onSave={(cover) => { saveCover(editing.id, cover); setCovers(loadCovers()); setEditing(null); }} />
         )}
       </AnimatePresence>
     </Card>
-    <AnimatePresence>
-      {travel && <motion.div data-testid="academy-album-travel" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 90 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
-    </AnimatePresence>
-    </motion.div>
   );
 }
 
@@ -271,20 +264,12 @@ const EQ_BARS = ['#FF2D85', '#FFCC00', '#7CFF6B', '#FFFFFF', '#FF9500', '#B36BFF
 const SCREEN_QUAD = [[4.4, 0], [100, 12.2], [97.1, 100], [0, 76.2]];
 function LaptopEQ({ locked }) {
   const navigate = useNavigate();
-  const [leaving, setLeaving] = useState(false);
-  const go = () => {
-    if (locked) { navigate('/home?go=dressing-room'); return; }
-    if (leaving) return;
-    setLeaving(true);
-    setTimeout(() => navigate('/loop-studio'), 650);
-  };
   return (
     <div className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 6 }}>
-      <motion.button type="button" data-testid="academy-laptop-beatlab" data-locked={locked ? 'true' : 'false'} data-leaving={leaving ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Open Beat Lab'}
-        onClick={go} disabled={leaving}
+      <button type="button" data-testid="academy-laptop-beatlab" data-locked={locked ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Open Beat Lab'}
+        onClick={() => navigate(locked ? '/home?go=dressing-room' : journeyTo('/loop-studio'))}
         className="absolute pointer-events-auto cursor-pointer border-0 p-0 bg-transparent"
-        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}
-        animate={leaving ? { scale: 2.6, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : {}}>
+        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}>
         <QuadFit quad={SCREEN_QUAD}>
           <span className="absolute inset-0 flex items-end justify-center" style={{ gap: 10, padding: '40px 22px 40px', background: 'linear-gradient(180deg, rgba(10,37,64,0.1), rgba(10,37,64,0.4))', filter: locked ? 'grayscale(1) brightness(0.55)' : 'none' }}>
             {EQ_BARS.map((c, i) => (
@@ -298,8 +283,7 @@ function LaptopEQ({ locked }) {
             </span>
           )}
         </QuadFit>
-      </motion.button>
-      {leaving && <motion.div data-testid="academy-laptop-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
+      </button>
     </div>
   );
 }

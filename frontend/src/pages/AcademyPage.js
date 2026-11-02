@@ -195,7 +195,7 @@ function Yearbook() {
   );
 }
 
-const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the plaza!', 'Make album covers at the Creation Station!', 'The big book on the stand is your Achievement Book.'];
+const WELCOME = ["Welcome to the Academy! Tap things around the room.", 'The chalkboard is your Quest Board.', 'The coral archway takes you out to the campus!', 'Make album covers at the Creation Station!', 'The big book on the stand is your Achievement Book.'];
 const ACADEMY_TRACKS = [{ src: 'assets/music/magic.mp3', title: 'Magic' }, { src: 'assets/music/brand-new-friend.mp3', title: 'Brand New Friend' }, { src: 'assets/music/dough-is-in-pizza.mp3', title: 'Dough Is in Pizza' }];
 // Layer positions (% of the 1920x1080 room) measured straight from the PSD export.
 const ROOM = 'assets/academy/room/';

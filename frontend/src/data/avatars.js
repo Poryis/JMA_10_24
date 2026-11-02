@@ -83,7 +83,7 @@ export const AVATARS = [
   ] },
   // ---- Secret Friends: one cast card; each friend hangs on the rail as a '???' silhouette until found. ----
   { id: 'secret', name: 'Secret Friends', color: '#FFCC00', secret: true, cardSrc: 'assets/characters/secret-friends.svg', outfits: [
-    { ...wfit('clammo',  'Chowda',          'clammo',          { kind: 'flag',    value: 'clammo_found',     hint: 'Tap Chowda the clam on the Plaza 5 times' }), hidden: true },
+    { ...wfit('clammo',  'Chowda',          'clammo',          { kind: 'flag',    value: 'clammo_found',     hint: 'Tap Chowda the clam on the Campus 5 times' }), hidden: true },
     { ...wfit('dolphin', 'Dolphin',         'dolphin',         { kind: 'sticker', value: 'ach_fact_finder',  hint: 'Learn 10 fun facts' }), hidden: true, facesLeft: true },
     { ...wfit('pete',    'Pepperoni Pete',  'pepperoni-pete',  { kind: 'sticker', value: 'lesson_6',         hint: 'Finish Lesson 6' }), hidden: true },
     { ...wfit('gil',     'Goldfish Gil',    'goldfish-gil',    { kind: 'covers',  value: 2,                  hint: 'Design 2 album covers' }), hidden: true },

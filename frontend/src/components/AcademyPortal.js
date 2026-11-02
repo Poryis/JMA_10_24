@@ -62,11 +62,11 @@ export default function AcademyPortal({ style, onEnter, disabled, avatar, locked
         <motion.div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #BFF7FF 100%)' }} initial={{ opacity: 1 }} animate={{ opacity: open ? 0 : 1 }} transition={{ duration: 1.2, ease: 'easeOut' }} />
       </div>
       {/* tap target over the archway (above the plate) */}
-      <motion.button type="button" data-testid="academy-portal" data-open={open ? 'true' : 'false'} data-locked={locked ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Go out to the plaza'} onClick={handleClick} disabled={disabled}
+      <motion.button type="button" data-testid="academy-portal" data-open={open ? 'true' : 'false'} data-locked={locked ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Go out to the campus'} onClick={handleClick} disabled={disabled}
         className="absolute p-0 border-0 bg-transparent cursor-pointer" style={{ ...style, zIndex: 4 }} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
         <motion.span key={wiggle} data-testid="academy-portal-sign" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 whitespace-nowrap rounded-full font-black font-display" style={{ top: '7%', padding: '4px 14px', fontSize: 'clamp(11px, 1.3vw, 18px)', background: locked ? '#B8233A' : '#FFCC00', color: locked ? 'white' : 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', letterSpacing: '0.06em' }}
           initial={{ opacity: 0, y: -8 }} animate={locked && wiggle ? { opacity: 1, x: [0, -8, 8, -6, 6, 0] } : { opacity: open ? 1 : 0, y: open ? [0, 4, 0] : -8 }} transition={locked && wiggle ? { duration: 0.45 } : { y: { repeat: Infinity, duration: 1.6 }, opacity: { duration: 0.4 } }}>
-          {locked ? <><Lock className="w-[0.9em] h-[0.9em]" strokeWidth={3.5} /> PICK A CHARACTER FIRST</> : <>TO THE PLAZA <ArrowRight className="w-[1em] h-[1em]" strokeWidth={3.5} /></>}
+          {locked ? <><Lock className="w-[0.9em] h-[0.9em]" strokeWidth={3.5} /> PICK A CHARACTER FIRST</> : <>TO THE CAMPUS <ArrowRight className="w-[1em] h-[1em]" strokeWidth={3.5} /></>}
         </motion.span>
       </motion.button>
     </>

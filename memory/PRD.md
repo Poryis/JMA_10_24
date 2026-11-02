@@ -1,6 +1,9 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
-## 2026-11-02 (latest+6) — Sticker Book Home button was smaller than other pages (tested via testing_agent, pass)
+## 2026-11-02 (latest+7) — Sticker Book "Home" → "Back" label + "Plaza" renamed to "Campus" everywhere (self-tested via screenshot)
+- Sticker Book's back button now reads "BACK" (was "Home") — matches the label used by every other page's `GameHeader` back button.
+- Renamed every user-facing "Plaza" string to "Campus": the Academy portal sign ("TO THE CAMPUS"), its aria-label, the Academy's welcome bubble copy ("takes you out to the campus!"), the Chowda achievement hint ("Tap Chowda the clam on the Campus 5 times"), and the hub zone's `label`/`street` fields in `data/campus.js` (`'ACADEMY CAMPUS'` / `'Academy Campus'`, shown via any future `StreetSign`/zone-label usage). Did NOT rename internal-only identifiers (the `plaza` prop/variable, `PLAZA_ZONE`/`PLAZA_BUILDINGS` exports, `assets/plaza/*` asset folder, `data-testid`s like `plaza-shield`/`plaza-clammo`) since those aren't visible to the user and renaming them is pure refactor risk with no visible benefit.
+- Verified via screenshot: Sticker Book button text is "BACK"; Academy portal sign text is "TO THE CAMPUS".
 - **User**: "the back button in the sticker book is significantly smaller than it is on the other pages."
 - **Root cause**: every game page uses the shared `GameHeader` back-shield (`GameUI.js`, sized `w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16`), but `StickerBookPage.js` has its own custom top bar with a `HarpIcon size={34}` fixed, non-responsive icon — much smaller at every breakpoint.
 - **Fix**: Sticker Book's Home icon container now uses the exact same responsive sizing as `GameHeader`'s shield, `HarpIcon` renders unsized (fills parent) like `GameHeader`'s own BackIcon does.

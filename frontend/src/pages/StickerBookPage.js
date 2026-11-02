@@ -266,7 +266,7 @@ export default function StickerBookPage() {
           </div>
           <span className="text-[9px] font-black uppercase tracking-wide mt-0.5 px-1.5 rounded-full"
             style={{ color: 'white', backgroundColor: 'var(--jma-dark)' }}>
-            Home
+            Back
           </span>
         </button>
         <h1 className="text-xl md:text-2xl font-black font-display flex-1 text-center" style={{ color: '#FFCC00', textShadow: '0 2px 0 rgba(0,0,0,0.4)' }}>

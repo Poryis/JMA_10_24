@@ -48,7 +48,7 @@ export function journeyTo(route) {
 // Academy Plaza — the town square where the three streets meet. Home.
 const PZ = 'assets/plaza/';
 export const PLAZA_ZONE = {
-  id: 'plaza', label: 'ACADEMY PLAZA', street: 'Academy Plaza', color: '#FFCC00', ground: '#9BE27A',
+  id: 'plaza', label: 'ACADEMY CAMPUS', street: 'Academy Campus', color: '#FFCC00', ground: '#9BE27A',
   tracks: [T('jelly-jamboree', 'Jelly Jamboree'), T('goody-bag', 'Goody Bag'), T('magic', 'Magic'), T('faster-as-we-go', 'Faster As We Go'), T('brand-new-friend', 'Brand New Friend')],
   strollers: [{ src: `${CH}dr-jellybone.png`, facing: 'left' }, `${CH}sharky-snorkel.png`],
 };

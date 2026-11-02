@@ -33,6 +33,7 @@ import JMAtvPlayerPage from "./pages/JMAtvPlayerPage";
 import StickerToast from "./components/StickerToast";
 import RankUpCelebration from "./components/RankUpCelebration";
 import DailyQuestCelebration from "./components/DailyQuestCelebration";
+import TourStartModal from "./components/TourStartModal";
 import AudioUnlockOverlay from "./components/AudioUnlockOverlay";
 import PlayerNamePrompt from "./components/PlayerNamePrompt";
 import OrientationGate from "./components/OrientationGate";
@@ -71,6 +72,7 @@ function App() {
         <StickerToast />
         <RankUpCelebration />
         <DailyQuestCelebration />
+        <TourStartModal />
         <AnimatePresence mode="wait">
           <ScrollToTop />
           <FitStage>

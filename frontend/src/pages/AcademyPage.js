@@ -83,7 +83,7 @@ function MyAlbum() {
   const [covers, setCovers] = useState(loadCovers);
   const [editing, setEditing] = useState(null);
   const [travel, setTravel] = useState(null);
-  const goTravel = (route) => { if (travel) return; setTravel(route); setTimeout(() => navigate(route), 550); };
+  const goTravel = (route) => { if (travel) return; setTravel(route); setTimeout(() => navigate(route), 650); };
   const tracks = useMemo(() => [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: `/loop-studio?beat=${b.id}`, at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: `/song-studio?song=${s.id}`, at: Date.parse(s.createdAt) || 0 })),
@@ -91,7 +91,8 @@ function MyAlbum() {
   ].sort((a, b) => b.at - a.at), []);
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
-    <Card testId="academy-album" className="w-full max-w-3xl">
+    <motion.div className="w-full max-w-3xl" animate={travel ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={travel ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : {}}>
+    <Card testId="academy-album" className="w-full">
       <div className="font-display font-black text-lg md:text-2xl mb-1" style={{ color: 'var(--jma-dark)' }}>Creation Station · My Album</div>
       <div className="text-xs md:text-sm font-bold mb-3 flex items-center gap-1.5" style={{ color: '#4B5668' }}><Palette className="w-4 h-4" strokeWidth={3} /> Tap a record to design its cover.</div>
       {tracks.length === 0 ? (
@@ -122,10 +123,11 @@ function MyAlbum() {
             onSave={(cover) => { saveCover(editing.id, cover); setCovers(loadCovers()); setEditing(null); }} />
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {travel && <motion.div data-testid="academy-album-travel" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 90 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} />}
-      </AnimatePresence>
     </Card>
+    <AnimatePresence>
+      {travel && <motion.div data-testid="academy-album-travel" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 90 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
+    </AnimatePresence>
+    </motion.div>
   );
 }
 

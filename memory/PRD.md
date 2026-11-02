@@ -1,9 +1,18 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-02 (latest+8) — iPhone PWA launch: weird cropping/ratio until rotated (tested via testing_agent, 100% pass)
+- **User**: on iPhone, launching the app from the home-screen icon shows weird cropping/ratio until flipping to portrait then back to landscape.
+- **Root cause**: known iOS WebKit standalone-launch quirk — `window.innerWidth/innerHeight` can report stale values right after launch with no `resize` event ever firing to correct it; two places in the app read those values ONCE at mount with no self-correction: `components/FitStage.js` (`isShort()` lazy init) and `pages/CampusMapPage.js` (`vp` state, covers the Plaza/Campus hub + Play/Learn/Create streets).
+- **Fix**: both now also listen to `visualViewport` resize, and self-correct via two deferred re-checks after mount (150ms, 600ms) — fixes itself shortly after load instead of waiting for a physical rotation.
+- **Verified by testing_agent**: simulated the exact iOS staleness (overrode innerWidth/innerHeight to wrong values for the first 100ms with no resize event) — confirmed both files self-correct to the right layout within 190-340ms. Zero regressions across /academy, /home, /campus (all 3 zones), /dressing-room, /loop-studio, /song-studio, /rank-hall, /lessons, /ear-trainer at normal + two short-landscape sizes; no timer leaks on rapid navigation; no new console errors. 100% pass. Applied the one flagged cheap improvement (guard `setVp` against redundant re-renders on identical values).
+- **Noted as backlog, not urgent** (per testing_agent, not a bug — residual-risk/optional only): if iOS staleness ever outlasts 600ms with no resize/visualViewport event, consider adding a `pageshow`/`visibilitychange` re-check or a later ~1200ms timer; a pre-existing unrelated React warning (nested `<button>`, academy-vane inside campus-building-academy).
+
 ## 2026-11-02 (latest+7) — Sticker Book "Home" → "Back" label + "Plaza" renamed to "Campus" everywhere (self-tested via screenshot)
 - Sticker Book's back button now reads "BACK" (was "Home") — matches the label used by every other page's `GameHeader` back button.
 - Renamed every user-facing "Plaza" string to "Campus": the Academy portal sign ("TO THE CAMPUS"), its aria-label, the Academy's welcome bubble copy ("takes you out to the campus!"), the Chowda achievement hint ("Tap Chowda the clam on the Campus 5 times"), and the hub zone's `label`/`street` fields in `data/campus.js` (`'ACADEMY CAMPUS'` / `'Academy Campus'`, shown via any future `StreetSign`/zone-label usage). Did NOT rename internal-only identifiers (the `plaza` prop/variable, `PLAZA_ZONE`/`PLAZA_BUILDINGS` exports, `assets/plaza/*` asset folder, `data-testid`s like `plaza-shield`/`plaza-clammo`) since those aren't visible to the user and renaming them is pure refactor risk with no visible benefit.
 - Verified via screenshot: Sticker Book button text is "BACK"; Academy portal sign text is "TO THE CAMPUS".
+
+## 2026-11-02 (latest+6) — Sticker Book Home button was smaller than other pages (tested via testing_agent, pass)
 - **User**: "the back button in the sticker book is significantly smaller than it is on the other pages."
 - **Root cause**: every game page uses the shared `GameHeader` back-shield (`GameUI.js`, sized `w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16`), but `StickerBookPage.js` has its own custom top bar with a `HarpIcon size={34}` fixed, non-responsive icon — much smaller at every breakpoint.
 - **Fix**: Sticker Book's Home icon container now uses the exact same responsive sizing as `GameHeader`'s shield, `HarpIcon` renders unsized (fills parent) like `GameHeader`'s own BackIcon does.

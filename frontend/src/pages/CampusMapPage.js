@@ -453,7 +453,7 @@ export default function CampusMapPage({ plaza = false }) {
   const hostHidden = (b) => !!b.host && hostCharacter(b.host) === me.character;
   const [vp, setVp] = useState({ w: window.innerWidth, h: window.innerHeight });
   useEffect(() => {
-    const f = () => setVp({ w: window.innerWidth, h: window.innerHeight });
+    const f = () => setVp((p) => (p.w === window.innerWidth && p.h === window.innerHeight ? p : { w: window.innerWidth, h: window.innerHeight }));
     window.addEventListener('resize', f); window.addEventListener('orientationchange', f);
     window.visualViewport?.addEventListener('resize', f);
     // iOS can report stale window dimensions for a moment right after a home-screen

@@ -1,0 +1,26 @@
+{
+  "summary": "Regression-safety pass for the iOS PWA stale-viewport fix (FitStage.js + CampusMapPage.js deferred re-checks). The real iOS home-screen launch symptom CANNOT be reproduced in Chromium and was not verified on-device. Done: (1) Rendered /academy, /home, /campus?zone=play|learn|create, /dressing-room, /loop-studio, /song-studio, /rank-hall, /lessons, /ear-trainer at 1920x800, 844x390 and 844x320. FitStage is inactive at 1920x800 and active at the short sizes with sensible scales (loop-studio 0.63/0.55, song-studio 0.70/0.57, lessons 0.55, ear-trainer 0.91/0.75, dressing-room & rank-hall 1.00). It is correctly excluded on /home and /campus. No document overflow: scrollWidth/Height matched the viewport, except desktop /lessons and /ear-trainer, which scroll normally without FitStage, as before. (2) Sampled fit-stage data-scale and campus building left/width every 20-30ms for 1.3s after load on all routes and viewports: ZERO value changes, so the 150ms/600ms timers cause no layout jump when dimensions are already correct. (3) SIMULATED the iOS quirk by overriding window.innerWidth/innerHeight to return stale portrait values (390x844) on an 844x390 viewport until 100ms after React mount, with no resize event. Every page started with the wrong layout and self-corrected through the deferred timer to exactly the values from a normal load (loop-studio none->0.63, lessons none->0.55, campus play building 226/247px->254/278px, home 129/473px->145/329px) at about 190-340ms after mount. This confirms the fix logic works. (4) Rapid hash navigation (5 loops of /academy->/home->/campus play->/dressing-room->/campus learn + back, 60ms apart) produced no pageerrors and no crash. Console contained only unrelated, pre-existing messages: a nested <button> hydration warning (the academy-vane button inside the campus-building-academy button), Cloudflare CSP noise, and 401 resource loads from the preview platform.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional/minor: CampusMapPage's f() always calls setVp with a new object, so each of the 2 timers plus each visualViewport resize (which fires often on iOS while the URL bar shows or hides) re-renders the whole campus even when nothing changed. Consider a guard: setVp(p => (p.w === w && p.h === h ? p : { w, h })).",
+    "Optional/pre-existing (unrelated to this fix): nested <button> React warning. The academy-vane motion.button (CampusMapPage ~line 237) is rendered inside the campus-building-academy button (~line 336).",
+    "Residual risk: if iOS staleness lasts longer than 600ms with no resize/visualViewport event, the layout still will not self-correct. Consider adding a 'pageshow'/'visibilitychange' re-check or a later timer (~1200ms) if users still report the issue. Must be verified on a real iPhone home-screen launch."
+  ],
+  "critical_code_review_comments": [
+    "Both effects clean up their listeners and both timeouts correctly on unmount, so no leak was observed.",
+    "FitStage f() resets steps.current = 0 on every timer and visualViewport event. This is harmless (setActive bails out when the value is unchanged), but frequent visualViewport resizes on iOS will keep re-arming up to 4 re-measure iterations."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not requested)", "frontend": "100% of regression checks passed (iOS on-device symptom unverifiable here)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "To simulate the iOS stale viewport: in add_init_script, override window.innerWidth/innerHeight getters to return swapped values until performance.now() < (React #root first child mount + 100ms), then sample [data-testid=fit-stage] data-scale and [data-testid^=campus-building-] style.left/width. Onboarding modals ('Welcome to JMA' name prompt, 'Welcome to the Academy' Pick My Character) and audio-unlock-overlay appear on fresh localStorage.",
+  "rca of the issue": "Layout state was read once from window.innerWidth/innerHeight at mount and only refreshed on resize events. iOS standalone launch can return stale dimensions without firing a later resize, so the layout stayed wrong until the device was rotated. The deferred re-checks fix this (confirmed via simulation)."
+}

@@ -1,7 +1,7 @@
 // StagePoster — the "SNAP!" concert poster a kid takes on The Stage. Stored in
 // localStorage so the Yearbook can show a poster wall; printable via the
 // existing .jma-print-report print rules.
-import { createPortal } from 'react-dom';
+import { createPortal, flushSync } from 'react-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Printer, X, Star } from 'lucide-react';
@@ -48,8 +48,10 @@ export function Poster({ poster, width = 300, testId }) {
 export function PosterModal({ poster, onClose, testId = 'stage-poster-modal' }) {
   const [printing, setPrinting] = useState(false);
   useEffect(() => {
-    const on = () => setPrinting(true);
-    const off = () => setPrinting(false);
+    // flushSync: React 19 treats native beforeprint as default priority and would defer
+    // the re-render to a macrotask — after the browser has already laid out the print page.
+    const on = () => flushSync(() => setPrinting(true));
+    const off = () => flushSync(() => setPrinting(false));
     window.addEventListener('beforeprint', on);
     window.addEventListener('afterprint', off);
     return () => { window.removeEventListener('beforeprint', on); window.removeEventListener('afterprint', off); };

@@ -1,0 +1,27 @@
+{
+  "summary": "Tested the fix for the stage poster printing too small (PosterModal in StagePoster.js). The fix as submitted did NOT work for a real print. Simulated events looked fine: the poster grew from 320px to 650px after beforeprint and went back to 320px after afterprint. But a real Chromium print layout (page.pdf, which fires beforeprint and afterprint) still printed the poster at 320px: 230pt wide on a 612pt Letter page, the same tiny result the user reported. Root cause found and fixed with flushSync (details in 'rca of the issue'). Retested: the PDF poster is now 468x630pt on a single Letter page, renders in proportion and looks right. Print button calls window.print() once, Done closes the modal, and the on-screen size is unchanged (320px).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "StagePoster.js PosterModal", "issue": "Before my fix: the poster still printed at about 320px in a real print layout because React deferred the re-render until after the print page was laid out. FIXED by testing agent with flushSync.", "selector": "[data-testid=stage-poster]", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/tests/print_check/poster_print_check.py"],
+  "action_items": [
+    "Review and keep the flushSync change in StagePoster.js. Without it the print fix has no effect on a real print.",
+    "Optional hardening: add print-only CSS (e.g. @media print { .jma-print-report [data-testid=stage-poster] { width: 650px !important; height: 866px !important; font-size: 32.5px !important } }) so printing does not depend on JS event timing (Safari fires beforeprint inconsistently)."
+  ],
+  "critical_code_review_comments": [
+    "Native window listeners (beforeprint, afterprint, resize, etc.) that set React state for a synchronous browser snapshot must use flushSync in React 19. Otherwise the update lands in a later macrotask.",
+    "The on-screen width calculation reads window.innerWidth and innerHeight during render with no resize listener, so it is stale after rotate or resize. Minor and existed before this change."
+  ],
+  "updated_files": ["/app/frontend/src/components/StagePoster.js", "/app/tests/print_check/poster_print_check.py"],
+  "success_rate": {"backend": "N/A", "frontend": "100% after the testing agent's fix (the as-submitted fix failed the real print-layout test)"},
+  "seed_data_creation": "localStorage seeded per test via add_init_script (jma_stage_posters_v1 with poster p1, jma_avatar_v1, jma_tour_v1, jma_player_name_skipped_v1) plus sessionStorage jma_audio_unlocked_v1. Setting these with page.evaluate before goto did not stop the onboarding overlays (cause not investigated); add_init_script does.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run: export $(grep REACT_APP_BACKEND_URL /app/frontend/.env) && python3 /app/tests/print_check/poster_print_check.py, then check poster.pdf with pymupdf (installed). A real print check needs page.emulate_media('print') plus page.pdf(); dispatching beforeprint by hand and waiting 300ms hides timing bugs. Rank Hall uses the same PosterModal (default testId stage-poster-modal), but it only opens after a live performance, so it was not driven end-to-end; the shared component is fixed. The print-call count of 2 in the script output is a test artifact: Playwright invoked the arrow function returned by evaluate. The stack trace shows only 1 real onClick call.",
+  "rca of the issue": "React 19's getEventPriority has no entry for 'beforeprint', so setPrinting(true) from a native window listener gets DefaultEventPriority and is rendered in a later Scheduler macrotask. The browser lays out the print page right after the beforeprint handlers run (window.print() blocks), so the print still saw width 320. Reproduced with a sync/microtask/macrotask width read: 320/320/650 before the fix, 650/650/650 after. Confirmed in the PDF: poster 230pt wide before the fix, 468pt after. Fix: const on = () => flushSync(() => setPrinting(true)); and the same for off."
+}

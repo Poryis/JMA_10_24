@@ -1,10 +1,13 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
-## 2026-11-02 (latest+9) — Printed stage poster took up only a small part of the paper (tested via testing_agent, pending)
+## 2026-11-02 (latest+9) — Printed stage poster took up only a small part of the paper (tested via testing_agent, fixed + verified with real PDF check)
 - **User**: "when you try to print a poster from the main stage, the print preview has the poster taking up a small bit of the paper."
-- **Root cause**: `components/StagePoster.js`'s `PosterModal` renders the poster at a fixed on-screen width capped at 320px (sized for the modal). The shared `.jma-print-report` print CSS (`index.css`) makes the container fill the page and centers it, but never scaled up the poster's own fixed 320px width — so it printed tiny with huge white margins.
-- **Fix**: `PosterModal` now listens for `beforeprint`/`afterprint` and renders the poster at 650px wide specifically while printing (reverting to the normal responsive on-screen size afterward) — fills most of a letter page's printable width instead of a small corner.
-- **Self-verified** via simulated `beforeprint`/`afterprint` events (cannot trigger a real OS print dialog in this environment): width correctly goes 320px → 650px → 320px. Sent to testing_agent for independent verification.
+- **Root cause**: `components/StagePoster.js`'s `PosterModal` renders the poster at a fixed on-screen width capped at 320px. The print CSS fills/centers the page but never scaled the poster's own fixed width, so it printed tiny with huge margins.
+- **First fix attempt (incomplete)**: added `beforeprint`/`afterprint` listeners rendering the poster at 650px while printing. Self-verified by manually dispatching the events — gave a false positive.
+- **Real bug found by testing_agent**: React 19 treats native `beforeprint` events as default priority, deferring the `setPrinting(true)` re-render to a later macrotask — but the browser lays out the print page synchronously right after `beforeprint` handlers run (inside `window.print()`'s blocking call), so a real print still captured the old 320px width. Confirmed via an actual PDF print check: 230pt wide (broken) before, 468×630pt (correct, fills the page) after.
+- **Fix**: wrapped both listeners in `flushSync` (`react-dom`) so the state update — and re-render — completes before the browser snapshots the print layout. Also added a print-only CSS backstop (`index.css`, forces width/height/font-size on `[data-testid="stage-poster"]` under `.jma-print-report`) in case Safari fires `beforeprint` inconsistently.
+- **Verified by testing_agent** with `page.emulate_media('print')` + `page.pdf()` (real print-layout check, not just event simulation): poster now 468×630pt on a single Letter page, proportional. 100% pass after the fix.
+- **Lesson logged**: simulating a browser lifecycle event by hand (`dispatchEvent` + wait) can hide real timing bugs — always verify print fixes with an actual print-layout capture (`emulate_media('print')` + `page.pdf()`), not just the event firing.
 
 ## 2026-11-02 (latest+8) — iPhone PWA launch: weird cropping/ratio until rotated (tested via testing_agent, 100% pass)
 - **User**: on iPhone, launching the app from the home-screen icon shows weird cropping/ratio until flipping to portrait then back to landscape.

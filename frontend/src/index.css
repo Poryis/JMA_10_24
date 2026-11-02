@@ -728,6 +728,9 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none !important;
   }
   .jma-print-report .no-print { display: none !important; }
+  /* Backstop for the stage poster: Safari can fire beforeprint inconsistently,
+     so force the print-size dimensions here too (flushSync handles the common case). */
+  .jma-print-report [data-testid="stage-poster"] { width: 650px !important; height: 866px !important; font-size: 32.5px !important; }
 }
 
 /* ============================================================

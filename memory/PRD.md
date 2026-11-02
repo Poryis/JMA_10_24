@@ -1,5 +1,8 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-02 — Jam Waveform stickers in Cover Designer (tested, pass)
+- Added 3 squiggly audio-waveform stickers (purple/pink/teal, inline SVG — no new image assets, keeps bundle size down) to the Cover Designer's Stickers tab, always available (no earning needed) via a new `DECOR_STICKERS` export in `data/stickers.js`, kept separate from `COLLECTION_STICKERS` so they don't pollute Sticker Book totals/progress. New "Decor" category chip in `CoverDesigner.js`'s `StickerPicker`. Verified via screenshot: all 3 variants show under "All" and "Decor", placing one renders correctly on the sleeve (tested on a Jam cover, works the same on Beat/Song covers).
+
 ## 2026-11-01 (later) — Jam cover accents (tested, pass)
 - Saved jam covers in My Album now get a purple "JAM" mic badge (top-left) and a purple inner ring (`CoverDesigner.js` `Sleeve` — uses the already-passed `kind` prop) so they're instantly distinguishable from Beat/Song covers in the grid and in the designer. Verified via screenshot: jam cover shows badge+ring, beat cover does not.
 

@@ -41,6 +41,20 @@ const gemIcon = (c1, c2) => `data:image/svg+xml;utf8,${encodeURIComponent(
   `<line x1='65' y1='48' x2='50' y2='92' stroke='#0A2540' stroke-width='2' opacity='.6'/>` +
   `</svg>`)}`;
 
+// Fun little squiggly audio-waveform rendered as inline SVG (no new asset).
+const waveformIcon = (c) => `data:image/svg+xml;utf8,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'>` +
+  `<g fill='none' stroke='${c}' stroke-width='9' stroke-linecap='round'>` +
+  `<line x1='4' y1='30' x2='4' y2='30'/>` +
+  `<line x1='17' y1='20' x2='17' y2='40'/>` +
+  `<line x1='30' y1='8' x2='30' y2='52'/>` +
+  `<line x1='43' y1='22' x2='43' y2='38'/>` +
+  `<line x1='56' y1='2' x2='56' y2='58'/>` +
+  `<line x1='69' y1='16' x2='69' y2='44'/>` +
+  `<line x1='82' y1='24' x2='82' y2='36'/>` +
+  `<line x1='95' y1='28' x2='95' y2='32'/>` +
+  `</g></svg>`)}`;
+
 // Collection stickers — pure flair, never gate ranks.
 export const COLLECTION_STICKERS = [
   // ---- Characters (earned first time you interact with each on home page) ----
@@ -167,6 +181,14 @@ export const COLLECTION_STICKERS = [
   { id: 'gem_7',  name: 'Week Gem',      category: 'gems', icon: gemIcon('#C58CFF', '#7B3FD1'), color: '#AF52DE', hint: 'Finish the daily quests on 7 different days' },
   { id: 'gem_14', name: 'Fortnight Gem', category: 'gems', icon: gemIcon('#FF7A8A', '#C8213C'), color: '#FF3B30', hint: 'Finish the daily quests on 14 different days' },
   { id: 'gem_30', name: 'Golden Gem',    category: 'gems', icon: gemIcon('#FFD84D', '#C9960A'), color: '#FFCC00', hint: 'Finish the daily quests on 30 different days' },
+];
+
+// Cover-decoration flair — NOT collection/achievement stickers (no earning,
+// never counted in Sticker Book totals). Only used by the Cover Designer.
+export const DECOR_STICKERS = [
+  { id: 'deco_waveform_purple', name: 'Waveform',      category: 'decor', icon: waveformIcon('#8E5BFF'), color: '#8E5BFF' },
+  { id: 'deco_waveform_pink',   name: 'Pink Waveform', category: 'decor', icon: waveformIcon('#FF2D85'), color: '#FF2D85' },
+  { id: 'deco_waveform_teal',   name: 'Teal Waveform', category: 'decor', icon: waveformIcon('#00B8D9'), color: '#00B8D9' },
 ];
 
 // Build sticker arrays/maps. Achievements come from the achievements file

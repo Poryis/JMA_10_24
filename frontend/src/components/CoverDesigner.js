@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Play, Check, X, Shuffle, User, Type, Mic } from 'lucide-react';
 import AvatarSprite from './AvatarSprite';
 import useStickers from '../hooks/useStickers';
-import { COLLECTION_STICKERS, STICKER_CATEGORIES } from '../data/stickers';
+import { COLLECTION_STICKERS, STICKER_CATEGORIES, DECOR_STICKERS } from '../data/stickers';
 
 export const SLEEVES = ['#FF2D85', '#1E9BFF', '#34A853', '#FF9500', '#8E5BFF', '#00B8D9', '#FFCC00', '#FF3B30', '#2EC4B6', '#F76FB8', '#1E2A47', '#F6F8FB'];
 export const LABELS = ['#111111', '#FFFFFF', '#FF2D85', '#1E9BFF', '#FFCC00', '#34A853', '#FF9500', '#8E5BFF'];
@@ -53,7 +53,7 @@ export function normalizeCover(c, fallbackColor) {
   return { color: c.color || fallbackColor, pattern: c.pattern || 'solid', frame: c.frame || 'none', label: c.label || '#111111', stickers: c.stickers || { main: c.sticker || 'me', tl: null, br: null }, title: c.title || null };
 }
 
-const ICON_OF = Object.fromEntries(COLLECTION_STICKERS.filter((s) => s.icon).map((s) => [s.id, s.icon]));
+const ICON_OF = Object.fromEntries([...COLLECTION_STICKERS, ...DECOR_STICKERS].filter((s) => s.icon).map((s) => [s.id, s.icon]));
 
 function SlotArt({ value, avatar, className }) {
   if (!value) return null;
@@ -105,8 +105,8 @@ function Swatches({ list, value, onPick, prefix }) {
 function StickerPicker({ cover, avatar, slot, setSlot, onPick }) {
   const { earned } = useStickers();
   const [cat, setCat] = useState('all');
-  const avail = COLLECTION_STICKERS.filter((s) => s.icon && (earned[s.id] || s.category === 'characters'));
-  const cats = STICKER_CATEGORIES.filter((c) => avail.some((s) => s.category === c.id));
+  const avail = [...COLLECTION_STICKERS.filter((s) => s.icon && (earned[s.id] || s.category === 'characters')), ...DECOR_STICKERS];
+  const cats = [...STICKER_CATEGORIES.filter((c) => avail.some((s) => s.category === c.id)), { id: 'decor', label: 'Decor' }];
   const shown = cat === 'all' ? avail : avail.filter((s) => s.category === cat);
   const cur = cover.stickers[slot];
   const tile = (on) => ({ background: '#F6F8FB', ...sel(on) });

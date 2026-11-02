@@ -82,6 +82,8 @@ function MyAlbum() {
   const avatar = readAvatarOutfit();
   const [covers, setCovers] = useState(loadCovers);
   const [editing, setEditing] = useState(null);
+  const [travel, setTravel] = useState(null);
+  const goTravel = (route) => { if (travel) return; setTravel(route); setTimeout(() => navigate(route), 550); };
   const tracks = useMemo(() => [
     ...loadSavedBeats().map((b) => ({ id: b.id, name: b.name, kind: 'beat', meta: `${b.bpm} BPM · Beat Lab`, route: `/loop-studio?beat=${b.id}`, at: b.createdAt || 0 })),
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: `/song-studio?song=${s.id}`, at: Date.parse(s.createdAt) || 0 })),
@@ -96,8 +98,8 @@ function MyAlbum() {
         <div data-testid="academy-album-empty" className="rounded-2xl p-4 text-center" style={{ background: '#F6F8FB', border: '3px dashed var(--jma-dark)' }}>
           <div className="font-black mb-3" style={{ color: 'var(--jma-dark)' }}>No tracks yet — go make your first one!</div>
           <div className="flex flex-wrap justify-center gap-2">
-            <button type="button" data-testid="academy-album-beatlab" onClick={() => navigate('/loop-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF2D85' }}><Drum className="w-4 h-4" strokeWidth={3} /> Beat Lab</button>
-            <button type="button" data-testid="academy-album-songstudio" onClick={() => navigate('/song-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF9500' }}><Music2 className="w-4 h-4" strokeWidth={3} /> Song Studio</button>
+            <button type="button" data-testid="academy-album-beatlab" onClick={() => goTravel('/loop-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF2D85' }}><Drum className="w-4 h-4" strokeWidth={3} /> Beat Lab</button>
+            <button type="button" data-testid="academy-album-songstudio" onClick={() => goTravel('/song-studio')} className="chunky-btn px-4 py-2 text-sm font-black text-white flex items-center gap-1.5" style={{ background: '#FF9500' }}><Music2 className="w-4 h-4" strokeWidth={3} /> Song Studio</button>
           </div>
         </div>
       ) : (
@@ -116,9 +118,12 @@ function MyAlbum() {
       )}
       <AnimatePresence>
         {editing && (
-          <CoverDesigner track={editing} cover={covers[editing.id]} avatar={avatar} onClose={() => setEditing(null)} onOpen={() => navigate(editing.route)}
+          <CoverDesigner track={editing} cover={covers[editing.id]} avatar={avatar} onClose={() => setEditing(null)} onOpen={() => goTravel(editing.route)}
             onSave={(cover) => { saveCover(editing.id, cover); setCovers(loadCovers()); setEditing(null); }} />
         )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {travel && <motion.div data-testid="academy-album-travel" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 90 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} />}
       </AnimatePresence>
     </Card>
   );

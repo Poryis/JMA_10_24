@@ -25,6 +25,7 @@ import { pickFeaturedEpisode } from '../data/jmatv';
 import useGamePaused from '../hooks/useGamePause';
 import { readFlags, setFlag } from '../data/avatars';
 import { brand } from '../lib/brand';
+import { SHOW_PARENT_PORTAL } from '../lib/flags';
 
 // Shelf layout scales with the viewport: a building is ~46% of the screen
 // height (capped by width) and everything else is derived from that.
@@ -621,7 +622,7 @@ export default function CampusMapPage({ plaza = false }) {
       <Bubbles className="absolute inset-0 z-[3]" />
       <BlimpFlyby zIndex={3} />
       <GameHeader title={plaza ? '' : zone.label} showHomeButton={!plaza} backTo="/home" keepTitle />
-      {plaza && (
+      {plaza && SHOW_PARENT_PORTAL && (
         <button type="button" data-testid="home-for-parents-link" onClick={() => navigate('/for-parents')}
           className="absolute top-3 right-3 md:top-4 md:right-6 z-20 text-[10px] md:text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full transition-transform hover:scale-105 active:scale-95"
           style={{ backgroundColor: 'rgba(255,255,255,0.8)', color: '#5A2989', border: '1.5px solid rgba(90,41,137,0.25)' }}>

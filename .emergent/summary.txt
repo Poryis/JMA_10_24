@@ -1,90 +1,66 @@
 <analysis>**original_problem_statement**: 
-The user is building an interactive educational musical world called Jelly of the Month Club Music Academy (JMA) for young children. They recently expressed concern that the app is too sandbox-y and kids might get overwhelmed by having too many options available at once. The user wants to improve replayability, focus, and framing to prevent cognitive overload. 
+The user is building an interactive educational musical world called Jelly of the Month Club Music Academy (JMA) for young children. To prevent cognitive overload and improve replayability, the app has an immersive Academy hub.
 PRODUCT REQUIREMENTS:
-- 3 Main Navigation Cards (to be restructured/gated).
-- New Today at the Academy Daily Quest system (3 daily tasks seeded by date, rewarding stickers/streaks).
-- Progressive UI reveal (gating complex sections until a certain rank is achieved).
-- Responsive mobile/tablet layout prioritizing touch interaction.
-- Configured for GitHub Pages deployment (, relative assets).
-- **STRATEGIC NOTE**: Path C (Backend, Teacher Accounts, Stripe Integration) remains STRICTLY PAUSED. Focus only on resolving the new app navigation structure, Beta Tester feedback, UI/UX polish, and performance issues before a GitHub Pages deployment.
+- Responsive mobile/tablet layout prioritizing touch interaction and horizontal landscape orientation.
+- Highly polished interactive UI with layered background animations extracted from custom PSDs.
+- **STRATEGIC NOTE**: Path C (Backend, Accounts, Stripe) remains STRICTLY PAUSED. Focus only on UI/UX polish, app-size optimization, and frontend responsiveness.
 
 **User's preferred language**: English (INSTRUCT next agent to respond in English only)
 
 **what currently exists?** 
-A highly polished, responsive frontend React application utilizing Tailwind, custom CSS animations, Web Audio API, and . It features multiple mini-games, a JMAtv video section, a DAW/Loop studio (Beat Lab), a free-play instrument room (Jam Session), and a solo guitar game (Shred Legend). Progress is tracked via a rank engine, achievements, stickers, and a practice streak.
+A highly polished, responsive frontend React application utilizing Tailwind, Framer Motion, and  (mocking a database). Features an immersive Academy hub, multiple mini-games, and a full Web Audio API-powered Jam Session, Song Studio, and Beat Lab to allow children to compose, record, and save their own music tracks. Strict CSS constraints (like ) force a landscape layout on mobile devices.
 
 **Last working item**: 
-    - Last item agent was working: The agent diagnosed the overwhelm issue and proposed a strategic UI restructure plan. The user agreed and forked the project to start fresh on this plan. The immediate next action is to build the Today at the Academy Daily Quest card as the new home-screen hero.
-    - Status: NOT STARTED
-    - Agent Testing Done: N
-    - Which testing method agent to use?: frontend testing agent / screenshot tool
+    - Last item agent was working: Replacing the cuckoo clock character pop-out animation on the Academy building during rank-up celebrations with a new, repeating firework sparkle animation.
+    - Status: USER VERIFICATION PENDING
+    - Agent Testing Done: Y
+    - Which testing method agent to use?: screenshot tool
     - User Testing Done: N
 
 **All Pending/In progress Issue list**: 
-  - Issue 1: Mobile UI Cut-offs (Fun Facts) (P0)
-     - Attempted fixes: None.
-     - Next debug checklist: Check  (Play Again button) at mobile widths (< 400px). Ensure it is fully visible above the fold or within scroll bounds.
-     - Why fix this issue and what will be achieved with the fix?: Beta tester reported they exist but are getting cut off on phone resolutions.
-     - Status: NOT STARTED
+  Issue 1: Asset Bloat & Optimization (Core reason for a previous fork, repeatedly deferred)
+     - Attempted fixes: None. The agent focused entirely on new UI and gameplay requests requested by the user.
+     - Next debug checklist: 1. Move  out of the app bundle. 2. Bulk convert heavy PNG assets in  to WebP via bash/python script (maintaining transparency). 3. Identify and delete completely unused assets. 4. Ensure references in codebase are updated to .
+     - Why fix this issue and what will be achieved with the fix?: Will reduce app bundle size from ~193MB to ~60-70MB for faster load times on school Wi-Fi.
+     - Status: NOT STARTED (P0)
      - Is recurring issue? N
-     - Should Test frontend/backend/both after fix?: frontend
-     - Blocked on other issue: None
-
-  - Issue 2: Robot Boogie UI Overlap (P0)
-     - Attempted fixes: None.
-     - Next debug checklist:  - Fix the title overlapping the Reset button and the tempo slider on mobile views.
-     - Why fix this issue and what will be achieved with the fix?: Prevents unclickable controls and visual mess.
-     - Status: NOT STARTED
-     - Is recurring issue? N
-     - Should Test frontend/backend/both after fix?: frontend
-     - Blocked on other issue: None
-
-  - Issue 3: Complete full testing pass of Note Names label toggle (P1)
-     - Attempted fixes: None.
-     - Next debug checklist: Boot up each game and ensure labels correctly reflect the active state of  (Solfège / Letters / Both).
-     - Why fix this issue and what will be achieved with the fix?: Ensures visual consistency across the app.
-     - Status: NOT STARTED
-     - Is recurring issue? N
-     - Should Test frontend/backend/both after fix?: frontend
+     - Should Test frontend/backend/both after fix?: frontend (visual regression testing across rooms)
      - Blocked on other issue: None
 
 **In progress Task List**: 
-  None actively in code progress (ideation and planning phase just completed).
+  None
 
 **Upcoming and Future Tasks**
-    Upcoming Tasks (Frontend Restructure - **NEW PRIORITY**):
-    - **Build Today at the Academy Daily Quest System** (P0): Create a daily quest card as the new home-screen hero. Needs to select 3 bite-sized tasks from existing games based on date, deep-link straight into the games, and reward a Daily Sticker + streak increment upon completion.
-    - **Progressive Reveal / First-session gating** (P0): Hide/lock 'LEARN' and 'CREATE' menus for brand-new users. Only 'PLAY' (with 3 games) is accessible initially. Unlock everything else when the kid reaches 'Cadet' rank (with ceremony). Parents can toggle unlock everything in the For Parents page.
-    - **Playground Shelf** (P1): Move non-game toys (Robot Boogie, Fun Facts, Jam Session) into a dedicated Playground sub-shelf so they don't dilute the main PLAY menu.
-    - **Weekly Special Case Rotation** (P1): Create rotating parameters/modifiers for Detective and Jukebox (e.g., Night Shift, Mirror Mode) that change weekly.
-    
-    Upcoming Tasks (Frontend Polish - Beta Feedback):
-    - **Run Full Code Review before launch** (P0): The user explicitly requested a reminder to run a code review before deploying to Github Pages.
-    - **Update For Parents Page Counts** (P1): Update static/hardcoded game and tool counts to reflect recent menu moves.
-    - **Fun Facts Clubhouse Progress** (P1): Add a tracker to show if you've discovered all characters, and a button to reset.
-    - **Music 101 Nudges** (P2): Add gentle nudges in games (if kids are struggling) to visit the Jelly Academy lessons to learn.
-    - **JMAtv LIVE Banner Update** (P2): Show the current airing content name on the LIVE banner on the JMAtv home screen.
-    
-    Future Tasks (Path C - The Big Backend Build - CURRENTLY PAUSED):
-    - **Stage 1**: Backend + Auth backbone (FastAPI/MongoDB).
-    - **Stage 2**: Accounts + progress sync.
-    - **Stage 3**: Teacher dashboard.
-    - **Stage 4**: Stripe + paywall.
+    - **Asset Optimization & Bloat Reduction** (P0): Execute the image conversion/cleanup discussed prior to the fork.
+    - **App Store Kids Category Compliance** (P1): Implement a Parental Gate (grown-up check) before external links or Vimeo videos can be accessed. Turn off Vimeo tracking.
+    - **Update For Parents Page Copy & Privacy Claims** (P1): Fix the privacy claims (COPPA + FERPA aligned, DPA signing) as they are currently unbacked by actual backend architecture, and add a For Schools — talk to us block.
+    - **Service Worker / PWA** (P1): Implement a service worker to ensure fast load times and cache assets.
+    - **Path C - The Big Backend Build** (PAUSED - P2): FastAPI/MongoDB, Accounts, Progress Sync, Teacher Dashboard. (Do not build until user explicitly requests it).
 
 **Completed work in this session**
-- Diagnosed application bloat/overwhelm issues based on user feedback (DONE)
-- Devised a 5-step UI restructuring plan focusing on framing, daily quests, and progressive reveals (DONE)
-- Consulted support_agent regarding forking strategy to start the restructuring cleanly (DONE)
+- Fixed avatars swimming backwards by applying  to missing avatar objects (DONE)
+- Full Jam Session saving flow: Recording now captures the entire mix (loops + live performance), saves the MP3, and allows adding it to My Album (DONE)
+- Implemented Play at the Main Stage for saved Jams, causing the avatar and audience to dance in Rank Hall (DONE)
+- Fixed bug where opening a saved song/beat from Creation Station into Beat Lab/Song Studio loaded a blank grid (added URL params) (DONE)
+- Added Jam Cover Art visual accents (a purple JAM mic badge) to distinguish Jams from Beats in My Album (DONE)
+- Added Waveform squiggle stickers (Decor category) to Cover Designer (DONE)
+- Replaced character peek with Fireworks on Academy roof for rank-up celebrations (DONE)
 
 **Earlier issues found/mentioned but not fixed**
-   - Issue 1: Jelly Jukebox difficulty curve and note syncing feels slightly off or grindy.
-     - Debug checklist: User explicitly instructed to table grinding at Jelly Jukebox to focus on higher priority items. Do not work on it unless requested again.
-     - Why to solve this issue and what will be achieved with this?: Improves rhythm game feel.
-     - Should Test frontend/backend/both after fix: frontend
-     - Is recurring issue? Y
+   Issue 1: Jelly Jukebox difficulty curve feels grindy.
+   - Debug checklist: User explicitly put this on hold previously. Do not work on it unless requested again.
+   - Why to solve this issue and what will be achieved with this?: Improves rhythm game feel.
+   - Should Test frontend/backend/both after fix: frontend
+   - Is recurring issue? Y
+   
+   Issue 2: Hey Pachuco stage.psd Integration.
+   - Debug checklist: User explicitly put this on hold.
+   - Why to solve this issue and what will be achieved with this?: Utilizes custom artwork for a second stage venue.
+   - Should Test frontend/backend/both after fix: frontend
+   - Is recurring issue? N
 
 **Known issue recurrence from previous fork**
-  - Issue recurrence in previous fork: None
+  - Issue recurrence in previous fork: 0
   - Recurrence count: 0
   - Status: RESOLVED
 
@@ -92,69 +68,68 @@ A highly polished, responsive frontend React application utilizing Tailwind, cus
 
 
 **Key Technical Concepts**
-- Frontend-only React app using Tailwind CSS.
-- **Routing**:  is explicitly required for GitHub Pages.
-- **Audio Context**: Custom hooks for Web Audio API. Heavy scheduling logic in Beat Lab.
-- **State/Persistence**: Heavy reliance on  for ranks, achievements, stickers, and streaks.
+- Frontend-only React app utilizing Tailwind CSS and Framer Motion.
+- **State & Storage**: Heavy  usage mocking a DB.
+- **Web Audio API**: extensive use of , custom oscillators, buffer nodes, and  for recording Jam Sessions.
+- **UI Responsiveness**: Strict reliance on CSS media queries and screen-scaling wrappers for mobile landscape.
 
 **key DB schema**
-  - Currently purely  for progress. (e.g., ).
+  - None (DB mocked in ).
 
 **changes in tech stack**
-  - None
+  - None.
 
 **All files of reference** 
-  - , , : Reference files to tap into the existing streak/mission logic for the new Daily Quest system.
-  - : Needs a massive refactor to accommodate the Today at the Academy Daily Quest hero card.
-  - 
+  - : Updated to fix swimming directional orientation.
+  - : Updated to handle full-track recording and save-to-album flows.
+  -  & : Modified to tap  correctly.
+  -  & : Updated to consume query params and initialize correct saved project states.
+  - : Updated to handle 'Jam' specific badges and new decor stickers.
+  - : Updated to remove Cuckoo character and introduce the  components.
+  - : Maintained/updated with implemented features.
 
 **Areas that need refactoring**: 
-  -  and  need refactoring to implement progressive unlocks and the Playground shelf. 
+  - Image assets in  urgently need mass conversion to WebP format to resolve bundle bloat.
+  -  needs to be removed from the build bundle.
 
 **key api endpoints**
-  - None yet.
+  - N/A (Backend paused).
 
 **Critical Info for New Agent** 
-  - **PATH C PAUSED**: Do NOT begin work on FastAPI, MongoDB, or Teacher Dashboards. Stick strictly to the UI/UX feedback loop.
-  - **New Execution Priority**: The user just forked specifically to implement the anti-overwhelm UX plan. **Your immediate first step** is to start building the Today at the Academy Daily Quest hero card on the Home Screen. It should serve 3 seeded daily quests, grant a sticker/streak upon completion, and deep-link directly to games.
-  - No new currencies should be invented for the quest system—stick to the existing Stickers and Practice Streak hooks.
+  - **PATH C PAUSED**: Do NOT build backend elements. Continue relying solely on UI updates and .
+  - **Bloat Reduction Pending**: The user originally forked prior sessions specifically to run the WebP conversion and press kit cleanup. This is a P0 task that the agents keep skipping due to immediate UI/gameplay requests. Address this proactively if the user stops providing immediate gameplay feature requests.
 
 **documents and test reports created in this job** 
-  -  (Needs updating with the new Daily Quest / App Restructuring architecture)
-  -  
+  - 
 
 **Last 10 User Messages and any pending HUMAN messages** 
- 1. User: Worried about kids getting overwhelmed by the sandbox. Asked for suggestions (Daily levels, Mario scroller, etc.) to make it replayable but not bloated.
- 2. Agent: Executed bash to check hooks/data for existing progression infrastructure.
- 3. User: Provided bash output.
- 4. Agent: Executed bash again.
- 5. User: Provided bash output.
- 6. Agent: Outlined plan: 1. Daily Quest hero. 2. Progressive reveal. 3. Playground shelf for toys. 4. Weekly variants. 5. P0 bug fixes. Recommended holding off on Mario scroller.
- 7. User: Asked I think i should fork first yeah?
- 8. Agent: Called support_agent for forking instructions.
- 9. User: Provided support_agent response.
- 10. Agent: Confirmed forking was a great idea and advised ensuring the fork summary captures the agreed-upon 5-step plan.
-(NO PENDING HUMAN MESSAGES)
+ 1. User: Ok a lot of avatars are swimming backwards...
+ 2. User: Ok so saving a Jam session with one of my songs, only records the part that I played in the jam session, not the track i made+what I performed over it. Also, I have no what of bringing that full composition into the album designer, or playing it at the main stage
+ 3. User: [Response to ask_human] Save it to My Album. Pick a saved recording to play while your Jelly takes a bow. All the audience dances When my song plays. It would be nice if the avatar also danced.
+ 4. User: when I go to creation station and I click a song and I click open in beat lab, it takes me to beat lab, but with a blank MPC
+ 5. User: Jam Cover Art: Add visual accents on saved jams to distinguish them easily in the album.
+ 6. User: Jam Waveform Sticker: Add a fun little waveform squiggle sticker option in the Stickers tab so kids can decorate jam covers even more
+ 7. User: For rank up celebration, we have a character coming out of the top window of the academy building. Is there another option? One without the character peeking out?
+ 8. User: [Response to ask_human] Fireworks over the roof. 
+ *(All requested items successfully implemented and finished. Verification pending.)*
 
 **Project Health Check:**
-- Broken: None
+- Broken: None.
 - Mocked: User accounts/DB ().
 
 **3rd Party Integrations** 
-- Vimeo Player SDK (for lessons/JMAtv LIVE).
+- Vimeo Player SDK
 
 **Testing status**
-  - Testing agent used after significant changes: NO 
+  - Testing agent used after significant changes: NO
   - Troubleshoot agent used after agent stuck in loop: NO
   - Test files created: None
   - Known regressions: None
 
 **Credentials to test flow:**
 N/A
+**User queued request)**
+Reduce app bloat: (1) move /app/frontend/public/press out of the app, (2) convert PNG assets to WebP with transparency, at the same visual quality, and update every code reference, (3) delete truly unused assets after checking each one, including names the code builds on the fly. Take before-and-after screenshots of every room and game to confirm nothing changed visually.
 
 **What agent forgot to execute**
-- The P0 bug fixes (Mobile UI Cut-offs for Fun Facts & Robot Boogie overlap) were deferred again, explicitly to prioritize the new Daily Quest and UI framing restructuring.
-
-**Debugging checklist for current issue**
-    Issue: App feels too sandbox-y and overwhelming for kids.
-    Next Action: Begin executing the agreed-upon plan. Start by implementing step 1: The Today at the Academy Daily Quest card as the new home-screen hero, utilizing existing hooks (, ) and sticker data. Ensure you call  to verify your implementation approach before heavily modifying .</analysis>
+- The agent successfully completed all immediate UI/audio requests but entirely ignored the **Asset Bloat & Optimization** task (WebP bulk conversion and  folder removal) yet again. This was the primary reason for the original fork in the initial problem statement. This remains a P0 priority. App Store Kids compliance tasks were also left untouched.</analysis>

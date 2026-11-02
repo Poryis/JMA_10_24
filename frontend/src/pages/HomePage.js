@@ -20,6 +20,7 @@ import usePracticeStreak from '../hooks/usePracticeStreak';
 import useDailyQuests from '../hooks/useDailyQuests';
 import { say } from '../lib/voice';
 import { pickFeaturedEpisode } from '../data/jmatv';
+import { SHOW_PARENT_PORTAL } from '../lib/flags';
 
 // Easter-egg animation variants for the shield. Click cycles through them.
 const SHIELD_ANIMS = [
@@ -506,25 +507,24 @@ function HomePage() {
       {/* Drifting Jelly Rocks blimp — behind everything */}
       <BlimpFlyby />
 
-      {/* Tiny "For Grown-Ups" link — top-right, low visual weight. Lets a
-          parent OR teacher on the kid Home reach the marketing/pitch page
-          without hunting for it. Called "Grown-Ups" instead of "Parents"
-          so it doesn't feel weird in a classroom context. Deliberately
-          small so kids don't tap it. */}
-      <button
-        type="button"
-        data-testid="home-for-parents-link"
-        onClick={() => navigate('/for-parents')}
-        className="absolute top-3 right-3 md:top-4 md:right-6 z-20 text-[10px] md:text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full transition-transform hover:scale-105 active:scale-95"
-        style={{
-          backgroundColor: 'rgba(255,255,255,0.7)',
-          color: '#5A2989',
-          border: '1.5px solid rgba(90,41,137,0.25)',
-          backdropFilter: 'blur(4px)',
-        }}
-      >
-        For Grown-Ups
-      </button>
+      {/* "For Grown-Ups" link hidden pre-launch (SHOW_PARENT_PORTAL flag) —
+          flip it back on in lib/flags.js when ready to show the pitch page. */}
+      {SHOW_PARENT_PORTAL && (
+        <button
+          type="button"
+          data-testid="home-for-parents-link"
+          onClick={() => navigate('/for-parents')}
+          className="absolute top-3 right-3 md:top-4 md:right-6 z-20 text-[10px] md:text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full transition-transform hover:scale-105 active:scale-95"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.7)',
+            color: '#5A2989',
+            border: '1.5px solid rgba(90,41,137,0.25)',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          For Grown-Ups
+        </button>
+      )}
 
       {/* Sky doodles — float behind the hero */}
       {SKY_DOODLES.map((d, i) => (

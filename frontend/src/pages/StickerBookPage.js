@@ -257,12 +257,12 @@ export default function StickerBookPage() {
       <div className="fixed top-0 left-0 right-0 backdrop-blur-md border-b-4 border-[var(--jma-dark)] px-4 py-2 flex items-center gap-3 z-40" style={{ background: 'rgba(10,37,64,0.92)' }}>
         <button data-testid="sticker-home-btn" onClick={() => navigate('/')}
           aria-label="Home"
-          className="flex flex-col items-center group cursor-pointer bg-transparent border-0 p-0">
+          className="flex flex-col items-center group cursor-pointer bg-transparent border-0 p-0 flex-shrink-0">
           <div
-            className="rounded-2xl border-3 border-white/70 shadow-[0_3px_0_0_rgba(255,255,255,0.5)] group-hover:shadow-[0_5px_0_0_rgba(255,255,255,0.5)] transition-shadow p-1"
+            className="rounded-2xl border-3 border-white/70 shadow-[0_3px_0_0_rgba(255,255,255,0.5)] group-hover:shadow-[0_5px_0_0_rgba(255,255,255,0.5)] transition-shadow w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 flex items-center justify-center p-1"
             style={{ backgroundColor: 'var(--jma-dark)' }}
           >
-            <HarpIcon size={34} />
+            <HarpIcon />
           </div>
           <span className="text-[9px] font-black uppercase tracking-wide mt-0.5 px-1.5 rounded-full"
             style={{ color: 'white', backgroundColor: 'var(--jma-dark)' }}>

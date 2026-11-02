@@ -6,7 +6,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Camera, Music, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { Play, Check, Stamp, Star, Printer, CircleHelp, Music2, Drum, Palette, X, Camera, Music, Sparkles, Volume2, VolumeX, Lock } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import HowRanksWorkModal from '../components/HowRanksWorkModal';
 import AvatarSprite from '../components/AvatarSprite';
@@ -22,7 +22,7 @@ import useDailyQuests from '../hooks/useDailyQuests';
 import useRank from '../hooks/useRank';
 import useStickers from '../hooks/useStickers';
 import usePlayer from '../hooks/usePlayer';
-import { readAvatarOutfit } from '../hooks/useAvatar';
+import { readAvatarOutfit, readAvatar } from '../hooks/useAvatar';
 import { loadSavedBeats } from '../hooks/useSavedBeats';
 import { loadSavedJams } from '../hooks/useSavedJams';
 import { ACHIEVEMENT_STICKERS } from '../data/achievements';
@@ -259,22 +259,29 @@ function Easels({ onEmpty }) {
 }
 
 // The Creation Station laptop plays a bouncing equaliser on its tilted screen; tap it to open Beat Lab.
+// Locked (dimmed, padlock overlay) until a character is chosen — tapping it then sends the kid to the Dressing Room instead.
 const EQ_BARS = ['#FF2D85', '#FFCC00', '#7CFF6B', '#FFFFFF', '#FF9500', '#B36BFF', '#FF2D85'];
 const SCREEN_QUAD = [[4.4, 0], [100, 12.2], [97.1, 100], [0, 76.2]];
-function LaptopEQ() {
+function LaptopEQ({ locked }) {
   const navigate = useNavigate();
   return (
     <div className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 6 }}>
-      <button type="button" data-testid="academy-laptop-beatlab" aria-label="Open Beat Lab" onClick={() => navigate('/loop-studio')}
+      <button type="button" data-testid="academy-laptop-beatlab" data-locked={locked ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Open Beat Lab'}
+        onClick={() => navigate(locked ? '/home?go=dressing-room' : '/loop-studio')}
         className="absolute pointer-events-auto cursor-pointer border-0 p-0 bg-transparent"
         style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}>
         <QuadFit quad={SCREEN_QUAD}>
-          <span className="absolute inset-0 flex items-end justify-center" style={{ gap: 10, padding: '40px 22px 40px', background: 'linear-gradient(180deg, rgba(10,37,64,0.1), rgba(10,37,64,0.4))' }}>
+          <span className="absolute inset-0 flex items-end justify-center" style={{ gap: 10, padding: '40px 22px 40px', background: 'linear-gradient(180deg, rgba(10,37,64,0.1), rgba(10,37,64,0.4))', filter: locked ? 'grayscale(1) brightness(0.55)' : 'none' }}>
             {EQ_BARS.map((c, i) => (
               <motion.span key={i} className="block rounded-t-sm" style={{ width: 14, height: '100%', background: c, transformOrigin: 'bottom', boxShadow: `0 0 8px ${c}` }}
-                animate={{ scaleY: [0.25, 1, 0.45, 0.85, 0.3] }} transition={{ repeat: Infinity, duration: 0.9 + (i % 3) * 0.25, delay: -i * 0.17, ease: 'easeInOut' }} />
+                animate={locked ? { scaleY: 0.3 } : { scaleY: [0.25, 1, 0.45, 0.85, 0.3] }} transition={locked ? {} : { repeat: Infinity, duration: 0.9 + (i % 3) * 0.25, delay: -i * 0.17, ease: 'easeInOut' }} />
             ))}
           </span>
+          {locked && (
+            <span className="absolute inset-0 flex items-center justify-center">
+              <Lock className="w-[22%] h-[22%]" strokeWidth={2.5} style={{ color: 'white', filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.6))' }} />
+            </span>
+          )}
         </QuadFit>
       </button>
     </div>
@@ -333,6 +340,8 @@ export default function AcademyPage() {
     return () => window.removeEventListener('resize', fit);
   }, []);
   const Panel = panel ? PANELS[panel] : null;
+  const avatarChosen = readAvatar().chosen;
+  const goDressingRoom = () => navigate('/home?go=dressing-room');
   const poke = (k, sfx, maxMs) => { setWiggle((o) => ({ ...o, [k]: o[k] + 1 })); if (sfx) ding(sfx, maxMs); };
   const goOut = () => { if (leaving) return; setLeaving(true); setTimeout(() => navigate('/home'), 650); };
 
@@ -348,7 +357,7 @@ export default function AcademyPage() {
       <motion.div data-testid="academy-hall" data-leaving={leaving ? 'true' : 'false'} className="absolute" style={{ width: box.w, height: box.h, left: box.left, top: box.top, transformOrigin: '55.8% 48%' }}
         initial={{ scale: 1.08, opacity: 0 }} animate={leaving ? { scale: 3.2, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : { duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}>
         {/* the plaza, alive, seen through the archway (behind the plate) */}
-        <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} avatar={readAvatarOutfit()} />
+        <AcademyPortal style={L.hole} onEnter={goOut} disabled={leaving} avatar={readAvatarOutfit()} locked={!avatarChosen} onLocked={goDressingRoom} />
         {/* the painted room — the archway is a transparent hole in this plate */}
         <img src={`${ROOM}plate.webp`} alt="" draggable={false} className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }} />
         <Bubbles className="absolute inset-0 z-[3]" density={3} />
@@ -407,7 +416,7 @@ export default function AcademyPage() {
             animate={{ scale: [1, 1.03, 1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 1.2, ease: 'easeOut' }} />
         </div>
         <Prop id="creation-top" pos={L.art} z={4} />
-        <LaptopEQ />
+        <LaptopEQ locked={!avatarChosen} />
         <Easels onEmpty={() => setPanel('album')} />
         <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" color="#FF2D85" onClick={() => setPanel('album')} />
 

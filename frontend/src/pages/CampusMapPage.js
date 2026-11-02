@@ -241,53 +241,72 @@ function AcademyFlair() {
   );
 }
 
-// The Academy's cuckoo: the kid's current rank character pops out onto the
-// clock-tower ledge (assets/plaza/academy.png — door ≈ x 61.6%, ledge y 31%).
-// The first time a NEW rank shows up here, the doors swing open with a chime.
-const CUCKOO_SEEN_KEY = 'jma_cuckoo_seen_rank_v1';
+// A quick firework sparkle burst — several colored sparks radiate out from a
+// point and fade. Used for the Academy's rank-up celebration (no character).
+function FireworkBurst({ color, delay = 0 }) {
+  const sparks = Array.from({ length: 12 }, (_, i) => i);
+  const repeatProps = { repeat: 2, repeatDelay: 0.9 };
+  return (
+    <motion.div className="absolute" style={{ left: 0, top: 0, width: 0, height: 0 }}>
+      <motion.span className="absolute rounded-full" style={{ width: 16, height: 16, left: -8, top: -8, background: 'white', boxShadow: `0 0 22px 10px ${color}` }}
+        initial={{ scale: 0, opacity: 0 }} animate={{ scale: [0, 1.6, 0], opacity: [0, 1, 0] }} transition={{ delay, duration: 0.6, ...repeatProps }} />
+      {sparks.map((i) => {
+        const angle = (i / sparks.length) * Math.PI * 2;
+        const dist = 46 + (i % 3) * 10;
+        return (
+          <motion.span key={i} className="absolute rounded-full" style={{ width: 8, height: 8, left: -4, top: -4, background: color, boxShadow: `0 0 6px 1px ${color}` }}
+            initial={{ x: 0, y: 0, opacity: 0, scale: 1 }}
+            animate={{ x: [0, Math.cos(angle) * dist], y: [0, Math.sin(angle) * dist], opacity: [0, 1, 0], scale: [1, 0.4] }}
+            transition={{ delay, duration: 1.1, ease: 'easeOut', ...repeatProps }} />
+        );
+      })}
+    </motion.div>
+  );
+}
+
+// Celebrates a new rank with fireworks bursting over the Academy's rooftop
+// (weathervane sits ~top 9%, left 50-62% of the building — fireworks spread
+// just above/around it, positioned the same way as AcademyFlair's vane/flag).
+const RANK_FX_SEEN_KEY = 'jma_rank_fx_seen_v1';
 const CHIME = ['xylo G.mp3', 'xylo b.mp3', 'xylo High c.mp3'];
+const FIREWORK_SPOTS = [
+  { left: '38%', top: '2%', color: '#FFCC00', delay: 0 },
+  { left: '72%', top: '0%', color: '#FF2D85', delay: 0.25 },
+  { left: '55%', top: '-9%', color: '#FF7A1A', delay: 0.5 },
+];
 function Cuckoo() {
   const { currentRank } = useRank();
   const paused = useGamePaused(); // true while the rank-up card / sticker toast covers the plaza
-  const [out, setOut] = useState(false);
   const [moment, setMoment] = useState(false);
   const rootRef = useRef(null);
   useEffect(() => {
-    setOut(false);
-    const isNew = localStorage.getItem(CUCKOO_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
-    // A new rank also shows the full-screen rank-up card; wait for it to be dismissed so the cuckoo isn't hidden behind it.
-    if (isNew && paused) return undefined;
+    const isNew = localStorage.getItem(RANK_FX_SEEN_KEY) !== currentRank.id && currentRank.id !== 'polliwog';
+    if (!isNew) return undefined;
+    // A new rank also shows the full-screen rank-up card; wait for it to be dismissed so the fireworks aren't hidden behind it.
+    if (paused) return undefined;
     // Bring the Academy on screen first so the moment is actually seen (after the plaza's own scroll reset).
-    const s = isNew ? setTimeout(() => rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 350) : null;
+    const s = setTimeout(() => rootRef.current?.closest('[data-testid^="campus-building-"]')?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 350);
     const t = setTimeout(() => {
-      setOut(true);
-      if (!isNew) return;
       setMoment(true);
       CHIME.forEach((f, i) => setTimeout(() => { const a = new Audio(encodeURI(`assets/audio/${f}`)); a.volume = 0.7; a.play().catch(() => {}); }, i * 160));
       say('charlie.academy.rankup', { delayMs: 700 });
-      localStorage.setItem(CUCKOO_SEEN_KEY, currentRank.id);
+      localStorage.setItem(RANK_FX_SEEN_KEY, currentRank.id);
       setTimeout(() => setMoment(false), 4000);
-    }, isNew ? 1800 : 900);
-    return () => { clearTimeout(t); if (s) clearTimeout(s); };
+    }, 1800);
+    return () => { clearTimeout(t); clearTimeout(s); };
   }, [currentRank.id, paused]);
-  const door = { position: 'absolute', top: 0, bottom: 0, width: '50%', background: 'linear-gradient(90deg, #8B5A2B, #A66A33)', border: '2px solid var(--jma-dark)', boxSizing: 'border-box' };
   return (
-    <div ref={rootRef} aria-hidden="true" data-testid="academy-cuckoo" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute pointer-events-none" style={{ left: '60.3%', width: '7%', top: '29.3%', height: '7%', zIndex: 2, perspective: 300 }}>
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.img src={currentRank.icon} alt="" className="absolute left-1/2 bottom-0 h-[82%] w-auto object-contain object-bottom"
-          initial={false} animate={out ? { y: '0%', x: '-50%', scale: moment ? [1, 1.15, 1] : 1 } : { y: '110%', x: '-50%', scale: 0.8 }} transition={moment ? { type: 'spring', stiffness: 260, damping: 14, scale: { repeat: 3, duration: 0.5 } } : { type: 'spring', stiffness: 260, damping: 18 }} />
-      </div>
+    <div ref={rootRef} aria-hidden="true" data-testid="academy-rankup-fx" data-rank={currentRank.id} data-moment={moment ? 'true' : 'false'} className="absolute inset-0 pointer-events-none" style={{ zIndex: 6 }}>
       <AnimatePresence>
-        {moment && (
-          <motion.div key="doors" className="absolute pointer-events-none" style={{ left: '14%', right: '14%', top: '6%', bottom: '28%', borderRadius: '45% 45% 6% 6% / 35% 35% 6% 6%', overflow: 'hidden', zIndex: 3 }} initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <motion.span style={{ ...door, left: 0, transformOrigin: 'left center' }} initial={{ rotateY: 0 }} animate={{ rotateY: -110 }} transition={{ duration: 0.6, ease: 'easeOut' }} />
-            <motion.span style={{ ...door, right: 0, transformOrigin: 'right center' }} initial={{ rotateY: 0 }} animate={{ rotateY: 110 }} transition={{ duration: 0.6, ease: 'easeOut' }} />
-          </motion.div>
-        )}
+        {moment && FIREWORK_SPOTS.map((f, i) => (
+          <div key={i} className="absolute" style={{ left: f.left, top: f.top }}>
+            <FireworkBurst color={f.color} delay={f.delay} />
+          </div>
+        ))}
       </AnimatePresence>
       <AnimatePresence>
         {moment && (
-          <motion.span key="rankup" data-testid="academy-cuckoo-banner" className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 font-display font-black" style={{ top: '-45%', fontSize: 'clamp(10px, 1.1vw, 15px)', background: '#FFCC00', color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }} initial={{ opacity: 0, y: 10, scale: 0.7 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10 }}>
+          <motion.span key="rankup" data-testid="academy-rankup-banner" className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 font-display font-black" style={{ top: '-8%', fontSize: 'clamp(10px, 1.1vw, 15px)', background: '#FFCC00', color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }} initial={{ opacity: 0, y: 10, scale: 0.7 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10 }}>
             <Sparkles className="inline w-[1em] h-[1em] -mt-0.5 mr-1" strokeWidth={3} /> {currentRank.title.toUpperCase()}!
           </motion.span>
         )}

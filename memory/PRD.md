@@ -1,5 +1,10 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-02 (later) — Rank-up celebration: fireworks instead of a character peeking out (tested, pass)
+- Replaced the Academy's "cuckoo" moment (character pops onto the clock-tower ledge, doors swing open) with a **fireworks burst over the rooftop** per user's choice — doors stay shut, no character appears at all (removed the always-on ambient ledge character too, not just the rank-up moment).
+- `CampusMapPage.js`: `Cuckoo` component now renders 3 staggered, repeating `FireworkBurst`s (gold/pink/orange — avoided blue, which disappeared against the ocean backdrop) positioned above the weathervane, plus the existing "RANK TITLE!" banner/chime/voice-line. Same trigger logic (new rank, not `polliwog`, waits for the full-screen rank-up card to be dismissed, scrolls the Academy into view). Renamed localStorage key to `jma_rank_fx_seen_v1` (old `jma_cuckoo_seen_rank_v1` abandoned — existing players will see fireworks once for their current rank after this ships).
+- Verified via screenshot across multiple frames of the 4s celebration window: all 3 colored bursts clearly visible above the roof, repeating, banner shows, no character/door animation.
+
 ## 2026-11-02 — Jam Waveform stickers in Cover Designer (tested, pass)
 - Added 3 squiggly audio-waveform stickers (purple/pink/teal, inline SVG — no new image assets, keeps bundle size down) to the Cover Designer's Stickers tab, always available (no earning needed) via a new `DECOR_STICKERS` export in `data/stickers.js`, kept separate from `COLLECTION_STICKERS` so they don't pollute Sticker Book totals/progress. New "Decor" category chip in `CoverDesigner.js`'s `StickerPicker`. Verified via screenshot: all 3 variants show under "All" and "Decor", placing one renders correctly on the sleeve (tested on a Jam cover, works the same on Beat/Song covers).
 

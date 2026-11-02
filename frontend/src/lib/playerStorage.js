@@ -68,6 +68,7 @@ const KEYS = {
   revealSeen:       'jma_reveal_seen_v1',
   unlockAll:        'jma_unlock_all_v1',
   avatar:           'jma_avatar_v1',
+  tour:             'jma_tour_v1',
 };
 
 function readJson(key, fallback) {
@@ -206,6 +207,7 @@ export function resetAllPlayerData() {
     KEYS.questDays,
     KEYS.revealSeen,
     KEYS.avatar,
+    KEYS.tour,
   ];
   try {
     playerScopedKeys.forEach(k => localStorage.removeItem(k));

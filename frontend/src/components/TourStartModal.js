@@ -44,6 +44,7 @@ export default function TourStartModal() {
   const step = quests.find((q) => q.id === 't_character');
   const isMarketingPage = location.pathname === '/for-parents';
   const show = tour && !tourDone && !!step && !step.done && !needsUnlock && (!!player || nameSkipped()) && !isMarketingPage && !dismissed;
+  const compact = viewport.height < 420; // short landscape phone — shrink so the CTA fits without scrolling
 
   const go = () => { setDismissed(true); navigate(step.route); };
 
@@ -54,11 +55,11 @@ export default function TourStartModal() {
           data-testid="tour-start-modal"
           className="fixed inset-x-0 top-0 z-[140] overflow-y-auto"
           style={{ height: viewport.height, background: 'radial-gradient(circle at 50% 40%, rgba(10,37,64,0.55) 0%, rgba(10,37,64,0.85) 100%)', backdropFilter: 'blur(6px)' }}
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, pointerEvents: 'none' }}
         >
           <div className="min-h-full flex items-center justify-center p-4">
           <motion.div
-            className="relative bg-white rounded-3xl border-4 p-5 md:p-8 max-w-sm w-full text-center my-4"
+            className={`relative bg-white rounded-3xl border-4 max-w-sm w-full text-center my-4 ${compact ? 'p-3' : 'p-5 md:p-8'}`}
             style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 10px 0 0 var(--jma-dark)' }}
             initial={{ scale: 0.7, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', delay: 0.1 }}
@@ -71,18 +72,18 @@ export default function TourStartModal() {
 
             <motion.img
               src="assets/characters/charlie.png" alt="" draggable={false}
-              className="mx-auto mb-2" style={{ width: 80, filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }}
+              className="mx-auto mb-2" style={{ width: compact ? 48 : 80, filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }}
               animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
             />
-            <h1 className="text-lg md:text-2xl font-black font-display mb-1" style={{ color: 'var(--jma-dark)' }}>
+            <h1 className={`font-black font-display mb-1 ${compact ? 'text-base' : 'text-lg md:text-2xl'}`} style={{ color: 'var(--jma-dark)' }}>
               Welcome to the Academy!
             </h1>
-            <p className="text-sm md:text-base font-bold mb-4" style={{ color: 'var(--jma-dark)', opacity: 0.8 }}>
+            <p className={`font-bold ${compact ? 'text-xs mb-2' : 'text-sm md:text-base mb-4'}`} style={{ color: 'var(--jma-dark)', opacity: 0.8 }}>
               First things first — let&apos;s pick your character so everyone at school knows who you are!
             </p>
             <button
               type="button" data-testid="tour-start-modal-go" onClick={go}
-              className="chunky-btn w-full px-5 py-3 flex items-center justify-center gap-2 text-base font-black text-white"
+              className={`chunky-btn w-full flex items-center justify-center gap-2 font-black text-white ${compact ? 'px-4 py-2 text-sm' : 'px-5 py-3 text-base'}`}
               style={{ backgroundColor: 'var(--jma-green)' }}
             >
               Pick My Character <ArrowRight className="w-5 h-5" />

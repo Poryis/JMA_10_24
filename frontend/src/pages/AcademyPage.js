@@ -264,12 +264,20 @@ const EQ_BARS = ['#FF2D85', '#FFCC00', '#7CFF6B', '#FFFFFF', '#FF9500', '#B36BFF
 const SCREEN_QUAD = [[4.4, 0], [100, 12.2], [97.1, 100], [0, 76.2]];
 function LaptopEQ({ locked }) {
   const navigate = useNavigate();
+  const [leaving, setLeaving] = useState(false);
+  const go = () => {
+    if (locked) { navigate('/home?go=dressing-room'); return; }
+    if (leaving) return;
+    setLeaving(true);
+    setTimeout(() => navigate('/loop-studio'), 650);
+  };
   return (
     <div className="absolute pointer-events-none" style={{ ...L.art, aspectRatio: '3307 / 2284', zIndex: 6 }}>
-      <button type="button" data-testid="academy-laptop-beatlab" data-locked={locked ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Open Beat Lab'}
-        onClick={() => navigate(locked ? '/home?go=dressing-room' : '/loop-studio')}
+      <motion.button type="button" data-testid="academy-laptop-beatlab" data-locked={locked ? 'true' : 'false'} data-leaving={leaving ? 'true' : 'false'} aria-label={locked ? 'Pick your character first' : 'Open Beat Lab'}
+        onClick={go} disabled={leaving}
         className="absolute pointer-events-auto cursor-pointer border-0 p-0 bg-transparent"
-        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}>
+        style={{ left: '25.19%', top: '28.06%', width: '15.57%', height: '14.71%', clipPath: 'polygon(4.4% 0, 100% 12.2%, 97.1% 100%, 0 76.2%)' }}
+        animate={leaving ? { scale: 2.6, opacity: 0 } : { scale: 1, opacity: 1 }} transition={leaving ? { duration: 0.65, ease: [0.6, 0, 0.8, 1] } : {}}>
         <QuadFit quad={SCREEN_QUAD}>
           <span className="absolute inset-0 flex items-end justify-center" style={{ gap: 10, padding: '40px 22px 40px', background: 'linear-gradient(180deg, rgba(10,37,64,0.1), rgba(10,37,64,0.4))', filter: locked ? 'grayscale(1) brightness(0.55)' : 'none' }}>
             {EQ_BARS.map((c, i) => (
@@ -283,7 +291,8 @@ function LaptopEQ({ locked }) {
             </span>
           )}
         </QuadFit>
-      </button>
+      </motion.button>
+      {leaving && <motion.div data-testid="academy-laptop-transition" className="fixed inset-0 pointer-events-none" style={{ background: 'var(--jma-dark)', zIndex: 60 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.15 }} />}
     </div>
   );
 }
@@ -423,7 +432,7 @@ export default function AcademyPage() {
         {/* Charlie on the rug */}
         <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '56%', bottom: '14%', width: '11%', zIndex: 6 }}>
           <AnimatePresence mode="wait">
-            <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '115%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
+            <motion.span key={line} data-testid="academy-charlie-bubble" className="mb-1 rounded-2xl px-3 py-1.5 text-[10px] md:text-xs font-black text-center bg-white pointer-events-none" style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', minWidth: '115%' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}>{WELCOME[line]}</motion.span>
           </AnimatePresence>
           <motion.img src="assets/characters/charlie.png" alt="" draggable={false} className="w-full h-auto" style={{ filter: 'drop-shadow(0 6px 0 rgba(2,36,63,0.25))' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
         </button>

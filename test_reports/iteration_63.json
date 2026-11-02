@@ -1,0 +1,32 @@
+{
+  "summary": "Frontend-only Playwright testing of the TourStartModal landscape-clipping fix, Dressing Room back-to-Quest-Board button, portal/laptop hard locks, Tour step-2 copy and the jukebox deep link, at 844x320, 844x390 and 1920x800. Both bug fixes work. BUG 1: the modal has overflowY=auto, height = viewport (320/390); at 844x320 scrollHeight=404 > clientHeight=320 so it scrolls. The close button is fully visible (top 48-80) and 'Pick My Character' can be scrolled into view and clicked with a normal (non-forced) click. It navigates /home?go=dressing-room -> /dressing-room. BUG 2: the back-to-board button showed up ~1.4s after the first pick in every path I tried: (a) through the popup, (b) going straight to /dressing-room with a fresh profile and tapping outfit-classic, (c) picking a character from the cast (Finn) at 1920. At 844x320 it sits on-screen at y 211-270 of 320 and passes hit-testing. Tapping it goes /home?go=academy&panel=class -> /academy?panel=class with the Quest Board open, step 1 'Choose your character' checked and step 2 'Finish a song in Jelly Jukebox'. It does not reappear when you come back to the Dressing Room later. I could not reproduce the missing button by any route, which supports the theory that it was a downstream symptom of the clipped modal. Locks: on a fresh profile the portal and laptop have data-locked=true, are dimmed, show 'PICK A CHARACTER FIRST', and tapping sends you to the dressing room. After a pick both are data-locked=false; the laptop opens /loop-studio and the portal goes to /home (plaza). /campus?zone=play&go=jelly-jukebox lands on /rhythm-game. At 844x320 the Quest Board panel fits the viewport (top 0, bottom 320) and its inner scroller can scroll (297 vs 228).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "AcademyPage Charlie speech bubble vs locked/unlocked portal (landscape phone)", "issue": "At 844x320 and 844x390 the bubble data-testid='academy-charlie-bubble' (pointer-events: auto, about 107x98px) covers the bottom ~50-60% of the portal button. When I sampled points down the middle of the portal, only the top 30% registered as the portal; the rest landed on the bubble. A tap on the middle of the portal does nothing (no navigation). Tapping the top of the portal works. A kid on a phone will often tap the middle.", "selector": "[data-testid='academy-charlie-bubble'] over [data-testid='academy-portal']", "priority": "MEDIUM"},
+      {"component": "TourStartModal exit", "issue": "After tapping close (X), the modal stays in the DOM with opacity 0 and pointer-events: auto for about 1.0-1.2s while the exit animation runs. Any tap in that window is silently swallowed, for example tapping the portal right after closing.", "selector": "[data-testid='tour-start-modal']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "TourStartModal at 844x320", "issues": ["The card is 404px tall in a 320px viewport, so 'Pick My Character' is half cut off until you scroll and there is no visible scroll hint. It works, but a smaller layout for short screens (smaller Charlie image, less padding, less margin) would fit it without scrolling."]},
+      {"screen": "Dressing Room back-to-board button", "issues": ["The button has an infinite scale-pulse animation. Playwright's normal click times out with 'element is not stable', so tests need force=True. It works fine for real users."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Make the Academy Charlie speech bubble pointer-events: none, or move it, so it no longer covers the portal hotspot on short landscape viewports (844x320 / 844x390).",
+    "Optional: set pointer-events: none on the TourStartModal while it is exiting so it doesn't swallow taps for about 1s after close.",
+    "Optional: make the TourStartModal more compact on short viewports (max-height ~360px) so the CTA shows without scrolling."
+  ],
+  "critical_code_review_comments": [
+    "DressingRoomPage picked() reads readTour().done.t_character before reportQuestEvent. The logic is correct and the button appeared in every path I tried, including skipping the popup and going straight to /dressing-room.",
+    "TourStartModal re-checks the name-skipped flag with a global document click listener (bump). It works, but it re-renders on every click anywhere in the app. Subscribing to a storage/notify event would be cleaner."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not requested)", "frontend": "95% (all requested flows pass; 1 medium tap-blocking overlap found)"},
+  "seed_data_creation": "None; localStorage/sessionStorage cleared per test.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "HashRouter: BASE/#/academy. Fresh flow: clear storage, reload, click audio-unlock-overlay, then player-name-skip; tour-start-modal appears. Use force=True for dressing-back-to-board-btn (pulse animation). Wait about 1.5s after closing the modal before tapping anything (exit animation still catches clicks). On 844x320 the Charlie bubble covers the middle of the portal, so tap the portal near its top.",
+  "rca of the issue": "Missing back button: could not reproduce through any route (popup, direct /dressing-room, picking from the cast). The most likely cause is the earlier modal clipping: the CTA could not be reached, so the kid never got through the flow. That is now fixed."
+}

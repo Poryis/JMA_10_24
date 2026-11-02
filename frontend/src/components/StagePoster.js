@@ -2,6 +2,7 @@
 // localStorage so the Yearbook can show a poster wall; printable via the
 // existing .jma-print-report print rules.
 import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Printer, X, Star } from 'lucide-react';
 import AvatarSprite from './AvatarSprite';
@@ -45,8 +46,16 @@ export function Poster({ poster, width = 300, testId }) {
 }
 
 export function PosterModal({ poster, onClose, testId = 'stage-poster-modal' }) {
+  const [printing, setPrinting] = useState(false);
+  useEffect(() => {
+    const on = () => setPrinting(true);
+    const off = () => setPrinting(false);
+    window.addEventListener('beforeprint', on);
+    window.addEventListener('afterprint', off);
+    return () => { window.removeEventListener('beforeprint', on); window.removeEventListener('afterprint', off); };
+  }, []);
   if (!poster) return null;
-  const w = Math.min(320, Math.round(Math.min(window.innerWidth * 0.8, (window.innerHeight - 120) * 0.75)));
+  const w = printing ? 650 : Math.min(320, Math.round(Math.min(window.innerWidth * 0.8, (window.innerHeight - 120) * 0.75)));
   return createPortal(
     <motion.div data-testid={testId} className="fixed inset-0 z-[80] flex items-center justify-center p-3" style={{ background: 'rgba(2,36,63,0.7)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
       <motion.div className="jma-print-report relative flex flex-col items-center gap-2" initial={{ scale: 0.6, rotate: -6 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 18 }} onClick={(e) => e.stopPropagation()}>

@@ -1,5 +1,11 @@
 # Jelly of the Month Club Music Academy (JMA) — PRD
 
+## 2026-11-02 (latest+9) — Printed stage poster took up only a small part of the paper (tested via testing_agent, pending)
+- **User**: "when you try to print a poster from the main stage, the print preview has the poster taking up a small bit of the paper."
+- **Root cause**: `components/StagePoster.js`'s `PosterModal` renders the poster at a fixed on-screen width capped at 320px (sized for the modal). The shared `.jma-print-report` print CSS (`index.css`) makes the container fill the page and centers it, but never scaled up the poster's own fixed 320px width — so it printed tiny with huge white margins.
+- **Fix**: `PosterModal` now listens for `beforeprint`/`afterprint` and renders the poster at 650px wide specifically while printing (reverting to the normal responsive on-screen size afterward) — fills most of a letter page's printable width instead of a small corner.
+- **Self-verified** via simulated `beforeprint`/`afterprint` events (cannot trigger a real OS print dialog in this environment): width correctly goes 320px → 650px → 320px. Sent to testing_agent for independent verification.
+
 ## 2026-11-02 (latest+8) — iPhone PWA launch: weird cropping/ratio until rotated (tested via testing_agent, 100% pass)
 - **User**: on iPhone, launching the app from the home-screen icon shows weird cropping/ratio until flipping to portrait then back to landscape.
 - **Root cause**: known iOS WebKit standalone-launch quirk — `window.innerWidth/innerHeight` can report stale values right after launch with no `resize` event ever firing to correct it; two places in the app read those values ONCE at mount with no self-correction: `components/FitStage.js` (`isShort()` lazy init) and `pages/CampusMapPage.js` (`vp` state, covers the Plaza/Campus hub + Play/Learn/Create streets).

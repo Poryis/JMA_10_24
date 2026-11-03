@@ -21,9 +21,11 @@ export default function FitStage({ children }) {
   const [scale, setScale] = useState(1);
   const sRef = useRef(1);
   const steps = useRef(0);
+  const prevRef = useRef(-1);
+  const lockRef = useRef(null);
 
   useEffect(() => {
-    const f = () => { setActive(isShort()); steps.current = 0; };
+    const f = () => { setActive(isShort()); steps.current = 0; lockRef.current = null; prevRef.current = -1; };
     window.addEventListener('resize', f); window.addEventListener('orientationchange', f);
     window.visualViewport?.addEventListener('resize', f);
     // iOS can report stale window dimensions for a moment right after a home-screen
@@ -39,7 +41,7 @@ export default function FitStage({ children }) {
   }, []);
 
   // New page → start from 1 and let the observer settle.
-  useLayoutEffect(() => { sRef.current = 1; setScale(1); steps.current = 0; }, [location.pathname]);
+  useLayoutEffect(() => { sRef.current = 1; setScale(1); steps.current = 0; lockRef.current = null; prevRef.current = -1; }, [location.pathname]);
 
   useEffect(() => {
     if (!active || !ref.current) return undefined;
@@ -61,11 +63,18 @@ export default function FitStage({ children }) {
       const vh = probeRef.current?.offsetHeight || window.innerHeight;
       let target = Math.max(floor, Math.min(1, vh / Math.max(1, natural)));
       if (target > 0.97) target = 1; // dead zone: a few px of overflow isn't worth a visible jump
-      // damped + bounded iterations so width changes can't oscillate forever
-      if (Math.abs(target - sRef.current) > 0.01 && steps.current < 4) {
-        steps.current += 1;
-        sRef.current = target; setScale(target);
-      }
+      if (Math.abs(target - sRef.current) <= 0.01) return;
+      // ping-pong guard: rescaling changes the stage width, which can flip the target back — settle on the smaller scale
+      const lock = lockRef.current;
+      if (lock && lock.some((v) => Math.abs(v - target) <= 0.01)) return;
+      if (Math.abs(target - prevRef.current) <= 0.01) {
+        lockRef.current = [target, sRef.current];
+        target = Math.min(target, sRef.current);
+        if (Math.abs(target - sRef.current) <= 0.01) return;
+      } else if (steps.current >= 4) return;
+      steps.current += 1;
+      prevRef.current = sRef.current;
+      sRef.current = target; setScale(target);
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(measure); };
     const ro = new ResizeObserver(() => { steps.current = Math.min(steps.current, 3); schedule(); });

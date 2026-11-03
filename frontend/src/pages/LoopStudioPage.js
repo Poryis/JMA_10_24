@@ -604,7 +604,7 @@ function LoopStudioPage() {
               <div className="w-px h-8" style={{ background: '#61E8DA', opacity: 0.3 }} />
               <div className="flex flex-col items-center leading-tight" style={{ minWidth: 80 }}>
                 <span className="text-[9px] uppercase opacity-70">{isPlaying ? 'STEP' : 'STATUS'}</span>
-                <span className="text-base md:text-lg font-bold tabular-nums">
+                <span data-testid="loop-status-text" className="text-base md:text-lg font-bold tabular-nums inline-block text-center whitespace-nowrap" style={{ width: '10.5ch' }}>
                   {isPlaying && currentStep >= 0 ? `${String(currentStep + 1).padStart(2, '0')}/${totalSteps}` : IDLE_MESSAGES[idleMsgIndex]}
                 </span>
               </div>

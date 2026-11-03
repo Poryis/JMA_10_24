@@ -2,6 +2,7 @@
 // hang on the rail. Tap one → it flies onto you with a sparkle poof and a pose.
 // Locked outfits can be tried on for 3 s as a ghost. New unlocks arrive as gift
 // boxes to unwrap. The camera takes a 3-2-1 Polaroid for the photo wall.
+import { playRiff } from '../lib/avatarRiffs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
@@ -146,7 +147,7 @@ export default function DressingRoomPage() {
       later(() => setBubble(null), 3200);
       return;
     }
-    choose(a.id, first.id); celebrate(); speak(a.secret ? first.id : a.id, 'pick'); picked();
+    choose(a.id, first.id); celebrate(); playRiff(a.secret ? first.id : a.id); speak(a.secret ? first.id : a.id, 'pick'); picked();
   };
 
   const tapOutfit = (o) => {
@@ -163,6 +164,7 @@ export default function DressingRoomPage() {
     }
     setGhost(null);
     if (!isCurrent) choose(previewChar.id, o.id); else wear(o.id);
+    if (!isCurrent || (previewChar.secret && o.id !== outfit.id)) playRiff(previewChar.secret ? o.id : previewChar.id);
     picked();
     if (from) { setFlyer({ src: o.src, from, key: Date.now() }); later(() => setFlyer(null), 520); }
     later(() => { celebrate(); speak(previewChar.secret ? o.id : previewChar.id, 'wear'); }, 380);

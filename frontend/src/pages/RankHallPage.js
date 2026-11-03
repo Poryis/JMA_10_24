@@ -18,6 +18,7 @@ import { TOTAL_SLOTS, MOODS } from '../data/songStudio';
 import stageLayout from '../data/stageLayout.json';
 import { useStreetMusic } from './CampusMapPage';
 import { readAvatarOutfit } from '../hooks/useAvatar';
+import { playMyRiff } from '../lib/avatarRiffs';
 import AvatarSprite from '../components/AvatarSprite';
 import Confetti from '../components/Confetti';
 import { GameHeader } from '../components/GameUI';
@@ -154,9 +155,9 @@ export default function RankHallPage() {
   }, []);
   useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); clearInterval(showTimer.current); clearInterval(perfTimer.current); if (jamAudioElRef.current) { try { jamAudioElRef.current.audio.pause(); } catch (_) { /* ignore */ } } }, []);
 
-  const cheer = useCallback((big) => {
-    setBow((b) => b + 1); setEnergy(1); setConfetti((c) => c + 1); playFanfare();
-    if (big) { timers.current.push(setTimeout(playFanfare, 500)); setOvation(true); timers.current.push(setTimeout(() => setOvation(false), 3200)); }
+  const cheer = useCallback((big, sound = playFanfare) => {
+    setBow((b) => b + 1); setEnergy(1); setConfetti((c) => c + 1); sound();
+    if (big) { timers.current.push(setTimeout(sound === playFanfare ? playFanfare : () => SFX('Crash cymbal.mp3', 0.6, 0), 500)); setOvation(true); timers.current.push(setTimeout(() => setOvation(false), 3200)); }
     const members = big ? [0, 1, 2, 3, 4, 5, 6, 7] : [0, 2, 4, 6];
     setShouts(members.map((m, i) => ({ id: Date.now() + i, member: m, text: CROWD_SHOUTS[(m + i + bow) % CROWD_SHOUTS.length] })));
     timers.current.push(setTimeout(() => { setEnergy(0.3); setShouts([]); }, big ? 4200 : 2600));
@@ -165,7 +166,7 @@ export default function RankHallPage() {
   const takeBow = useCallback(() => {
     const nextHype = hype + 1;
     const big = nextHype >= OVATION_AT;
-    cheer(big);
+    cheer(big, () => playMyRiff());
     setHype(big ? 0 : nextHype);
     clearTimeout(hypeTimer.current); hypeTimer.current = setTimeout(() => setHype(0), 7000);
   }, [hype, cheer]);

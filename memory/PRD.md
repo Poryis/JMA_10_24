@@ -647,3 +647,10 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - 2026-06: useStreetMusic rotates playlists across visits (localStorage jma_music_rot_<srcs> = 'index:timestamp'; remount within 1.5s reuses same song).
 - 2026-06: Boom Garden (Who's Got the Rhythm) Stew zone is fixed bottom-left on short landscape (.boom-stew-zone CSS). Detective: CaseSolvedBurst overlay (Dr. Jellybone jump, CASE SOLVED/SUPER SLEUTH stamp, +points, streak, sunburst, confetti) for 1.7s on correct guess.
 - 2026-06: Boom Garden Stew corner placement: all modes at heights <=760; Beat Finder + Rhythm Run at <=1000 (.boom-stew-zone--tall); phones <=520 landscape. How-to-play modal goes 2-column (title+character | steps+buttons) at max-height 520.
+
+## 2026-06 Avatar signature riffs
+- src/lib/avatarRiffs.js: playRiff(id)/playMyRiff(); files in public/assets/audio/riffs/
+- Dressing Room pick (and secret-friend outfit pick) + Stage 'Take a Bow' play the riff (bow riff replaces guitar fanfare)
+- Charlie=muted guitar riff (placeholder), Finn=bass placeholder, Stew=kazoo C-E-G-C, Lou=random piano/rhodes, Jazzy=trimmed robot-horns stab (placeholder), Dr J=sax C-D-E-G, Chunk=drum fill, 7 secret friends=uploaded synth/organ riffs
+- Academy harp=harp#04, guitar=guitar-c-strum
+- Backlog: real trumpet/guitar/bass riffs from user

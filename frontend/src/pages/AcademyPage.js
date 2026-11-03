@@ -405,9 +405,9 @@ export default function AcademyPage() {
         <Hotspot id="yearbook" x={31.5} y={43} w={13} h={30} label="Achievement Book" pill={false} color="#FFCC00" onClick={() => setPanel('yearbook')} />
 
         {/* instruments — tap to play them */}
-        <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'sfx-arpeggio.mp3')} />
+        <Prop id="harp" pos={L.harp} z={5} label="Starfish harp" wiggle={wiggle.harp} tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} onClick={() => poke('harp', 'riffs/harp.mp3')} />
         <Prop id="trumpet" pos={L.trumpet} z={5} label="Seashell trumpet" wiggle={wiggle.trumpet} tap={{ rotate: [0, -8, 6, -4, 2, 0], scale: [1, 1.1, 1] }} onClick={() => poke('trumpet', 'sax/C4.mp3', 450)} />
-        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'guitar-crunch/A3.mp3', 900)} hit={{ left: '32%', right: 0, top: 0, bottom: 0 }} />
+        <Prop id="guitar" pos={L.guitar} z={5} label="Coral double-neck guitar" wiggle={wiggle.guitar} tap={{ rotate: [0, -4, 4, -3, 2, 0] }} onClick={() => poke('guitar', 'riffs/guitar-c-strum.mp3')} hit={{ left: '32%', right: 0, top: 0, bottom: 0 }} />
 
         {/* clam desk → Creation Station (speakers thump, latest sleeve sits on the easel) */}
         <Prop id="creation-station" pos={L.art} z={4} />

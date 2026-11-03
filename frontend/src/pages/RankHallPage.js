@@ -18,7 +18,7 @@ import { TOTAL_SLOTS, MOODS } from '../data/songStudio';
 import stageLayout from '../data/stageLayout.json';
 import { useStreetMusic } from './CampusMapPage';
 import { readAvatarOutfit } from '../hooks/useAvatar';
-import { playMyRiff } from '../lib/avatarRiffs';
+import { playMyRiff, playRiff } from '../lib/avatarRiffs';
 import AvatarSprite from '../components/AvatarSprite';
 import Confetti from '../components/Confetti';
 import { GameHeader } from '../components/GameUI';
@@ -331,7 +331,7 @@ export default function RankHallPage() {
 
       {/* the band cheers from the pit */}
       <div className="absolute inset-x-0 bottom-0" style={{ height: '20%', zIndex: 7 }}>
-        <CrowdRow energy={energy} burstId={bow} shouts={shouts} extras={false} />
+        <CrowdRow energy={energy} burstId={bow} shouts={shouts} extras={false} onTap={(m) => playRiff(m.who, m.outfit)} />
       </div>
 
       {bow > 0 && <CrowdBurst key={`burst-${bow}`} id={bow} big={ovation} />}

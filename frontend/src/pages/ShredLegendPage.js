@@ -40,13 +40,13 @@ function tierFor(meter) {
 // so it's 100% in the app's hand-drawn style. Per-character `scale` balances
 // the wildly different source-PNG proportions so nobody towers over everyone.
 const CROWD_MEMBERS = [
-  { src: 'assets/characters/finn-danger.png', scale: 0.92 },
-  { src: 'assets/characters/chunk.png',        scale: 1.00 },
-  { src: 'assets/characters/jazzy.png',        scale: 0.88 },
-  { src: 'assets/characters/charlie-punk.png', scale: 0.96 },
-  { src: 'assets/characters/lou.png',          scale: 0.90 },
-  { src: 'assets/characters/stew.png',         scale: 0.98 },
-  { src: 'assets/characters/dr-jellybone.png', scale: 1.00 },
+  { src: 'assets/characters/finn-danger.png', scale: 0.92, who: 'finn', outfit: 'classic' },
+  { src: 'assets/characters/chunk.png',        scale: 1.00, who: 'chunk', outfit: 'classic' },
+  { src: 'assets/characters/jazzy.png',        scale: 0.88, who: 'jazzy', outfit: 'classic' },
+  { src: 'assets/characters/charlie-punk.png', scale: 0.96, who: 'charlie', outfit: 'punk' },
+  { src: 'assets/characters/lou.png',          scale: 0.90, who: 'lou', outfit: 'classic' },
+  { src: 'assets/characters/stew.png',         scale: 0.98, who: 'stew', outfit: 'classic' },
+  { src: 'assets/characters/dr-jellybone.png', scale: 1.00, who: 'doctor', outfit: 'classic' },
 ];
 
 // Back row that shows up once the show gets good — the crowd literally grows.
@@ -61,17 +61,21 @@ const CROWD_BACK_ROW = [
 
 export const CROWD_SHOUTS = ['WOOO!', 'YEAH!', 'ROCK ON!', 'ENCORE!', 'SHRED!', 'GO GO GO!', 'SO GOOD!'];
 
-function CrowdMember({ m, i, lift, dur, tilt, burstId, shout, glow }) {
+function CrowdMember({ m, i, lift, dur, tilt, burstId, shout, glow, onTap }) {
   const you = !!m.you;
+  const [taps, setTaps] = useState(0);
+  const tappable = onTap && m.who;
   const delay = (i % 4) * 0.07;
   return (
     <motion.div
-      key={burstId}
-      className="relative h-full flex items-end"
+      key={`${burstId}-${taps}`}
+      className={`relative h-full flex items-end ${tappable ? 'pointer-events-auto cursor-pointer' : ''}`}
       style={{ height: '100%' }}
+      data-testid={tappable ? `band-member-${m.who}` : undefined}
+      onClick={tappable ? () => { setTaps((t) => t + 1); onTap(m); } : undefined}
       initial={{ y: 0 }}
-      animate={burstId ? { y: [0, -70, 0, -36, 0], rotate: [0, i % 2 ? 10 : -10, 0, i % 2 ? -6 : 6, 0] } : { y: 0 }}
-      transition={{ duration: 0.9, delay: i * 0.05, ease: 'easeOut' }}
+      animate={burstId || taps ? { y: [0, -70, 0, -36, 0], rotate: [0, i % 2 ? 10 : -10, 0, i % 2 ? -6 : 6, 0] } : { y: 0 }}
+      transition={{ duration: 0.9, delay: taps ? 0 : i * 0.05, ease: 'easeOut' }}
     >
       <AnimatePresence>
         {shout && (
@@ -131,7 +135,7 @@ function charOf(src = '') {
   return f.split('-')[0];
 }
 
-export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false, extras = true }) {
+export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false, extras = true, onTap }) {
   // The front row never repeats a character — drop whoever the kid IS from the regulars.
   const members = useMemo(() => {
     if (!avatarSrc) return CROWD_MEMBERS.slice(0, 7);
@@ -178,6 +182,7 @@ export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHe
             burstId={burstId}
             shout={shoutFor(i)}
             glow={glow}
+            onTap={onTap}
           />
         ))}
       </div>

@@ -911,7 +911,7 @@ function FreePlayPage() {
             )}
             {/* Choice panel — appears only when we have something the kid can do */}
             {!isRecording && !recorder.isRecording && !recorder.isProcessing && (recording.length > 0 || recorder.lastMp3Url) && (
-              <>
+              <div data-testid="jam-capture-actions" className="jam-capture-actions flex items-center gap-1 flex-wrap">
                 {recording.length > 0 && (
                   <button
                     data-testid="capture-listen-btn"
@@ -952,7 +952,7 @@ function FreePlayPage() {
                     <Disc3 className="w-3 h-3" /> "{savedJamName}" saved! My Album →
                   </button>
                 )}
-              </>
+              </div>
             )}
           </div>
           <audio

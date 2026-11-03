@@ -983,6 +983,10 @@ h1, h2, h3, h4, h5, h6 {
   .jam-toolbar::-webkit-scrollbar { display: none; }
   .jam-toolbar > * { flex-wrap: nowrap !important; flex-shrink: 0 !important; }
   .jam-toolbar button { padding-top: 2px !important; padding-bottom: 2px !important; min-height: 30px !important; min-width: 0 !important; white-space: nowrap; flex-shrink: 0 !important; }
+  /* after a recording, Playback / Download / Save run down the right edge instead of hiding off the scrolling pill */
+  .jam-capture-actions { position: fixed; top: 50px; right: calc(8px + env(safe-area-inset-right, 0px)); z-index: 25; flex-direction: column !important; align-items: stretch !important; gap: 6px !important; padding: 6px; border-radius: 14px; background: rgba(255,249,230,0.95); border: 2px solid var(--jma-dark); box-shadow: 0 2px 0 0 var(--jma-dark); }
+  .jam-capture-actions form { flex-direction: column !important; align-items: stretch !important; }
+  .jam-capture-actions input { width: 7.5rem !important; }
   .jam-main { padding-top: 50px !important; padding-bottom: 0 !important; justify-content: flex-start !important; }
   .jam-instrument-wrap { margin-top: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
   .jam-main [data-testid="jelly-bells-row"] { width: min(66vh, 720px) !important; }

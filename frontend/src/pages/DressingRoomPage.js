@@ -15,7 +15,6 @@ import { reportQuestEvent, readTour } from '../hooks/useDailyQuests';
 import { AVATARS } from '../data/avatars';
 import { VOICE_MAP } from '../data/voiceLines';
 import { say } from '../lib/voice';
-import { playFanfare } from './RankHallPage';
 import { brand } from '../lib/brand';
 
 const SEEN_KEY = 'jma_outfits_seen_v1';
@@ -155,8 +154,9 @@ export default function DressingRoomPage() {
     const from = card ? card.getBoundingClientRect() : null;
     if (isNew(o)) {
       const next = { ...seen, [seenId(previewChar.id, o.id)]: 1 }; setSeen(next); writeJSON(SEEN_KEY, next);
-      setConfetti(c => c + 1); playFanfare();
+      setConfetti(c => c + 1);
     }
+    playRiff(previewChar.secret ? o.id : previewChar.id);
     if (!o.unlocked) {
       setGhost(o); setPoof(p => p + 1);
       later(() => setGhost(g => (g && g.id === o.id ? null : g)), 3000);
@@ -164,7 +164,6 @@ export default function DressingRoomPage() {
     }
     setGhost(null);
     if (!isCurrent) choose(previewChar.id, o.id); else wear(o.id);
-    if (!isCurrent || (previewChar.secret && o.id !== outfit.id)) playRiff(previewChar.secret ? o.id : previewChar.id);
     picked();
     if (from) { setFlyer({ src: o.src, from, key: Date.now() }); later(() => setFlyer(null), 520); }
     later(() => { celebrate(); speak(previewChar.secret ? o.id : previewChar.id, 'wear'); }, 380);

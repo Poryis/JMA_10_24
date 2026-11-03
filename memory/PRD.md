@@ -654,3 +654,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Charlie=muted guitar riff (placeholder), Finn=bass placeholder, Stew=kazoo C-E-G-C, Lou=random piano/rhodes, Jazzy=trimmed robot-horns stab (placeholder), Dr J=sax C-D-E-G, Chunk=drum fill, 7 secret friends=uploaded synth/organ riffs
 - Academy harp=harp#04, guitar=guitar-c-strum
 - Backlog: real trumpet/guitar/bass riffs from user
+- Per-outfit riffs for Stew (kazoo, drumline), Dr J (detective, astro, disco, dapper), Chunk (disco, marching, steampunk); generator script /app/memory/mkriffs.py (clean-cut notes, volume-matched)

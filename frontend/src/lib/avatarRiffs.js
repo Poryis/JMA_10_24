@@ -11,10 +11,14 @@ const RIFFS = {
   chunk: [['sfx-drum-fill.mp3', 0]],
 };
 
+// Outfits with their own riff (file riffs/<character>-<outfit>.mp3).
+const OUTFIT_RIFFS = new Set(['stew-kazoo', 'stew-drumline', 'doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk']);
+
 let playing = [];
 
-export function playRiff(id, vol = 0.8) {
-  let r = RIFFS[id] || [[`riffs/${id}.mp3`, 0]];
+export function playRiff(id, outfit, vol = 0.8) {
+  const key = `${id}-${outfit}`;
+  let r = OUTFIT_RIFFS.has(key) ? [[`riffs/${key}.mp3`, 0]] : RIFFS[id] || [[`riffs/${id}.mp3`, 0]];
   if (Array.isArray(r[0][0])) r = r[Math.floor(Math.random() * r.length)];
   playing.forEach((a) => { try { a.pause(); } catch (_) { /* ignore */ } });
   playing = [];
@@ -24,7 +28,7 @@ export function playRiff(id, vol = 0.8) {
 }
 
 // Secret friends each have their own riff, keyed by outfit id.
-export function playMyRiff(vol) {
+export function playMyRiff() {
   const { character, outfit } = readAvatar();
-  playRiff(character === 'secret' ? outfit : character, vol);
+  playRiff(character === 'secret' ? outfit : character, outfit);
 }

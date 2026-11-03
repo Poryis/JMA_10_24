@@ -146,7 +146,7 @@ export default function DressingRoomPage() {
       later(() => setBubble(null), 3200);
       return;
     }
-    choose(a.id, first.id); celebrate(); playRiff(a.secret ? first.id : a.id); speak(a.secret ? first.id : a.id, 'pick'); picked();
+    choose(a.id, first.id); celebrate(); playRiff(a.secret ? first.id : a.id, first.id); speak(a.secret ? first.id : a.id, 'pick'); picked();
   };
 
   const tapOutfit = (o) => {
@@ -156,7 +156,7 @@ export default function DressingRoomPage() {
       const next = { ...seen, [seenId(previewChar.id, o.id)]: 1 }; setSeen(next); writeJSON(SEEN_KEY, next);
       setConfetti(c => c + 1);
     }
-    playRiff(previewChar.secret ? o.id : previewChar.id);
+    playRiff(previewChar.secret ? o.id : previewChar.id, o.id);
     if (!o.unlocked) {
       setGhost(o); setPoof(p => p + 1);
       later(() => setGhost(g => (g && g.id === o.id ? null : g)), 3000);

@@ -13,7 +13,6 @@ import { say } from '../lib/voice';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import HowToVoiceButton from '../components/HowToVoiceButton';
 import Confetti from '../components/Confetti';
-import RoomCharacters from '../components/RoomCharacters';
 
 // Patterns for Stew Kazoo Says (progressively harder)
 const PATTERNS = {
@@ -453,7 +452,6 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
         showHomeButton={true}
         backLink={{ to: '/play', label: 'Play' }}
       />
-      <RoomCharacters room="kazoo-room" />
 
       {/* Level-clear confetti */}
       {showConfetti.on && (

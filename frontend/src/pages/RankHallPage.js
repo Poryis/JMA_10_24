@@ -5,9 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Star, BookOpen, Hand, Heart, Music, VolumeX, ListMusic, Square, Zap, Camera } from 'lucide-react';
-import { ACHIEVEMENT_STICKERS } from '../data/achievements';
 import useRank from '../hooks/useRank';
-import useStickers from '../hooks/useStickers';
 import usePlayer from '../hooks/usePlayer';
 import { useAudio } from '../hooks/useAudio';
 import useBeatLabAudio from '../hooks/useBeatLabAudio';
@@ -90,19 +88,6 @@ function CurtainReveal({ scene, onDone }) {
   );
 }
 
-// Scrolling ticker of the badges this kid has actually earned.
-function BadgeTicker({ names }) {
-  const text = names.length ? names.map((n) => `★ ${n}`).join('   ') + '   ' : '★ Earn badges in the games to light up this hall   ';
-  return (
-    <div className="absolute right-0 overflow-hidden pointer-events-none" style={{ left: 96, top: 'calc(13% + 6px)', height: 18, zIndex: 3 }} data-testid="rank-hall-ticker">
-      <motion.div className="whitespace-nowrap font-black text-[11px] tracking-wider" style={{ color: '#FFE8A3', textShadow: '0 1px 0 rgba(0,0,0,0.6)' }}
-        animate={{ x: ['0%', '-50%'] }} transition={{ repeat: Infinity, duration: Math.max(14, names.length * 4), ease: 'linear' }}>
-        {text}{text}
-      </motion.div>
-    </div>
-  );
-}
-
 // Kick → crunchy guitar C-E-G-C → crash. Rock fanfare, not a recital.
 export function playFanfare() {
   SFX('Bass drum - kick.mp3', 0.9, 0);
@@ -114,9 +99,7 @@ export default function RankHallPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { currentRank } = useRank();
-  const { earned } = useStickers();
   const { player } = usePlayer();
-  const badgeNames = ACHIEVEMENT_STICKERS.filter((a) => earned[a.id]).map((a) => a.name);
   const avatar = readAvatarOutfit();
   const [bow, setBow] = useState(0);
   const [energy, setEnergy] = useState(0.3);
@@ -268,7 +251,6 @@ export default function RankHallPage() {
         <img src="assets/stage/lc.webp" alt="" draggable={false} data-testid="rank-hall-curtain-left" className="absolute" style={{ ...pos(STAGE.lc), zIndex: 3 }} />
         <img src="assets/stage/rc.webp" alt="" draggable={false} data-testid="rank-hall-curtain-right" className="absolute" style={{ ...pos(STAGE.rc), zIndex: 3 }} />
       </div>
-      <BadgeTicker names={badgeNames} />
       {/* tap a lamp head to change its gel */}
       {STAGE.rigs.map((r, i) => (
         <button key={`lamp-${i}`} type="button" data-testid={`rank-hall-lamp-${i + 1}`} aria-label={`Stage light ${i + 1}`} onClick={() => cycleGel(i)}

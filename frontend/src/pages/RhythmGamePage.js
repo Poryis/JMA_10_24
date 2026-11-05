@@ -752,14 +752,15 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
         {/* Compact "View Top Scores" toggle - moved to the bottom and small */}
         <button
           data-testid="toggle-high-scores"
-          className="text-[11px] md:text-xs font-bold underline mb-1"
-          style={{ color: 'var(--jma-blue)' }}
+          className="jj-menu-scores-toggle relative z-10 rounded-full px-3 py-1 text-[11px] md:text-xs font-black border-2 flex items-center gap-1 mb-1"
+          style={{ color: 'var(--jma-dark)', backgroundColor: '#FFF3C4', borderColor: 'var(--jma-dark)', boxShadow: '0 2px 0 0 var(--jma-dark)' }}
           onClick={() => setShowHighScores(!showHighScores)}
         >
+          <Trophy className="w-3 h-3" style={{ color: '#D89B00' }} />
           {showHighScores ? 'Hide' : 'View'} Top Scores Across All Songs
         </button>
         {showHighScores && topScores.length > 0 && (
-          <motion.div className="game-card p-3 mb-2 w-full max-w-md" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}>
+          <motion.div className="game-card relative z-10 p-3 mb-2 w-full max-w-md" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}>
             <div className="space-y-1">
               {topScores.map((s, i) => {
                 const song = SONG_LIBRARY.find(sl => sl.id === s.songId);

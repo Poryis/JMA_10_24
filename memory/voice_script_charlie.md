@@ -1,6 +1,6 @@
 # JMA Voice Script — Charlie the Polliwog
 
-**68 lines for Charlie.** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, champ.
+**68 lines for Charlie.** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, cadet.
 
 ## How to record
 - One short take per line, 1–3 seconds. Leave ~150 ms of silence at the start, trim the tail.
@@ -25,7 +25,7 @@
 | 5 | `charlie.howto.notematch` | **Flip two cards and listen. Find the ones that sound the same!** | coach, warm | Note Match menu / speaker button |
 | 6 | `charlie.howto.detective` | **Hear the tune twice. Tap the note that changed the second time!** | sly, coach | Detective menu / speaker button |
 | 7 | `charlie.howto.sightread` | **Read the notes on the staff, then tap those bells in order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
-| 8 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name, champ.** | coach, warm | Name That Note menu — Name It mode / speaker button |
+| 8 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name, cadet.** | coach, warm | Name That Note menu — Name It mode / speaker button |
 | 9 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
 | 10 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drum!** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
 | 11 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
@@ -46,7 +46,7 @@
 | # | File (id) | Line | Emotion | Plays when |
 |---|---|---|---|---|
 | 1 | `charlie.hub.first` | **Heyyy — welcome to the Academy, kid!** | huge smile | Home — very first visit |
-| 2 | `charlie.hub.morning` | **Mornin', champ. Let's make some music.** | bright | Home — before noon |
+| 2 | `charlie.hub.morning` | **Mornin', cadet. Let's make some music.** | bright | Home — before noon |
 | 3 | `charlie.hub.afternoon` | **Afternoon, pal! Ya ready?** | bright | Home — noon to 5pm |
 | 4 | `charlie.hub.evening` | **Evenin'! Nothin' like a night session.** | cozy, excited | Home — after 5pm |
 | 5 | `charlie.hub.streak` | **Look at you — on a streak!** | proud | Home — practice streak ≥ 3 days |
@@ -96,7 +96,7 @@
 | 16 | `charlie.miss.3` | **Close, kid. Real close.** | sympathetic | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
 | 17 | `charlie.miss.4` | **Shake it off. One more time.** | upbeat | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
 | 18 | `charlie.go.1` | **Keep it rollin'!** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
-| 19 | `charlie.go.2` | **You got this, champ.** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
+| 19 | `charlie.go.2` | **You got this, cadet.** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
 
 ---
 

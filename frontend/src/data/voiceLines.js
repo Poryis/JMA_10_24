@@ -6,7 +6,7 @@
 // Missing files fail silently so lines can be dropped in as they're recorded.
 
 export const VOICE_CHARACTERS = {
-  charlie: { name: 'Charlie the Polliwog', role: 'Academy host · Shred City · Song Studio · Music 101 · JMAtv', vibe: 'Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin\'" warmth. Calls you kid, pal, champ.' },
+  charlie: { name: 'Charlie the Polliwog', role: 'Academy host · Shred City · Song Studio · Music 101 · JMAtv', vibe: 'Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin\'" warmth. Calls you kid, pal, cadet.' },
   doctor:  { name: 'Dr. Jellybone',        role: 'Detective · Ear Quest',                                     vibe: 'Smooth-talkin\' jazzman, sax player. Velvet, unhurried, gentlemanly. NEVER loud — the excitement is in the eyebrows.' },
   stew:    { name: 'Stew',                  role: 'Stew Kazoo Says · Fun Facts Clubhouse',                     vibe: 'Goofy, buzzy, easily delighted. In the show Stew talks in KAZOO — these lines can be performed as kazoo-talk with the words as intent.' },
   jazzy:   { name: 'Jazzy',                 role: 'Jelly Jukebox · Jam Session',                               vibe: 'LOUD, boisterous, fun-loving pun machine — CAT puns (purrrfect, meow-sic, kitten around). Big laughs, means every word.' },
@@ -24,7 +24,7 @@ const L = (id, text, emotion, where) => {
 export const VOICE_LINES = [
   // ───────────── CHARLIE — Academy host (Home hub) ─────────────
   L('charlie.hub.first',     'Heyyy — welcome to the Academy, kid!',            'huge smile',     'Home — very first visit'),
-  L('charlie.hub.morning',   'Mornin\', champ. Let\'s make some music.',             'bright',         'Home — before noon'),
+  L('charlie.hub.morning',   'Mornin\', cadet. Let\'s make some music.',             'bright',         'Home — before noon'),
   L('charlie.hub.afternoon', 'Afternoon, pal! Ya ready?',               'bright',         'Home — noon to 5pm'),
   L('charlie.hub.evening',   'Evenin\'! Nothin\' like a night session.',        'cozy, excited',  'Home — after 5pm'),
   L('charlie.hub.streak',    'Look at you — on a streak!',               'proud',          'Home — practice streak ≥ 3 days'),
@@ -73,7 +73,7 @@ export const VOICE_LINES = [
   L('charlie.miss.3',    'Close, kid. Real close.',       'sympathetic', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
   L('charlie.miss.4',    'Shake it off. One more time.', 'upbeat', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
   L('charlie.go.1',      'Keep it rollin\'!',       'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
-  L('charlie.go.2',      'You got this, champ.',    'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
+  L('charlie.go.2',      'You got this, cadet.',    'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
 
   // ───────────── DR. JELLYBONE — Detective, Ear Quest ─────────────
   L('doctor.tag.detective', 'Mmm… I\'ve got a case for you.',  'noir, inviting', 'Entering Detective'),
@@ -219,7 +219,7 @@ export const VOICE_LINES = [
   L('charlie.howto.notematch',      'Flip two cards and listen. Find the ones that sound the same!',                       'coach, warm',     'Note Match menu / speaker button'),
   L('charlie.howto.detective',      'Hear the tune twice. Tap the note that changed the second time!',             'sly, coach',      'Detective menu / speaker button'),
   L('charlie.howto.sightread',      'Read the notes on the staff, then tap those bells in order. Beat the clock!',   'coach, quick',    'Sight-Reading Sprint menu / speaker button'),
-  L('charlie.howto.namenote.name',  'See the note on the staff? Tap its name, champ.',                                       'coach, warm',     'Name That Note menu — Name It mode / speaker button'),
+  L('charlie.howto.namenote.name',  'See the note on the staff? Tap its name, cadet.',                                       'coach, warm',     'Name That Note menu — Name It mode / speaker button'),
   L('charlie.howto.namenote.place', 'Read the note\'s name, then drag it onto the staff.',                              'coach, warm',     'Name That Note menu — Place It mode selected / speaker button'),
   L('charlie.howto.boom.copy',      'Listen to Stew\'s rhythm. After the count-in, play it back on the drum!',                                 'coach, groovy',   'Who\'s Got the Rhythm — Parrot Percussion how-to card'),
   L('charlie.howto.boom.match',     'Listen to the secret rhythm, then tap the strip that matches.',                                   'coach, groovy',   'Who\'s Got the Rhythm — Beat Finder how-to card'),

@@ -15,10 +15,11 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { BookOpen, Clock, RotateCcw, Trophy, Play, Volume2, Check } from 'lucide-react';
+import { BookOpen, Clock, RotateCcw, Trophy, Play, Volume2, Check, Star } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
 import RoomCharacters from '../components/RoomCharacters';
@@ -35,6 +36,12 @@ import HowToVoiceButton from '../components/HowToVoiceButton';
 const LOW_NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 const ALL_NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'High C'];
 const CARDS_PER_RUN = 5;
+const GRADE_COLOR = { perfect: '#34A853', good: '#FFCC00', tricky: '#FF9500' };
+// 3 stars = 90%+ of possible card points (perfect 2, good 1), 2 stars = 60%+, else 1
+const runStars = (results) => {
+  const pts = results.reduce((s, r) => s + (r === 'perfect' ? 2 : r === 'good' ? 1 : 0), 0) / (CARDS_PER_RUN * 2);
+  return pts >= 0.9 ? 3 : pts >= 0.6 ? 2 : 1;
+};
 
 // Each card spec is [noteCount, secondsToPlay].
 const LEVELS = {
@@ -102,8 +109,9 @@ export default function SightReadingPage() {
 
   // Per-run aggregate state (resets on startRun)
   const [runScore, setRunScore] = useState(0);
-  // cardResults: array of 'complete' | 'timeout' (filled as cards finish)
+  // cardResults: 'perfect' (no wrong taps) | 'good' (1–2) | 'tricky' (3+ or timed out), filled as cards finish
   const [cardResults, setCardResults] = useState([]);
+  const wrongTapsRef = useRef(0);
 
   const [bestRecords, setBestRecords] = useState(loadBest);
   const [isNewBest, setIsNewBest] = useState(false);
@@ -165,6 +173,7 @@ export default function SightReadingPage() {
     setCurrentIndex(0);
     setDoneIndices(new Set());
     setWrongAt(-1);
+    wrongTapsRef.current = 0;
     setSecsLeft(secs);
     setGameState('demo');
     demoTimerRef.current = setTimeout(() => playDemoAndStart(seq, secs), 450);
@@ -175,7 +184,8 @@ export default function SightReadingPage() {
   const finishCard = useCallback((result, cardBonusScore) => {
     stopAllTimers();
     setRunScore((s) => s + cardBonusScore);
-    setCardResults((prev) => [...prev, result]);
+    const results = [...cardResults, result];
+    setCardResults(results);
     const nextIdx = cardIndex + 1;
 
     if (nextIdx >= CARDS_PER_RUN) {
@@ -199,6 +209,7 @@ export default function SightReadingPage() {
       reportQuestEvent('sight_read', { difficulty });
       try { playFeedbackSound('perfect'); } catch { /* ignore */ }
       say('finn.perfect');
+      if (runStars(results) >= 2) reportGameWin();
       setGameState('run-complete');
       return;
     }
@@ -209,13 +220,13 @@ export default function SightReadingPage() {
       setCardIndex(nextIdx);
       beginCard(difficulty, nextIdx);
     }, 800);
-  }, [stopAllTimers, cardIndex, runScore, bestRecords, difficulty, playFeedbackSound, beginCard]);
+  }, [stopAllTimers, cardIndex, cardResults, runScore, bestRecords, difficulty, playFeedbackSound, beginCard]);
 
   // Auto-finish card on timeout
   useEffect(() => {
     if (gameState !== 'playing') return;
     if (secsLeft !== 0) return;
-    finishCard('timeout', 0);
+    finishCard('tricky', 0);
   }, [secsLeft, gameState, finishCard]);
 
   // ---------------- User interaction ----------------
@@ -232,12 +243,14 @@ export default function SightReadingPage() {
       setDoneIndices((prev) => { const n = new Set(prev); n.add(currentIndex); return n; });
       setCurrentIndex(nextIdx);
       if (nextIdx >= sequence.length) {
-        // Card complete! Score = 10 per note + 5 per second remaining + 30 complete bonus.
-        const cardScore = sequence.length * 10 + secsLeft * 5 + 30;
-        finishCard('complete', cardScore);
+        // Card complete! Score = 10 per note + 5 per second remaining + 30 complete bonus − 5 per wrong tap (never below 0).
+        const wrong = wrongTapsRef.current;
+        const cardScore = Math.max(0, sequence.length * 10 + secsLeft * 5 + 30 - wrong * 5);
+        finishCard(wrong === 0 ? 'perfect' : wrong <= 2 ? 'good' : 'tricky', cardScore);
       }
     } else {
       setWrongAt(currentIndex);
+      wrongTapsRef.current += 1;
       try { playFeedbackSound('miss'); } catch { /* ignore */ }
       say('finn.miss', { minGapMs: 2500 });
       setTimeout(() => setWrongAt(-1), 500);
@@ -386,8 +399,7 @@ export default function SightReadingPage() {
             const result = cardResults[i];
             const isCurrent = i === cardIndex && gameState !== 'run-complete';
             const isDone = i < cardIndex || (gameState === 'run-complete');
-            const color = result === 'complete' ? '#34A853'
-                        : result === 'timeout'  ? '#FF9500'
+            const color = result ? GRADE_COLOR[result]
                         : isCurrent              ? '#FFCC00'
                         : isDone                 ? '#34A853'
                         : 'rgba(255,255,255,0.45)';
@@ -405,7 +417,7 @@ export default function SightReadingPage() {
                 animate={isCurrent ? { scale: [1, 1.15, 1] } : { scale: 1 }}
                 transition={isCurrent ? { duration: 0.9, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.2 }}
               >
-                {result === 'complete' && <Check className="w-3 h-3 text-white" strokeWidth={4} />}
+                {result === 'perfect' && <Check className="w-3 h-3 text-white" strokeWidth={4} />}
               </motion.div>
             );
           })}
@@ -539,8 +551,13 @@ export default function SightReadingPage() {
                 <h2 className="text-2xl md:text-3xl font-black font-display mb-1" style={{ color: 'var(--jma-dark)' }}>
                   {isNewBest ? 'NEW BEST!' : 'Run Complete!'}
                 </h2>
-                <p className="font-bold mb-3" style={{ color: 'var(--jma-dark)' }}>
-                  {cardResults.filter(r => r === 'complete').length} / {CARDS_PER_RUN} cards perfect ·
+                <div className="flex items-center justify-center gap-1 mb-1" data-testid="sight-reading-stars">
+                  {[0, 1, 2].map((i) => (
+                    <Star key={i} className="w-8 h-8" style={{ color: i < runStars(cardResults) ? '#FFCC00' : '#D1D5DB', fill: i < runStars(cardResults) ? '#FFCC00' : '#E5E7EB' }} strokeWidth={2.2} />
+                  ))}
+                </div>
+                <p className="font-bold mb-3" style={{ color: 'var(--jma-dark)' }} data-testid="sight-reading-grade-line">
+                  {['perfect', 'good', 'tricky'].map((g) => `${cardResults.filter(r => r === g).length} ${g}`).join(' · ')} ·
                   <span className="font-black ml-1">{runScore} pts</span>
                 </p>
                 <div className="flex items-center justify-center gap-1 mb-3">
@@ -549,11 +566,11 @@ export default function SightReadingPage() {
                       key={i}
                       className="w-6 h-6 rounded-full border-2 flex items-center justify-center"
                       style={{
-                        backgroundColor: r === 'complete' ? '#34A853' : '#FF9500',
+                        backgroundColor: GRADE_COLOR[r],
                         borderColor: 'var(--jma-dark)',
                       }}
                     >
-                      {r === 'complete' && <Check className="w-3 h-3 text-white" strokeWidth={4} />}
+                      {r === 'perfect' && <Check className="w-3 h-3 text-white" strokeWidth={4} />}
                     </div>
                   ))}
                 </div>
@@ -563,7 +580,7 @@ export default function SightReadingPage() {
                     Best: {bestRecords[difficulty] || runScore} pts
                   </span>
                 </div>
-                {cardResults.filter(r => r === 'complete').length < 3 && <LessonHelper lesson={5} className="mb-2" />}
+                {runStars(cardResults) < 2 && <LessonHelper lesson={5} className="mb-2" />}
                 <div className="flex flex-wrap justify-center gap-2 mt-3">
                   <button
                     data-testid="sight-reading-win-again"

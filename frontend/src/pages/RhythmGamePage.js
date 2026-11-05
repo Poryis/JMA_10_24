@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate } from 'react-router-dom';
@@ -410,6 +411,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
     setIsNewRecord(newRecord);
     // Award song-completion sticker if accuracy >= 70%
     if (accuracy >= 70) {
+      reportGameWin();
       const id = `song_${selectedSong.id}`;
       earnSticker(id);
       reportQuestEvent('jukebox_song', { accuracy, speed });

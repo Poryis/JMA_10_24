@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -421,7 +422,7 @@ export default function DetectivePage() {
       if (bestStreak >= ROUNDS_PER_RUN) {
         try { earnSticker('detective_perfect'); } catch { /* ignore */ }
       }
-      setGameState('win');
+      setGameState('win'); reportGameWin();
       return;
     }
     const r = buildRound(difficulty);

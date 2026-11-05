@@ -155,6 +155,9 @@ export const COLLECTION_STICKERS = [
   { id: 'lesson_5', name: 'Lesson 5 Complete', category: 'lessons', icon: 'assets/characters/charlie-surf.png',     color: '#4285F4', hint: 'Finish Lesson 5' },
   { id: 'lesson_6', name: 'Lesson 6 Complete', category: 'lessons', icon: 'assets/characters/charlie-zoot.png',     color: '#34A853', hint: 'Finish Lesson 6' },
   { id: 'lesson_7', name: 'Lesson 7 Complete', category: 'lessons', icon: 'assets/characters/charlie-steampunk.png',color: '#8B4513', hint: 'Finish Lesson 7' },
+  { id: 'comeback_1', name: 'Tempo Comeback',  category: 'lessons', icon: 'assets/characters/jazzy.png',          color: '#FF2D85', hint: 'Watch Lesson 1 from a "Tricky one?" tip, then win that game' },
+  { id: 'comeback_4', name: 'Rhythm Comeback', category: 'lessons', icon: 'assets/characters/chunk-marching.png', color: '#FF9500', hint: 'Watch Lesson 4 from a "Tricky one?" tip, then win that game' },
+  { id: 'comeback_5', name: 'Pitch Comeback',  category: 'lessons', icon: 'assets/characters/finn-disco.png',     color: '#4285F4', hint: 'Watch Lesson 5 from a "Tricky one?" tip, then win that game' },
   { id: 'lesson_graduate', name: 'JMA Graduate!', category: 'lessons', icon: 'assets/characters/charlie-grad.png',  color: '#FFD700', hint: 'Finish every lesson' },
 
   // ---- Fun milestones (silly / playful collection — NOT skill-gating) ----

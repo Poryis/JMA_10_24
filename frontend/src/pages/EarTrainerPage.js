@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Play, Ear, RotateCcw, Volume2, Trophy, Rabbit } from 'lucide-react';
 import { JellyBellsRow, BELLS } from '../components/JellyBells';
 import { GameHeader, FeedbackPopup } from '../components/GameUI';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import RoomCharacters from '../components/RoomCharacters';
 import useAudio from '../hooks/useAudio';
@@ -160,7 +161,9 @@ function EarTrainerPage() {
           if (n >= 10) earnSticker('fit_sharky_snorkel');
         } catch (_) {}
         setStats(getEarTrainerStats());
-        setNeedHelp(results.correct + (correct ? 1 : 0) < Math.ceil(totalRounds / 2));
+        const passed = results.correct + (correct ? 1 : 0) >= Math.ceil(totalRounds / 2);
+        setNeedHelp(!passed);
+        if (passed) reportGameWin();
         setGameState('menu');
       } else {
         setRound(prev => prev + 1);

@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { Play, RotateCcw, ChevronLeft, Star, Flame } from 'lucide-react';
@@ -556,6 +557,7 @@ export default function ShredLegendPage() {
   const endSong = useCallback(() => {
     band.stop();
     setScreen('result');
+    if (peakRef.current >= 30) reportGameWin();
     reportQuestEvent('shred_show', { inPocket: inPocketRef.current });
     // Award rhythm achievement ladder + the Shred Legend collectible.
     if (inPocketRef.current >= 8) earnAchievementUpTo('rhythm', 'cadet');

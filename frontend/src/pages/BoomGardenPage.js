@@ -17,6 +17,7 @@
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
@@ -489,7 +490,7 @@ export default function BoomGardenPage() {
       setStreak((s) => s + 1);
       setShowCelebration(true);
       setTimeout(() => setShowCelebration(false), 2000);
-      setFeedback({ tone: 'great', text: 'Nice rhythm!' }); setNeedHelp(false);
+      setFeedback({ tone: 'great', text: 'Nice rhythm!' }); setNeedHelp(false); reportGameWin();
       // Victory dance: every-beat-perfect → Stew cycles all 4 left frames
       // in tempo for ~3 s. Activates only on a TRULY clean round so kids
       // chase the difference between "good enough" and "nailed it".
@@ -795,7 +796,7 @@ export default function BoomGardenPage() {
       setStreak((s) => s + 1);
       setShowCelebration(true);
       setTimeout(() => setShowCelebration(false), 1800);
-      setFeedback({ tone: 'great', text: 'Sharp ears!' }); setNeedHelp(false);
+      setFeedback({ tone: 'great', text: 'Sharp ears!' }); setNeedHelp(false); reportGameWin();
       reportQuestEvent('boom_round', { level });
       say('chunk.correct');
       try {

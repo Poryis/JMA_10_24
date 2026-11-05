@@ -12,6 +12,7 @@ import { CheckCircle2, ArrowRight, RotateCcw, Maximize2 } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import { LESSONS, getLesson } from '../data/lessons';
 import { useLessonsProgress } from '../hooks/useLessonsProgress';
+import { noteLessonWatched } from '../lib/lessonHelperReward';
 
 export default function LessonPlayerPage() {
   const { num } = useParams();
@@ -47,7 +48,7 @@ export default function LessonPlayerPage() {
     playerRef.current = player;
 
     const onEnded = () => {
-      markWatched(lessonNum);
+      markWatched(lessonNum); noteLessonWatched(lessonNum);
       setCompleted(true);
     };
     // Trigger early-unlock when ≤ 30s remain so kids don't have to sit through
@@ -62,7 +63,7 @@ export default function LessonPlayerPage() {
       if (!trackedDuration || trackedDuration <= 30) return;
       if (seconds >= trackedDuration - 30) {
         unlockedEarly = true;
-        markWatched(lessonNum);
+        markWatched(lessonNum); noteLessonWatched(lessonNum);
         setCompleted(true);
       }
     };

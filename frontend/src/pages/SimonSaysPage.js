@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -288,12 +289,12 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
             // got confused about what to do next.
             celebrate(true);
             setMessage('YOU BEAT THE WHOLE GAME!');
-            setGameState('finished');
+            setGameState('finished'); reportGameWin();
           } else {
             // Mega celebration on milestone level 5; regular on every other.
             celebrate(level === 5);
             setLevel(prev => prev + 1);
-            setNeedHelp(false);
+            setNeedHelp(false); reportGameWin();
             // Wait for the level-clear fanfare (4 kazoo notes spaced 90 ms +
             // ~700 ms decay tail) to finish BEFORE Stew starts demoing the
             // new pattern — otherwise the fanfare notes pile on top of the

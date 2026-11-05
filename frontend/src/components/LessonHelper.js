@@ -2,6 +2,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PlayCircle } from 'lucide-react';
 import { getLesson } from '../data/lessons';
+import { noteHelperOpened } from '../lib/lessonHelperReward';
 
 export default function LessonHelper({ lesson, className = '', floating = false }) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function LessonHelper({ lesson, className = '', floating = false 
     <button
       type="button"
       data-testid="lesson-helper"
-      onClick={() => navigate(`/lessons/${l.num}`, { state: { helper: true, from: pathname } })}
+      onClick={() => { noteHelperOpened(l.num, pathname); navigate(`/lessons/${l.num}`, { state: { helper: true, from: pathname } }); }}
       className={`lesson-helper ${floating ? 'lesson-helper-floating fixed z-[60]' : 'mx-auto'} flex items-center gap-2 rounded-2xl px-3 py-2 text-left transition-transform hover:scale-[1.03] active:scale-95 ${className}`}
       style={{ background: '#FFF9E6', color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 4px 0 0 var(--jma-dark)', maxWidth: 340 }}
     >

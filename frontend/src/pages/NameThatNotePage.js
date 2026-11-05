@@ -10,6 +10,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate } from 'react-router-dom';
@@ -403,6 +404,7 @@ export default function NameThatNotePage() {
   const finishRound = useCallback((finalResults, finalScore) => {
     const correct = finalResults.filter((r) => r === 'correct').length;
     if (correct >= PASS_MARK) {
+      reportGameWin();
       reportQuestEvent('name_note', { difficulty, correct });
       try {
         if (difficulty === 'cadet')  earnAchievement('scholar', 'cadet');

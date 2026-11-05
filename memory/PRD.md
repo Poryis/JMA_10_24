@@ -661,3 +661,5 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - components/LessonHelper.js: 'Tricky one? Lesson N can help!' button → /lessons/N with state {helper, from}; opens even if locked, Back returns to the game
 - Shown only after losing: Jukebox (<70%) L1, Shred City (0 stars) L1, Sight-Reading (<3/5 perfect) L5, Name That Note (<PASS_MARK) L5, Detective (gameover) L5, Ear Quest (<half right, on menu) L5, Stew Kazoo Says (missed pattern, until level cleared, floating) L5, Who's Got the Rhythm all 3 modes (missed round, floating) L4
 - Note Match has no lose state → no helper
+- Sight-Reading grading: per card perfect (0 wrong) / good (1-2) / tricky (3+ or timeout); -5 pts per wrong tap (card min 0); 1-3 stars (perfect=2, good=1 of 10: >=90% 3, >=60% 2); helper when <2 stars
+- Comeback stickers comeback_1/4/5 (lessons category): helper tap → lesson watched (lib/lessonHelperReward.js, localStorage jma_lesson_helper_v1) → next win in that same game route earns it (reportGameWin in each game)

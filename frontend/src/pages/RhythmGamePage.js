@@ -6,7 +6,6 @@ import { Play, Trophy, Zap, Drum, Music2, Star, Sparkles, Flame, Leaf } from 'lu
 import { BELLS, KEY_TO_NOTE } from '../components/JellyBells';
 import { GameHeader, FeedbackPopup, ProgressBar } from '../components/GameUI';
 import { PageCharacters } from '../components/PageCharacters';
-import RoomCharacters from '../components/RoomCharacters';
 import useAudio from '../hooks/useAudio';
 import { earnSticker, earnAchievement, earnAchievementUpTo } from '../hooks/useStickers';
 import { reportQuestEvent } from '../hooks/useDailyQuests';
@@ -771,7 +770,6 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
           </motion.div>
         )}
 
-        <RoomCharacters room="rhythm-arcade" />
       </div>
     );
   }

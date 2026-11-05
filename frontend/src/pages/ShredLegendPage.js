@@ -411,6 +411,7 @@ export default function ShredLegendPage() {
     const perfectWin = Math.max(28, eighthMs * 0.18);
     const niceWin = Math.max(55, eighthMs * 0.36);
     if (off > niceWin) {
+      if (comboRef.current >= 4) say('charlie.miss');
       comboRef.current = 0; setCombo(0);
       if (inEncore) encoreRef.current.misses += 1;
       pushFloat('OFF BEAT', '#9DA3A8');
@@ -548,6 +549,7 @@ export default function ShredLegendPage() {
     if (readyCount <= 0) {
       band.start(songIndex);
       setScreen('playing');
+      say('charlie.go', { delayMs: 300 });
       return;
     }
     const t = setTimeout(() => setReadyCount((c) => c - 1), 650);
@@ -558,6 +560,7 @@ export default function ShredLegendPage() {
     band.stop();
     setScreen('result');
     if (peakRef.current >= 30) reportGameWin();
+    if (peakRef.current >= 90) say('charlie.perfect', { delayMs: 600 });
     reportQuestEvent('shred_show', { inPocket: inPocketRef.current });
     // Award rhythm achievement ladder + the Shred Legend collectible.
     if (inPocketRef.current >= 8) earnAchievementUpTo('rhythm', 'cadet');

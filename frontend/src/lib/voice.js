@@ -15,6 +15,11 @@ const lastSpokenAt = {};
 const lastVariant = {};
 let current = null;
 
+// Kudos (cheers, misses, "keep going", Shred crowd calls) share one clock: at most one every 15 s, across every game.
+const KUDOS = /\.(correct|perfect|miss|go|match|mismatch|gomatch|sweep)(\.\d+)?$|^charlie\.shred\.(opening|headliner|legend|toowild)$/;
+const KUDOS_GAP_MS = 15000;
+let lastKudosAt = 0;
+
 export function voiceEnabled() {
   try { return localStorage.getItem(VOICE_KEY) !== '0'; } catch (_) { return true; }
 }
@@ -42,10 +47,13 @@ export function say(idOrGroup, { interrupt = true, minGapMs = 900, delayMs = 0, 
   if (!voiceEnabled()) return false;
   const now = Date.now();
   if (lastSpokenAt[idOrGroup] && now - lastSpokenAt[idOrGroup] < minGapMs) return false;
+  const kudos = KUDOS.test(idOrGroup);
+  if (kudos && now - lastKudosAt < KUDOS_GAP_MS) return false;
   const line = resolve(idOrGroup);
   if (!line || missing.has(line.id)) return false;
   if (current && !current.ended && !interrupt) return false;
   lastSpokenAt[idOrGroup] = now;
+  if (kudos) lastKudosAt = now;
 
   const play = () => {
     stopVoice();

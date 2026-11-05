@@ -15,6 +15,7 @@ import { reportQuestEvent, readTour } from '../hooks/useDailyQuests';
 import { AVATARS } from '../data/avatars';
 import { VOICE_MAP } from '../data/voiceLines';
 import { say } from '../lib/voice';
+import useVoiceTagline from '../hooks/useVoiceTagline';
 import { brand } from '../lib/brand';
 
 const SEEN_KEY = 'jma_outfits_seen_v1';
@@ -87,6 +88,7 @@ function RailArrows({ railRef, deps }) {
 export default function DressingRoomPage() {
   const { character, outfit, outfits, choose, wear, unlockedFor, totalUnlocked, totalOutfits } = useAvatar();
   const [preview, setPreview] = useState(character.id);
+  useVoiceTagline('charlie.howto.dressing');
   const previewChar = AVATARS.find(a => a.id === preview) || character;
   const isCurrent = previewChar.id === character.id;
   const previewOutfits = isCurrent ? outfits : previewChar.outfits.map(o => ({ ...o, unlocked: o.unlock.kind === 'free' || unlockedFor({ outfits: [o] }) > 0 }));

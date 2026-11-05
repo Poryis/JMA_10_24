@@ -663,3 +663,9 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Note Match has no lose state → no helper
 - Sight-Reading grading: per card perfect (0 wrong) / good (1-2) / tricky (3+ or timeout); -5 pts per wrong tap (card min 0); 1-3 stars (perfect=2, good=1 of 10: >=90% 3, >=60% 2); helper when <2 stars
 - Comeback stickers comeback_1/4/5 (lessons category): helper tap → lesson watched (lib/lessonHelperReward.js, localStorage jma_lesson_helper_v1) → next win in that same game route earns it (reportGameWin in each game)
+
+## Voice pass (Nov 2026)
+- lib/voice.js: shared kudos clock — correct/perfect/miss/go/match/mismatch/gomatch/sweep + Shred crowd calls max one per 15 s across games
+- Charlie perfect/miss/go now used in Shred City (result LEGEND / losing 4+ streak / song start)
+- New how-tos: beatlab, jam, songstudio, dressing, stage; 11 existing how-tos tightened; 'Plays when' column filled for every kudos group, unused non-Charlie lines marked NOT USED
+- Script generator: node frontend/scripts/voiceScript.mjs → /app/memory/voice_script.md, /app/memory/voice_script_charlie.md, public/voice-script-charlie.md

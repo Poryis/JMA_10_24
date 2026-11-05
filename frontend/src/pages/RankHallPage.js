@@ -23,6 +23,7 @@ import { GameHeader } from '../components/GameUI';
 import SetlistPicker from '../components/SetlistPicker';
 import { PosterModal, savePoster } from '../components/StagePoster';
 import { CrowdRow, CROWD_SHOUTS } from './ShredLegendPage';
+import useVoiceTagline from '../hooks/useVoiceTagline';
 
 const FANFARE = ['C4', 'E4', 'G4', 'C5'];
 const STAGE = stageLayout;
@@ -96,6 +97,7 @@ export function playFanfare() {
 }
 
 export default function RankHallPage() {
+  useVoiceTagline('charlie.howto.stage');
   const navigate = useNavigate();
   const location = useLocation();
   const { currentRank } = useRank();

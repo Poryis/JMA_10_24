@@ -499,7 +499,7 @@ function JamAlongControls({ jamTrackId, onPick, audioRef, getAudioGraph, beatPla
 }
 
 function FreePlayPage() {
-  useVoiceTagline('jazzy.tag.jam');
+  useVoiceTagline('jazzy.tag.jam', 'charlie.howto.jam');
   const navigate = useNavigate();
   const { playBellNote, playDrumSound, initAudioContext, getAudioGraph } = useAudio();
   const recorder = useMp3Recorder(getAudioGraph);

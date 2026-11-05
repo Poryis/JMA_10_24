@@ -70,7 +70,7 @@ function ColoredKey({ keyDef, scaleHighlighted, isTonic, onTap, playingNow }) {
 
 export default function SongStudioPage() {
   const { nameFor } = useNoteNames();
-  useVoiceTagline('charlie.tag.songstudio');
+  useVoiceTagline('charlie.tag.songstudio', 'charlie.howto.songstudio');
   const navigate = useNavigate();
   const location = useLocation();
   const { preload, preloadLoop, playPianoNote, playLoop, initContext, now } = usePianoAudio();

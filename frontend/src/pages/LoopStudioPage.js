@@ -231,7 +231,7 @@ const StepRow = memo(function StepRow({ voiceKey, color, steps, totalSteps, mute
 });
 
 function LoopStudioPage() {
-  useVoiceTagline('chunk.tag.beatlab');
+  useVoiceTagline('chunk.tag.beatlab', 'charlie.howto.beatlab');
   const navigate = useNavigate();
   const location = useLocation();
   const { getAudioGraph, initAudioContext } = useAudio();

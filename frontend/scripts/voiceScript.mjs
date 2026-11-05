@@ -16,6 +16,7 @@ for (const [key, c] of Object.entries(C)) {
   out += '\n';
 }
 fs.writeFileSync('/app/memory/voice_script.md', out);
+fs.writeFileSync('public/voice-script.md', out);
 const ch = L.filter(l => l.char === 'charlie');
 const group = (l) => l.id.includes('.howto.') ? 'How-to instructions' : /\.(correct|perfect|miss|go)\./.test(l.id) || l.id.startsWith('charlie.shred.') ? 'Reactions & Shred City calls' : l.id.includes('.quest.') ? 'Quest nudges' : 'Host lines, taglines & big moments';
 let cs = HEAD.replace('# JMA Voice Recording Script', '# JMA Voice Script — Charlie the Polliwog').replace(/\*\*\d+ lines · \d+ voices\.\*\*[^\n]*\n/, `**${ch.length} lines for Charlie.** ${C.charlie.vibe}\n`);

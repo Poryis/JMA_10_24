@@ -910,11 +910,8 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
               return (
                 <div key={note} className="rhythm-lane" style={{ backgroundColor: `${tintColor}10` }}>
                   <div className="lane-target" />
-                  {/* Mobile big-finger lane: invisible button covering the
-                      entire lane on small screens, so kids can jab anywhere
-                      in the column to score. Hidden (`md:hidden`) on
-                      tablet+. Lower z-index than the static bell so taps
-                      ON the bell still go to the bell. */}
+                  {/* Whole-lane hit zone: kids can tap anywhere in the column to play that
+                      bell. Sits under the bell so taps ON the bell still go to the bell. */}
                   <button
                     data-testid={`game-lane-${note}`}
                     type="button"
@@ -923,7 +920,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
                     onPointerUp={doUp}
                     onPointerLeave={doUp}
                     onPointerCancel={doUp}
-                    className="md:hidden absolute inset-0 bg-transparent border-0 p-0 z-0"
+                    className="absolute inset-0 bg-transparent border-0 p-0 z-0 cursor-pointer"
                     style={{ touchAction: 'none' }}
                   />
                   {/* Target instrument — sits at the catch line. On mobile we

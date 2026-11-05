@@ -205,7 +205,7 @@ const L = {
   shield: { left: '77%', top: '11.52%', width: '19.19%' }, lectern: { left: '32.45%', top: '48.57%', width: '11.5%' }, book: { left: '32.05%', top: '42.84%', width: '11.79%' },
   harp: { left: '0%', top: '57.94%', width: '14.62%' }, trumpet: { left: '19.08%', top: '64.71%', width: '11.9%' },
   lanternL: { left: '34.29%', top: '24.93%', width: '3.88%' }, lanternR: { left: '73.74%', top: '24.93%', width: '3.88%' },
-  art: { left: '65.68%', top: '49.98%', width: '29.07%' }, guitar: { left: '86.63%', top: '49.35%', width: '13.22%' },
+  art: { left: '65.68%', top: '49.98%', width: '29.07%' }, sign: { left: '69.58%', top: '68.96%', width: '14.01%' }, guitar: { left: '86.63%', top: '49.35%', width: '13.22%' },
 };
 const MOTES = Array.from({ length: 12 }, (_, i) => ({ left: `${44 + (i * 7.3) % 24}%`, top: `${62 + (i * 5.1) % 30}%`, size: 3 + (i % 3) * 2, dur: 5 + (i % 4) * 1.5, delay: -(i * 0.7) }));
 const HALL = { w: 1920, h: 1080 };
@@ -418,7 +418,9 @@ export default function AcademyPage() {
         <Prop id="creation-top" pos={L.art} z={4} />
         <LaptopEQ locked={!avatarChosen} />
         <Easels onEmpty={() => setPanel('album')} />
-        <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" color="#FF2D85" onClick={() => setPanel('album')} />
+        <Hotspot id="album" x={66} y={50} w={28} h={36} label="Creation Station" pill={false} color="#FF2D85" onClick={() => setPanel('album')} />
+        {/* wooden Creation Station sign over the desk cubby — replaces the old label pill */}
+        <Prop id="creation-sign" pos={L.sign} z={6} label="Creation Station" testId="academy-creation-sign" onClick={() => setPanel('album')} />
 
         {/* Charlie on the rug */}
         <button type="button" data-testid="academy-charlie" onClick={() => setLine((l) => (l + 1) % WELCOME.length)} aria-label="Talk to Charlie" className="absolute flex flex-col items-center" style={{ left: '56%', bottom: '14%', width: '11%', zIndex: 6 }}>

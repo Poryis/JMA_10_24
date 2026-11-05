@@ -5,7 +5,7 @@
 // `ended` event and trigger fullscreen.
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Player from '@vimeo/player';
 import { CheckCircle2, ArrowRight, RotateCcw, Maximize2 } from 'lucide-react';
@@ -24,7 +24,10 @@ export default function LessonPlayerPage() {
   const iframeRef = useRef(null);
   const playerRef = useRef(null);
 
-  const allowed = lesson && isUnlocked(lessonNum);
+  const { state } = useLocation();
+  // a Lesson Helper nudge from a game opens the lesson even if it's still locked, with Back returning to that game
+  const fromGame = state?.helper ? state.from : null;
+  const allowed = lesson && (isUnlocked(lessonNum) || !!fromGame);
 
   // Tear down the existing Vimeo Player (if any) safely.
   const destroyPlayer = useCallback(() => {
@@ -177,7 +180,7 @@ export default function LessonPlayerPage() {
         backgroundPosition: 'center',
       }}
     >
-      <GameHeader showHomeButton={true} backLink={{ to: '/lessons', label: 'Lessons' }} />
+      <GameHeader showHomeButton={true} backTo={fromGame || undefined} backLink={{ to: '/lessons', label: 'Lessons' }} />
 
       <motion.div
         className="relative z-10 text-center mb-4"

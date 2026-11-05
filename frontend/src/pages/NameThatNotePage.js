@@ -10,6 +10,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate } from 'react-router-dom';
 import { Music2, MapPin, Clock, RotateCcw, Play, Volume2, Check, Lightbulb, Star, X, ListMusic } from 'lucide-react';
@@ -931,6 +932,7 @@ export default function NameThatNotePage() {
                 ) : (
                   <p className="text-sm font-bold mb-3 opacity-70" style={{ color: 'var(--jma-dark)' }}>You know every note on that staff. Finn is impressed.</p>
                 )}
+                {correctCount < PASS_MARK && <LessonHelper lesson={5} className="mb-3" />}
                 <div className="flex flex-wrap justify-center gap-2">
                   <button data-testid="ntn-win-again" onClick={() => startRound(difficulty, mode)} className="chunky-btn bg-[var(--jma-green)] text-white px-4 py-2 flex items-center gap-1.5">
                     <Play className="w-4 h-4" /> Play Again

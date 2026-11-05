@@ -656,3 +656,8 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Backlog: real trumpet/guitar/bass riffs from user
 - Per-outfit riffs for Stew (kazoo, drumline), Dr J (detective, astro, disco, dapper), Chunk (disco, marching, steampunk); generator script /app/memory/mkriffs.py (clean-cut notes, volume-matched)
 - Stage cast roll call: tap any band member in the pit (CrowdRow onTap, data-testid band-member-<id>) → hop + their riff
+
+## Lesson Helper (Nov 2026)
+- components/LessonHelper.js: 'Tricky one? Lesson N can help!' button → /lessons/N with state {helper, from}; opens even if locked, Back returns to the game
+- Shown only after losing: Jukebox (<70%) L1, Shred City (0 stars) L1, Sight-Reading (<3/5 perfect) L5, Name That Note (<PASS_MARK) L5, Detective (gameover) L5, Ear Quest (<half right, on menu) L5, Stew Kazoo Says (missed pattern, until level cleared, floating) L5, Who's Got the Rhythm all 3 modes (missed round, floating) L4
+- Note Match has no lose state → no helper

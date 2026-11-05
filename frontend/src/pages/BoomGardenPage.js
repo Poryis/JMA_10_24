@@ -17,6 +17,7 @@
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
 import { GameHeader, FeedbackPopup } from '../components/GameUI';
@@ -244,6 +245,7 @@ export default function BoomGardenPage() {
   // kicks off the actual round. Resets on every enterMode call.
   const [showInstructions, setShowInstructions] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [needHelp, setNeedHelp] = useState(false); // a lost round → suggest the note-value lesson until a round is passed
   // Tempo multiplier: 1 = full speed, 0.75 = chill, 0.5 = practice. Slowing
   // the tempo stretches BEAT_MS proportionally for everything (demo,
   // count-in, expected times, visual playhead) so kids can scale the
@@ -487,7 +489,7 @@ export default function BoomGardenPage() {
       setStreak((s) => s + 1);
       setShowCelebration(true);
       setTimeout(() => setShowCelebration(false), 2000);
-      setFeedback({ tone: 'great', text: 'Nice rhythm!' });
+      setFeedback({ tone: 'great', text: 'Nice rhythm!' }); setNeedHelp(false);
       // Victory dance: every-beat-perfect → Stew cycles all 4 left frames
       // in tempo for ~3 s. Activates only on a TRULY clean round so kids
       // chase the difference between "good enough" and "nailed it".
@@ -511,7 +513,7 @@ export default function BoomGardenPage() {
       } catch (_) { /* ignore */ }
     } else {
       setStreak(0);
-      setFeedback({ tone: 'miss', text: 'Almost! Try again.' });
+      setFeedback({ tone: 'miss', text: 'Almost! Try again.' }); setNeedHelp(true);
       say('chunk.miss');
     }
     // Auto-advance after a longer reveal so the kid actually sees the
@@ -793,7 +795,7 @@ export default function BoomGardenPage() {
       setStreak((s) => s + 1);
       setShowCelebration(true);
       setTimeout(() => setShowCelebration(false), 1800);
-      setFeedback({ tone: 'great', text: 'Sharp ears!' });
+      setFeedback({ tone: 'great', text: 'Sharp ears!' }); setNeedHelp(false);
       reportQuestEvent('boom_round', { level });
       say('chunk.correct');
       try {
@@ -802,7 +804,7 @@ export default function BoomGardenPage() {
       } catch (_) { /* ignore */ }
     } else {
       setStreak(0);
-      setFeedback({ tone: 'miss', text: `Not quite — option ${matchAnswer + 1} was right!` });
+      setFeedback({ tone: 'miss', text: `Not quite — option ${matchAnswer + 1} was right!` }); setNeedHelp(true);
       say('chunk.miss');
     }
     const isLastRound = currentRound >= ROUNDS_PER_SESSION;
@@ -899,7 +901,7 @@ export default function BoomGardenPage() {
   // ---- LIFECYCLE ----
   const enterMode = useCallback((m) => {
     clearTimeouts();
-    setMode(m);
+    setMode(m); setNeedHelp(false);
     setScore(0);
     setStreak(0);
     setHitStates([]);
@@ -937,7 +939,7 @@ export default function BoomGardenPage() {
 
   const exitMode = useCallback(() => {
     clearTimeouts();
-    setMode(null);
+    setMode(null); setNeedHelp(false);
     setPhase('idle');
     setHighlightIndex(-1);
     setFeedback(null);
@@ -1839,6 +1841,8 @@ export default function BoomGardenPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {needHelp && <LessonHelper lesson={4} floating />}
 
         {/* Feedback toast */}
         <AnimatePresence>

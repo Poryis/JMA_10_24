@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Play, Ear, RotateCcw, Volume2, Trophy, Rabbit } from 'lucide-react';
 import { JellyBellsRow, BELLS } from '../components/JellyBells';
 import { GameHeader, FeedbackPopup } from '../components/GameUI';
+import LessonHelper from '../components/LessonHelper';
 import RoomCharacters from '../components/RoomCharacters';
 import useAudio from '../hooks/useAudio';
 import { earnSticker, earnAchievement, earnAchievementUpTo } from '../hooks/useStickers';
@@ -35,6 +36,7 @@ function EarTrainerPage() {
   const [targetNote, setTargetNote] = useState(null);
   const [guess, setGuess] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const [needHelp, setNeedHelp] = useState(false); // last quest scored under half → suggest the pitch lesson
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [round, setRound] = useState(0);
@@ -80,6 +82,7 @@ function EarTrainerPage() {
   // Plays "Do" (C) as a reference tonic first, then the mystery note ~1s later.
   const startGame = useCallback((diffOverride) => {
     initAudioContext();
+    setNeedHelp(false);
     setGameState('playing');
     setScore(0);
     setStreak(0);
@@ -157,6 +160,7 @@ function EarTrainerPage() {
           if (n >= 10) earnSticker('fit_sharky_snorkel');
         } catch (_) {}
         setStats(getEarTrainerStats());
+        setNeedHelp(results.correct + (correct ? 1 : 0) < Math.ceil(totalRounds / 2));
         setGameState('menu');
       } else {
         setRound(prev => prev + 1);
@@ -221,6 +225,8 @@ function EarTrainerPage() {
             4. Stuck? Tap <span className="font-black text-[var(--jma-red)]">Hear Do</span> anytime!
           </p>
         </motion.div>
+
+        {needHelp && <LessonHelper lesson={5} className="mb-4" />}
 
         {/* Stats */}
         {stats.totalAttempts > 0 && (

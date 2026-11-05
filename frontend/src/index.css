@@ -916,6 +916,13 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes dr-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
 .dr-bob { animation: dr-bob 2.4s ease-in-out infinite; }
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
+/* Lesson Helper nudge during a game: tucked bottom-left, clear of the notch */
+.lesson-helper-floating { left: calc(12px + env(safe-area-inset-left, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); max-width: min(300px, 42vw) !important; }
+@media (max-height: 520px) and (orientation: landscape) {
+  .lesson-helper-floating { padding: 4px 8px !important; bottom: 6px; }
+  .lesson-helper-floating svg { width: 20px; height: 20px; }
+}
+
 /* Sticker Shack: earned medals get a slow foil shine sweep */
 .medal-earned::after {
   content: ''; position: absolute; inset: 0; border-radius: 9999px; pointer-events: none;

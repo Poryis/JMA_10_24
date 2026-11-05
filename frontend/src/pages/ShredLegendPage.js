@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { Play, RotateCcw, ChevronLeft, Star, Flame } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
@@ -861,6 +862,7 @@ export default function ShredLegendPage() {
                   ? (encoreRef.current.misses === 0 && encoreRef.current.hits >= 8 ? 'Shred Legend + Encore! stickers unlocked!' : 'Shred Legend sticker unlocked! Play a flawless encore for a second sticker.')
                   : 'Play in time and keep your streak going for ×2 to fill the meter!'}
               </p>
+              {peakRef.current < 30 && <LessonHelper lesson={1} className="mb-4" />}
               <div className="flex items-center justify-center gap-2 flex-wrap">
                 <button
                   data-testid="shred-again-btn"

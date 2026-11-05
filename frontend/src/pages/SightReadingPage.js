@@ -15,6 +15,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BookOpen, Clock, RotateCcw, Trophy, Play, Volume2, Check } from 'lucide-react';
@@ -562,6 +563,7 @@ export default function SightReadingPage() {
                     Best: {bestRecords[difficulty] || runScore} pts
                   </span>
                 </div>
+                {cardResults.filter(r => r === 'complete').length < 3 && <LessonHelper lesson={5} className="mb-2" />}
                 <div className="flex flex-wrap justify-center gap-2 mt-3">
                   <button
                     data-testid="sight-reading-win-again"

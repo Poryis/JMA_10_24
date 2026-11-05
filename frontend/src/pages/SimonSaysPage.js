@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Play, Eye, RotateCcw } from 'lucide-react';
@@ -48,6 +49,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
   const { playKazooNote, playFeedbackSound, initAudioContext } = useAudio();
 
   const [gameState, setGameState] = useState('ready');
+  const [needHelp, setNeedHelp] = useState(false); // a missed pattern → suggest the pitch lesson until the level is cleared
   const [difficulty, setDifficulty] = useState('easy');
   const [level, setLevel] = useState(1);
   const [showingIndex, setShowingIndex] = useState(-1);
@@ -166,6 +168,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
   // Stew's first demo note doesn't fire alongside any queued/late sources
   // (the cause of the "first note plays a bunch at once" bug on iOS).
   const startGame = useCallback(async (diffKey) => {
+    setNeedHelp(false);
     const ctx = initAudioContext();
     if (ctx && ctx.state === 'suspended') {
       try { await ctx.resume(); } catch (_) {}
@@ -290,6 +293,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
             // Mega celebration on milestone level 5; regular on every other.
             celebrate(level === 5);
             setLevel(prev => prev + 1);
+            setNeedHelp(false);
             // Wait for the level-clear fanfare (4 kazoo notes spaced 90 ms +
             // ~700 ms decay tail) to finish BEFORE Stew starts demoing the
             // new pattern — otherwise the fanfare notes pile on top of the
@@ -319,6 +323,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
       playFeedbackSound('miss');
       say('stew.miss');
       setMessage('Oops! Try again!');
+      setNeedHelp(true);
       setGameState('fail');
 
       // Retry same level
@@ -600,6 +605,8 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
           AnimatePresence exit so it unmounts instantly on "Keep Playing" —
           otherwise the fading full-screen backdrop briefly swallowed the
           first kazoo taps (no sound in free play). */}
+      {needHelp && (gameState === 'showing' || gameState === 'playing' || gameState === 'fail') && <LessonHelper lesson={5} floating />}
+
       {gameState === 'finished' && (
           <motion.div
             data-testid="simon-win-overlay"

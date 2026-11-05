@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, Heart, Volume2, Trophy, RotateCcw, ArrowRight, Sparkles } from 'lucide-react';
@@ -1036,6 +1037,7 @@ export default function DetectivePage() {
                     Best Score: {(bestRecords[difficulty]?.score) || score}
                   </span>
                 </div>
+                {gameState === 'gameover' && <LessonHelper lesson={5} className="mb-4" />}
                 <div className="flex flex-wrap justify-center gap-2">
                   <button
                     data-testid="detective-modal-again"

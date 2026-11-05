@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
 import { useNavigate } from 'react-router-dom';
 import { Play, Trophy, Zap, Drum, Music2, Star, Sparkles, Flame, Leaf } from 'lucide-react';
@@ -521,6 +522,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
             </div>
           </div>
         </div>
+        {accuracy < 70 && <LessonHelper lesson={1} className="mb-4" />}
         <div className="flex gap-3">
           <motion.button data-testid="play-again-button" className="chunky-btn bg-[var(--jma-green)] text-white px-6 py-3 font-bold" onClick={startGame} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Play Again</motion.button>
           <motion.button className="chunky-btn bg-white px-6 py-3 font-bold" style={{ color: 'var(--jma-dark)' }} onClick={() => setGameState('menu')} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Pick Song</motion.button>

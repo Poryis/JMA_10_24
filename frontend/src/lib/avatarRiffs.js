@@ -12,7 +12,7 @@ const RIFFS = {
 };
 
 // Outfits with their own riff (file riffs/<character>-<outfit>.mp3).
-const OUTFIT_RIFFS = new Set(['stew-kazoo', 'stew-drumline', 'doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk', 'charlie-grad']);
+const OUTFIT_RIFFS = new Set(['stew-kazoo', 'stew-drumline', 'doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk', 'charlie-grad', 'charlie-drummajor', 'charlie-rundmc']);
 
 // Charlie's guitar licks (riffs/guitar/gl-NN.mp3), picked at random per outfit.
 const g = (...n) => n.map((x) => `riffs/guitar/gl-${String(x).padStart(2, '0')}.mp3`);
@@ -22,7 +22,7 @@ const POOLS = {
   'charlie-classic': METAL, 'charlie-captain': METAL, 'charlie-disco': FUNKY, 'charlie-surf': SURF, 'charlie-punk': PUNK,
   'charlie-zoot': BORIS, 'charlie-pinstripes': CUCINA, 'charlie-reggae': REGGAE,
   'charlie-zebra': [...METAL, ...FUNKY, ...SURF, ...PUNK, ...BORIS, ...CUCINA, ...REGGAE],
-  'charlie-rundmc': FRESH, 'charlie-studio': FRESH, 'charlie-steampunk': FRESH,
+  'charlie-studio': FRESH, 'charlie-steampunk': FRESH,
   'dolphin-dolphin': g(18),
 };
 // every usable lick — the coral guitar in the Academy

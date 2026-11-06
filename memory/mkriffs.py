@@ -32,6 +32,7 @@ RIFFS = {
     'chunk-disco':    drums('khshkhsc', 0.13),
     'chunk-marching': drums('sssskssc', 0.11),
     'chunk-steampunk': drums('ttllkrkc', 0.14),
+    'charlie-grad': notes(S, [('G3', 1), ('C4', 1), ('E4', 1), ('G4', 2), ('E4', 1), ('G4', 1), ('C5', 1)], 0.14, 0.7),
 }
 
 def build(name, segs):

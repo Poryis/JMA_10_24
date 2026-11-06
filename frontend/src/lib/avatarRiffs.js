@@ -12,7 +12,7 @@ const RIFFS = {
 };
 
 // Outfits with their own riff (file riffs/<character>-<outfit>.mp3).
-const OUTFIT_RIFFS = new Set(['stew-kazoo', 'stew-drumline', 'doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk']);
+const OUTFIT_RIFFS = new Set(['stew-kazoo', 'stew-drumline', 'doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk', 'charlie-grad']);
 
 // Charlie's guitar licks (riffs/guitar/gl-NN.mp3), picked at random per outfit.
 const g = (...n) => n.map((x) => `riffs/guitar/gl-${String(x).padStart(2, '0')}.mp3`);

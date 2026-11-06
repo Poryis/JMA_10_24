@@ -669,3 +669,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Charlie perfect/miss/go now used in Shred City (result LEGEND / losing 4+ streak / song start)
 - New how-tos: beatlab, jam, songstudio, dressing, stage; 11 existing how-tos tightened; 'Plays when' column filled for every kudos group, unused non-Charlie lines marked NOT USED
 - Script generator: node frontend/scripts/voiceScript.mjs → /app/memory/voice_script.md, /app/memory/voice_script_charlie.md, public/voice-script-charlie.md
+- Charlie guitar licks: riffs/guitar/gl-NN.mp3 (63MB wav → 1.8MB). Pools in lib/avatarRiffs.js POOLS (metal→classic/captain, funky→disco, surf, punk, boris→zoot, cucina→pinstripes, reggae, zebra=all tagged, unused(10,11,12,13,15,19,28)→rundmc/studio/steampunk, 18→secret dolphin). Excluded 08,14,38. Drum Major/Graduate still riffs/charlie.mp3. Academy coral guitar → playAcademyLick (random any lick, no repeats)

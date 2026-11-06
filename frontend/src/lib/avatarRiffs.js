@@ -8,7 +8,7 @@ const RIFFS = {
   finn: [['riffs/finn.mp3', 0]],
   lou: [[['riffs/lou-1.mp3', 0]], [['riffs/lou-2.mp3', 0]], [['riffs/lou-3.mp3', 0]]],
   jazzy: [['riffs/jazzy.mp3', 0]],
-  chunk: [['sfx-drum-fill.mp3', 0]],
+  chunk: [['riffs/chunk.mp3', 0]],
 };
 
 // Outfits with their own riff (file riffs/<character>-<outfit>.mp3).

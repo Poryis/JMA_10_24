@@ -88,6 +88,12 @@ function MyAlbum() {
     ...loadSongs().map((s) => ({ id: s.id, name: s.name, kind: 'song', meta: 'Song Studio', route: `/song-studio?song=${s.id}`, at: Date.parse(s.createdAt) || 0 })),
     ...loadSavedJams().map((j) => ({ id: j.id, name: j.name, kind: 'jam', meta: j.sourceName ? `Jammed to: ${j.sourceName}` : 'Jam Session', route: `/rank-hall?jam=${j.id}`, at: j.createdAt || 0 })),
   ].sort((a, b) => b.at - a.at), []);
+  // ?cover=<trackId> (from the Jam Session "Saved!" popup) opens that track's cover designer straight away
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.hash.split('?')[1] || '').get('cover');
+    const t = id && tracks.find((x) => x.id === id);
+    if (t) setEditing(t);
+  }, [tracks]);
   const coverFor = (t, i) => normalizeCover(covers[t.id], SLEEVES[i % SLEEVES.length]);
   return (
     <Card testId="academy-album" className="w-full max-w-3xl">

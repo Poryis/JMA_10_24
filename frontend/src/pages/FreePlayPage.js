@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Music, Circle, Square, Play, RotateCcw, ChevronRight, Headphones, Download, Mic, Disc3 } from 'lucide-react';
 import { BELLS, KEY_TO_NOTE } from '../components/JellyBells';
+import JamSavedPopup from '../components/JamSavedPopup';
 import { GameHeader } from '../components/GameUI';
 import { XylophoneInstrument, PianoInstrument } from '../components/Instruments';
 import GuitarInstrument from '../components/GuitarInstrument';
@@ -526,6 +527,8 @@ function FreePlayPage() {
   const jamAudioRef = useRef(null);
   // Saving a finished recording to My Album
   const [namingJam, setNamingJam] = useState(null);
+  const [savedJamId, setSavedJamId] = useState(null);
+  const [showJamNext, setShowJamNext] = useState(false); // step 2 of the save popup: what next?
   const [jamNameInput, setJamNameInput] = useState('');
   const [savedJamName, setSavedJamName] = useState(null);
   // Stop jam-along audio when this page unmounts
@@ -762,6 +765,8 @@ function FreePlayPage() {
     const name = jamNameInput.trim().slice(0, 24) || namingJam.name;
     if (name !== namingJam.name) renameSavedJam(namingJam.id, name);
     setSavedJamName(name);
+    setSavedJamId(namingJam.id);
+    setShowJamNext(true);
     setNamingJam(null);
   }, [namingJam, jamNameInput]);
 
@@ -941,12 +946,6 @@ function FreePlayPage() {
                     <Disc3 className="w-3 h-3" /> Save to Album
                   </button>
                 )}
-                {namingJam && (
-                  <form data-testid="jam-name-form" className="flex items-center gap-1" onSubmit={(e) => { e.preventDefault(); confirmJamName(); }}>
-                    <input data-testid="jam-name-input" autoFocus maxLength={24} value={jamNameInput} onChange={(e) => setJamNameInput(e.target.value)} placeholder={`Name it! (${namingJam.name})`} className="px-2 py-1 rounded-lg text-[10px] md:text-xs font-bold w-28 md:w-36 outline-none" style={{ background: '#fff', color: 'var(--jma-dark)', border: '2px solid var(--jma-dark)' }} />
-                    <button type="submit" data-testid="jam-name-save" className="chunky-btn bg-[var(--jma-yellow)] text-[var(--jma-dark)] px-2 py-0.5 md:py-1 text-[10px] md:text-xs font-black touch-manipulation">Save</button>
-                  </form>
-                )}
                 {savedJamName && (
                   <button type="button" data-testid="jam-go-to-album" className="chunky-btn bg-[var(--jma-green)] text-white px-2 py-0.5 md:py-1 flex items-center gap-1 text-[10px] md:text-xs font-bold touch-manipulation" onClick={() => navigate('/academy?panel=album')}>
                     <Disc3 className="w-3 h-3" /> "{savedJamName}" saved! My Album →
@@ -955,6 +954,17 @@ function FreePlayPage() {
               </div>
             )}
           </div>
+          <JamSavedPopup
+            naming={namingJam}
+            value={jamNameInput}
+            onChange={setJamNameInput}
+            onSave={confirmJamName}
+            saved={showJamNext ? savedJamName : null}
+            onClose={() => setShowJamNext(false)}
+            onCover={() => navigate(`/academy?panel=album&cover=${savedJamId}`)}
+            onStage={() => navigate(`/rank-hall?jam=${savedJamId}`)}
+            onAlbum={() => navigate('/academy?panel=album')}
+          />
           <audio
             ref={jamAudioRef}
             src={jamTrackId ? (SONG_LIBRARY.find(s => s.id === jamTrackId)?.audioUrl || '') : ''}

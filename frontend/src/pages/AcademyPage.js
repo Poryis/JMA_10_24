@@ -30,6 +30,7 @@ import { RANKS } from '../data/ranks';
 import { journeyTo } from '../data/campus';
 import { say } from '../lib/voice';
 import { brand } from '../lib/brand';
+import { FitBox } from '../components/FitBox';
 import { playAcademyLick, playLampSfx } from '../lib/avatarRiffs';
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
@@ -446,7 +447,12 @@ export default function AcademyPage() {
           <motion.div data-testid={`academy-panel-${panel}`} className="fixed inset-0 z-[60] flex items-center justify-center p-3 pt-14 md:pt-20" style={{ background: 'rgba(2,36,63,0.55)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setPanel(null)}>
             <motion.div className="relative w-full flex justify-center max-h-full overflow-y-auto" initial={{ y: 24, scale: 0.97 }} animate={{ y: 0, scale: 1 }} exit={{ y: 24, scale: 0.97 }} transition={{ duration: 0.2 }} onClick={(e) => e.stopPropagation()}>
               <div className="relative w-full flex justify-center">
-                <Panel />
+                {panel === 'yearbook' ? (
+                  // the Achievement Book shrinks to fit short landscape phones instead of getting cut off
+                  <div className="w-full flex justify-center items-start" style={{ height: 'calc(100dvh - 5.75rem)' }}>
+                    <FitBox className="w-full flex justify-center" inset={4}><Panel /></FitBox>
+                  </div>
+                ) : <Panel />}
                 <button type="button" data-testid="academy-panel-close" onClick={() => setPanel(null)} aria-label="Close" className="absolute top-2 right-2 md:right-auto md:left-[calc(50%+21.5rem)] w-10 h-10 rounded-full bg-white flex items-center justify-center" style={{ border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)', zIndex: 2 }}><X className="w-5 h-5" strokeWidth={3} style={{ color: 'var(--jma-dark)' }} /></button>
               </div>
             </motion.div>

@@ -1131,7 +1131,7 @@ h1, h2, h3, h4, h5, h6 {
   .funfacts-hint { display: none !important; }
   .funfacts-main { padding-top: 60px !important; padding-bottom: 6px !important; }
   .funfacts-scene.w-\[2400px\] { width: 1500px !important; }
-  .funfacts-scroller-pad { padding: 26vh 30vw; box-sizing: content-box; width: max-content; }
+  .funfacts-scroller-pad { padding: var(--ff-pad-y, 26vh) 30vw; box-sizing: content-box; width: max-content; }
 }
 
 

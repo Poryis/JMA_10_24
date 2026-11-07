@@ -78,7 +78,7 @@ export default function PrintReport({ open, onClose }) {
       {open && (
         <motion.div
           data-testid="print-report-modal"
-          className="fixed inset-0 z-[180] flex items-center justify-center p-2 md:p-6 overflow-auto"
+          className="fixed inset-0 z-[180] flex items-start justify-center p-2 md:p-6 overflow-auto"
           style={{
             background: 'rgba(10,37,64,0.55)',
             backdropFilter: 'blur(4px)',
@@ -88,7 +88,7 @@ export default function PrintReport({ open, onClose }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="jma-print-report bg-white rounded-2xl border-4 shadow-2xl max-w-2xl w-full p-6 md:p-8 relative"
+            className="jma-print-report bg-white rounded-2xl border-4 shadow-2xl max-w-2xl w-full p-6 md:p-8 relative my-auto"
             style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 10px 0 0 var(--jma-dark)' }}
             initial={{ scale: 0.85, y: 30 }}
             animate={{ scale: 1, y: 0 }}

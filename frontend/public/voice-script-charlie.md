@@ -70,7 +70,7 @@
 | 22 | `charlie.meta.academyopen` | **Jumpin' Jelly Beans! The Academy is OPEN!** | ceremonial | First badge → LEARN/CREATE reveal |
 | 23 | `charlie.meta.streak3` | **Three days runnin'! Attaboy!** | proud | Practice streak hits 3 |
 | 24 | `charlie.meta.streak7` | **A whole week? Fuhgeddaboudit!** | amazed | Practice streak hits 7 |
-| 25 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | Dressing Room — choosing Charlie |
+| 25 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 26 | `charlie.dress.wear` | **Ooh, lookin' good! Give us a spin!** | proud | Dressing Room — Charlie changes outfit |
 | 27 | `charlie.fact.01` | **Your VOICE is your very first instrument — and you were born with it!** | curious, friendly | Fun Facts — tapping Charlie (fact 1) |
 | 28 | `charlie.fact.02` | **When you sing, over 100 muscles in your body work together — even ones in your tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 2) |

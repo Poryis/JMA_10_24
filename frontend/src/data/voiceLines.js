@@ -171,17 +171,17 @@ export const VOICE_LINES = [
   L('finn.tag.notematch', 'NOTE MATCH! Find the twins! Oh, I love this one!', 'hip-hop cool', 'Entering Note Match'),
 
   // ---- Dressing Room: picked as your Jelly / tried on a new outfit ----
-  L('charlie.dress.pick',  'Me? You picked ME? Let\'s look sharp!',          'delighted',   'Dressing Room — choosing Charlie'),
+  L('charlie.dress.pick',  'Me? You picked ME? Let\'s look sharp!',          'delighted',   'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('charlie.dress.wear',  'Ooh, lookin\' good! Give us a spin!',                'proud',       'Dressing Room — Charlie changes outfit'),
-  L('finn.dress.pick',     'FINN time! Oh boy, what are we wearing?!',        'daring',      'Dressing Room — choosing Finn'),
+  L('finn.dress.pick',     'FINN time! Oh boy, what are we wearing?!',        'daring',      'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('finn.dress.wear',     'Whoa! Do I look fast? I feel fast!',              'hyped',       'Dressing Room — Finn changes outfit'),
-  L('chunk.dress.pick',    'Chunk reporting for duty, dude.',                  'laid back',   'Dressing Room — choosing Chunk'),
+  L('chunk.dress.pick',    'Chunk reporting for duty, dude.',                  'laid back',   'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('chunk.dress.wear',    'Dude. This is a vibe.',                            'cool',        'Dressing Room — Chunk changes outfit'),
-  L('jazzy.dress.pick',    'Jazzy\'s in the house. Make it fabulous.',          'sassy',       'Dressing Room — choosing Jazzy'),
+  L('jazzy.dress.pick',    'Jazzy\'s in the house. Make it fabulous.',          'sassy',       'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('jazzy.dress.wear',    'Mmm-hmm. THAT\'s the look.',                        'sassy',       'Dressing Room — Jazzy changes outfit'),
-  L('stew.dress.pick',     'Stew! That\'s me! Hi!',                             'goofy',       'Dressing Room — choosing Stew'),
+  L('stew.dress.pick',     'Stew! That\'s me! Hi!',                             'goofy',       'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('stew.dress.wear',     'Does this come with a kazoo pocket?',              'goofy',       'Dressing Room — Stew changes outfit'),
-  L('doctor.dress.pick',   'Ah. An excellent choice, my friend.',              'noir, warm',  'Dressing Room — choosing Dr. Jellybone'),
+  L('doctor.dress.pick',   'Ah. An excellent choice, my friend.',              'noir, warm',  'NOT VOICED — speech bubble only (the character\'s riff plays instead)'),
   L('doctor.dress.wear',   'Mmm. Very distinguished.',                         'noir, warm',  'Dressing Room — Dr. Jellybone changes outfit'),
 
   L('finn.match.1', 'MATCH! Ha-HA!',              'punchy',     'NOT USED IN THE APP YET — optional, record last'),

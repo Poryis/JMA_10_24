@@ -119,6 +119,18 @@ function FunFactsPage() {
     });
     return () => cancelAnimationFrame(id);
   }, [wideLayout]);
+  // Phones: vertical padding just big enough that the porthole can reach the room's top/bottom edge, never past it.
+  useEffect(() => {
+    const sc = scrollerRef.current;
+    if (!sc) return undefined;
+    const fit = () => {
+      const r = Math.min(window.innerWidth * 0.32, window.innerHeight * 0.28);
+      sc.style.setProperty('--ff-pad-y', `${Math.max(0, Math.round(sc.clientHeight / 2 - r))}px`);
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)'); const coarse = window.matchMedia('(pointer: coarse)');
     const f = () => setWideLayout(mq.matches && !coarse.matches);

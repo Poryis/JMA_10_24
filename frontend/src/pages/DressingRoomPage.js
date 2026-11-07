@@ -137,7 +137,8 @@ export default function DressingRoomPage() {
     const line = VOICE_MAP[id];
     setBubble(line ? line.text : (charId === 'lou' ? '…' : null));
     // each character speaks their pick/wear line at most once every 5 minutes; the bubble still shows
-    if (line && Date.now() - (lastDressVoice[charId] || 0) > DRESS_VOICE_GAP_MS && say(id, { minGapMs: 0 })) lastDressVoice[charId] = Date.now();
+    // pick lines are bubble-only (the character's riff plays instead)
+    if (line && group !== 'pick' && Date.now() - (lastDressVoice[charId] || 0) > DRESS_VOICE_GAP_MS && say(id, { minGapMs: 0 })) lastDressVoice[charId] = Date.now();
     later(() => setBubble(null), 3200);
   }, []);
 

@@ -64,7 +64,7 @@
 | 42 | `charlie.go.1` | **Keep it rollin'!** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
 | 43 | `charlie.go.2` | **You got this, cadet!** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
 | 44 | `charlie.go.3` | **All right, keep it rollin'!** | pumped | Shred City — as the song starts (kudos: max one every 15 s) |
-| 45 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | Dressing Room — choosing Charlie |
+| 45 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 46 | `charlie.dress.wear` | **Ooh, lookin' good! Give us a spin!** | proud | Dressing Room — Charlie changes outfit |
 | 47 | `charlie.howto.jukebox` | **Tap on the bell when it drops in the box.** | coach, upbeat | Jelly Jukebox — first bells song of the session · bells How to Play speaker |
 | 48 | `charlie.howto.jukedrums` | **Tap on the drum when it drops in the box.** | coach, upbeat | Jelly Jukebox — first drums song of the session · drums How to Play speaker |
@@ -125,7 +125,7 @@
 | 13 | `doctor.miss.4` | **Close. Trust those ears.** | reassuring | Detective / Ear Quest — wrong answer (kudos: max one every 15 s) |
 | 14 | `doctor.go.1` | **Listen close now…** | hushed | NOT USED IN THE APP YET — optional, record last |
 | 15 | `doctor.go.2` | **Take your time, detective.** | coaxing | NOT USED IN THE APP YET — optional, record last |
-| 16 | `doctor.dress.pick` | **Ah. An excellent choice, my friend.** | noir, warm | Dressing Room — choosing Dr. Jellybone |
+| 16 | `doctor.dress.pick` | **Ah. An excellent choice, my friend.** | noir, warm | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 17 | `doctor.dress.wear` | **Mmm. Very distinguished.** | noir, warm | Dressing Room — Dr. Jellybone changes outfit |
 | 18 | `doctor.quest.q_detective_case` | **A case awaits, baby. Easy does it.** | noir | Quest: Crack a case |
 | 19 | `doctor.quest.q_detective_3` | **Three cases today. Think you can hang?** | challenge | Quest: Crack 3 cases |
@@ -165,7 +165,7 @@
 | 13 | `stew.miss.4` | **That's okay — one more time!** | warm | Stew Kazoo Says — wrong kazoo (kudos: max one every 15 s) |
 | 14 | `stew.go.1` | **Watch and listen!** | eager | NOT USED IN THE APP YET — optional, record last |
 | 15 | `stew.go.2` | **You can do it!** | cheer | NOT USED IN THE APP YET — optional, record last |
-| 16 | `stew.dress.pick` | **Stew! That's me! Hi!** | goofy | Dressing Room — choosing Stew |
+| 16 | `stew.dress.pick` | **Stew! That's me! Hi!** | goofy | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 17 | `stew.dress.wear` | **Does this come with a kazoo pocket?** | goofy | Dressing Room — Stew changes outfit |
 | 18 | `stew.quest.q_stew_2` | **Beat my level two!** | dare | Quest: Stew level 2 |
 | 19 | `stew.quest.q_stew_4` | **Level four? You're brave!** | impressed | Quest: Stew level 4 |
@@ -204,7 +204,7 @@
 | 13 | `jazzy.miss.4` | **Shake it off! Like a maraca! HA!** | light | NOT USED IN THE APP YET — optional, record last |
 | 14 | `jazzy.go.1` | **STAY on that beat!** | steady | NOT USED IN THE APP YET — optional, record last |
 | 15 | `jazzy.go.2` | **Feel the groove, baby!** | smooth | NOT USED IN THE APP YET — optional, record last |
-| 16 | `jazzy.dress.pick` | **Jazzy's in the house. Make it fabulous.** | sassy | Dressing Room — choosing Jazzy |
+| 16 | `jazzy.dress.pick` | **Jazzy's in the house. Make it fabulous.** | sassy | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 17 | `jazzy.dress.wear` | **Mmm-hmm. THAT's the look.** | sassy | Dressing Room — Jazzy changes outfit |
 | 18 | `jazzy.quest.q_jukebox_song` | **Finish a song with me! It'll be MUSIC to my ears! HA!** | inviting | Quest: Jukebox song |
 | 19 | `jazzy.quest.q_jukebox_streak` | **TEN in a row! I DARE ya!** | sly | Quest: Jukebox 10-streak |
@@ -245,7 +245,7 @@
 | 14 | `chunk.miss.4` | **Listen to the drums, dude.** | coaching | Who's Got the Rhythm — round missed (kudos: max one every 15 s) |
 | 15 | `chunk.go.1` | **Keep the beat, bro!** | steady | NOT USED IN THE APP YET — optional, record last |
 | 16 | `chunk.go.2` | **Nice and mellow, dude.** | soothing | NOT USED IN THE APP YET — optional, record last |
-| 17 | `chunk.dress.pick` | **Chunk reporting for duty, dude.** | laid back | Dressing Room — choosing Chunk |
+| 17 | `chunk.dress.pick` | **Chunk reporting for duty, dude.** | laid back | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 18 | `chunk.dress.wear` | **Dude. This is a vibe.** | cool | Dressing Room — Chunk changes outfit |
 | 19 | `chunk.quest.q_beat_loop` | **Build a loop in my lab, dude.** | warm | Quest: Beat Lab loop |
 | 20 | `chunk.quest.q_beat_3` | **Three tracks, bro. BIG sound.** | booming | Quest: 3-track loop |
@@ -286,7 +286,7 @@
 | 14 | `finn.go.1` | **Read ahead, read ahead!** | urging | NOT USED IN THE APP YET — optional, record last |
 | 15 | `finn.go.2` | **Eyes on the staff! Hee!** | coach | NOT USED IN THE APP YET — optional, record last |
 | 16 | `finn.tag.notematch` | **NOTE MATCH! Find the twins! Oh, I love this one!** | hip-hop cool | Entering Note Match |
-| 17 | `finn.dress.pick` | **FINN time! Oh boy, what are we wearing?!** | daring | Dressing Room — choosing Finn |
+| 17 | `finn.dress.pick` | **FINN time! Oh boy, what are we wearing?!** | daring | NOT VOICED — speech bubble only (the character's riff plays instead) |
 | 18 | `finn.dress.wear` | **Whoa! Do I look fast? I feel fast!** | hyped | Dressing Room — Finn changes outfit |
 | 19 | `finn.match.1` | **MATCH! Ha-HA!** | punchy | NOT USED IN THE APP YET — optional, record last |
 | 20 | `finn.match.2` | **TWINS! Oh, look at 'em!** | fun | NOT USED IN THE APP YET — optional, record last |

@@ -177,7 +177,7 @@ export default function ManageDataModal({ open, onClose }) {
       {open && (
         <motion.div
           data-testid="manage-data-modal"
-          className="fixed inset-0 z-[170] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[170] flex items-start justify-center p-4 overflow-y-auto"
           style={{ background: 'rgba(10,37,64,0.6)', backdropFilter: 'blur(4px)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -185,7 +185,7 @@ export default function ManageDataModal({ open, onClose }) {
           onClick={onClose}
         >
           <motion.div
-            className="bg-white rounded-3xl border-4 p-5 md:p-6 max-w-md w-full relative"
+            className="bg-white rounded-3xl border-4 p-5 md:p-6 max-w-md w-full relative my-auto"
             style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 10px 0 0 var(--jma-dark)' }}
             initial={{ scale: 0.85, y: 30 }}
             animate={{ scale: 1, y: 0 }}

@@ -10,6 +10,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { RANKS } from '../data/ranks';
+import { FitBox } from './FitBox';
 
 const JMA_DARK = 'var(--jma-dark)';
 const DR_J = 'assets/characters/dr-jellybone.png';
@@ -214,6 +215,7 @@ export default function HowRanksWorkModal({ open, onClose, teacherView = false }
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
+        <FitBox className="w-full max-w-lg" inset={8}>
         <motion.div
           onClick={(e) => e.stopPropagation()}
           className="relative w-full max-w-lg rounded-3xl bg-white border-4 shadow-[0_10px_0_0_var(--jma-dark)] overflow-hidden"
@@ -349,6 +351,7 @@ export default function HowRanksWorkModal({ open, onClose, teacherView = false }
             )}
           </div>
         </motion.div>
+        </FitBox>
       </motion.div>
     </AnimatePresence>,
     document.body

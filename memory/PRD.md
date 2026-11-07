@@ -679,3 +679,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Finn bass fills: riffs/bass/fb-01..10 split from user's single file at silences; Daredevil(classic)=1,9 · Classic(plain)=2,10 · Disco 3 · Hip-Hop 4 · Snorkel 5 · Zoot 6 · Electrician 7 · Dapper 8
 - Stew voice = kazoo babble: all 30 stew.* lines (incl. facts) built from clips 8-10 phrases sized to text length (/app/memory/import_stew.py); bubbles keep real text
 - Stew riffs: riffs/stew-classic-1..3 (clips 1,4,5), stew-kazoo-1..2 (2,6), stew-drumline-1..2 (3,7). Disco Charlie: riffs/charlie-disco-1..4 (clips 11-14); Zebra still includes old funky licks
+- Fix: clip 10 was a guitar lick → moved to Disco Charlie (charlie-disco-5); Stew talk now from clips 8-9 only (9 phrases), shuffled deck + random pitch/speed wobble per line, all 30 files unique. voice.js VOICE_VERSION + avatarRiffs ?v=2 cache-bust — bump when re-importing

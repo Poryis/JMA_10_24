@@ -9,6 +9,8 @@ import { VOICE_MAP, VOICE_LINES } from '../data/voiceLines';
 
 export const VOICE_KEY = 'jma_voice_v1'; // '0' = character voices off
 const BASE = 'assets/voice/';
+// bump when re-importing recordings so phones fetch the new takes
+const VOICE_VERSION = 2;
 
 const missing = new Set();
 const lastSpokenAt = {};
@@ -57,7 +59,7 @@ export function say(idOrGroup, { interrupt = true, minGapMs = 900, delayMs = 0, 
 
   const play = () => {
     stopVoice();
-    const a = new Audio(`${BASE}${line.id}.mp3`);
+    const a = new Audio(`${BASE}${line.id}.mp3?v=${VOICE_VERSION}`);
     a.volume = volume;
     let done = false;
     const finish = (ok) => { if (done) return; done = true; if (current === a) current = null; onDone?.(ok); };

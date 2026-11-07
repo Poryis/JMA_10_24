@@ -21,7 +21,7 @@ const BORIS = g(22, 23, 24), CUCINA = g(20, 21), REGGAE = g(36, 37), FRESH = g(1
 const STEW = (o, n) => Array.from({ length: n }, (_, i) => `riffs/stew-${o}-${i + 1}.mp3`);
 const POOLS = {
   'stew-classic': STEW('classic', 3), 'stew-kazoo': STEW('kazoo', 2), 'stew-drumline': STEW('drumline', 2),
-  'charlie-disco': [1, 2, 3, 4].map((n) => `riffs/charlie-disco-${n}.mp3`),
+  'charlie-disco': [1, 2, 3, 4, 5].map((n) => `riffs/charlie-disco-${n}.mp3`),
   'charlie-classic': METAL, 'charlie-captain': METAL, 'charlie-surf': SURF, 'charlie-punk': PUNK,
   'charlie-zoot': BORIS, 'charlie-pinstripes': CUCINA, 'charlie-reggae': REGGAE,
   'charlie-zebra': [...METAL, ...FUNKY, ...SURF, ...PUNK, ...BORIS, ...CUCINA, ...REGGAE],
@@ -48,7 +48,7 @@ export function playRiff(id, outfit, vol = 0.8) {
   playing.forEach((a) => { try { a.pause(); } catch (_) { /* ignore */ } });
   playing = [];
   r.forEach(([file, delay]) => setTimeout(() => {
-    const a = new Audio(encodeURI(A + file)); a.volume = vol; playing.push(a); a.play().catch(() => {});
+    const a = new Audio(encodeURI(A + file) + '?v=2'); a.volume = vol; playing.push(a); a.play().catch(() => {});
   }, delay));
 }
 

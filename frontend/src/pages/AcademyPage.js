@@ -30,7 +30,7 @@ import { RANKS } from '../data/ranks';
 import { journeyTo } from '../data/campus';
 import { say } from '../lib/voice';
 import { brand } from '../lib/brand';
-import { playAcademyLick } from '../lib/avatarRiffs';
+import { playAcademyLick, playLampSfx } from '../lib/avatarRiffs';
 
 function loadSongs() { try { return JSON.parse(localStorage.getItem('jma_songs_v1') || '[]'); } catch { return []; } }
 
@@ -393,7 +393,7 @@ export default function AcademyPage() {
 
         {/* lanterns sway and glow */}
         {[['lanternL', 'lantern-left'], ['lanternR', 'lantern-right']].map(([k, id], i) => (
-          <Prop key={k} id={id} testId={`academy-${id}`} pos={L[k]} z={3} className="origin-top" label="Lantern" wiggle={wiggle[k]} tap={{ rotate: [0, -12, 10, -6, 3, 0] }} onClick={() => poke(k, 'sfx-bell-chime.mp3')}
+          <Prop key={k} id={id} testId={`academy-${id}`} pos={L[k]} z={3} className="origin-top" label="Lantern" wiggle={wiggle[k]} tap={{ rotate: [0, -12, 10, -6, 3, 0] }} onClick={() => { poke(k); playLampSfx(); }}
             idle={{ rotate: i ? [2.5, -2.5, 2.5] : [-2.5, 2.5, -2.5] }} />
         ))}
         {[L.lanternL, L.lanternR].map((p, i) => (

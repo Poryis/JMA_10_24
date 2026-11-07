@@ -22,7 +22,7 @@ const STEW = (o, n) => Array.from({ length: n }, (_, i) => `riffs/stew-${o}-${i 
 const SAX = (...n) => n.map((x) => `riffs/doctor-sax-${x}.mp3`);
 const POOLS = {
   'doctor-classic': SAX(1), 'doctor-detective': SAX(2), 'doctor-astro': SAX(3), 'doctor-disco': SAX(4), 'doctor-dapper': SAX(1, 2, 3, 4),
-  'stew-classic': STEW('classic', 3), 'stew-kazoo': STEW('kazoo', 2), 'stew-drumline': STEW('drumline', 2),
+  'stew-classic': STEW('classic', 1), 'stew-kazoo': STEW('kazoo', 1), 'stew-drumline': STEW('drumline', 1),
   'charlie-disco': [1, 2, 3, 4, 5].map((n) => `riffs/charlie-disco-${n}.mp3`),
   'charlie-classic': METAL, 'charlie-captain': METAL, 'charlie-surf': SURF, 'charlie-punk': PUNK,
   'charlie-zoot': BORIS, 'charlie-pinstripes': CUCINA, 'charlie-reggae': REGGAE,
@@ -64,4 +64,10 @@ export function playMyRiff() {
 export function playAcademyLick() {
   playing.forEach((a) => { try { a.pause(); } catch (_) { /* ignore */ } });
   const a = new Audio(encodeURI(A + pickLick('academy', ALL_LICKS))); a.volume = 0.7; playing = [a]; a.play().catch(() => {});
+}
+
+// Academy wall lanterns: Stew's kazoo sound effects (clips 4–7), random, no repeats.
+const LAMP = ['riffs/stew-classic-2.mp3', 'riffs/stew-classic-3.mp3', 'riffs/stew-kazoo-2.mp3', 'riffs/stew-drumline-2.mp3'];
+export function playLampSfx() {
+  const a = new Audio(encodeURI(A + pickLick('lamp', LAMP)) + '?v=2'); a.volume = 0.7; a.play().catch(() => {});
 }

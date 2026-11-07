@@ -125,7 +125,11 @@ function FunFactsPage() {
     if (!sc) return undefined;
     const fit = () => {
       const r = Math.min(window.innerWidth * 0.32, window.innerHeight * 0.28);
-      sc.style.setProperty('--ff-pad-y', `${Math.max(0, Math.round(sc.clientHeight / 2 - r))}px`);
+      const padEl = sc.querySelector('.funfacts-scroller-pad');
+      const scene = sc.querySelector('.funfacts-scene');
+      // anything sitting between the scroller's top and the pad (e.g. the scroller's own padding)
+      const extra = padEl && scene ? Math.max(0, scene.offsetTop - parseFloat(getComputedStyle(padEl).paddingTop || '0')) : 0;
+      sc.style.setProperty('--ff-pad-y', `${Math.max(0, Math.round(sc.clientHeight / 2 - r - extra))}px`);
     };
     fit();
     window.addEventListener('resize', fit);

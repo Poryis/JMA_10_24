@@ -1,0 +1,28 @@
+{
+  "summary": "Frontend-only phone-landscape retest at 844x390 and 667x375, using a touch context (has_touch/is_mobile, so pointer:coarse = true). All 6 requested items pass. One small extra finding on Fun Facts: a gap of about 4-10px at the porthole edges.",
+  "passed_checks": [
+    "Academy yearbook (both sizes): zoom is 0.72. Height sampled every animation frame for 2s gave exactly one value (284.4px over 22 frames at 844, 307px over 21 frames at 667), so there is no flicker. Bounds were top 87 / bottom 371 (vh 390) and top 56 / bottom 363 (vh 375), fully inside the viewport.",
+    "Academy academy-how-ranks: how-ranks-modal FitBox scale is 0.73 at 844 and 0.78 at 667. The card spans 8..382 and 8..367, inside the viewport.",
+    "Sticker Book (#/sticker-book; the brief said #/stickers, but the real route is /sticker-book). open-how-ranks fits through FitBox. open-print-report (needs teacher-view-toggle) can be scrolled: card top 13/4 at scroll 0, card bottom 377/371 at max scroll. open-manage-data: top 9, bottom at max scroll 381/366. Reset buttons were NOT clicked.",
+    "Rank Hall: rank-hall-now-playing sits at left 12, top 84, under the Back button. elementFromPoint at its centre returns the pill (its inner span). It does not overlap bow, play-song, light-show, snap or academy. Clicking it changes data-muted from false to true.",
+    "Dressing Room: picking chunk then charlie made 0 requests to *.dress.pick.mp3 and 0 /assets/voice/ requests. Riffs were still requested (riffs/chunk.mp3, riffs/guitar/gl-0x.mp3). dressing-bubble shows \"Me? You picked ME? Let's look sharp!\"",
+    "Fun Facts: --ff-pad-y matches the formula: 17px at 844 (clientHeight 252) and 27px at 667 (clientHeight 265). .funfacts-scroller-pad padding-top and padding-bottom match the var."
+  ],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "FunFactsPage porthole", "issue": "The scene can no longer scroll past the porthole, but it falls slightly short. At scrollTop 0 the scene top is about 10px (844x390) or 4px (667x375) below the porthole top. At max scroll the scene bottom is the same distance below the porthole bottom. The gap equals scene.offsetTop (27/31) minus pad (17/27), so an element or margin of about 4-10px sits between the pad and .funfacts-scene. A thin strip of the area outside the scene may show at the porthole edge. The formula also mixes the stage's CSS px (clientHeight) with screen px (innerWidth/innerHeight), and the stage scale is about 1.03-1.08.", "selector": "[data-testid=funfacts-scene-scroller] .funfacts-scroller-pad", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": ["Optional (LOW): in the --ff-pad-y effect, subtract the extra offset before .funfacts-scene (scene.offsetTop - pad), or measure the porthole frame's real radius, so the scene edge meets the porthole edge exactly."],
+  "critical_code_review_comments": ["Two landscape media blocks set the academy-yearbook zoom: max-height 400px uses 0.72 !important and max-height 520px uses 0.78. They are static and do not conflict, but they should be merged into one block for clarity."],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% (6/6 requested checks)"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "The Sticker Book route is #/sticker-book. Print Report and Manage Data only appear after clicking teacher-view-toggle. Dismiss the 'Tap to Start the Music!' overlay first, then the name prompt, then tour-start-modal-close. browser.new_context(has_touch=True,is_mobile=True) works for coarse pointer. The Academy yearbook hotspot is data-testid academy-room-yearbook."
+}

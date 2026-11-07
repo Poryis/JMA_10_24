@@ -499,6 +499,7 @@ export default function CampusMapPage({ plaza = false }) {
   // Plaza: Charlie greets the kid at the bandstand (time-of-day / first visit / quests).
   useEffect(() => {
     if (!plaza) return undefined;
+    if (goTo) return undefined; // just passing through on the way to a building — no greeting
     const hour = new Date().getHours();
     let line = hour < 12 ? 'charlie.hub.morning' : hour < 17 ? 'charlie.hub.afternoon' : 'charlie.hub.evening';
     if (!localStorage.getItem('jma_voice_welcomed')) { line = 'charlie.hub.first'; try { localStorage.setItem('jma_voice_welcomed', '1'); } catch (_) { /* ignore */ } }

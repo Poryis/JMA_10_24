@@ -967,7 +967,7 @@ function FreePlayPage() {
           />
           <audio
             ref={jamAudioRef}
-            src={jamTrackId ? (SONG_LIBRARY.find(s => s.id === jamTrackId)?.audioUrl || '') : ''}
+            src={(jamTrackId && SONG_LIBRARY.find(s => s.id === jamTrackId)?.audioUrl) || undefined}
             preload="auto"
             data-testid="jam-along-audio"
           />

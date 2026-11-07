@@ -85,6 +85,9 @@ function RailArrows({ railRef, deps }) {
   );
 }
 
+const DRESS_VOICE_GAP_MS = 5 * 60 * 1000;
+const lastDressVoice = {};
+
 export default function DressingRoomPage() {
   const { character, outfit, outfits, choose, wear, unlockedFor, totalUnlocked, totalOutfits } = useAvatar();
   const [preview, setPreview] = useState(character.id);
@@ -133,7 +136,8 @@ export default function DressingRoomPage() {
     const id = `${charId}.dress.${group}`;
     const line = VOICE_MAP[id];
     setBubble(line ? line.text : (charId === 'lou' ? '…' : null));
-    if (line) say(id, { minGapMs: 0 });
+    // each character speaks their pick/wear line at most once every 5 minutes; the bubble still shows
+    if (line && Date.now() - (lastDressVoice[charId] || 0) > DRESS_VOICE_GAP_MS && say(id, { minGapMs: 0 })) lastDressVoice[charId] = Date.now();
     later(() => setBubble(null), 3200);
   }, []);
 

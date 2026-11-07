@@ -57,17 +57,17 @@ export const CHARACTER_FACTS = {
     topic: 'singing',
     color: '#34A853',
     facts: [
-      "Your voice is the very first instrument you were born with!",
+      "Your VOICE is your very first instrument — and you were born with it!",
       "When you sing, over 100 muscles in your body work together — even ones in your tummy!",
-      "Humming is a kind of singing with your mouth closed — try it, it tickles your nose!",
-      "Singers warm up their voices like athletes stretch their muscles. Lip trills are a favorite!",
+      "Humming is a kind of singing you do with your mouth closed — try it, it tickles!",
+      "Singers warm up their voices just like athletes stretch their muscles.",
       "A CHOIR is a big group of people singing together in harmony — like a vocal team!",
-      "Opera singers can sing SO loudly they don't even need a microphone, even in giant theaters!",
-      "Babies can recognize their favorite songs before they're even born, from inside mom's tummy!",
-      "Whistling is music made just with your lips and air — no vocal cords needed!",
-      "The highest singing voice is called SOPRANO. The lowest is called BASS.",
+      "Opera singers can sing SO loudly they don't even need a microphone!",
+      "Babies can recognize their favorite songs before they're even born, from inside mommy's tummy!",
+      "Whistling is music made just with your lips and air — no vocal cords required!",
+      "The highest singing voice is a SOPRANO, and the lowest is called a BASS.",
       "Singing together with friends actually makes your brain release happy chemicals!",
-      "Your voice sounds different to YOU than it does to other people — your skull carries the sound inside your head!",
+      "Your voice sounds different to YOU than it does to everybody else!",
     ],
   },
   Jazzy: {
@@ -135,5 +135,5 @@ export function getRandomFact(characterName) {
     do { idx = Math.floor(Math.random() * entry.facts.length); } while (idx === prev);
   }
   lastFactIndex[characterName] = idx;
-  return { text: entry.facts[idx], color: entry.color, topic: entry.topic };
+  return { text: entry.facts[idx], color: entry.color, topic: entry.topic, index: idx };
 }

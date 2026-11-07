@@ -1,9 +1,11 @@
 import fs from 'fs';
+const facts = fs.readFileSync('src/data/musicFacts.js','utf8').replace(/^export /gm,'').replace(/\/\/ Get a random fact[\s\S]*$/,'');
 const src = fs.readFileSync('src/data/voiceLines.js','utf8')
+  .replace(/^import .*$/gm,'')
   .replace(/^export /gm,'')
   .replace(/export function[\s\S]*$/,'');
 const mod = {};
-new Function('mod', src + '\nmod.VOICE_CHARACTERS=VOICE_CHARACTERS; mod.VOICE_LINES=VOICE_LINES;')(mod);
+new Function('mod', facts + '\n' + src + '\nmod.VOICE_CHARACTERS=VOICE_CHARACTERS; mod.VOICE_LINES=VOICE_LINES;')(mod);
 const { VOICE_CHARACTERS: C, VOICE_LINES: L } = mod;
 let out = `# JMA Voice Recording Script\n\n`;
 out += `**${L.length} lines · ${Object.keys(C).length} voices.** Lou never speaks. **Sharky IS Finn Danger — the same shark, one voice.** Stew can be performed as kazoo-talk.\n\n`;

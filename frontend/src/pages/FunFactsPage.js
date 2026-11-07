@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { X, Sparkles, Search, RotateCcw } from 'lucide-react';
 import { getRandomFact } from '../data/musicFacts';
+import { factVoiceId } from '../data/voiceLines';
 import { earnSticker, noteFactSeen } from '../hooks/useStickers';
 import { reportQuestEvent } from '../hooks/useDailyQuests';
 import { say } from '../lib/voice';
@@ -165,11 +166,12 @@ function FunFactsPage() {
         setActiveFact({ character: characterName, ...fact });
         if (charObj?.stickerId) earnSticker(charObj.stickerId);
         reportQuestEvent('fun_fact');
-        say('stew.correct', { minGapMs: 2500 });
+        if (!say(factVoiceId(characterName, fact.index), { interrupt: true })) say('stew.correct', { minGapMs: 2500 });
         noteFactSeen();
       }, 350);
     } else {
       setActiveFact({ character: characterName, ...fact });
+      say(factVoiceId(characterName, fact.index), { interrupt: true });
       noteFactSeen();
     }
   }, [found, markFound]);

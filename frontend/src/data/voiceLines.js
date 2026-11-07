@@ -1,3 +1,4 @@
+import { CHARACTER_FACTS } from './musicFacts';
 // Voice-line registry — every spoken blurb in the Academy.
 //
 // Audio files live at public/assets/voice/<id>.mp3 and are recorded by real
@@ -16,6 +17,10 @@ export const VOICE_CHARACTERS = {
 };
 
 // id format: <character>.<group>[.<variant>]
+// Fun Facts characters → voice key (Lou has no voice actor yet)
+const FACT_VOICE = { Charlie: 'charlie', 'Dr. Jellybone': 'doctor', Chunk: 'chunk', Finn: 'finn', Jazzy: 'jazzy', Stew: 'stew' };
+export const factVoiceId = (name, index) => FACT_VOICE[name] && `${FACT_VOICE[name]}.fact.${String(index + 1).padStart(2, '0')}`;
+
 const L = (id, text, emotion, where) => {
   const [char] = id.split('.');
   return { id, char, text, emotion, where };
@@ -23,7 +28,7 @@ const L = (id, text, emotion, where) => {
 
 export const VOICE_LINES = [
   // ───────────── CHARLIE — Academy host (Home hub) ─────────────
-  L('charlie.hub.first',     'Heyyy — welcome to the Academy, kid!',            'huge smile',     'Home — very first visit'),
+  L('charlie.hub.first',     'Hello there, and welcome to the Academy!',            'huge smile',     'Home — very first visit'),
   L('charlie.hub.morning',   'Mornin\', cadet. Let\'s make some music.',             'bright',         'Home — before noon'),
   L('charlie.hub.afternoon', 'Afternoon, pal! Ya ready?',               'bright',         'Home — noon to 5pm'),
   L('charlie.hub.evening',   'Evenin\'! Nothin\' like a night session.',        'cozy, excited',  'Home — after 5pm'),
@@ -38,7 +43,7 @@ export const VOICE_LINES = [
 
   // Charlie — room taglines
   L('charlie.tag.shred',     'Welcome to Shred City, baby!',             'rock announcer', 'Entering Shred City'),
-  L('charlie.tag.songstudio','Step into my studio. Let\'s write a hit.',               'creative, warm', 'Entering Charlie\'s Song Studio'),
+  L('charlie.tag.songstudio','Step into the studio, let\'s write a hit!',               'creative, warm', 'Entering Charlie\'s Song Studio'),
   L('charlie.tag.music101',  'Class is in session, folks.',               'teacher-y, fun', 'Entering Music 101'),
   L('charlie.tag.jmatv',     'You\'re watchin\' JMAtv!',            'TV announcer',   'Entering JMAtv'),
 
@@ -69,11 +74,12 @@ export const VOICE_LINES = [
   L('charlie.perfect.2', 'Oh, you\'re GOOD.', 'thrilled','Shred City — result screen when the Crowd Meter reached LEGEND (kudos: max one every 15 s)'),
   L('charlie.perfect.3', 'Ring-a-ding-ding! Flawless!',     'amazed',  'Shred City — result screen when the Crowd Meter reached LEGEND (kudos: max one every 15 s)'),
   L('charlie.miss.1',    'Ehh, almost, pal.',              'kind',    'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
-  L('charlie.miss.2',    'Not that one — try it again.', 'encouraging', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
+  L('charlie.miss.2',    'Ooh, try that one again!', 'encouraging', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
   L('charlie.miss.3',    'Close, kid. Real close.',       'sympathetic', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
-  L('charlie.miss.4',    'Shake it off. One more time.', 'upbeat', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
+  L('charlie.miss.4',    'Shake it off. Try it one more time.', 'upbeat', 'Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s)'),
   L('charlie.go.1',      'Keep it rollin\'!',       'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
-  L('charlie.go.2',      'You got this, cadet.',    'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
+  L('charlie.go.2',      'You got this, cadet!',    'cheer',   'Shred City — as the song starts (kudos: max one every 15 s)'),
+  L('charlie.go.3',         'All right, keep it rollin\'!',                'pumped',     'Shred City — as the song starts (kudos: max one every 15 s)'),
 
   // ───────────── DR. JELLYBONE — Detective, Ear Quest ─────────────
   L('doctor.tag.detective', 'Mmm… I\'ve got a case for you.',  'noir, inviting', 'Entering Detective'),
@@ -166,7 +172,7 @@ export const VOICE_LINES = [
 
   // ---- Dressing Room: picked as your Jelly / tried on a new outfit ----
   L('charlie.dress.pick',  'Me? You picked ME? Let\'s look sharp!',          'delighted',   'Dressing Room — choosing Charlie'),
-  L('charlie.dress.wear',  'Ooh, lookin\' good! Spin around!',                'proud',       'Dressing Room — Charlie changes outfit'),
+  L('charlie.dress.wear',  'Ooh, lookin\' good! Give us a spin!',                'proud',       'Dressing Room — Charlie changes outfit'),
   L('finn.dress.pick',     'FINN time! Oh boy, what are we wearing?!',        'daring',      'Dressing Room — choosing Finn'),
   L('finn.dress.wear',     'Whoa! Do I look fast? I feel fast!',              'hyped',       'Dressing Room — Finn changes outfit'),
   L('chunk.dress.pick',    'Chunk reporting for duty, dude.',                  'laid back',   'Dressing Room — choosing Chunk'),
@@ -212,31 +218,34 @@ export const VOICE_LINES = [
   // Charlie — one-sentence how-to for every game (for kids who can't read yet).
   // Plays on the start menu right after the room host's tagline; the speaker
   // button on each "How to Play" card replays it.
-  L('charlie.howto.jukebox',        'Tap the bell when the note drops into the box, kid!',                                   'coach, upbeat',   'Jelly Jukebox menu — after Jazzy\'s tagline / speaker button'),
+  L('charlie.howto.jukebox',        'Tap the bell when the note drops into the box.',                                   'coach, upbeat',   'Jelly Jukebox menu — after Jazzy\'s tagline / speaker button'),
   L('charlie.howto.kazoo',          'Watch Stew play his kazoos, then tap \'em back in the same order.',                      'coach, warm',     'Stew Kazoo Says menu / speaker button'),
-  L('charlie.howto.earquest',       'Listen to the mystery note, then tap the bell that matches it, pal.',                   'coach, warm',     'Ear Quest menu / speaker button'),
-  L('charlie.howto.tempo',          'Listen to two tunes. Was the second one faster or slower?',         'playful',         'Snail or Cheetah menu / speaker button'),
-  L('charlie.howto.notematch',      'Flip two cards and listen. Find the ones that sound the same!',                       'coach, warm',     'Note Match menu / speaker button'),
-  L('charlie.howto.detective',      'Hear the tune twice. Tap the note that changed the second time!',             'sly, coach',      'Detective menu / speaker button'),
-  L('charlie.howto.sightread',      'Read the notes on the staff, then tap those bells in order. Beat the clock!',   'coach, quick',    'Sight-Reading Sprint menu / speaker button'),
-  L('charlie.howto.namenote.name',  'See the note on the staff? Tap its name, cadet.',                                       'coach, warm',     'Name That Note menu — Name It mode / speaker button'),
+  L('charlie.howto.earquest',       'Listen to the mystery note, then tap the bell that matches it.',                   'coach, warm',     'Ear Quest menu / speaker button'),
+  L('charlie.howto.tempo',          'Listen to these two tunes. Was the second one faster or slower?',         'playful',         'Snail or Cheetah menu / speaker button'),
+  L('charlie.howto.notematch',      'Flip two cards and listen, then find the ones that match.',                       'coach, warm',     'Note Match menu / speaker button'),
+  L('charlie.howto.detective',      'Hear the tune twice, then tap the note that changed.',             'sly, coach',      'Detective menu / speaker button'),
+  L('charlie.howto.sightread',      'Read the notes on the staff, then tap the bells in the right order. Beat the clock!',   'coach, quick',    'Sight-Reading Sprint menu / speaker button'),
+  L('charlie.howto.namenote.name',  'See the note on the staff? Tap its name.',                                       'coach, warm',     'Name That Note menu — Name It mode / speaker button'),
   L('charlie.howto.namenote.place', 'Read the note\'s name, then drag it onto the staff.',                              'coach, warm',     'Name That Note menu — Place It mode selected / speaker button'),
-  L('charlie.howto.boom.copy',      'Listen to Stew\'s rhythm. After the count-in, play it back on the drum!',                                 'coach, groovy',   'Who\'s Got the Rhythm — Parrot Percussion how-to card'),
+  L('charlie.howto.boom.copy',      'Listen to Stew\'s rhythm. After the count-in, play it back on the drums.',                                 'coach, groovy',   'Who\'s Got the Rhythm — Parrot Percussion how-to card'),
   L('charlie.howto.boom.match',     'Listen to the secret rhythm, then tap the strip that matches.',                                   'coach, groovy',   'Who\'s Got the Rhythm — Beat Finder how-to card'),
   L('charlie.howto.boom.trail',     'Tap Stew when each note crosses the gold line!',                                 'coach, groovy',   'Who\'s Got the Rhythm — Rhythm Run how-to card'),
-  L('charlie.howto.shred',          'Pick a song and play the guitar in time with the beat. No mashin\', kid!',      'rock announcer',  'Shred City intro / speaker button'),
-  L('charlie.howto.robot',          'Tap the friends to zap \'em into the band. Add more for a bigger boogie!',  'party host',      'Robot Boogie — on arrival / speaker button'),
-  L('charlie.howto.funfacts',       'Slide the spyglass around to find the hidden friends, kid.',                        'cozy, curious',   'Fun Facts Clubhouse — on arrival / speaker button'),
+  L('charlie.howto.shred',          'Pick a song and play the guitar in time with the beat. No mashin\'!',      'rock announcer',  'Shred City intro / speaker button'),
+  L('charlie.howto.robot',          'Tap the band members to zap \'em into the jam, then boogie, robot boogie!',  'party host',      'Robot Boogie — on arrival / speaker button'),
+  L('charlie.howto.funfacts',       'Slide the spyglass around to find the hidden friends.',                        'cozy, curious',   'Fun Facts Clubhouse — on arrival / speaker button'),
   L('charlie.howto.beatlab',        'Tap the pads to build a beat, then hit Play to hear your loop!',                     'coach, groovy',   'Beat Lab — on arrival, after Chunk\'s tagline'),
   L('charlie.howto.jam',            'Tap any instrument to play. Hit Record to save your jam!',                              'coach, upbeat',   'Jam Session — on arrival, after Jazzy\'s tagline'),
   L('charlie.howto.songstudio',     'Pick a mood, tap the keys to write your tune, then press Play!',                        'creative, warm',  'Song Studio — on arrival, after Charlie\'s tagline'),
-  L('charlie.howto.dressing',       'Choose your character, then tap an outfit to try it on!',                               'warm, inviting',  'Dressing Room — on arrival'),
+  L('charlie.howto.dressing',       'Choose your character, then tap an outfit and try it on!',                               'warm, inviting',  'Dressing Room — on arrival'),
   L('charlie.howto.stage',          'Take a bow for the crowd, or snap a poster of your star!',                              'showman',         'Main Stage — on arrival'),
 
   L('finn.quest.q_note_match',     'Clear a round of Note Match! Oh boy oh boy!',        'cool',     'Quest: Note Match'),
   L('charlie.quest.q_shred',         'Play a show in Shred City, kid!',          'rock',     'Quest: Shred City'),
   L('charlie.quest.q_song_save',     'Come write a hit in my studio.',           'creative', 'Quest: Song Studio'),
   L('charlie.quest.q_jmatv',         'Catch a show on JMAtv, pal.',              'TV',       'Quest: JMAtv'),
+  // Fun Facts — one line per fact, read by the character who tells it
+  ...Object.entries(CHARACTER_FACTS).flatMap(([name, e]) => (FACT_VOICE[name] ? e.facts.map((t, i) =>
+    L(`${FACT_VOICE[name]}.fact.${String(i + 1).padStart(2, '0')}`, t, 'curious, friendly', `Fun Facts — tapping ${name} (fact ${i + 1})`)) : [])),
 ];
 
 export const VOICE_MAP = Object.fromEntries(VOICE_LINES.map(l => [l.id, l]));

@@ -670,3 +670,9 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - New how-tos: beatlab, jam, songstudio, dressing, stage; 11 existing how-tos tightened; 'Plays when' column filled for every kudos group, unused non-Charlie lines marked NOT USED
 - Script generator: node frontend/scripts/voiceScript.mjs → /app/memory/voice_script.md, /app/memory/voice_script_charlie.md, public/voice-script-charlie.md
 - Charlie guitar licks: riffs/guitar/gl-NN.mp3 (63MB wav → 1.8MB). Pools in lib/avatarRiffs.js POOLS (metal→classic/captain, funky→disco, surf, punk, boris→zoot, cucina→pinstripes, reggae, zebra=all tagged, unused(10,11,12,13,15,19,28)→rundmc/studio/steampunk, 18→secret dolphin). Excluded 08,14,38. Drum Major/Graduate still riffs/charlie.mp3. Academy coral guitar → playAcademyLick (random any lick, no repeats)
+
+## Voice recordings imported (Nov 2026)
+- public/assets/voice/<id>.mp3 (mono 96k, -16 LUFS, trimmed). Importer: /app/memory/import_voice.py (take choices + Doc 07 timestamps), transcriber: /app/memory/transcribe.py (whisper-1, Emergent key)
+- Charlie: 67/69 recorded (missing perfect.3, quest.q_jmatv). New charlie.go.3. Texts in voiceLines.js updated to match takes
+- Fun Facts voiced: <char>.fact.NN generated in voiceLines from CHARACTER_FACTS (factVoiceId); FunFactsPage plays it on every tap. Recorded: charlie(11), doctor(11), chunk(10). Charlie fact texts matched to recordings
+- Unused takes: robot_Tag 'Oh, Robot Boogie?', shred.2 'They love you!', shred.opening2, q_shred Take2 'Welcome to Shred City!'

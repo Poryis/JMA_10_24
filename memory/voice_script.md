@@ -1,6 +1,6 @@
 # JMA Voice Recording Script
 
-**185 lines · 6 voices.** Lou never speaks. **Sharky IS Finn Danger — the same shark, one voice.** Stew can be performed as kazoo-talk.
+**250 lines · 6 voices.** Lou never speaks. **Sharky IS Finn Danger — the same shark, one voice.** Stew can be performed as kazoo-talk.
 
 ## How to record
 - One short take per line, 1–3 seconds. Leave ~150 ms of silence at the start, trim the tail.
@@ -14,13 +14,13 @@
 
 ---
 
-## Charlie the Polliwog — 68 lines
+## Charlie the Polliwog — 80 lines
 **Rooms:** Academy host · Shred City · Song Studio · Music 101 · JMAtv  
 **Voice:** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, cadet.
 
 | # | File (id) | Line | Emotion | Plays when |
 |---|---|---|---|---|
-| 1 | `charlie.hub.first` | **Heyyy — welcome to the Academy, kid!** | huge smile | Home — very first visit |
+| 1 | `charlie.hub.first` | **Hello there, and welcome to the Academy!** | huge smile | Home — very first visit |
 | 2 | `charlie.hub.morning` | **Mornin', cadet. Let's make some music.** | bright | Home — before noon |
 | 3 | `charlie.hub.afternoon` | **Afternoon, pal! Ya ready?** | bright | Home — noon to 5pm |
 | 4 | `charlie.hub.evening` | **Evenin'! Nothin' like a night session.** | cozy, excited | Home — after 5pm |
@@ -33,7 +33,7 @@
 | 11 | `charlie.academy.rankup` | **Ding ding! A new friend just popped out of the clock — you ranked up!** | excited | Plaza cuckoo moment on a new rank |
 | 12 | `charlie.hub.lockpass` | **Ask a grown-up about that one, kid.** | gentle | Tapping an Academy-Pass-locked room (future) |
 | 13 | `charlie.tag.shred` | **Welcome to Shred City, baby!** | rock announcer | Entering Shred City |
-| 14 | `charlie.tag.songstudio` | **Step into my studio. Let's write a hit.** | creative, warm | Entering Charlie's Song Studio |
+| 14 | `charlie.tag.songstudio` | **Step into the studio, let's write a hit!** | creative, warm | Entering Charlie's Song Studio |
 | 15 | `charlie.tag.music101` | **Class is in session, folks.** | teacher-y, fun | Entering Music 101 |
 | 16 | `charlie.tag.jmatv` | **You're watchin' JMAtv!** | TV announcer | Entering JMAtv |
 | 17 | `charlie.meta.badge` | **Badda-bing — new badge!** | excited | Any achievement badge earned |
@@ -58,40 +58,52 @@
 | 36 | `charlie.perfect.2` | **Oh, you're GOOD.** | thrilled | Shred City — result screen when the Crowd Meter reached LEGEND (kudos: max one every 15 s) |
 | 37 | `charlie.perfect.3` | **Ring-a-ding-ding! Flawless!** | amazed | Shred City — result screen when the Crowd Meter reached LEGEND (kudos: max one every 15 s) |
 | 38 | `charlie.miss.1` | **Ehh, almost, pal.** | kind | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
-| 39 | `charlie.miss.2` | **Not that one — try it again.** | encouraging | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
+| 39 | `charlie.miss.2` | **Ooh, try that one again!** | encouraging | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
 | 40 | `charlie.miss.3` | **Close, kid. Real close.** | sympathetic | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
-| 41 | `charlie.miss.4` | **Shake it off. One more time.** | upbeat | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
+| 41 | `charlie.miss.4` | **Shake it off. Try it one more time.** | upbeat | Shred City — kid loses a 4+ note streak (off beat) (kudos: max one every 15 s) |
 | 42 | `charlie.go.1` | **Keep it rollin'!** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
-| 43 | `charlie.go.2` | **You got this, cadet.** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
-| 44 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | Dressing Room — choosing Charlie |
-| 45 | `charlie.dress.wear` | **Ooh, lookin' good! Spin around!** | proud | Dressing Room — Charlie changes outfit |
-| 46 | `charlie.howto.jukebox` | **Tap the bell when the note drops into the box, kid!** | coach, upbeat | Jelly Jukebox menu — after Jazzy's tagline / speaker button |
-| 47 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
-| 48 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it, pal.** | coach, warm | Ear Quest menu / speaker button |
-| 49 | `charlie.howto.tempo` | **Listen to two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
-| 50 | `charlie.howto.notematch` | **Flip two cards and listen. Find the ones that sound the same!** | coach, warm | Note Match menu / speaker button |
-| 51 | `charlie.howto.detective` | **Hear the tune twice. Tap the note that changed the second time!** | sly, coach | Detective menu / speaker button |
-| 52 | `charlie.howto.sightread` | **Read the notes on the staff, then tap those bells in order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
-| 53 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name, cadet.** | coach, warm | Name That Note menu — Name It mode / speaker button |
-| 54 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
-| 55 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drum!** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
-| 56 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
-| 57 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
-| 58 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin', kid!** | rock announcer | Shred City intro / speaker button |
-| 59 | `charlie.howto.robot` | **Tap the friends to zap 'em into the band. Add more for a bigger boogie!** | party host | Robot Boogie — on arrival / speaker button |
-| 60 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends, kid.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
-| 61 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
-| 62 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
-| 63 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
-| 64 | `charlie.howto.dressing` | **Choose your character, then tap an outfit to try it on!** | warm, inviting | Dressing Room — on arrival |
-| 65 | `charlie.howto.stage` | **Take a bow for the crowd, or snap a poster of your star!** | showman | Main Stage — on arrival |
-| 66 | `charlie.quest.q_shred` | **Play a show in Shred City, kid!** | rock | Quest: Shred City |
-| 67 | `charlie.quest.q_song_save` | **Come write a hit in my studio.** | creative | Quest: Song Studio |
-| 68 | `charlie.quest.q_jmatv` | **Catch a show on JMAtv, pal.** | TV | Quest: JMAtv |
+| 43 | `charlie.go.2` | **You got this, cadet!** | cheer | Shred City — as the song starts (kudos: max one every 15 s) |
+| 44 | `charlie.go.3` | **All right, keep it rollin'!** | pumped | Shred City — as the song starts (kudos: max one every 15 s) |
+| 45 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | Dressing Room — choosing Charlie |
+| 46 | `charlie.dress.wear` | **Ooh, lookin' good! Give us a spin!** | proud | Dressing Room — Charlie changes outfit |
+| 47 | `charlie.howto.jukebox` | **Tap the bell when the note drops into the box.** | coach, upbeat | Jelly Jukebox menu — after Jazzy's tagline / speaker button |
+| 48 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
+| 49 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it.** | coach, warm | Ear Quest menu / speaker button |
+| 50 | `charlie.howto.tempo` | **Listen to these two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
+| 51 | `charlie.howto.notematch` | **Flip two cards and listen, then find the ones that match.** | coach, warm | Note Match menu / speaker button |
+| 52 | `charlie.howto.detective` | **Hear the tune twice, then tap the note that changed.** | sly, coach | Detective menu / speaker button |
+| 53 | `charlie.howto.sightread` | **Read the notes on the staff, then tap the bells in the right order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
+| 54 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name.** | coach, warm | Name That Note menu — Name It mode / speaker button |
+| 55 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
+| 56 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drums.** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
+| 57 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
+| 58 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
+| 59 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin'!** | rock announcer | Shred City intro / speaker button |
+| 60 | `charlie.howto.robot` | **Tap the band members to zap 'em into the jam, then boogie, robot boogie!** | party host | Robot Boogie — on arrival / speaker button |
+| 61 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
+| 62 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
+| 63 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
+| 64 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
+| 65 | `charlie.howto.dressing` | **Choose your character, then tap an outfit and try it on!** | warm, inviting | Dressing Room — on arrival |
+| 66 | `charlie.howto.stage` | **Take a bow for the crowd, or snap a poster of your star!** | showman | Main Stage — on arrival |
+| 67 | `charlie.quest.q_shred` | **Play a show in Shred City, kid!** | rock | Quest: Shred City |
+| 68 | `charlie.quest.q_song_save` | **Come write a hit in my studio.** | creative | Quest: Song Studio |
+| 69 | `charlie.quest.q_jmatv` | **Catch a show on JMAtv, pal.** | TV | Quest: JMAtv |
+| 70 | `charlie.fact.01` | **Your VOICE is your very first instrument — and you were born with it!** | curious, friendly | Fun Facts — tapping Charlie (fact 1) |
+| 71 | `charlie.fact.02` | **When you sing, over 100 muscles in your body work together — even ones in your tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 2) |
+| 72 | `charlie.fact.03` | **Humming is a kind of singing you do with your mouth closed — try it, it tickles!** | curious, friendly | Fun Facts — tapping Charlie (fact 3) |
+| 73 | `charlie.fact.04` | **Singers warm up their voices just like athletes stretch their muscles.** | curious, friendly | Fun Facts — tapping Charlie (fact 4) |
+| 74 | `charlie.fact.05` | **A CHOIR is a big group of people singing together in harmony — like a vocal team!** | curious, friendly | Fun Facts — tapping Charlie (fact 5) |
+| 75 | `charlie.fact.06` | **Opera singers can sing SO loudly they don't even need a microphone!** | curious, friendly | Fun Facts — tapping Charlie (fact 6) |
+| 76 | `charlie.fact.07` | **Babies can recognize their favorite songs before they're even born, from inside mommy's tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 7) |
+| 77 | `charlie.fact.08` | **Whistling is music made just with your lips and air — no vocal cords required!** | curious, friendly | Fun Facts — tapping Charlie (fact 8) |
+| 78 | `charlie.fact.09` | **The highest singing voice is a SOPRANO, and the lowest is called a BASS.** | curious, friendly | Fun Facts — tapping Charlie (fact 9) |
+| 79 | `charlie.fact.10` | **Singing together with friends actually makes your brain release happy chemicals!** | curious, friendly | Fun Facts — tapping Charlie (fact 10) |
+| 80 | `charlie.fact.11` | **Your voice sounds different to YOU than it does to everybody else!** | curious, friendly | Fun Facts — tapping Charlie (fact 11) |
 
 ---
 
-## Dr. Jellybone — 20 lines
+## Dr. Jellybone — 31 lines
 **Rooms:** Detective · Ear Quest  
 **Voice:** Smooth-talkin' jazzman, sax player. Velvet, unhurried, gentlemanly. NEVER loud — the excitement is in the eyebrows.
 
@@ -117,10 +129,21 @@
 | 18 | `doctor.quest.q_detective_case` | **A case awaits, baby. Easy does it.** | noir | Quest: Crack a case |
 | 19 | `doctor.quest.q_detective_3` | **Three cases today. Think you can hang?** | challenge | Quest: Crack 3 cases |
 | 20 | `doctor.quest.q_ear_quest` | **Five right in Ear Quest. Smooth and easy.** | cool | Quest: Ear Quest |
+| 21 | `doctor.fact.01` | **There are only 7 letter names for musical notes: A, B, C, D, E, F, G. Then they start over!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 1) |
+| 22 | `doctor.fact.02` | **A SCALE is like a musical staircase — you walk up or down the notes, one at a time.** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 2) |
+| 23 | `doctor.fact.03` | **The word 'MUSIC' comes from the ancient Greek word 'MOUSIKE', which meant the art of the Muses.** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 3) |
+| 24 | `doctor.fact.04` | **DO RE MI FA SOL LA TI DO — this is called solfège, and it's almost 1,000 years old!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 4) |
+| 25 | `doctor.fact.05` | **A composer named Mozart wrote his first piece of music when he was only 5 years old!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 5) |
+| 26 | `doctor.fact.06` | **Ludwig van Beethoven kept composing incredible music even after he went completely DEAF!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 6) |
+| 27 | `doctor.fact.07` | **Musical notes have funny names for their shapes: whole, half, quarter, eighth — just like pizza slices!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 7) |
+| 28 | `doctor.fact.08` | **A 'STAFF' is the 5 lines where we write music. Notes sit on the lines or between them!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 8) |
+| 29 | `doctor.fact.09` | **The symbol at the start of music is called a CLEF. The fancy squiggly one is a treble clef!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 9) |
+| 30 | `doctor.fact.10` | **When musicians say a song is 'in the key of C,' it means the note C feels like HOME — that's where the melody wants to rest.** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 10) |
+| 31 | `doctor.fact.11` | **The very first music ever written down was almost 4,000 years ago, in a place called Mesopotamia!** | curious, friendly | Fun Facts — tapping Dr. Jellybone (fact 11) |
 
 ---
 
-## Stew — 20 lines
+## Stew — 30 lines
 **Rooms:** Stew Kazoo Says · Fun Facts Clubhouse  
 **Voice:** Goofy, buzzy, easily delighted. In the show Stew talks in KAZOO — these lines can be performed as kazoo-talk with the words as intent.
 
@@ -146,10 +169,20 @@
 | 18 | `stew.quest.q_stew_2` | **Beat my level two!** | dare | Quest: Stew level 2 |
 | 19 | `stew.quest.q_stew_4` | **Level four? You're brave!** | impressed | Quest: Stew level 4 |
 | 20 | `stew.quest.q_facts_3` | **Find three friends in the Clubhouse!** | eager | Quest: Fun Facts ×3 |
+| 21 | `stew.fact.01` | **A KAZOO doesn't make sound from air — it makes sound from your VOICE buzzing through it!** | curious, friendly | Fun Facts — tapping Stew (fact 1) |
+| 22 | `stew.fact.02` | **If you whisper into a kazoo, nothing happens. You have to HUM!** | curious, friendly | Fun Facts — tapping Stew (fact 2) |
+| 23 | `stew.fact.03` | **Kazoos are called MEMBRANOPHONES because they have a thin membrane that vibrates when you hum.** | curious, friendly | Fun Facts — tapping Stew (fact 3) |
+| 24 | `stew.fact.04` | **Birds like me have a special voice box called a SYRINX — that's why birds can sing two notes at once!** | curious, friendly | Fun Facts — tapping Stew (fact 4) |
+| 25 | `stew.fact.05` | **The kazoo was invented in America in the 1800s. Almost 200 years of buzzing!** | curious, friendly | Fun Facts — tapping Stew (fact 5) |
+| 26 | `stew.fact.06` | **The SLIDE WHISTLE goes WOO-oop! or WEE-oop! — you hear it in cartoons whenever something silly happens!** | curious, friendly | Fun Facts — tapping Stew (fact 6) |
+| 27 | `stew.fact.07` | **Sea birds use whistles, squawks, and warbles — like their own wild concert!** | curious, friendly | Fun Facts — tapping Stew (fact 7) |
+| 28 | `stew.fact.08` | **When a flock of birds sings together, it's called a DAWN CHORUS — nature's first concert of the day!** | curious, friendly | Fun Facts — tapping Stew (fact 8) |
+| 29 | `stew.fact.09` | **Words like BUZZ, POP, and HISS actually SOUND like what they mean — that's a super-fancy word called ONOMATOPOEIA!** | curious, friendly | Fun Facts — tapping Stew (fact 9) |
+| 30 | `stew.fact.10` | **WHALES sing long, low songs underwater that last for HOURS — their friends can hear them from miles away!** | curious, friendly | Fun Facts — tapping Stew (fact 10) |
 
 ---
 
-## Jazzy — 20 lines
+## Jazzy — 31 lines
 **Rooms:** Jelly Jukebox · Jam Session  
 **Voice:** LOUD, boisterous, fun-loving pun machine — CAT puns (purrrfect, meow-sic, kitten around). Big laughs, means every word.
 
@@ -175,10 +208,21 @@
 | 18 | `jazzy.quest.q_jukebox_song` | **Finish a song with me! It'll be MUSIC to my ears! HA!** | inviting | Quest: Jukebox song |
 | 19 | `jazzy.quest.q_jukebox_streak` | **TEN in a row! I DARE ya!** | sly | Quest: Jukebox 10-streak |
 | 20 | `jazzy.quest.q_jam_8` | **Eight notes in the Jam Hall — go go GO!** | smooth | Quest: Jam 8 notes |
+| 21 | `jazzy.fact.01` | **JAZZ was born in New Orleans, USA, over 100 years ago!** | curious, friendly | Fun Facts — tapping Jazzy (fact 1) |
+| 22 | `jazzy.fact.02` | **When jazz musicians make up the music as they play, it's called IMPROVISATION — like musical storytelling!** | curious, friendly | Fun Facts — tapping Jazzy (fact 2) |
+| 23 | `jazzy.fact.03` | **The SAXOPHONE is a very popular jazz instrument — it was invented by a guy named Adolphe Sax.** | curious, friendly | Fun Facts — tapping Jazzy (fact 3) |
+| 24 | `jazzy.fact.04` | **In jazz, the musicians take turns playing solos — like taking turns telling a story!** | curious, friendly | Fun Facts — tapping Jazzy (fact 4) |
+| 25 | `jazzy.fact.05` | **Louis Armstrong was a famous jazz trumpeter whose nickname was 'Satchmo'!** | curious, friendly | Fun Facts — tapping Jazzy (fact 5) |
+| 26 | `jazzy.fact.06` | **SWING is a bouncy rhythm you can feel in jazz music — it makes you want to tap your toes!** | curious, friendly | Fun Facts — tapping Jazzy (fact 6) |
+| 27 | `jazzy.fact.07` | **Ella Fitzgerald was called the 'First Lady of Song' because she could sing ANY song brilliantly!** | curious, friendly | Fun Facts — tapping Jazzy (fact 7) |
+| 28 | `jazzy.fact.08` | **A jazz band usually has instruments like piano, drums, bass, saxophone, and trumpet!** | curious, friendly | Fun Facts — tapping Jazzy (fact 8) |
+| 29 | `jazzy.fact.09` | **SCAT singing is when a singer uses nonsense syllables like 'dooby-doo-wah' instead of words!** | curious, friendly | Fun Facts — tapping Jazzy (fact 9) |
+| 30 | `jazzy.fact.10` | **Blues music is jazz's cousin — it often sounds sad, but it helps people feel better!** | curious, friendly | Fun Facts — tapping Jazzy (fact 10) |
+| 31 | `jazzy.fact.11` | **Jazz musicians call cool, surprising notes 'BLUE NOTES' — they're the secret spice of jazz!** | curious, friendly | Fun Facts — tapping Jazzy (fact 11) |
 
 ---
 
-## Chunk — 22 lines
+## Chunk — 32 lines
 **Rooms:** Beat Lab · Robot Boogie · Who's Got the Rhythm  
 **Voice:** Stereotypical surfer bro. "Duuude." Laid back, stoked, everything is gnarly or epic.
 
@@ -206,10 +250,20 @@
 | 20 | `chunk.quest.q_beat_3` | **Three tracks, bro. BIG sound.** | booming | Quest: 3-track loop |
 | 21 | `chunk.quest.q_robot_4` | **Get four robots dancin', dude!** | fun | Quest: Robot Boogie ×4 |
 | 22 | `chunk.quest.q_boom` | **Pass a round of rhythm with me, bro.** | steady | Quest: Who's Got the Rhythm |
+| 23 | `chunk.fact.01` | **DRUMS are one of the oldest instruments in the world — people have been drumming for over 5,000 years!** | curious, friendly | Fun Facts — tapping Chunk (fact 1) |
+| 24 | `chunk.fact.02` | **A drum kit usually has a KICK drum, a SNARE drum, and some shiny CYMBALS.** | curious, friendly | Fun Facts — tapping Chunk (fact 2) |
+| 25 | `chunk.fact.03` | **The BIG drum you kick with your foot is called the bass drum or kick drum — BOOM!** | curious, friendly | Fun Facts — tapping Chunk (fact 3) |
+| 26 | `chunk.fact.04` | **The crispy snap sound you hear in songs? That's usually the SNARE drum!** | curious, friendly | Fun Facts — tapping Chunk (fact 4) |
+| 27 | `chunk.fact.05` | **Cymbals are those big shiny metal plates that go CRASH when you hit them!** | curious, friendly | Fun Facts — tapping Chunk (fact 5) |
+| 28 | `chunk.fact.06` | **Drummers have to use their arms AND legs at the same time — like a one-person band!** | curious, friendly | Fun Facts — tapping Chunk (fact 6) |
+| 29 | `chunk.fact.07` | **Every country has its own kind of drums — djembes from Africa, taiko from Japan, bongos from Cuba!** | curious, friendly | Fun Facts — tapping Chunk (fact 7) |
+| 30 | `chunk.fact.08` | **The hi-hat is two cymbals stacked on top of each other — open them to sizzle, close them to click!** | curious, friendly | Fun Facts — tapping Chunk (fact 8) |
+| 31 | `chunk.fact.09` | **Drumsticks are usually made of wood — hickory, oak, or maple are the most popular!** | curious, friendly | Fun Facts — tapping Chunk (fact 9) |
+| 32 | `chunk.fact.10` | **You don't need a real drum to drum — you can tap a table, a cup, or even your knees!** | curious, friendly | Fun Facts — tapping Chunk (fact 10) |
 
 ---
 
-## Finn Danger (the shark — a.k.a. Sharky) — 35 lines
+## Finn Danger (the shark — a.k.a. Sharky) — 46 lines
 **Rooms:** Sight-Reading Sprint · Name That Note · Note Match  
 **Voice:** Jerry Lewis "HEY LADY!" energy — always on the brink of joyous laughter, can't contain his excitement at ANYTHING. Eager, literal, loves puns. "Jumpin' jellyfish!"
 
@@ -250,4 +304,15 @@
 | 33 | `finn.quest.q_name_note` | **Eight outta ten! I DARE ya! Hee-hee!** | dare | Quest: Name That Note |
 | 34 | `finn.quest.q_lesson` | **Class time! Watch a lesson — it's FUN!** | bright | Quest: Music 101 lesson |
 | 35 | `finn.quest.q_note_match` | **Clear a round of Note Match! Oh boy oh boy!** | cool | Quest: Note Match |
+| 36 | `finn.fact.01` | **The BEAT is the steady pulse of a song — like a heartbeat that doesn't change. Tap your foot to find it!** | curious, friendly | Fun Facts — tapping Finn (fact 1) |
+| 37 | `finn.fact.02` | **TEMPO is how FAST or SLOW the beat is. A lullaby has a slow tempo. A dance song has a fast tempo!** | curious, friendly | Fun Facts — tapping Finn (fact 2) |
+| 38 | `finn.fact.03` | **RHYTHM is the PATTERN of long and short sounds in a song. Two songs can share the same beat but have totally different rhythms!** | curious, friendly | Fun Facts — tapping Finn (fact 3) |
+| 39 | `finn.fact.04` | **A METRONOME is a tool that ticks out a perfectly steady beat — musicians use it to keep their tempo even.** | curious, friendly | Fun Facts — tapping Finn (fact 4) |
+| 40 | `finn.fact.05` | **Your heart beats about 100 times a minute when you're calm — that's your body's own tempo!** | curious, friendly | Fun Facts — tapping Finn (fact 5) |
+| 41 | `finn.fact.06` | **Marching bands march on the BEAT — left-right-left-right — so everyone steps at the same time.** | curious, friendly | Fun Facts — tapping Finn (fact 6) |
+| 42 | `finn.fact.07` | **Clapping a steady ONE-two-ONE-two? That's the BEAT. Clapping clap-clap-pause-clap-clap-CLAP? That's a RHYTHM!** | curious, friendly | Fun Facts — tapping Finn (fact 7) |
+| 43 | `finn.fact.08` | **Fast tempos make us want to dance. Slow tempos can help us feel calm and sleepy.** | curious, friendly | Fun Facts — tapping Finn (fact 8) |
+| 44 | `finn.fact.09` | **The word TEMPO comes from Italian and means 'time' — because tempo is all about how time moves in music!** | curious, friendly | Fun Facts — tapping Finn (fact 9) |
+| 45 | `finn.fact.10` | **Some songs have super-tricky rhythms that zig and zag — those are called SYNCOPATED rhythms!** | curious, friendly | Fun Facts — tapping Finn (fact 10) |
+| 46 | `finn.fact.11` | **Drummers and bassists are the RHYTHM SECTION — they keep the beat AND make the rhythms that the rest of the band locks into!** | curious, friendly | Fun Facts — tapping Finn (fact 11) |
 

@@ -24,6 +24,9 @@ const POOLS = {
   'charlie-zebra': [...METAL, ...FUNKY, ...SURF, ...PUNK, ...BORIS, ...CUCINA, ...REGGAE],
   'charlie-studio': FRESH, 'charlie-steampunk': FRESH,
   'dolphin-dolphin': g(18),
+  // Finn's bass fills (riffs/bass/fb-NN.mp3)
+  ...Object.fromEntries([['classic', [1, 9]], ['plain', [2, 10]], ['disco', [3]], ['hiphop', [4]], ['snorkel', [5]], ['zoot', [6]], ['electrician', [7]], ['dapper', [8]]]
+    .map(([o, ns]) => [`finn-${o}`, ns.map((n) => `riffs/bass/fb-${String(n).padStart(2, '0')}.mp3`)])),
 };
 // every usable lick — the coral guitar in the Academy
 export const ALL_LICKS = [...new Set([...POOLS['charlie-zebra'], ...FRESH])];

@@ -676,3 +676,4 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Charlie: 67/69 recorded (missing perfect.3, quest.q_jmatv). New charlie.go.3. Texts in voiceLines.js updated to match takes
 - Fun Facts voiced: <char>.fact.NN generated in voiceLines from CHARACTER_FACTS (factVoiceId); FunFactsPage plays it on every tap. Recorded: charlie(11), doctor(11), chunk(10). Charlie fact texts matched to recordings
 - Unused takes: robot_Tag 'Oh, Robot Boogie?', shred.2 'They love you!', shred.opening2, q_shred Take2 'Welcome to Shred City!'
+- Finn bass fills: riffs/bass/fb-01..10 split from user's single file at silences; Daredevil(classic)=1,9 · Classic(plain)=2,10 · Disco 3 · Hip-Hop 4 · Snorkel 5 · Zoot 6 · Electrician 7 · Dapper 8

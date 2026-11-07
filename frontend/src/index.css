@@ -918,6 +918,9 @@ h1, h2, h3, h4, h5, h6 {
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
 /* Lesson Helper nudge during a game: tucked bottom-left, clear of the notch */
 .lesson-helper-floating { left: calc(12px + env(safe-area-inset-left, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); max-width: min(300px, 42vw) !important; }
+@media (max-height: 400px) and (orientation: landscape) {
+  [data-testid="academy-yearbook"] { zoom: 0.72 !important; }
+}
 @media (max-height: 520px) and (orientation: landscape) {
   .lesson-helper-floating { padding: 4px 8px !important; bottom: 6px; }
   .lesson-helper-floating svg { width: 20px; height: 20px; }
@@ -1127,6 +1130,8 @@ h1, h2, h3, h4, h5, h6 {
   /* SNAP sits centred under the mirror, clear of the iPhone's side island */
   .dr-camera { padding: 3px 10px !important; font-size: 10px !important; left: 0 !important; right: 0 !important; margin: 0 auto; width: max-content; bottom: -10% !important; }
 
+  /* Achievement Book: static zoom (no measuring loop) so it fits under the header on short phones */
+  [data-testid="academy-yearbook"] { zoom: 0.78; }
   /* Fun Facts: room is zoomed just enough to hunt; room reaches every corner */
   .funfacts-hint { display: none !important; }
   .funfacts-main { padding-top: 60px !important; padding-bottom: 6px !important; }

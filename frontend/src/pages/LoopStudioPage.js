@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Play, Square, Plus, Minus, Circle, Download, Drum, Music2, ChevronLeft, ChevronRight, Eraser, Headphones } from 'lucide-react';
+import { Play, Square, Plus, Minus, Circle, Download, Drum, Music2, ChevronLeft, ChevronRight, Eraser, Headphones, Palette, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import useAudio from '../hooks/useAudio';
 import useBeatLabAudio from '../hooks/useBeatLabAudio';
@@ -14,6 +14,7 @@ import { createStepScheduler } from '../lib/stepScheduler';
 import useVoiceTagline from '../hooks/useVoiceTagline';
 import { saveBeat, loadSavedBeats, renameSavedBeat } from '../hooks/useSavedBeats';
 import { setFlag } from '../data/avatars';
+import JamSavedPopup from '../components/JamSavedPopup';
 
 const DEFAULT_BPM = 100;
 
@@ -361,6 +362,7 @@ function LoopStudioPage() {
   const [savedBeatId, setSavedBeatId] = useState(null);
   const [namingBeat, setNamingBeat] = useState(null);
   const [beatNameInput, setBeatNameInput] = useState('');
+  const [showBeatNext, setShowBeatNext] = useState(false);
 
   const startRecording = useCallback(() => {
     initAudioContext();
@@ -395,8 +397,11 @@ function LoopStudioPage() {
     if (name !== namingBeat.name) renameSavedBeat(namingBeat.id, name);
     setSavedBeatName(name);
     setSavedBeatId(namingBeat.id);
+    setShowBeatNext(true);
     setNamingBeat(null);
   }, [namingBeat, beatNameInput]);
+
+  const jamOnBeat = useCallback(() => { say('charlie.jam.takeit', { minGapMs: 0 }); try { sessionStorage.setItem('jma_just_saved_beat_v1', '1'); } catch (_) {} navigate(`/free-play?beat=${savedBeatId}`); }, [navigate, savedBeatId]);
 
   // Spacebar = play/stop
   useEffect(() => {
@@ -632,17 +637,11 @@ function LoopStudioPage() {
                 <button data-testid="loop-stop-rec-btn" className="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs md:text-sm font-black animate-pulse" style={{ background: '#0A1626', color: '#fff', border: '2px solid #FF3B30', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={stopRecording}><Square className="w-3 h-3 fill-current" /> STOP {recorder.secondsLeft}s</button>
               )}
               {recorder.isProcessing && <span className="text-[10px] font-bold opacity-70 text-white">Saving...</span>}
-              {namingBeat && !recorder.isRecording && !recorder.isProcessing && (
-                <form data-testid="beat-name-form" className="flex items-center gap-1" onSubmit={(e) => { e.preventDefault(); confirmBeatName(); }}>
-                  <input data-testid="beat-name-input" autoFocus maxLength={24} value={beatNameInput} onChange={(e) => setBeatNameInput(e.target.value)} placeholder={`Name it! (${namingBeat.name})`} className="px-2 py-1 rounded-lg text-xs font-bold w-32 md:w-40 outline-none" style={{ background: '#fff', color: '#0A1626', border: '2px solid #FFCC00' }} />
-                  <button type="submit" data-testid="beat-name-save" className="px-2 py-1 rounded-lg text-xs font-black" style={{ background: '#FFCC00', color: '#0A1626', border: '2px solid #000', boxShadow: '0 2px 0 rgba(0,0,0,0.55)' }}>Save</button>
-                </form>
-              )}
               {savedBeatName && !namingBeat && !recorder.isRecording && !recorder.isProcessing && (
                 <motion.button type="button" data-testid="loop-jam-on-it" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                   className="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs md:text-sm font-black whitespace-nowrap touch-manipulation"
                   style={{ background: '#FFCC00', color: '#0A1626', border: '2px solid #000', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }}
-                  onClick={() => { say('charlie.jam.takeit', { minGapMs: 0 }); try { sessionStorage.setItem('jma_just_saved_beat_v1', '1'); } catch (_) {} navigate(`/free-play?beat=${savedBeatId}`); }}>
+                  onClick={jamOnBeat}>
                   <Headphones className="w-3.5 h-3.5" /> Jam on it! →
                 </motion.button>
               )}
@@ -726,6 +725,22 @@ function LoopStudioPage() {
             </div>
           )}
         </div>
+        <JamSavedPopup
+          testPrefix="beat"
+          title="Name your beat!"
+          saveLabel="Save my beat"
+          naming={namingBeat}
+          value={beatNameInput}
+          onChange={setBeatNameInput}
+          onSave={confirmBeatName}
+          saved={showBeatNext ? savedBeatName : null}
+          choices={[
+            { testId: 'beat-next-jam', icon: Headphones, label: 'Jam on it!', sub: 'Play along in the Jam Session', color: '#FF2D85', onClick: jamOnBeat },
+            { testId: 'beat-next-cover', icon: Palette, label: 'Design the album cover', sub: 'Make the art for your beat', color: '#8A4FFF', onClick: () => navigate(`/academy?panel=album&cover=${savedBeatId}`) },
+            { testId: 'beat-next-new', icon: Sparkles, label: 'Make a new beat', sub: 'Start with a fresh grid', color: '#1E9BFF', onClick: () => { stopPlayback(); clearAll(); setShowBeatNext(false); } },
+            { testId: 'beat-next-keep', icon: Drum, label: 'Keep building', sub: 'Back to this beat', color: '#34A853', onClick: () => setShowBeatNext(false) },
+          ]}
+        />
       </main>
     </div>
   );

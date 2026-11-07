@@ -5,9 +5,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Play, Trash2, Save, ArrowLeft, BookOpen, Music, Drum, Piano, Dices } from 'lucide-react';
+import { Play, Trash2, Save, ArrowLeft, BookOpen, Music, Drum, Piano, Dices, Headphones, Palette, Sparkles } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
+import JamSavedPopup from '../components/JamSavedPopup';
 import usePianoAudio from '../hooks/usePianoAudio';
 import { PIANO_KEYS, MOODS, TOTAL_SLOTS, SLOTS_PER_ROW } from '../data/songStudio';
 import useNoteNames, { formatNoteName } from '../hooks/useNoteNames';
@@ -86,6 +87,7 @@ export default function SongStudioPage() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [songs, setSongs] = useState(loadSongs);
   const [lastSavedId, setLastSavedId] = useState(null);
+  const [savedSongName, setSavedSongName] = useState(null);
   const jamOnIt = useCallback((id) => { say('charlie.jam.takeit', { minGapMs: 0 }); navigate(`/free-play?song=${id}`); }, [navigate]);
   // Accompaniment toggles — kids can solo their melody by switching these off
   const [drumsOn, setDrumsOn] = useState(true);
@@ -290,6 +292,7 @@ export default function SongStudioPage() {
     saveSongs(next);
     setSongs(next);
     setShowSaveModal(false);
+    setSavedSongName(name);
     setShowCelebration(true);
     reportQuestEvent('song_saved');
     say('charlie.correct');
@@ -675,55 +678,24 @@ export default function SongStudioPage() {
 
         </div>{/* /studio-console */}
 
-        {/* SAVE MODAL */}
-        <AnimatePresence>
-          {showSaveModal && (
-            <motion.div
-              className="fixed inset-0 z-40 flex items-center justify-center p-4"
-              style={{ backgroundColor: 'rgba(10,37,64,0.55)', backdropFilter: 'blur(4px)' }}
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            >
-              <motion.div
-                data-testid="song-save-modal"
-                className="bg-white rounded-3xl border-4 p-6 max-w-md w-full"
-                style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)' }}
-                initial={{ scale: 0.7 }} animate={{ scale: 1 }}
-              >
-                <h2 className="text-2xl font-black font-display mb-1 text-center" style={{ color: 'var(--jma-dark)' }}>
-                  💾 Name your song!
-                </h2>
-                <p className="text-sm text-center mb-3 opacity-70" style={{ color: 'var(--jma-dark)' }}>
-                  Then we&apos;ll add it to your gallery.
-                </p>
-                <input
-                  data-testid="song-name-input"
-                  value={pendingName}
-                  onChange={(e) => setPendingName(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border-3 font-bold text-center"
-                  style={{ borderColor: 'var(--jma-dark)' }}
-                  maxLength={28}
-                  autoFocus
-                />
-                <div className="flex justify-center gap-2 mt-4">
-                  <button
-                    onClick={() => setShowSaveModal(false)}
-                    className="chunky-btn bg-white text-[var(--jma-dark)] px-4 py-2 border-2"
-                    style={{ borderColor: 'var(--jma-dark)' }}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    data-testid="song-confirm-save"
-                    onClick={confirmSave}
-                    className="chunky-btn bg-[#34A853] text-white px-4 py-2"
-                  >
-                    Save it!
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* SAVE POPUP — name it, then pick what's next */}
+        <JamSavedPopup
+          testPrefix="song"
+          title="Name your song!"
+          saveLabel="Save it!"
+          naming={showSaveModal ? { name: 'My Song' } : null}
+          value={pendingName}
+          onChange={setPendingName}
+          onSave={confirmSave}
+          onCancel={() => setShowSaveModal(false)}
+          saved={savedSongName}
+          choices={[
+            { testId: 'song-next-jam', icon: Headphones, label: 'Jam on it!', sub: 'Play along in the Jam Session', color: '#FF2D85', onClick: () => jamOnIt(lastSavedId) },
+            { testId: 'song-next-cover', icon: Palette, label: 'Design the album cover', sub: 'Make the art for your song', color: '#8A4FFF', onClick: () => navigate(`/academy?panel=album&cover=${lastSavedId}`) },
+            { testId: 'song-next-new', icon: Sparkles, label: 'Write a new song', sub: 'Start with empty slots', color: '#1E9BFF', onClick: () => { stopPlayback(); clearAll(); setSavedSongName(null); } },
+            { testId: 'song-next-keep', icon: Music, label: 'Keep composing', sub: 'Back to this song', color: '#34A853', onClick: () => setSavedSongName(null) },
+          ]}
+        />
 
         {/* GALLERY MODAL */}
         <AnimatePresence>
@@ -814,28 +786,6 @@ export default function SongStudioPage() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             >
               <Confetti count={36} size={420} />
-              <motion.div
-                initial={{ scale: 0, y: 30 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0 }}
-                className="bg-[#FFCC00] rounded-3xl border-4 px-6 py-4 text-center"
-                style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)' }}
-              >
-                <div className="text-4xl mb-1">🎵</div>
-                <div className="text-xl font-black font-display" style={{ color: 'var(--jma-dark)' }}>
-                  Song saved!
-                </div>
-                <div className="text-xs font-bold opacity-70 mt-1" style={{ color: 'var(--jma-dark)' }}>
-                  + Songwriter sticker
-                </div>
-                {lastSavedId && (
-                  <button type="button" data-testid="song-jam-on-it" onClick={() => jamOnIt(lastSavedId)}
-                    className="mt-3 pointer-events-auto flex items-center gap-1.5 mx-auto rounded-full px-4 py-2 font-black font-display text-sm"
-                    style={{ background: 'var(--jma-dark)', color: '#FFCC00', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 rgba(0,0,0,0.4)' }}>
-                    Jam on it! →
-                  </button>
-                )}
-              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

@@ -138,7 +138,7 @@ export default function RankHallPage() {
     const fit = () => { const vw = window.innerWidth, vh = window.innerHeight; const sc = Math.max(vw / 1920, vh / 1080); const w = 1920 * sc, h = 1080 * sc; setScene({ w, h, left: (vw - w) / 2, top: (vh - h) * 0.45 }); };
     fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit);
   }, []);
-  useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); clearInterval(showTimer.current); clearInterval(perfTimer.current); if (jamAudioElRef.current) { try { jamAudioElRef.current.audio.pause(); } catch (_) { /* ignore */ } } }, []);
+  useEffect(() => () => { timers.current.forEach(clearTimeout); clearTimeout(hypeTimer.current); clearInterval(showTimer.current); clearInterval(perfTimer.current); if (jamAudioElRef.current) { try { jamAudioElRef.current.src.stop(); } catch (_) { /* ignore */ } } }, []);
 
   const cheer = useCallback((big, sound = playFanfare) => {
     setBow((b) => b + 1); setEnergy(1); setConfetti((c) => c + 1); sound();
@@ -172,8 +172,7 @@ export default function RankHallPage() {
     clearInterval(perfTimer.current);
     beatPlayer.stop(); songPlayer.stop();
     if (jamAudioElRef.current) {
-      try { jamAudioElRef.current.audio.pause(); } catch (_) { /* ignore */ }
-      try { URL.revokeObjectURL(jamAudioElRef.current.url); } catch (_) { /* ignore */ }
+      try { jamAudioElRef.current.src.stop(); } catch (_) { /* ignore */ }
       jamAudioElRef.current = null;
     }
     stopShow();
@@ -185,16 +184,23 @@ export default function RankHallPage() {
     initAudioContext();
     lastSong.current = t.name;
     if (t.kind === 'jam') {
+      // Play through the unlocked Web Audio graph (iOS blocks a fresh <audio> after an await).
       const url = await getJamAudioUrl(t.data.id);
       if (!url) return;
-      const audio = new Audio(url);
-      jamAudioElRef.current = { audio, url };
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration && isFinite(audio.duration)) setPerfPct(Math.min(100, (audio.currentTime / audio.duration) * 100));
-      });
-      audio.addEventListener('ended', () => endPerf(false));
+      const { ctx, masterNode } = getAudioGraph();
+      let buf;
+      try { buf = await ctx.decodeAudioData(await (await fetch(url)).arrayBuffer()); } catch (_) { return; } finally { URL.revokeObjectURL(url); }
+      if (ctx.state === 'suspended') { try { await ctx.resume(); } catch (_) { /* ignore */ } }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      src.connect(masterNode);
+      const t0 = ctx.currentTime;
+      src.onended = () => { if (jamAudioElRef.current?.src === src) endPerf(false); };
+      jamAudioElRef.current = { src };
       setPerf({ name: t.name, total: 0 });
-      try { await audio.play(); } catch (_) { /* ignore — needs a tap to unlock audio */ }
+      src.start(0);
+      clearInterval(perfTimer.current);
+      perfTimer.current = setInterval(() => setPerfPct(Math.min(100, ((ctx.currentTime - t0) / buf.duration) * 100)), 200);
       startShow();
       return;
     }
@@ -210,7 +216,7 @@ export default function RankHallPage() {
       setPerfPct(pct);
       if (pct >= 100) endPerf(false);
     }, 200);
-  }, [initAudioContext, beatPlayer, songPlayer, startShow, endPerf]);
+  }, [initAudioContext, getAudioGraph, beatPlayer, songPlayer, startShow, endPerf]);
 
   // Deep-link from My Album ("Play at the Stage") — auto-performs that saved jam.
   const jamDeepLinkRef = useRef(false);

@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Music, Circle, Square, Play, RotateCcw, ChevronRight, Headphones, Download, Mic, Disc3 } from 'lucide-react';
+import { Music, Circle, Square, Play, RotateCcw, ChevronRight, Headphones, Download, Mic, Disc3, Palette, Mic2 } from 'lucide-react';
 import { BELLS, KEY_TO_NOTE } from '../components/JellyBells';
 import JamSavedPopup from '../components/JamSavedPopup';
 import { GameHeader } from '../components/GameUI';
@@ -555,35 +555,29 @@ function FreePlayPage() {
     else delete drumRefsRef.current[id];
   }, []);
 
-  const audioCtxRef = useRef(null);
   const extraBuffersRef = useRef({});
   const loadedModesRef = useRef(new Set(['bells']));
 
-  const getAudioCtx = useCallback(() => {
-    if (!audioCtxRef.current) audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtxRef.current.state === 'suspended') audioCtxRef.current.resume();
-    return audioCtxRef.current;
-  }, []);
-
   const preloadMode = useCallback(async (mode) => {
     if (loadedModesRef.current.has(mode)) return;
-    const ctx = getAudioCtx();
+    const { ctx } = getAudioGraph();
     const files = mode === 'xylophone' ? XYLO_AUDIO : PIANO_AUDIO;
     await Promise.all(Object.entries(files).map(async ([note, url]) => {
       try { const r = await fetch(url); const b = await r.arrayBuffer(); extraBuffersRef.current[`${mode}_${note}`] = await ctx.decodeAudioData(b); } catch {}
     }));
     loadedModesRef.current.add(mode);
-  }, [getAudioCtx]);
+  }, [getAudioGraph]);
 
   useEffect(() => { if (activeTab !== 'bells' && activeTab !== 'drums') preloadMode(activeTab); }, [activeTab, preloadMode]);
 
   const playModeSound = useCallback((note) => {
     const mode = activeTab === 'drums' ? 'bells' : activeTab;
     if (mode === 'bells') { playBellNote(note); return; }
-    const ctx = getAudioCtx();
+    // Route through the shared master so the jam recorder captures piano/xylophone too.
+    const { ctx, masterNode } = getAudioGraph();
     const buffer = extraBuffersRef.current[`${mode}_${note}`];
-    if (buffer) { const s = ctx.createBufferSource(); const g = ctx.createGain(); s.buffer = buffer; g.gain.setValueAtTime(0.8, ctx.currentTime); s.connect(g); g.connect(ctx.destination); s.start(0); }
-  }, [activeTab, playBellNote, getAudioCtx]);
+    if (buffer) { const s = ctx.createBufferSource(); const g = ctx.createGain(); s.buffer = buffer; g.gain.setValueAtTime(0.8, ctx.currentTime); s.connect(g); g.connect(masterNode); s.start(0); }
+  }, [activeTab, playBellNote, getAudioGraph]);
 
   const spawnParticles = useCallback((color) => {
     const id = Date.now() + Math.random();
@@ -960,10 +954,12 @@ function FreePlayPage() {
             onChange={setJamNameInput}
             onSave={confirmJamName}
             saved={showJamNext ? savedJamName : null}
-            onClose={() => setShowJamNext(false)}
-            onCover={() => navigate(`/academy?panel=album&cover=${savedJamId}`)}
-            onStage={() => navigate(`/rank-hall?jam=${savedJamId}`)}
-            onAlbum={() => navigate('/academy?panel=album')}
+            choices={[
+              { testId: 'jam-next-cover', icon: Palette, label: 'Design the album cover', sub: 'Make the art for your jam', color: '#FF2D85', onClick: () => navigate(`/academy?panel=album&cover=${savedJamId}`) },
+              { testId: 'jam-next-stage', icon: Mic2, label: 'Play it on the Main Stage', sub: "The crowd's waiting!", color: '#8A4FFF', onClick: () => navigate(`/rank-hall?jam=${savedJamId}`) },
+              { testId: 'jam-next-album', icon: Disc3, label: 'Open My Album', sub: 'See all your songs', color: '#1E9BFF', onClick: () => navigate('/academy?panel=album') },
+              { testId: 'jam-next-keep', icon: Music, label: 'Keep jamming', sub: 'Back to the instruments', color: '#34A853', onClick: () => setShowJamNext(false) },
+            ]}
           />
           <audio
             ref={jamAudioRef}

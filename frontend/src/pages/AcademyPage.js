@@ -327,7 +327,12 @@ export default function AcademyPage() {
   const [line, setLine] = useState(0);
   const [wiggle, setWiggle] = useState({ harp: 0, trumpet: 0, guitar: 0, shield: 0, lanternL: 0, lanternR: 0 });
   const [box, setBox] = useState({ w: HALL.w, h: HALL.h, left: 0, top: 0 });
-  useEffect(() => { say('charlie.academy.welcome', { minGapMs: 4000 }); }, []);
+  // Charlie's "Welcome to the Academy" plays once a day, not on every visit
+  useEffect(() => {
+    const today = new Date().toDateString();
+    try { if (localStorage.getItem('jma_voice_academy_day') === today) return; localStorage.setItem('jma_voice_academy_day', today); } catch (_) { /* ignore */ }
+    say('charlie.academy.welcome', { minGapMs: 4000 });
+  }, []);
   // Size the hall like background-size: cover (anchored bottom-center) so % hotspots stay glued to the art.
   useLayoutEffect(() => {
     const fit = () => {

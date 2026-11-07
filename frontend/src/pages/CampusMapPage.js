@@ -505,7 +505,10 @@ export default function CampusMapPage({ plaza = false }) {
     else if (allDone) line = 'charlie.hub.alldone';
     else if (streakCount >= 3) line = 'charlie.hub.streak';
     else if (doneCount === 0 && Math.random() < 0.5) line = 'charlie.hub.quests';
-    say(line, { delayMs: 900, minGapMs: 0 });
+    // one spoken greeting per app session, shared with Home
+    let greeted = false;
+    try { greeted = sessionStorage.getItem('jma_voice_greeted') === '1'; sessionStorage.setItem('jma_voice_greeted', '1'); } catch (_) { /* ignore */ }
+    if (!greeted) say(line, { delayMs: 900, minGapMs: 0 });
     const greeter = buildings.find((b) => b.host && !hostHidden(b));
     if (!greeter) return;
     const s = { id: Date.now(), buildingId: greeter.id, text: hour < 12 ? 'Mornin\', kid!' : 'Welcome back!' };

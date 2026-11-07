@@ -37,8 +37,8 @@ export const VOICE_LINES = [
   L('charlie.hub.alldone',   'That\'s the whole list! See ya tomorrow, kid.',   'warm, satisfied','Home — all 3 quests done'),
   L('charlie.jam.takeit',    'Take it to the Jam Session, kid!',                     'hyped',          'Beat Lab / Song Studio — tapping "Jam on it!"'),
   L('charlie.hub.lockbadge', 'Earn one badge and this street is yours — here are today\'s quests!', 'playful, encouraging', 'Tapping a locked LEARN/CREATE gate — opens the Quest Board'),
-  L('charlie.academy.welcome', 'Welcome to the Academy! Today\'s class is up on the board.', 'warm, host',       'Entering the Academy hall'),
-  L('charlie.academy.rankup',  'Ding ding! A new friend just popped out of the clock — you ranked up!', 'excited',  'Plaza cuckoo moment on a new rank'),
+  L('charlie.academy.welcome', 'Hello, cadet, and welcome to the Jelly of the Month Club Music Academy!', 'warm, host',       'Entering the Academy — once a day'),
+  L('charlie.academy.rankup',  'Way to go, rockstar! You just ranked up!', 'excited',  'Campus — the moment a new rank is earned'),
   L('charlie.hub.lockpass',  'Ask a grown-up about that one, kid.',     'gentle',         'Tapping an Academy-Pass-locked room (future)'),
 
   // Charlie — room taglines
@@ -218,7 +218,8 @@ export const VOICE_LINES = [
   // Charlie — one-sentence how-to for every game (for kids who can't read yet).
   // Plays on the start menu right after the room host's tagline; the speaker
   // button on each "How to Play" card replays it.
-  L('charlie.howto.jukebox',        'Tap the bell when the note drops into the box.',                                   'coach, upbeat',   'Jelly Jukebox menu — after Jazzy\'s tagline / speaker button'),
+  L('charlie.howto.jukebox',        'Tap on the bell when it drops in the box.',                                   'coach, upbeat',   'Jelly Jukebox — first bells song of the session · bells How to Play speaker'),
+  L('charlie.howto.jukedrums',      'Tap on the drum when it drops in the box.',                                         'coach, upbeat',   'Jelly Jukebox — first drums song of the session · drums How to Play speaker'),
   L('charlie.howto.kazoo',          'Watch Stew play his kazoos, then tap \'em back in the same order.',                      'coach, warm',     'Stew Kazoo Says menu / speaker button'),
   L('charlie.howto.earquest',       'Listen to the mystery note, then tap the bell that matches it.',                   'coach, warm',     'Ear Quest menu / speaker button'),
   L('charlie.howto.tempo',          'Listen to these two tunes. Was the second one faster or slower?',         'playful',         'Snail or Cheetah menu / speaker button'),
@@ -237,7 +238,7 @@ export const VOICE_LINES = [
   L('charlie.howto.jam',            'Tap any instrument to play. Hit Record to save your jam!',                              'coach, upbeat',   'Jam Session — on arrival, after Jazzy\'s tagline'),
   L('charlie.howto.songstudio',     'Pick a mood, tap the keys to write your tune, then press Play!',                        'creative, warm',  'Song Studio — on arrival, after Charlie\'s tagline'),
   L('charlie.howto.dressing',       'Choose your character, then tap an outfit and try it on!',                               'warm, inviting',  'Dressing Room — on arrival'),
-  L('charlie.howto.stage',          'Take a bow for the crowd, or snap a poster of your star!',                              'showman',         'Main Stage — on arrival'),
+  L('charlie.howto.stage',          'Take a bow for the crowd, or pose for a poster!',                              'showman',         'Main Stage — on arrival'),
 
   L('finn.quest.q_note_match',     'Clear a round of Note Match! Oh boy oh boy!',        'cool',     'Quest: Note Match'),
   L('charlie.quest.q_shred',         'Play a show in Shred City, kid!',          'rock',     'Quest: Shred City'),

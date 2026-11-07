@@ -1,6 +1,6 @@
 # JMA Voice Script — Charlie the Polliwog
 
-**80 lines for Charlie.** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, cadet.
+**81 lines for Charlie.** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, cadet.
 
 ## How to record
 - One short take per line, 1–3 seconds. Leave ~150 ms of silence at the start, trim the tail.
@@ -14,30 +14,31 @@
 
 ---
 
-## How-to instructions — 20 lines
+## How-to instructions — 21 lines
 
 | # | File (id) | Line | Emotion | Plays when |
 |---|---|---|---|---|
-| 1 | `charlie.howto.jukebox` | **Tap the bell when the note drops into the box.** | coach, upbeat | Jelly Jukebox menu — after Jazzy's tagline / speaker button |
-| 2 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
-| 3 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it.** | coach, warm | Ear Quest menu / speaker button |
-| 4 | `charlie.howto.tempo` | **Listen to these two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
-| 5 | `charlie.howto.notematch` | **Flip two cards and listen, then find the ones that match.** | coach, warm | Note Match menu / speaker button |
-| 6 | `charlie.howto.detective` | **Hear the tune twice, then tap the note that changed.** | sly, coach | Detective menu / speaker button |
-| 7 | `charlie.howto.sightread` | **Read the notes on the staff, then tap the bells in the right order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
-| 8 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name.** | coach, warm | Name That Note menu — Name It mode / speaker button |
-| 9 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
-| 10 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drums.** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
-| 11 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
-| 12 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
-| 13 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin'!** | rock announcer | Shred City intro / speaker button |
-| 14 | `charlie.howto.robot` | **Tap the band members to zap 'em into the jam, then boogie, robot boogie!** | party host | Robot Boogie — on arrival / speaker button |
-| 15 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
-| 16 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
-| 17 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
-| 18 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
-| 19 | `charlie.howto.dressing` | **Choose your character, then tap an outfit and try it on!** | warm, inviting | Dressing Room — on arrival |
-| 20 | `charlie.howto.stage` | **Take a bow for the crowd, or snap a poster of your star!** | showman | Main Stage — on arrival |
+| 1 | `charlie.howto.jukebox` | **Tap on the bell when it drops in the box.** | coach, upbeat | Jelly Jukebox — first bells song of the session · bells How to Play speaker |
+| 2 | `charlie.howto.jukedrums` | **Tap on the drum when it drops in the box.** | coach, upbeat | Jelly Jukebox — first drums song of the session · drums How to Play speaker |
+| 3 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
+| 4 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it.** | coach, warm | Ear Quest menu / speaker button |
+| 5 | `charlie.howto.tempo` | **Listen to these two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
+| 6 | `charlie.howto.notematch` | **Flip two cards and listen, then find the ones that match.** | coach, warm | Note Match menu / speaker button |
+| 7 | `charlie.howto.detective` | **Hear the tune twice, then tap the note that changed.** | sly, coach | Detective menu / speaker button |
+| 8 | `charlie.howto.sightread` | **Read the notes on the staff, then tap the bells in the right order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
+| 9 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name.** | coach, warm | Name That Note menu — Name It mode / speaker button |
+| 10 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
+| 11 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drums.** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
+| 12 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
+| 13 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
+| 14 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin'!** | rock announcer | Shred City intro / speaker button |
+| 15 | `charlie.howto.robot` | **Tap the band members to zap 'em into the jam, then boogie, robot boogie!** | party host | Robot Boogie — on arrival / speaker button |
+| 16 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
+| 17 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
+| 18 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
+| 19 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
+| 20 | `charlie.howto.dressing` | **Choose your character, then tap an outfit and try it on!** | warm, inviting | Dressing Room — on arrival |
+| 21 | `charlie.howto.stage` | **Take a bow for the crowd, or pose for a poster!** | showman | Main Stage — on arrival |
 
 ---
 
@@ -54,8 +55,8 @@
 | 7 | `charlie.hub.alldone` | **That's the whole list! See ya tomorrow, kid.** | warm, satisfied | Home — all 3 quests done |
 | 8 | `charlie.jam.takeit` | **Take it to the Jam Session, kid!** | hyped | Beat Lab / Song Studio — tapping "Jam on it!" |
 | 9 | `charlie.hub.lockbadge` | **Earn one badge and this street is yours — here are today's quests!** | playful, encouraging | Tapping a locked LEARN/CREATE gate — opens the Quest Board |
-| 10 | `charlie.academy.welcome` | **Welcome to the Academy! Today's class is up on the board.** | warm, host | Entering the Academy hall |
-| 11 | `charlie.academy.rankup` | **Ding ding! A new friend just popped out of the clock — you ranked up!** | excited | Plaza cuckoo moment on a new rank |
+| 10 | `charlie.academy.welcome` | **Hello, cadet, and welcome to the Jelly of the Month Club Music Academy!** | warm, host | Entering the Academy — once a day |
+| 11 | `charlie.academy.rankup` | **Way to go, rockstar! You just ranked up!** | excited | Campus — the moment a new rank is earned |
 | 12 | `charlie.hub.lockpass` | **Ask a grown-up about that one, kid.** | gentle | Tapping an Academy-Pass-locked room (future) |
 | 13 | `charlie.tag.shred` | **Welcome to Shred City, baby!** | rock announcer | Entering Shred City |
 | 14 | `charlie.tag.songstudio` | **Step into the studio, let's write a hit!** | creative, warm | Entering Charlie's Song Studio |

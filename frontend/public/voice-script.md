@@ -1,6 +1,6 @@
 # JMA Voice Recording Script
 
-**250 lines · 6 voices.** Lou never speaks. **Sharky IS Finn Danger — the same shark, one voice.** Stew can be performed as kazoo-talk.
+**251 lines · 6 voices.** Lou never speaks. **Sharky IS Finn Danger — the same shark, one voice.** Stew can be performed as kazoo-talk.
 
 ## How to record
 - One short take per line, 1–3 seconds. Leave ~150 ms of silence at the start, trim the tail.
@@ -14,7 +14,7 @@
 
 ---
 
-## Charlie the Polliwog — 80 lines
+## Charlie the Polliwog — 81 lines
 **Rooms:** Academy host · Shred City · Song Studio · Music 101 · JMAtv  
 **Voice:** Sinatra / Louis Prima New York wise guy. Friendly, finger-snapping, "how YOU doin'" warmth. Calls you kid, pal, cadet.
 
@@ -29,8 +29,8 @@
 | 7 | `charlie.hub.alldone` | **That's the whole list! See ya tomorrow, kid.** | warm, satisfied | Home — all 3 quests done |
 | 8 | `charlie.jam.takeit` | **Take it to the Jam Session, kid!** | hyped | Beat Lab / Song Studio — tapping "Jam on it!" |
 | 9 | `charlie.hub.lockbadge` | **Earn one badge and this street is yours — here are today's quests!** | playful, encouraging | Tapping a locked LEARN/CREATE gate — opens the Quest Board |
-| 10 | `charlie.academy.welcome` | **Welcome to the Academy! Today's class is up on the board.** | warm, host | Entering the Academy hall |
-| 11 | `charlie.academy.rankup` | **Ding ding! A new friend just popped out of the clock — you ranked up!** | excited | Plaza cuckoo moment on a new rank |
+| 10 | `charlie.academy.welcome` | **Hello, cadet, and welcome to the Jelly of the Month Club Music Academy!** | warm, host | Entering the Academy — once a day |
+| 11 | `charlie.academy.rankup` | **Way to go, rockstar! You just ranked up!** | excited | Campus — the moment a new rank is earned |
 | 12 | `charlie.hub.lockpass` | **Ask a grown-up about that one, kid.** | gentle | Tapping an Academy-Pass-locked room (future) |
 | 13 | `charlie.tag.shred` | **Welcome to Shred City, baby!** | rock announcer | Entering Shred City |
 | 14 | `charlie.tag.songstudio` | **Step into the studio, let's write a hit!** | creative, warm | Entering Charlie's Song Studio |
@@ -66,40 +66,41 @@
 | 44 | `charlie.go.3` | **All right, keep it rollin'!** | pumped | Shred City — as the song starts (kudos: max one every 15 s) |
 | 45 | `charlie.dress.pick` | **Me? You picked ME? Let's look sharp!** | delighted | Dressing Room — choosing Charlie |
 | 46 | `charlie.dress.wear` | **Ooh, lookin' good! Give us a spin!** | proud | Dressing Room — Charlie changes outfit |
-| 47 | `charlie.howto.jukebox` | **Tap the bell when the note drops into the box.** | coach, upbeat | Jelly Jukebox menu — after Jazzy's tagline / speaker button |
-| 48 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
-| 49 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it.** | coach, warm | Ear Quest menu / speaker button |
-| 50 | `charlie.howto.tempo` | **Listen to these two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
-| 51 | `charlie.howto.notematch` | **Flip two cards and listen, then find the ones that match.** | coach, warm | Note Match menu / speaker button |
-| 52 | `charlie.howto.detective` | **Hear the tune twice, then tap the note that changed.** | sly, coach | Detective menu / speaker button |
-| 53 | `charlie.howto.sightread` | **Read the notes on the staff, then tap the bells in the right order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
-| 54 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name.** | coach, warm | Name That Note menu — Name It mode / speaker button |
-| 55 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
-| 56 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drums.** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
-| 57 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
-| 58 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
-| 59 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin'!** | rock announcer | Shred City intro / speaker button |
-| 60 | `charlie.howto.robot` | **Tap the band members to zap 'em into the jam, then boogie, robot boogie!** | party host | Robot Boogie — on arrival / speaker button |
-| 61 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
-| 62 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
-| 63 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
-| 64 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
-| 65 | `charlie.howto.dressing` | **Choose your character, then tap an outfit and try it on!** | warm, inviting | Dressing Room — on arrival |
-| 66 | `charlie.howto.stage` | **Take a bow for the crowd, or snap a poster of your star!** | showman | Main Stage — on arrival |
-| 67 | `charlie.quest.q_shred` | **Play a show in Shred City, kid!** | rock | Quest: Shred City |
-| 68 | `charlie.quest.q_song_save` | **Come write a hit in my studio.** | creative | Quest: Song Studio |
-| 69 | `charlie.quest.q_jmatv` | **Catch a show on JMAtv, pal.** | TV | Quest: JMAtv |
-| 70 | `charlie.fact.01` | **Your VOICE is your very first instrument — and you were born with it!** | curious, friendly | Fun Facts — tapping Charlie (fact 1) |
-| 71 | `charlie.fact.02` | **When you sing, over 100 muscles in your body work together — even ones in your tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 2) |
-| 72 | `charlie.fact.03` | **Humming is a kind of singing you do with your mouth closed — try it, it tickles!** | curious, friendly | Fun Facts — tapping Charlie (fact 3) |
-| 73 | `charlie.fact.04` | **Singers warm up their voices just like athletes stretch their muscles.** | curious, friendly | Fun Facts — tapping Charlie (fact 4) |
-| 74 | `charlie.fact.05` | **A CHOIR is a big group of people singing together in harmony — like a vocal team!** | curious, friendly | Fun Facts — tapping Charlie (fact 5) |
-| 75 | `charlie.fact.06` | **Opera singers can sing SO loudly they don't even need a microphone!** | curious, friendly | Fun Facts — tapping Charlie (fact 6) |
-| 76 | `charlie.fact.07` | **Babies can recognize their favorite songs before they're even born, from inside mommy's tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 7) |
-| 77 | `charlie.fact.08` | **Whistling is music made just with your lips and air — no vocal cords required!** | curious, friendly | Fun Facts — tapping Charlie (fact 8) |
-| 78 | `charlie.fact.09` | **The highest singing voice is a SOPRANO, and the lowest is called a BASS.** | curious, friendly | Fun Facts — tapping Charlie (fact 9) |
-| 79 | `charlie.fact.10` | **Singing together with friends actually makes your brain release happy chemicals!** | curious, friendly | Fun Facts — tapping Charlie (fact 10) |
-| 80 | `charlie.fact.11` | **Your voice sounds different to YOU than it does to everybody else!** | curious, friendly | Fun Facts — tapping Charlie (fact 11) |
+| 47 | `charlie.howto.jukebox` | **Tap on the bell when it drops in the box.** | coach, upbeat | Jelly Jukebox — first bells song of the session · bells How to Play speaker |
+| 48 | `charlie.howto.jukedrums` | **Tap on the drum when it drops in the box.** | coach, upbeat | Jelly Jukebox — first drums song of the session · drums How to Play speaker |
+| 49 | `charlie.howto.kazoo` | **Watch Stew play his kazoos, then tap 'em back in the same order.** | coach, warm | Stew Kazoo Says menu / speaker button |
+| 50 | `charlie.howto.earquest` | **Listen to the mystery note, then tap the bell that matches it.** | coach, warm | Ear Quest menu / speaker button |
+| 51 | `charlie.howto.tempo` | **Listen to these two tunes. Was the second one faster or slower?** | playful | Snail or Cheetah menu / speaker button |
+| 52 | `charlie.howto.notematch` | **Flip two cards and listen, then find the ones that match.** | coach, warm | Note Match menu / speaker button |
+| 53 | `charlie.howto.detective` | **Hear the tune twice, then tap the note that changed.** | sly, coach | Detective menu / speaker button |
+| 54 | `charlie.howto.sightread` | **Read the notes on the staff, then tap the bells in the right order. Beat the clock!** | coach, quick | Sight-Reading Sprint menu / speaker button |
+| 55 | `charlie.howto.namenote.name` | **See the note on the staff? Tap its name.** | coach, warm | Name That Note menu — Name It mode / speaker button |
+| 56 | `charlie.howto.namenote.place` | **Read the note's name, then drag it onto the staff.** | coach, warm | Name That Note menu — Place It mode selected / speaker button |
+| 57 | `charlie.howto.boom.copy` | **Listen to Stew's rhythm. After the count-in, play it back on the drums.** | coach, groovy | Who's Got the Rhythm — Parrot Percussion how-to card |
+| 58 | `charlie.howto.boom.match` | **Listen to the secret rhythm, then tap the strip that matches.** | coach, groovy | Who's Got the Rhythm — Beat Finder how-to card |
+| 59 | `charlie.howto.boom.trail` | **Tap Stew when each note crosses the gold line!** | coach, groovy | Who's Got the Rhythm — Rhythm Run how-to card |
+| 60 | `charlie.howto.shred` | **Pick a song and play the guitar in time with the beat. No mashin'!** | rock announcer | Shred City intro / speaker button |
+| 61 | `charlie.howto.robot` | **Tap the band members to zap 'em into the jam, then boogie, robot boogie!** | party host | Robot Boogie — on arrival / speaker button |
+| 62 | `charlie.howto.funfacts` | **Slide the spyglass around to find the hidden friends.** | cozy, curious | Fun Facts Clubhouse — on arrival / speaker button |
+| 63 | `charlie.howto.beatlab` | **Tap the pads to build a beat, then hit Play to hear your loop!** | coach, groovy | Beat Lab — on arrival, after Chunk's tagline |
+| 64 | `charlie.howto.jam` | **Tap any instrument to play. Hit Record to save your jam!** | coach, upbeat | Jam Session — on arrival, after Jazzy's tagline |
+| 65 | `charlie.howto.songstudio` | **Pick a mood, tap the keys to write your tune, then press Play!** | creative, warm | Song Studio — on arrival, after Charlie's tagline |
+| 66 | `charlie.howto.dressing` | **Choose your character, then tap an outfit and try it on!** | warm, inviting | Dressing Room — on arrival |
+| 67 | `charlie.howto.stage` | **Take a bow for the crowd, or pose for a poster!** | showman | Main Stage — on arrival |
+| 68 | `charlie.quest.q_shred` | **Play a show in Shred City, kid!** | rock | Quest: Shred City |
+| 69 | `charlie.quest.q_song_save` | **Come write a hit in my studio.** | creative | Quest: Song Studio |
+| 70 | `charlie.quest.q_jmatv` | **Catch a show on JMAtv, pal.** | TV | Quest: JMAtv |
+| 71 | `charlie.fact.01` | **Your VOICE is your very first instrument — and you were born with it!** | curious, friendly | Fun Facts — tapping Charlie (fact 1) |
+| 72 | `charlie.fact.02` | **When you sing, over 100 muscles in your body work together — even ones in your tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 2) |
+| 73 | `charlie.fact.03` | **Humming is a kind of singing you do with your mouth closed — try it, it tickles!** | curious, friendly | Fun Facts — tapping Charlie (fact 3) |
+| 74 | `charlie.fact.04` | **Singers warm up their voices just like athletes stretch their muscles.** | curious, friendly | Fun Facts — tapping Charlie (fact 4) |
+| 75 | `charlie.fact.05` | **A CHOIR is a big group of people singing together in harmony — like a vocal team!** | curious, friendly | Fun Facts — tapping Charlie (fact 5) |
+| 76 | `charlie.fact.06` | **Opera singers can sing SO loudly they don't even need a microphone!** | curious, friendly | Fun Facts — tapping Charlie (fact 6) |
+| 77 | `charlie.fact.07` | **Babies can recognize their favorite songs before they're even born, from inside mommy's tummy!** | curious, friendly | Fun Facts — tapping Charlie (fact 7) |
+| 78 | `charlie.fact.08` | **Whistling is music made just with your lips and air — no vocal cords required!** | curious, friendly | Fun Facts — tapping Charlie (fact 8) |
+| 79 | `charlie.fact.09` | **The highest singing voice is a SOPRANO, and the lowest is called a BASS.** | curious, friendly | Fun Facts — tapping Charlie (fact 9) |
+| 80 | `charlie.fact.10` | **Singing together with friends actually makes your brain release happy chemicals!** | curious, friendly | Fun Facts — tapping Charlie (fact 10) |
+| 81 | `charlie.fact.11` | **Your voice sounds different to YOU than it does to everybody else!** | curious, friendly | Fun Facts — tapping Charlie (fact 11) |
 
 ---
 

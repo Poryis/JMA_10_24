@@ -10,7 +10,7 @@ import { VOICE_MAP, VOICE_LINES } from '../data/voiceLines';
 export const VOICE_KEY = 'jma_voice_v1'; // '0' = character voices off
 const BASE = 'assets/voice/';
 // bump when re-importing recordings so phones fetch the new takes
-const VOICE_VERSION = 2;
+const VOICE_VERSION = 3;
 
 const missing = new Set();
 const lastSpokenAt = {};

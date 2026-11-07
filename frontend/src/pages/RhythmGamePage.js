@@ -108,9 +108,12 @@ function FallingBellNote({ note, noteId, laneIndex, totalLanes, speed, isDrum, r
   );
 }
 
+const jukeHowtoPlayed = new Set();
+
+
 function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame }) {
   const { nameFor } = useNoteNames();
-  useVoiceTagline('jazzy.tag.jukebox', 'charlie.howto.jukebox');
+  useVoiceTagline('jazzy.tag.jukebox');
   const navigate = useNavigate();
   const { playBellNote, playDrumSound, playFeedbackSound, initAudioContext } = useAudio();
 
@@ -186,15 +189,19 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
 
   useEffect(() => { fallingNotesRef.current = fallingNotes; }, [fallingNotes]);
 
-  const startGame = useCallback(() => {
+  const startGame = useCallback((pickedSong) => {
     initAudioContext();
     resetGame();
+    // Charlie's bells or drums how-to, once per mode per session
+    const song = pickedSong && pickedSong.id ? pickedSong : selectedSong;
+    const howto = song.instrumentMode === 'drums' ? 'charlie.howto.jukedrums' : 'charlie.howto.jukebox';
+    if (!jukeHowtoPlayed.has(howto)) { jukeHowtoPlayed.add(howto); say(howto, { interrupt: true }); }
     setGameState('playing');
     setCurrentNoteIndex(0);
     setFallingNotes([]);
     noteIdRef.current = 0;
     setIsNewRecord(false);
-  }, [initAudioContext, resetGame]);
+  }, [initAudioContext, resetGame, selectedSong]);
 
   // Beat-sync setup. When a run starts we (1) measure — on THIS device — how
   // long a note takes from spawn to the moment it visually overlaps the target
@@ -591,7 +598,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
 
         {/* Speed selector — chunky pill row with proper "Speed:" label */}
         <div className="jj-menu-speed flex items-center gap-2 mb-3 flex-wrap justify-center">
-          <HowToVoiceButton lineId="charlie.howto.jukebox" size={30} className="mr-1" />
+          <HowToVoiceButton lineId={isDrumMode ? 'charlie.howto.jukedrums' : 'charlie.howto.jukebox'} size={30} className="mr-1" />
           <span className="text-[10px] md:text-xs uppercase font-black mr-1" style={{ color: 'white', textShadow: '0 1px 0 rgba(0,0,0,0.5)' }}>
             Speed
           </span>
@@ -664,7 +671,7 @@ function RhythmGamePage({ score, setScore, gameStats, setGameStats, resetGame })
               <motion.button
                 key={song.id}
                 data-testid={`song-${song.id}`}
-                onClick={() => { setSelectedSong(song); startGame(); }}
+                onClick={() => { setSelectedSong(song); startGame(song); }}
                 whileHover={{ y: -3, scale: 1.015 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative rounded-2xl border-3 overflow-hidden text-left flex items-stretch"

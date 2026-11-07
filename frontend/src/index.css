@@ -1120,7 +1120,8 @@ h1, h2, h3, h4, h5, h6 {
   /* actions stack on the right wall so they clear the podium, Charlie and the crowd */
   .rank-hall-actions { left: auto !important; right: 2% !important; transform: none !important; bottom: 24% !important; flex-direction: column !important; align-items: flex-end !important; gap: 6px !important; }
   .rank-hall-actions button { padding: 4px 8px !important; font-size: 11px !important; min-height: 0 !important; }
-  .rank-hall-music { top: auto !important; bottom: 46% !important; right: 2% !important; }
+  /* music toggle tucked under the Back button, clear of the action-button column */
+  .rank-hall-music { top: 84px !important; bottom: auto !important; right: auto !important; left: calc(12px + env(safe-area-inset-left, 0px)) !important; }
 
   /* Dressing Room: tighter backstage on short screens */
   .dr-grid { padding-top: 48px !important; padding-bottom: 10% !important; gap: 8px !important; }

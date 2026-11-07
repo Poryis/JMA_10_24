@@ -402,7 +402,7 @@ export default function AcademyPage() {
         ))}
 
         {/* JMA shield plaque — tap for a twinkle */}
-        <Prop id="shield" pos={L.shield} z={3} label="JMA shield" wiggle={wiggle.shield} tap={{ rotate: [0, -3, 3, -2, 1, 0], scale: [1, 1.04, 1] }} onClick={() => poke('shield', 'sfx-twinkle.mp3')} />
+        <Prop id="shield" pos={L.shield} z={3} label="Music 101 lessons" testId="academy-shield" wiggle={wiggle.shield} tap={{ rotate: [0, -3, 3, -2, 1, 0], scale: [1, 1.04, 1] }} onClick={() => { poke('shield', 'sfx-twinkle.mp3'); setTimeout(() => navigate('/lessons'), 450); }} />
         <motion.div aria-hidden="true" className="absolute pointer-events-none" style={{ ...L.shield, height: '40%', zIndex: 3, background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.5) 50%, transparent 65%)', backgroundSize: '300% 100%', mixBlendMode: 'soft-light' }} animate={{ backgroundPosition: ['200% 0', '-100% 0'] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', repeatDelay: 3 }} />
 
         {/* achievement book on its lectern → Yearbook */}

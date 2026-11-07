@@ -12,14 +12,16 @@ const RIFFS = {
 };
 
 // Outfits with their own riff (file riffs/<character>-<outfit>.mp3).
-const OUTFIT_RIFFS = new Set(['doctor-detective', 'doctor-astro', 'doctor-disco', 'doctor-dapper', 'chunk-disco', 'chunk-marching', 'chunk-steampunk', 'charlie-grad', 'charlie-drummajor', 'charlie-rundmc']);
+const OUTFIT_RIFFS = new Set(['chunk-disco', 'chunk-marching', 'chunk-steampunk', 'charlie-grad', 'charlie-drummajor', 'charlie-rundmc']);
 
 // Charlie's guitar licks (riffs/guitar/gl-NN.mp3), picked at random per outfit.
 const g = (...n) => n.map((x) => `riffs/guitar/gl-${String(x).padStart(2, '0')}.mp3`);
 const METAL = g(1, 2, 3, 4, 5, 6, 7), FUNKY = g(25, 26, 27, 29, 30, 31, 32), SURF = g(16, 17), PUNK = g(35);
 const BORIS = g(22, 23, 24), CUCINA = g(20, 21), REGGAE = g(36, 37), FRESH = g(10, 11, 12, 13, 15, 19, 28);
 const STEW = (o, n) => Array.from({ length: n }, (_, i) => `riffs/stew-${o}-${i + 1}.mp3`);
+const SAX = (...n) => n.map((x) => `riffs/doctor-sax-${x}.mp3`);
 const POOLS = {
+  'doctor-classic': SAX(1), 'doctor-detective': SAX(2), 'doctor-astro': SAX(3), 'doctor-disco': SAX(4), 'doctor-dapper': SAX(1, 2, 3, 4),
   'stew-classic': STEW('classic', 3), 'stew-kazoo': STEW('kazoo', 2), 'stew-drumline': STEW('drumline', 2),
   'charlie-disco': [1, 2, 3, 4, 5].map((n) => `riffs/charlie-disco-${n}.mp3`),
   'charlie-classic': METAL, 'charlie-captain': METAL, 'charlie-surf': SURF, 'charlie-punk': PUNK,

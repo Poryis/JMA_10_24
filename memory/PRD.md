@@ -690,3 +690,9 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Main Stage plays saved jams via Web Audio (fixes silent playback on iOS); Jam Session piano/xylophone now routed through master gain so recordings capture them
 - Beat Lab shows a hint if you record with an empty grid
 - Tested: iteration_71 (100%)
+
+## Shred City phone layout + sticker voice throttle (Jun 2026)
+- Sticker/badge/gem voice line max once per 3 min (toast still every time)
+- Shred City excluded from FitStage; own phone-landscape layout: thin meter, compact guitar (Bend always visible, no scroll), crowd split 3+3 on the sides (no shouts/flashes on phone); desktop unchanged
+- Shred intro song list 2 columns on phone landscape; rank-up card scrolls/fits on short screens
+- Tested: iteration_72

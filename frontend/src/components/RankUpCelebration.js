@@ -59,7 +59,7 @@ export default function RankUpCelebration() {
         <motion.div
           key="full"
           data-testid="rank-up-overlay"
-          className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[1000] flex items-start justify-center overflow-y-auto p-4 bg-black/60 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -68,7 +68,7 @@ export default function RankUpCelebration() {
           <Confetti mega={true} testId="rank-confetti" />
           <motion.div
             data-testid="rank-up-card"
-            className="relative bg-white rounded-3xl border-4 max-w-sm w-full p-6 text-center"
+            className="rank-up-card relative bg-white rounded-3xl border-4 max-w-sm w-full p-6 text-center my-auto"
             style={{ borderColor: rankUp.color, boxShadow: `0 10px 0 0 ${rankUp.color}` }}
             initial={{ scale: 0.5, y: 50, rotate: -8 }}
             animate={{ scale: 1, y: 0, rotate: 0 }}

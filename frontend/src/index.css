@@ -988,7 +988,11 @@ h1, h2, h3, h4, h5, h6 {
   .shred-crowd-side { display: block !important; position: absolute; bottom: 4px; width: calc(18vw - 8px); height: clamp(70px, 30vh, 130px); z-index: 1; }
   .shred-crowd-side img { flex-shrink: 1; min-width: 0; }
   .shred-crowd-left { left: 4px; }
-  .shred-crowd-right { right: 4px; bottom: 60px; height: clamp(60px, 24vh, 110px); }
+  .shred-crowd-right { right: 4px; bottom: 72px; height: clamp(60px, 24vh, 110px); }
+  .shred-intro-card [data-testid="shred-song-picker"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 6px !important; }
+  .shred-intro-card [data-testid="shred-song-picker"] button { padding-top: 6px !important; padding-bottom: 6px !important; }
+  .shred-intro-card [data-testid="shred-start-btn"] { padding-top: 8px !important; padding-bottom: 8px !important; font-size: 1rem !important; }
+  .rank-up-card { padding: 14px 18px !important; }
   .shred-playing [data-testid="guitar-instrument"] { margin-top: auto; padding: 6px 8px !important; border-width: 3px !important; }
   .shred-playing [data-testid="guitar-instrument"] > div:first-child { margin-bottom: 4px !important; }
   .shred-playing [data-testid="guitar-strings"] { margin-bottom: 4px !important; }

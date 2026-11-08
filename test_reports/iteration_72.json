@@ -1,0 +1,34 @@
+{
+  "summary": "Frontend-only test of the Shred City phone-landscape layout, the desktop layout (should be unchanged), the Main Stage CrowdRow regression check, and a code review of the sticker voice throttle. Phone landscape works at 844x340, 844x390 and 667x375. The page never scrolls (scrollHeight equals innerHeight, also checked every second through a full song plus encore at 844x390). The crowd meter is a thin bar at the top (y 6-40). The center crowd is display:none. shred-crowd-left and shred-crowd-right each show 3 members beside the guitar along the bottom. No shout bubbles render on phone (side rows pass shout=null), so none go off-screen. guitar-bend fits on screen: 844x340 287-325, 844x390 337-375, 667x375 326-360. Tapping notes raises the meter: 0 to 14.8% after 16 taps at 667x375, and Garage Band to SHRED LEGEND 100% with timed 8th-note taps at 844x390. Encore triggered and fits; result card fits (844x340 22-318, 844x390 22-368). Desktop 1920x800 is unchanged: one 7-member crowd row above the guitar, side crowds display:none, no scroll. Main Stage (/#/rank-hall) renders 7 crowd members at both 1920x800 and 844x390 with no side rows. Sticker voice: say() keeps one timestamp per line, so two stickers within 3 min show the toast both times but speak only once. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Shred intro card (phone landscape)", "issue": "At 844x340, 667x375 and 844x390 the 'Surprise Me!' button (shred-start-btn, top=340, bottom=400) sits below the card's visible area. The card scrolls inside itself (overflow-y:auto, scrollHeight 396 vs clientHeight 308 at 340px tall). At 844x340 the 5th song row is also cut off. Songs can still be started from the visible rows, but the card does not fully fit.", "selector": "[data-testid=shred-intro-card]", "priority": "LOW"},
+      {"component": "Shred right side crowd vs fullscreen button", "issue": "At 667x375 the right crowd box (bottom=315) overlaps the top of the fullscreen button (top=307) by about 8px. Only cosmetic.", "selector": "[data-testid=shred-crowd-right]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Shred City phone landscape", "issues": ["The side crowds are offset on purpose (right side bottom:60px to clear the fullscreen button), so left and right sit at different heights. This looks intentional.", "The side crowd figures are small (about 112-144px wide boxes for 3 members) but readable."]},
+      {"screen": "Rank-up modal at 844x390 (not in scope, pre-existing)", "issues": ["The Conductor rank-up card shown after the Shred result is cut off at the top and bottom on a 390px-tall viewport."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: make the Shred intro card fit phone-landscape heights without scrolling inside it, e.g. tighter song rows or 2 columns, so 'Surprise Me!' is visible.",
+    "Optional: nudge shred-crowd-right up a few px at 667x375 so it clears the fullscreen button.",
+    "Optional: the rank-up modal does not fit at 844x390 height."
+  ],
+  "critical_code_review_comments": [
+    "voice.js say(): lastSpokenAt is keyed by line id, so sticker, badge and gem are throttled separately. A sticker, a badge and a gem within 3 min can still give 3 voice lines. If 'once every few minutes at most' should cover all of them, use one shared key or timestamp.",
+    "lastSpokenAt is stored in memory only, so a page reload resets the 3-min gap. Acceptable for this app.",
+    "lastSpokenAt is set before a deferred or delayed play actually happens. If the audio never plays (no user gesture), the line is still counted as spoken. Minor.",
+    "CrowdRow side mode drops member 0, so the phone shows 6 of 7 members. This matches the 3+3 spec.",
+    "ShredLegendPage.js is well over 700 lines; consider splitting CrowdRow and CrowdExtras into their own module, since RankHallPage imports them now."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "95%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Popups to dismiss (in order, not with force-click): audio-unlock-overlay, player-name-skip, tour-start-modal-close, rank-up-dismiss. Force-clicking a fading modal's X can land on shred-song-0 underneath and start a song by accident. shred-song-N starts the song directly through a 3-2-1 countdown; shred-start-btn is the random 'Surprise Me!'. Notes respond to pointerdown, so dispatching PointerEvent('pointerdown'/'pointerup') on guitar-note-i every 312ms (8th notes at 96bpm, Garage Stomp) reaches 100% meter and triggers the encore. The 'SHRED LEGEND' tier label shows at 90%; the encore needs 100%."
+}

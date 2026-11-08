@@ -75,7 +75,7 @@ export default function StickerToast() {
     setOverlayActive('sticker-toast', toastVisible);
     if (toastVisible && primary) {
       const line = primary.id.startsWith('gem_') ? 'charlie.meta.gem' : isAchievement ? 'charlie.meta.badge' : 'charlie.meta.sticker';
-      say(line, { interrupt: false, delayMs: 250 });
+      say(line, { interrupt: false, delayMs: 250, minGapMs: 180000 });
     }
     return () => setOverlayActive('sticker-toast', false);
     // eslint-disable-next-line react-hooks/exhaustive-deps

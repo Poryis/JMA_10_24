@@ -63,7 +63,7 @@ const CROWD_BACK_ROW = [
 
 export const CROWD_SHOUTS = ['WOOO!', 'YEAH!', 'ROCK ON!', 'ENCORE!', 'SHRED!', 'GO GO GO!', 'SO GOOD!'];
 
-function CrowdMember({ m, i, lift, dur, tilt, burstId, shout, glow, onTap }) {
+function CrowdMember({ m, i, lift, dur, tilt, burstId, shout, glow, onTap, noTag }) {
   const you = !!m.you;
   const [taps, setTaps] = useState(0);
   const tappable = onTap && m.who;
@@ -106,7 +106,7 @@ function CrowdMember({ m, i, lift, dur, tilt, burstId, shout, glow, onTap }) {
           />
         )}
       </AnimatePresence>
-      {you && (
+      {you && !noTag && (
         <span data-testid="shred-crowd-you" className="absolute left-1/2 -translate-x-1/2 rounded-full px-1.5 py-0.5 text-[9px] md:text-[10px] font-black text-white whitespace-nowrap" style={{ top: '-30%', background: '#FF2D85', border: '2px solid #0A1420', zIndex: 6 }}>YOU</span>
       )}
       {m.helmet ? (
@@ -137,7 +137,7 @@ function charOf(src = '') {
   return f.split('-')[0];
 }
 
-export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false, extras = true, onTap }) {
+export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHelmet = false, extras = true, onTap, side }) {
   // The front row never repeats a character — drop whoever the kid IS from the regulars.
   const members = useMemo(() => {
     if (!avatarSrc) return CROWD_MEMBERS.slice(0, 7);
@@ -151,12 +151,15 @@ export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHe
   const lift = 6 + e * 42;
   const dur = Math.max(0.28, 0.72 - e * 0.4);
   const glow = energy >= 0.55;
-  const backRow = energy >= 0.55;
+  const backRow = !side && energy >= 0.55;
   const shoutFor = (idx) => shouts.find((s) => s.member === idx) || null;
+  // Phone-landscape split: half the crowd on each side of the guitar.
+  const offset = side === 'right' ? 4 : 1;
+  const shown = side === 'left' ? members.slice(1, 4) : side === 'right' ? members.slice(4, 7) : members;
   return (
-    <div className="relative w-full h-full pointer-events-none select-none" data-testid="shred-crowd-row" data-back-row={backRow ? 'true' : 'false'}>
-      <CameraFlashes energy={energy} />
-      {extras && <CrowdExtras energy={energy} />}
+    <div className="relative w-full h-full pointer-events-none select-none" data-testid={side ? `shred-crowd-row-${side}` : 'shred-crowd-row'} data-back-row={backRow ? 'true' : 'false'}>
+      {!side && <CameraFlashes energy={energy} />}
+      {extras && !side && <CrowdExtras energy={energy} />}
       <AnimatePresence>
         {backRow && (
           <motion.div
@@ -177,16 +180,17 @@ export function CrowdRow({ energy, burstId = 0, shouts = [], avatarSrc, avatarHe
         )}
       </AnimatePresence>
       <div className="relative w-full h-full flex items-end justify-center gap-1 md:gap-3" style={{ zIndex: 1 }}>
-        {members.map((m, i) => (
+        {shown.map((m, j) => { const i = j + offset; return (
           <CrowdMember
-            key={i} m={m} i={i} lift={lift} dur={dur}
+            key={i} m={m} i={i} lift={side ? lift * 0.5 : lift} dur={dur}
             tilt={e * 5 * (i % 2 === 0 ? 1 : -1)}
             burstId={burstId}
-            shout={shoutFor(i)}
+            shout={side ? null : shoutFor(i)}
+            noTag={!!side}
             glow={glow}
             onTap={onTap}
           />
-        ))}
+        ); })}
       </div>
     </div>
   );
@@ -581,7 +585,7 @@ export default function ShredLegendPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col relative overflow-hidden"
+      className="shred-page min-h-screen flex flex-col relative overflow-hidden"
       data-testid="shred-legend-page"
       style={{
         backgroundImage: 'url(assets/backgrounds/shred-stage-jma.png)',
@@ -714,7 +718,7 @@ export default function ShredLegendPage() {
 
         {/* PLAYING HUD + crowd + guitar */}
         {(screen === 'playing' || screen === 'encore') && (
-          <div className="w-full max-w-[900px] flex-1 flex flex-col items-center gap-2" data-encore={screen === 'encore' ? 'true' : 'false'}>
+          <div className="shred-playing w-full max-w-[900px] flex-1 flex flex-col items-center gap-2" data-encore={screen === 'encore' ? 'true' : 'false'}>
             {/* Crowd meter */}
             <div className="w-full max-w-[640px]" data-testid="shred-crowd-meter">
               <div className="flex items-center justify-between mb-1">
@@ -798,12 +802,17 @@ export default function ShredLegendPage() {
                 pushed to sit right above the guitar so sizes stay consistent
                 and nobody balloons while the guitar samples load. */}
             <div
-              className="w-full mt-auto flex items-end justify-center"
+              className="shred-crowd-center w-full mt-auto flex items-end justify-center"
               style={{ height: 'clamp(84px, 17vh, 140px)' }}
               data-testid="shred-crowd"
             >
               <CrowdRow energy={energy} burstId={crowdBurst} shouts={shouts} avatarSrc={readAvatarOutfit().src} avatarHelmet={!!readAvatarOutfit().helmet} />
             </div>
+            {['left', 'right'].map((side) => (
+              <div key={side} className={`shred-crowd-side shred-crowd-${side}`} data-testid={`shred-crowd-${side}`}>
+                <CrowdRow side={side} energy={energy} burstId={crowdBurst} shouts={shouts} avatarSrc={readAvatarOutfit().src} avatarHelmet={!!readAvatarOutfit().helmet} />
+              </div>
+            ))}
 
             {/* Guitar */}
             <GuitarInstrument

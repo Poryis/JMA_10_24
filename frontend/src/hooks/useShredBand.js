@@ -292,12 +292,21 @@ export default function useShredBand(getAudioGraph, initAudioContext) {
     return Math.round(elapsed / eighth);
   }, []);
 
+  const beatPhase = useCallback(() => {
+    const ctx = ctxRef.current;
+    if (!ctx || !playingRef.current) return -1;
+    const beat = stepSecRef.current * 4;
+    const elapsed = ctx.currentTime - startTimeRef.current;
+    if (elapsed < 0) return -1;
+    return (elapsed % beat) / beat;
+  }, []);
+
   useEffect(() => () => stop(), [stop]);
 
   const apiRef = useRef(null);
   if (!apiRef.current) apiRef.current = {};
   Object.assign(apiRef.current, {
-    start, stop, preload, nearestEighthOffsetMs, nearestEighthIndex,
+    start, stop, preload, nearestEighthOffsetMs, nearestEighthIndex, beatPhase,
     beatMs: () => stepSecRef.current * 4000,
     setTempoScale,
     isPlaying: () => playingRef.current,

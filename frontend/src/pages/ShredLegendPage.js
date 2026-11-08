@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { reportGameWin } from '../lib/lessonHelperReward';
 import LessonHelper from '../components/LessonHelper';
 import FitBox from '../components/FitBox';
+import ShredStage from '../components/ShredStage';
 import { Play, RotateCcw, ChevronLeft, Star, Flame } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
@@ -260,56 +261,6 @@ function CrowdExtras({ energy }) {
           </div>
         ))}
       </AnimatePresence>
-    </div>
-  );
-}
-
-const LIGHT_PALETTES = {
-  // per song STYLE: beam colors + glow + how fast/strobe-y
-  punk:     { beams: ['rgba(255,40,40,0.40)', 'rgba(255,255,255,0.32)', 'rgba(255,40,40,0.40)'], glow: 'rgba(255,60,60,0.26)', strobe: true,  speed: 0.6 },
-  surf:     { beams: ['rgba(15,180,190,0.34)', 'rgba(255,140,0,0.30)',  'rgba(15,180,190,0.34)'], glow: 'rgba(255,150,0,0.22)',  strobe: false, speed: 1.0 },
-  halftime: { beams: ['rgba(120,90,255,0.34)', 'rgba(60,120,255,0.30)', 'rgba(170,80,255,0.32)'], glow: 'rgba(130,90,255,0.22)', strobe: false, speed: 1.3 },
-  rock:     { beams: ['rgba(255,80,80,0.30)', 'rgba(255,204,0,0.28)',  'rgba(15,163,177,0.30)'], glow: 'rgba(255,204,0,0.22)',  strobe: false, speed: 1.0 },
-};
-
-export function StageLights({ energy, style = 'rock' }) {
-  const pal = LIGHT_PALETTES[style] || LIGHT_PALETTES.rock;
-  const beams = [
-    { color: pal.beams[0], x: '18%', delay: 0 },
-    { color: pal.beams[1], x: '50%', delay: pal.strobe ? 0.12 : 0.6 },
-    { color: pal.beams[2], x: '82%', delay: pal.strobe ? 0.06 : 1.2 },
-  ];
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2, mixBlendMode: 'screen' }}>
-      {beams.map((b, i) => (
-        <motion.div
-          key={i}
-          className="absolute top-[-10%]"
-          style={{
-            left: b.x,
-            width: '42vw',
-            height: '120%',
-            transformOrigin: 'top center',
-            background: `linear-gradient(180deg, ${b.color} 0%, rgba(0,0,0,0) 72%)`,
-            filter: 'blur(6px)',
-          }}
-          animate={pal.strobe
-            ? { opacity: [0.2, 1, 0.2], rotate: i % 2 === 0 ? -12 : 12 }
-            : { rotate: [i % 2 === 0 ? -16 : 16, i % 2 === 0 ? 16 : -16, i % 2 === 0 ? -16 : 16] }}
-          transition={pal.strobe
-            ? { repeat: Infinity, duration: Math.max(0.16, (0.4 - energy * 0.2) * pal.speed), delay: b.delay, ease: 'linear' }
-            : { repeat: Infinity, duration: Math.max(2.4, (5 - energy * 2.4) * pal.speed), delay: b.delay, ease: 'easeInOut' }}
-        />
-      ))}
-      <motion.div
-        className="absolute left-1/2 top-[20%]"
-        style={{
-          width: '70vw', height: '55vh', transform: 'translateX(-50%)',
-          background: `radial-gradient(ellipse at center, ${pal.glow} 0%, rgba(0,0,0,0) 65%)`,
-        }}
-        animate={{ opacity: [0.35 + energy * 0.5, 0.6 + energy * 0.4, 0.35 + energy * 0.5] }}
-        transition={{ repeat: Infinity, duration: Math.max(0.5, 1.2 - energy), ease: 'easeInOut' }}
-      />
     </div>
   );
 }
@@ -587,16 +538,9 @@ export default function ShredLegendPage() {
     <div
       className="shred-page min-h-screen flex flex-col relative overflow-hidden"
       data-testid="shred-legend-page"
-      style={{
-        backgroundImage: 'url(assets/backgrounds/shred-stage-jma.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-        backgroundColor: '#8A8F96',
-      }}
+      style={{ backgroundColor: '#8A8F96', overflow: 'clip' }}
     >
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,20,32,0) 0%, rgba(10,20,32,0) 55%, rgba(10,20,32,0.35) 100%)' }} />
-
-      {(screen === 'playing' || screen === 'ready' || screen === 'encore') && <StageLights energy={screen === 'encore' ? 1 : energy} style={screen === 'encore' ? 'punk' : SONGS[songIndex].style} />}
+      <ShredStage band={band} active={screen === 'playing' || screen === 'encore'} energy={screen === 'encore' ? 1 : energy} hitPulse={hitPulse} interactive={screen === 'intro' || screen === 'result'} />
 
       <GameHeader title="SHRED CITY" showHomeButton={true} backLink={{ to: '/play', label: 'Play' }} />
 
@@ -659,13 +603,13 @@ export default function ShredLegendPage() {
         </div>
       )}
 
-      <main className="shred-main relative z-10 flex-1 flex flex-col items-center justify-end pt-16 pb-2 px-2">
+      <main className="shred-main relative z-10 flex-1 flex flex-col items-center justify-end pt-16 pb-2 px-2 pointer-events-none">
         {/* INTRO */}
         {screen === 'intro' && (
           <div className="flex-1 flex items-center justify-center w-full min-h-0">
             <motion.div
               data-testid="shred-intro-card"
-              className="shred-intro-card max-w-md w-full text-center rounded-3xl px-6 py-7 relative"
+              className="shred-intro-card max-w-md w-full text-center rounded-3xl px-6 py-7 relative pointer-events-auto"
               style={{ background: 'rgba(16,24,38,0.92)', border: '4px solid #FFCC00', boxShadow: '0 8px 0 0 #0A1420', maxHeight: 'calc(100dvh - 24px)', overflowY: 'auto' }}
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
             >
@@ -718,9 +662,9 @@ export default function ShredLegendPage() {
 
         {/* PLAYING HUD + crowd + guitar */}
         {(screen === 'playing' || screen === 'encore') && (
-          <div className="shred-playing w-full max-w-[900px] flex-1 flex flex-col items-center gap-2" data-encore={screen === 'encore' ? 'true' : 'false'}>
+          <div className="shred-playing w-full max-w-[900px] flex-1 flex flex-col items-center gap-2 pointer-events-auto" data-encore={screen === 'encore' ? 'true' : 'false'}>
             {/* Crowd meter */}
-            <div className="w-full max-w-[640px]" data-testid="shred-crowd-meter">
+            <div className="w-full max-w-[640px] rounded-2xl px-3 py-2" style={{ background: 'rgba(10,20,32,0.72)', backdropFilter: 'blur(6px)' }} data-testid="shred-crowd-meter">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-black uppercase tracking-widest text-white/90" data-testid="shred-song-name">
                   ♪ {SONGS[songIndex].name}
@@ -830,7 +774,7 @@ export default function ShredLegendPage() {
             <FitBox className="w-full max-w-md">
             <motion.div
               data-testid="shred-result-card"
-              className="max-w-md w-full text-center rounded-3xl px-6 py-7"
+              className="max-w-md w-full text-center rounded-3xl px-6 py-7 pointer-events-auto"
               style={{ background: 'rgba(16,24,38,0.95)', border: `4px solid ${tierFor(peakRef.current).color}`, boxShadow: '0 8px 0 0 #0A1420' }}
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
             >

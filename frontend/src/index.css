@@ -939,6 +939,12 @@ h1, h2, h3, h4, h5, h6 {
 /* FitStage: the scaled page always paints to the bottom of the stage (no navy bar). */
 .fit-stage-inner:not(.fit-measuring) > * { min-height: 100%; }
 .shred-crowd-side { display: none; }
+.shred-art { --aw: max(100vw, calc(100dvh * 1.4906)); width: var(--aw); height: calc(var(--aw) * 0.6709); left: 50%; top: 0; transform: translateX(-50%); }
+.shred-lightrig { transform: scale(0.74); transform-origin: 50% 0; }
+@media (max-height: 520px) and (orientation: landscape) {
+  .shred-art { top: calc((100dvh - var(--aw) * 0.6709) * 0.5); }
+  .shred-rig { display: none; }
+}
 
 /* ===== PHONE LANDSCAPE ONLY (short + wide). Desktop/tablet/portrait untouched. ===== */
 @media (max-height: 520px) and (orientation: landscape) {

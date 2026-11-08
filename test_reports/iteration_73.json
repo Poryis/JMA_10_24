@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only test of the Music 101 (/#/lessons) underwater backdrop and its tappable props, at 1920x800, 1280x800, 1024x768, 844x390 and 390x844. Desktop and tablet work: the underwater layers show (8 underwater imgs, 18 bubbles, fish, seaweed, sand). There is no curtain. lessons-charlie is gone (the charlie.png seen in the DOM belongs to the TourStartModal). No images are broken. Cards are centered and clickable (lesson-1 -> /#/lessons/1). Every tappable prop animates when tapped: m101-lantern-left/right, m101-harp, m101-trumpet, m101-shell. The chalkboard shows 'Next up / Seahorse Siesta' and goes to /#/lessons/3. With all 7 lessons watched it shows 'Class dismissed! You watched them all.' and tapping it stays on /lessons. The progress pill and the lock/unlock states are correct (2/7: lessons 1-2 watched, 3 unlocked, 4-7 locked; 7/7 shows all watched). No prop covers any card center or edge at any viewport, because cards are z-20 over the props at z-10. Back and fullscreen stay clickable. Breakpoint visibility is correct. One regression: at phone landscape 844x390 (FitStage active) the underwater backdrop scrolls away, leaving a navy area behind cards 4-7.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Music101Scene / UnderwaterBackdrop under FitStage (phone landscape <520px tall)", "issue": "On phone landscape, FitStage wraps the page in .fit-stage-inner, which is the scroll container and has transform: scale(0.55). The transform turns every 'fixed' layer (water, bands, sand, bubbles, coral, harp, trumpet, shell) into a layer positioned against that box, so the layers scroll with the content. Scrolling down to cards 4-7 leaves the bottom ~60% of the screen plain navy (#02243F), with the sand edge cutting across card 4. Reproduced at 844x390. The old curtain was a background-image on the lessons-page root, so it covered the whole scroll height. This is a regression.", "selector": "[data-testid='lessons-page'] inside .fit-stage-inner", "priority": "HIGH"},
+      {"component": "m101-shell", "issue": "The shell is placed at left:30%, which falls inside the card column at 1280, 1024, 844 and 390 widths. Cards sit above it, so it is hidden or untappable most of the time. In portrait (390) the shell is the only tappable surprise and it sits under the cards, so portrait effectively has no reachable surprise. Only at 1920 is it outside the column (x=576 vs cards at 650).", "selector": "[data-testid='m101-shell']", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Lessons 1024x768 / 1280x800", "issues": ["m101-lantern-left (left:6vw) overlaps the Back/JMA logo button visually (lantern x=61-98 vs Back x=16-84 at 1024). Clicks still reach Back.", "m101-trumpet sits directly behind the fullscreen button at the bottom-right at 1024, 1280 and 1920 (trumpet x=1139-1254 vs fullscreen x=1220-1264 at 1280), so the trumpet bell is hidden."]},
+      {"screen": "Lessons chalkboard (xl)", "issues": ["The 'Next up' label and the 'tap the board to start' line are very small (11-12px) at 80%/75% opacity on the dark board. Readable, but faint for kids."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix the backdrop on phone landscape (FitStage active). Option: render Music101Scene in a wrapper that is sticky to the visible stage (e.g. sticky top-0 with stage height). Option: make the scene absolute inset-0 over the full lessons-page height. Option: portal the background layers outside .fit-stage-inner. Then verify at 844x390 by scrolling to lesson-7.",
+    "Move m101-shell out of the card column (e.g. left 3-6% or right 8%, next to the coral) so it is reachable at tablet, laptop and portrait widths.",
+    "Nudge m101-lantern-left away from the Back button (e.g. left: max(6vw, 110px)) and move m101-trumpet left or up so the fullscreen button does not cover it."
+  ],
+  "critical_code_review_comments": [
+    "Music101Scene room asset paths are relative ('assets/academy/room/'), but UnderwaterBackdrop uses process.env.PUBLIC_URL. Make them consistent.",
+    "ding() creates a new Audio on every tap with no throttle. Rapid tapping stacks sounds. Consider reusing one Audio per prop.",
+    "The LessonsPage header comment still says 'Charlie introduces 7 Vimeo lessons' and 'Chalkboard-themed'. It is out of date.",
+    "Toy idle animation repeats forever with framer-motion on 5 props, plus 3 swimmers and 2 seaweeds. That is fine on desktop, but consider prefers-reduced-motion."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "88% (all desktop/tablet/portrait checks pass; phone-landscape backdrop regression)"},
+  "seed_data_creation": "Only localStorage in the test browser: jma_lessons_watched_v1 = [1,2], then [1..7].",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Onboarding overlays may appear late: 'Tap to Start the Music', tour-start-modal (close testid tour-start-modal-close) and the PlayerNamePrompt (data-testid player-name-prompt, link text \"I'll add my name later\"). Dismiss them in a loop after navigation, without force-clicking, or a click can fall through onto lesson-1. Props animate idly forever, so click them with force=True. At 844x390 the scroller is .fit-stage-inner, not the window."
+}

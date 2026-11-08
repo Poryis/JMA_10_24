@@ -696,3 +696,11 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Shred City excluded from FitStage; own phone-landscape layout: thin meter, compact guitar (Bend always visible, no scroll), crowd split 3+3 on the sides (no shouts/flashes on phone); desktop unchanged
 - Shred intro song list 2 columns on phone landscape; rank-up card scrolls/fits on short screens
 - Tested: iteration_72
+
+## Music 101 underwater lecture hall (Jun 2026)
+- Curtain + Charlie lectern removed; Music101Scene = UnderwaterBackdrop layers + Academy chalkboard (xl+, shows next lesson, tap opens it) + starfish harp alone (md+, plays harp riff)
+- Lanterns, Academy corals, trumpet, shell removed per user
+- /lessons excluded from FitStage so fixed backdrop covers while scrolling on phones
+
+## REMINDER FOR USER (pending)
+- Shred City: stage lights still get in the way. User will send a layered Photoshop file (lights, crowd, stage on separate layers) so lights can be repositioned/animated per screen size. Remind the user to send it.

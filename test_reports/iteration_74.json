@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only test of the layered Shred City stage (/#/shred-legend) at 1920x800, 1920x1080, 1280x800, 844x390 and 667x375, plus a Main Stage regression check. Everything requested works. The stage renders 23 imgs, none broken, with all 8 lamps (shred-lamp-0..7). The intro card is usable. Between songs every prop tap works on the intro and result screens: amps, marshall, wedges, lamps and curtains. During a song all lamps are disabled and all 6 tap buttons are removed from the DOM. --kick and --ph change every frame and follow the beat: ph rises 0.12->0.98, wraps around, and kick peaks about 0.67 just after ph resets. Beam opacity grows with the meter: 0.20 on intro, then 0.30, 0.42, 0.50, 0.61, 0.70 and 0.74 as the meter goes 0->73% (Headliner). The crowd meter has a dark backdrop (rgba(10,20,32,0.72)) and is readable over the lamps. On phone landscape (844x390 and 667x375): .shred-rig is display:none, shred-beams are visible, and the meter, guitar, Bend button and side crowds are all inside the viewport with no scroll. A full song runs to the result card. Pick Song returns to the intro. Random (shred-again-btn) starts a new countdown, as the code intends. /#/rank-hall renders with 0 broken images and no shred-stage. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Shred City desktop, wide or short (1920x800, 1920x1080)", "issues": ["The .shred-art layer is top-anchored at width max(100vw, 100dvh*1.49), so at 16:9 or wider the bottom of the art is cut off. At 1920x800 the wedge monitors (shred-tap-wedge-left/right) are completely off screen (top=970px), so they cannot be tapped. At 1920x1080 they span y 971-1215, so only the top ~110px shows. The phone-landscape media query already centers the art vertically. Consider bottom-anchoring or centering the art on desktop too, so the floor and wedges stay visible."]},
+      {"screen": "Shred City phone landscape intro (667x375)", "issues": ["The centers of the amp and marshall tap targets sit under the intro card (shred-song-4 / shred-song-picker). Users can still tap the visible edges, but most of those props are hidden behind the card. Low priority."]},
+      {"screen": "Shred result card", "issues": ["The 'Garage Band' tier title (lowest tier) is grey-blue on the dark navy card, so its contrast is low. Minor."]},
+      {"screen": "Shred intro 1280x800", "issues": ["The SHRED CITY title pill covers lamp-3, so its center is not tappable. Cosmetic."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: anchor or center .shred-art vertically on desktop so the wedge monitors and floor are visible at 16:9 and wider (they are off screen at 1920x800)."
+  ],
+  "critical_code_review_comments": [
+    "ShredStage play() creates a new Audio on every tap with no throttle. Rapid tapping stacks sounds. Consider reusing one Audio per sound.",
+    "The rAF loop in ShredStage runs forever, even when the stage is not active (it writes --kick=0 every frame). Consider stopping it when !active and hitRef is about 0.",
+    "Asset paths are relative ('assets/shred/'). That works with the hash router, but other pages use process.env.PUBLIC_URL. Keep this consistent."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% of requested checks (with minor design notes)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "page.goto to the same hash URL does not reset an in-progress song. Use reload or a fresh context. Force-clicking prop tap targets on phone can fall through to song buttons under the intro card and start a song (amps center is under shred-song-4 at 667x375). Beam opacity is the computed opacity of '[data-testid=shred-beams] > div > div'. Dispatching pointerdown/up on guitar-note-i every 312ms during Garage Stomp fills the meter to about 73% in 25s."
+}

@@ -702,5 +702,9 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Lanterns, Academy corals, trumpet, shell removed per user
 - /lessons excluded from FitStage so fixed backdrop covers while scrolling on phones
 
-## REMINDER FOR USER (pending)
-- Shred City: stage lights still get in the way. User will send a layered Photoshop file (lights, crowd, stage on separate layers) so lights can be repositioned/animated per screen size. Remind the user to send it.
+## Shred City layered stage (Jun 2026) — DONE (user sent PSD)
+- PSD layers exported to /app/frontend/public/assets/shred/*.webp (source + export script in /app/memory/psd)
+- ShredStage.js: speaker cones pulse + sound rings on the beat (useShredBand.beatPhase, CSS vars --kick/--ph via rAF), amps/wedges thump, marshall LED, 8 lamps sway, coloured beams + floor pools grow with crowd meter, house lights dim during songs, curtains breathe
+- Tappable between songs: amps/wedges (kick), marshall (crunch E), lamps (flash), curtains (sway)
+- Phone landscape: lamps + bar hidden (.shred-rig), beams kept; art centered vertically
+- Known: on wide desktop the bottom wedges are cropped (art top-anchored to keep lamps)

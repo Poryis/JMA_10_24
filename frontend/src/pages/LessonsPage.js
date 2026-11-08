@@ -2,10 +2,7 @@
 // Each lesson tile is locked until the previous one is watched.
 // Tapping an unlocked tile → /lessons/:num where the Vimeo player lives.
 //
-// Layout: vertical stacked "cascade" of wide horizontal lesson cards.
-// Charlie behind the podium is positioned bottom-LEFT on desktop so he
-// remains fully visible next to the cards; on mobile he tucks down small
-// so the cards can breathe.
+// Layout: centered column of lesson cards over the underwater lecture hall (Music101Scene).
 
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +11,7 @@ import { Lock, CheckCircle2, PlayCircle } from 'lucide-react';
 import { GameHeader } from '../components/GameUI';
 import { LESSONS } from '../data/lessons';
 import { useLessonsProgress } from '../hooks/useLessonsProgress';
+import Music101Scene from '../components/Music101Scene';
 
 function LessonCard({ lesson, index, locked, watched, onPlay }) {
   return (
@@ -120,61 +118,16 @@ export default function LessonsPage() {
   const total = LESSONS.length;
   const watchedCount = watched.length;
 
+  const next = LESSONS.find((l) => isUnlocked(l.num) && !isWatched(l.num)) || null;
+
   return (
-    <div
-      data-testid="lessons-page"
-      className="min-h-screen relative overflow-x-hidden"
-      style={{
-        backgroundImage: 'url(assets/backgrounds/curtain-bg.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-      }}
-    >
+    <div data-testid="lessons-page" className="min-h-screen relative overflow-x-hidden" style={{ background: '#02243F' }}>
+      <Music101Scene next={next} onNext={(num) => navigate(`/lessons/${num}`)} />
       <GameHeader showHomeButton={true} />
 
-      {/* ─── Charlie behind the podium ────────────────────────────────
-          Desktop (≥ md): fixed to the bottom-LEFT so he stands next to
-          the cards. Cards live on the right column of a 2-col layout.
-          Mobile: smaller, top-right corner as a "greeter" so the cards
-          keep the full width they need for readability. */}
-      <img
-        src="assets/backgrounds/charlie-lecturn.png"
-        alt=""
-        aria-hidden="true"
-        draggable={false}
-        loading="lazy"
-        data-testid="lessons-charlie"
-        className="fixed pointer-events-none select-none z-10 hidden md:block"
-        style={{
-          bottom: 0,
-          left: 'clamp(-40px, 2vw, 40px)',
-          width: 'clamp(320px, 30vw, 480px)',
-          maxHeight: '75vh',
-          filter: 'drop-shadow(0 -8px 22px rgba(0,0,0,0.55))',
-        }}
-      />
-      {/* Mobile-only compact greeter Charlie — sits top-right, small so
-          he's visible but doesn't steal room from the cards. */}
-      <img
-        src="assets/backgrounds/charlie-lecturn.png"
-        alt=""
-        aria-hidden="true"
-        draggable={false}
-        loading="lazy"
-        className="fixed pointer-events-none select-none z-10 md:hidden"
-        style={{
-          bottom: 0,
-          right: 6,
-          width: 140,
-          maxHeight: '32vh',
-          opacity: 0.9,
-          filter: 'drop-shadow(0 -6px 14px rgba(0,0,0,0.5))',
-        }}
-      />
-
       {/* ─── Content column ─────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col items-center md:items-end px-3 sm:px-6 pt-16 md:pt-20 pb-8 min-h-screen">
-        <div className="w-full flex flex-col items-center" style={{ maxWidth: '620px' }}>
+      <div className="relative z-20 flex flex-col items-center px-3 sm:px-6 pt-16 md:pt-20 pb-8 min-h-screen pointer-events-none">
+        <div className="w-full flex flex-col items-center pointer-events-auto" style={{ maxWidth: '620px' }}>
           <motion.div
             className="text-center mb-4"
             initial={{ y: -20, opacity: 0 }}
@@ -187,7 +140,7 @@ export default function LessonsPage() {
                 WebkitTextStroke: 'clamp(3px, 0.5vw, 5px) var(--jma-dark)',
                 paintOrder: 'stroke fill',
                 textShadow:
-                  '4px 4px 0 var(--jma-dark), 7px 7px 0 #7A1F1F, 10px 10px 22px rgba(0,0,0,0.5)',
+                  '4px 4px 0 var(--jma-dark), 7px 7px 0 #0B6E8A, 10px 10px 22px rgba(0,0,0,0.5)',
               }}
             >
               Music 101
@@ -224,8 +177,7 @@ export default function LessonsPage() {
             </span>
           </motion.div>
 
-          {/* Vertical column of lesson cards — no left/right nudges anymore
-              because Charlie already breaks the vertical symmetry. */}
+          {/* Vertical column of lesson cards */}
           <div className="w-full flex flex-col gap-3 md:gap-4">
             {LESSONS.map((lesson, i) => (
               <LessonCard

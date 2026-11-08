@@ -20,7 +20,7 @@ export default function JamSavedPopup({ naming, value, onChange, onSave, saved, 
   return createPortal(
     <AnimatePresence>
       {open && (
-        <motion.div data-testid={`${testPrefix}-save-popup`} className="fixed inset-0 z-[160] flex items-start justify-center overflow-y-auto p-4"
+        <motion.div data-testid={`${testPrefix}-save-popup`} className="fixed inset-0 z-[160] flex items-start justify-center overflow-y-auto p-4 pb-14"
           style={{ background: 'rgba(10,37,64,0.6)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div className="relative w-full max-w-sm sm:max-w-xl rounded-3xl p-5 my-auto" style={card} initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }}>
             {naming ? (

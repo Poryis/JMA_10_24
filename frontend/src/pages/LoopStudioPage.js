@@ -363,6 +363,7 @@ function LoopStudioPage() {
   const [namingBeat, setNamingBeat] = useState(null);
   const [beatNameInput, setBeatNameInput] = useState('');
   const [showBeatNext, setShowBeatNext] = useState(false);
+  const [emptyBeatMsg, setEmptyBeatMsg] = useState(false);
 
   const startRecording = useCallback(() => {
     initAudioContext();
@@ -378,7 +379,7 @@ function LoopStudioPage() {
     const tracks = Object.entries(gridRef.current)
       .filter(([key, steps]) => !mutedRef.current.has(key) && steps.some(Boolean))
       .map(([key, steps]) => toSavedTrack(key, steps));
-    if (tracks.length === 0) return;
+    if (tracks.length === 0) { setEmptyBeatMsg(true); setTimeout(() => setEmptyBeatMsg(false), 3000); return; }
     const n = loadSavedBeats().length + 1;
     const name = `${playerName ? `${playerName}'s ` : ''}Beat ${n}`;
     const beat = saveBeat({ name, bpm, totalSteps: totalStepsRef.current, tracks });
@@ -636,6 +637,7 @@ function LoopStudioPage() {
               ) : (
                 <button data-testid="loop-stop-rec-btn" className="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs md:text-sm font-black animate-pulse" style={{ background: '#0A1626', color: '#fff', border: '2px solid #FF3B30', boxShadow: '0 3px 0 rgba(0,0,0,0.55)' }} onClick={stopRecording}><Square className="w-3 h-3 fill-current" /> STOP {recorder.secondsLeft}s</button>
               )}
+              {emptyBeatMsg && <span data-testid="beat-empty-msg" className="text-[10px] md:text-xs font-black text-[#FFCC00]">Add some beats first, then record!</span>}
               {recorder.isProcessing && <span className="text-[10px] font-bold opacity-70 text-white">Saving...</span>}
               {savedBeatName && !namingBeat && !recorder.isRecording && !recorder.isProcessing && (
                 <motion.button type="button" data-testid="loop-jam-on-it" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}

@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only test of the shared name-it-then-what-next popup (JamSavedPopup) in Beat Lab, Song Studio, and Jam Session (regression), plus the Main Stage saved-jam playback fix. Every flow listed in the request passed. Beat Lab: REC -> STOP -> beat-save-popup (placeholder 'Beat N'). Naming it saved the rename to jma_saved_beats_v1 and showed beat-saved-title. Jam went to /free-play?beat=<id> (showed 'Jamming to: <name>'), Cover went to /academy?panel=album&cover=<id> (cover-designer opened), New cleared the grid and closed the popup, Keep closed it and loop-jam-on-it stayed visible. Song Studio: Surprise Me -> Save -> name input prefilled (e.g. 'Cosmic Song'). Cancel closed the popup and saved nothing. Save showed song-saved-title. Jam went to /free-play?song=<id>, Cover went to /academy?panel=album&cover=<id>, New emptied all 16 slots, Keep closed the popup. The song appeared in the Songs gallery. Jam Session: Record bells -> Stop -> Save to Album -> jam-save-popup -> name -> cover/stage/album/keep all work. Audio check: decoding the saved IndexedDB blob (audio/mp3) gave non-silent audio for both Bells (RMS 0.044, peak 0.22) and Piano (RMS 0.057, peak 0.22), so piano is now captured in recordings. Main Stage: /rank-hall?jam=<id> and setlist pick both play through Web Audio. Progress went 3% -> 24% -> 46% -> 67% -> 98%, then the performance ended and STANDING OVATION showed. Pressing STOP mid-song ends it cleanly with no restart. No page errors. Layout: all popups (beat, song, jam; name and choices steps) fit inside 844x390 and 667x375 with no buttons off screen, and inside 1920x800.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Beat Lab REC/STOP", "issue": "If the grid is empty (or all lanes muted), stopRecording returns early (tracks.length === 0) without any feedback: no popup, no toast. A child may think saving is broken.", "selector": "[data-testid='loop-stop-rec-btn']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Save popups at 667x375", "issues": ["The global fullscreen button (bottom-right) shows above the popup backdrop and slightly overlaps the card's bottom-right corner. Cosmetic only, nothing is blocked.", "The rank-up overlay (z-[1000]) can open on top of the save popup (z-[160]) when the save earns the first badge. It has to be dismissed first, but it works."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: show a hint such as 'Add some beats first!' when REC/STOP happens on an empty Beat Lab grid",
+    "Optional: in RankHallPage perform() jam branch, the silent 'return' when decode or fetch fails leaves no feedback. Show a message, and guard against the component unmounting during the async fetch/decode (audio could start after the user leaves the page)."
+  ],
+  "critical_code_review_comments": [
+    "RankHallPage.perform (jam): after the awaits (getJamAudioUrl, fetch, decodeAudioData) there is no mounted/cancelled check. If the user leaves the page during decoding, src.start() still runs after the unmount cleanup, so audio would play off-page with no way to stop it.",
+    "RankHallPage.perform (jam): a decode failure returns silently after the picker is already closed. The UI looks like nothing happened.",
+    "JamSavedPopup has no backdrop-click or Escape dismiss, and Beat Lab passes no onCancel. That is acceptable because the beat is already saved before naming, but users must press Save to close it.",
+    "Files over 700 lines: FreePlayPage.js (1045), SongStudioPage.js (796), LoopStudioPage.js (750). Consider splitting."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "Only TEST_-prefixed beats, songs and jams in the localStorage/IndexedDB of throwaway headless browser contexts. No server data was touched.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "The app uses a hash router: use BASE + '/#/route'. Init script: localStorage jma_unlock_all_v1, jma_reveal_seen_v1, jma_player_name_skipped_v1 = '1' and sessionStorage jma_portrait_ok_v1 = '1'. Dismiss tour-start-modal-close, rank-up-dismiss and the text \"I'll add my name later\" (they can appear late, so dismiss again before key clicks). Beat Lab needs a preset (preset-Basic-Beat or preset-Hip-Hop) before REC, otherwise no popup. Jam Session: sound-mode-bells, then capture-jam-btn, then keys 1-8, then capture-stop-btn, then capture-save-album-btn. Saved jams are in localStorage jma_saved_jams_v1, with audio in IndexedDB jma_media_v1/jams (key = jam id), and can be decoded with OfflineAudioContext to check RMS. Main Stage progress bar: [data-testid=rank-hall-now-performing] span.block style.width. Ovation: rank-hall-ovation (visible for 3.2s). Setlist item: stage-setlist-<id>. Note: page.goto to the same hash route does not remount, so open modals stay open. Go to /home first."
+}

@@ -683,3 +683,10 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Pickups (11-7): Stew facts now real recordings (tracks 04-13 by fact keyword); charlie.academy.welcome/rankup/howto.stage/howto.jukebox replaced; new charlie.howto.jukedrums. Jukebox how-to plays at song start (bells vs drums, once per mode per session); speaker button follows mode. VOICE_VERSION=3
 - Landscape fixes (Nov 2026): Achievement Book uses static CSS zoom (0.78, 0.72 ≤400px tall) — FitBox caused flicker loop there, don't use FitBox inside scrollable panels; HowRanks modal in FitBox; PrintReport/ManageData items-start+my-auto; Fun Facts --ff-pad-y keeps porthole inside scene vertically; Main Stage mute pill under Back button; Dressing Room pick lines bubble-only
 - Jam Session save popup (components/JamSavedPopup.js): name it → saved! next: cover designer (/academy?panel=album&cover=<id>, opens CoverDesigner), Main Stage (/rank-hall?jam=<id>), My Album, keep jamming
+
+## Shared save popup + stage jam audio fix (Jun 2026)
+- JamSavedPopup is now generic (testPrefix/title/saveLabel/choices/onCancel); used in Jam Session, Beat Lab and Song Studio
+- Beat Lab choices: Jam on it, Design cover, Make a new beat, Keep building. Song Studio: Jam on it, Design cover, Write a new song, Keep composing
+- Main Stage plays saved jams via Web Audio (fixes silent playback on iOS); Jam Session piano/xylophone now routed through master gain so recordings capture them
+- Beat Lab shows a hint if you record with an empty grid
+- Tested: iteration_71 (100%)

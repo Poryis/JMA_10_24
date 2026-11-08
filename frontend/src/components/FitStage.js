@@ -87,7 +87,7 @@ export default function FitStage({ children }) {
   }, [active, location.pathname]);
 
   const probe = <div ref={probeRef} aria-hidden="true" style={{ position: 'fixed', top: 0, left: 0, width: 0, height: '100vh', visibility: 'hidden', pointerEvents: 'none' }} />;
-  if (!active || EXCLUDED.includes(location.pathname)) return <>{probe}{children}</>;
+  if (!active || EXCLUDED.includes(location.pathname) || location.pathname.startsWith('/lessons/')) return <>{probe}{children}</>;
   const pct = 100 / scale;
   return (
     <div data-testid="fit-stage" data-scale={scale.toFixed(2)} className="fixed inset-0 overflow-hidden" style={{ background: '#02243F', '--stage-scale': scale }}>

@@ -4,6 +4,7 @@
 // (`onLoad`) we (re-)initialize the @vimeo/player SDK so we can listen for the
 // `ended` event and trigger fullscreen.
 
+import UnderwaterBackdrop, { UNDERWATER_BG_COLOR } from '../components/UnderwaterBackdrop';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -137,14 +138,12 @@ export default function LessonPlayerPage() {
       <div
         data-testid="lesson-locked-screen"
         className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative pt-16"
-        style={{
-          backgroundImage: 'url(assets/backgrounds/chalkboard.png)',
-          backgroundSize: 'cover',
-        }}
+        style={{ background: UNDERWATER_BG_COLOR }}
       >
+        <UnderwaterBackdrop calm />
         <GameHeader showHomeButton={true} backLink={{ to: '/lessons', label: 'Lessons' }} />
         <motion.div
-          className="bg-white rounded-3xl border-4 p-6 max-w-md w-full"
+          className="relative z-10 bg-white rounded-3xl border-4 p-6 max-w-md w-full"
           style={{ borderColor: 'var(--jma-dark)', boxShadow: '0 8px 0 0 var(--jma-dark)' }}
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -175,12 +174,11 @@ export default function LessonPlayerPage() {
     <div
       data-testid="lesson-player-page"
       className="min-h-screen flex flex-col items-center px-3 sm:px-6 pt-16 md:pt-20 pb-8 relative"
-      style={{
-        backgroundImage: 'url(assets/backgrounds/chalkboard.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      style={{ background: UNDERWATER_BG_COLOR }}
     >
+      <UnderwaterBackdrop calm />
+      {/* soft projector glow + dimmed water so the "movie screen" is the star */}
+      <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(255,255,255,0.18) 0%, rgba(2,36,63,0) 60%), linear-gradient(180deg, rgba(2,36,63,0.35) 0%, rgba(2,36,63,0.15) 55%, rgba(2,36,63,0.35) 100%)' }} />
       <GameHeader showHomeButton={true} backTo={fromGame || undefined} backLink={{ to: '/lessons', label: 'Lessons' }} />
 
       <motion.div
@@ -189,12 +187,14 @@ export default function LessonPlayerPage() {
         animate={{ y: 0, opacity: 1 }}
       >
         <h1
-          className="text-3xl md:text-5xl font-black font-display"
+          className="text-3xl md:text-5xl font-black font-display text-white"
+          style={{ textShadow: '3px 3px 0 var(--jma-dark), 6px 6px 0 #0B6E8A' }}
         >
           {lesson.title}
         </h1>
         <p
-          className="mt-1 text-sm md:text-base font-bold"
+          className="mt-2 inline-block px-4 py-1 rounded-full text-sm md:text-base font-black bg-white"
+          style={{ color: 'var(--jma-dark)', border: '3px solid var(--jma-dark)', boxShadow: '0 3px 0 0 var(--jma-dark)' }}
         >
           {lesson.subtitle}
         </p>
@@ -206,7 +206,7 @@ export default function LessonPlayerPage() {
         className="relative z-10 w-full max-w-4xl rounded-2xl border-4 overflow-hidden"
         style={{
           borderColor: 'var(--jma-dark)',
-          boxShadow: '0 10px 0 0 var(--jma-dark)',
+          boxShadow: '0 10px 0 0 var(--jma-dark), 0 0 0 6px #FFCC00, 0 0 60px 10px rgba(255,255,255,0.35)',
           backgroundColor: '#000',
         }}
         initial={{ scale: 0.96, opacity: 0 }}

@@ -924,6 +924,11 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-height: 520px) and (orientation: landscape) {
   .lesson-helper-floating { padding: 4px 8px !important; bottom: 6px; }
   .lesson-helper-floating svg { width: 20px; height: 20px; }
+  [data-testid="lesson-player-page"] { padding-top: 6px !important; }
+  [data-testid="lesson-player-page"] h1 { font-size: 1.4rem !important; line-height: 1.1; }
+  [data-testid="lesson-player-page"] h1 + p { margin-top: 2px !important; font-size: 0.75rem !important; padding: 1px 10px !important; }
+  [data-testid="lesson-player-page"] > div:has(> h1) { margin-bottom: 6px !important; }
+  [data-testid="lesson-player-frame"] { max-width: calc((100dvh - 78px) * 1.7778) !important; }
 }
 
 /* Sticker Shack: earned medals get a slow foil shine sweep */

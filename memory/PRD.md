@@ -708,3 +708,7 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Tappable between songs: amps/wedges (kick), marshall (crunch E), lamps (flash), curtains (sway)
 - Phone landscape: lamps + bar hidden (.shred-rig), beams kept; art centered vertically
 - Known: on wide desktop the bottom wedges are cropped (art top-anchored to keep lamps)
+
+## Lesson player underwater movie screen (Jun 2026)
+- LessonPlayerPage (video + locked screen): chalkboard bg replaced by UnderwaterBackdrop calm (slower fish, no school, half bubbles) + projector glow; video framed like a movie screen (yellow ring + glow); title white w/ navy shadow, subtitle pill
+- /lessons/* excluded from FitStage; phone landscape: compact title, video sized to fit height

@@ -94,8 +94,9 @@ export function Seaweed({ src = UW_ASSETS.seaweed1, left, width, bottom = 0, del
   );
 }
 
-export default function UnderwaterBackdrop({ deep = false } = {}) {
-  // `deep` = mid-ocean: no sand floor (Jam Session floats its instruments).
+export default function UnderwaterBackdrop({ deep = false, calm = false } = {}) {
+  // `deep` = mid-ocean: no sand floor (Jam Session floats its instruments). `calm` = slower fish, fewer bubbles (lesson videos).
+  const k = calm ? 2.4 : 1;
   return (
     <>
       <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none" style={{ background: UNDERWATER_WATER }} />
@@ -111,14 +112,14 @@ export default function UnderwaterBackdrop({ deep = false } = {}) {
             <Seaweed src={UW_ASSETS.seaweed1} left="82%" width="clamp(90px, 11vw, 190px)" bottom="clamp(4px, 1vh, 14px)" delay={1.3} />
           </>
         )}
-        <Swimmer src={UW_ASSETS.fishSchool} top="6%" dur={70} delay={20} width="clamp(90px, 10vw, 170px)" />
-        <Swimmer src={UW_ASSETS.fish1} top="38%" dur={34} delay={8} width="clamp(40px, 5vw, 80px)" dir="left" />
-        <Swimmer src={UW_ASSETS.fish2} top="24%" dur={26} delay={3} width="clamp(44px, 5vw, 84px)" />
+        {!calm && <Swimmer src={UW_ASSETS.fishSchool} top="6%" dur={70} delay={20} width="clamp(90px, 10vw, 170px)" />}
+        <Swimmer src={UW_ASSETS.fish1} top="38%" dur={34 * k} delay={8} width="clamp(40px, 5vw, 80px)" dir="left" />
+        <Swimmer src={UW_ASSETS.fish2} top="24%" dur={26 * k} delay={3} width="clamp(44px, 5vw, 84px)" />
       </div>
       <div aria-hidden="true" className="fixed inset-x-0 top-0 z-0 pointer-events-none"
         style={{ height: '32vh', background: 'linear-gradient(180deg, rgba(2,36,63,0.55) 0%, rgba(2,36,63,0.15) 60%, transparent 100%)' }} />
       <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none home-underwater-shafts" />
-      <Bubbles />
+      {calm ? <Bubbles className="fixed inset-0 z-0 opacity-50" /> : <Bubbles />}
     </>
   );
 }

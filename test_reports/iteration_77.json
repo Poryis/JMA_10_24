@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only retest of the voice carry-over fix in lib/voice.js say(). The carry-over now PASSES. Method: Playwright, with HTMLMediaElement play/pause patched and per-Audio ids plus ended/error/reject logging. Song Studio -> Gallery -> 'Jam on it' (song_TEST1) played charlie.jam.takeit to the end (2.28/2.28s, 'ended' fired), and it was never paused. Only after that ended did the Free Play arrival run: jazzy.tag.jam (the file is missing, so it errors) followed 400ms later by charlie.howto.jam, which played in full (3.45s). Result was the same on 2 runs. Regressions PASS: (1) Rhythm Game charlie.howto.jukebox was paused at 1.49/2.38s by cutVoiceOnRouteChange after Back to #/campus?zone=play. (2) Academy charlie.academy.welcome played in full (3.94s) on arrival. (3) Same-route interrupt: tapping howto-voice-jukebox and then starting a song 1.1s later paused the first take at 0.96s, and the new take played to the end. (4) Extra: a stale line (howto.songstudio, 2s old) was cut on the hop to Free Play, and the Free Play arrival lines then played normally. (5) Extra: Jam on it followed by a second hop to Rhythm Game at 1.6s cut takeit as expected, and the Rhythm arrival tagline ran. Song Studio's arrival tagline also still plays in full before its how-to line. Beat Lab 'Jam on it' was NOT run directly: loop-jam-on-it only appears after a beat is saved. It calls the same say('charlie.jam.takeit') + navigate code path.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: add the missing recordings jazzy.tag.jam.mp3, jazzy.tag.jukebox.mp3 and chunk.tag.beatlab.mp3. Today they 404 to the SPA HTML, and each arrival creates 2 failing Audio elements.",
+    "Optional/minor: a line whose carry-over gets cut by a second hop leaves a dangling 'ended' listener that never fires. It is harmless now, but if more queued logic is added, also listen for 'pause'/'error' or clean the listener up in stopVoice."
+  ],
+  "critical_code_review_comments": [
+    "voice.js line 84: the carry-over check happens when say() is called. If the carried line is later stopped (by a route cut or the voice toggle) instead of ending, the queued arrival line and its useVoiceTagline onDone how-to are silently dropped. That is acceptable for the current flows.",
+    "CARRY_MS=1200 also carries any line that started less than 1.2s before navigation, e.g. a how-to that has just begun when the kid taps a street sign. That line then plays out on the new page and delays the arrival lines. This was seen once in testing (howto.songstudio about 1s old carried into Free Play). It is by design, but worth knowing.",
+    "In dev, React StrictMode runs the useVoiceTagline effect twice, so each arrival line makes 2 Audio objects (the first is aborted). Production is not affected."
+  ],
+  "updated_files": ["/app/test_reports/iteration_77.json"],
+  "success_rate": {"backend": "N/A", "frontend": "100% (carry-over plus 3 requested regressions plus 2 extra edge cases)"},
+  "seed_data_creation": "In the test browser's localStorage only: jma_songs_v1 with one TEST_song (id song_TEST1). No DB data.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use about:blank, then goto BASE/#/route so the init script runs; a goto that only changes the hash does not re-run it. Faking jma_audio_unlocked_v1 alone causes NotAllowedError on arrival lines after a fresh page load, so do one real mouse click on #/campus and then move with window.location.hash so audio has a user gesture. Academy welcome plays once per day: remove localStorage jma_voice_academy_day. Close tour-start-modal-close if it is visible.",
+  "rca of the issue": "Fixed: say() now waits for the carried line's 'ended' event when the current Audio was started on another route, instead of calling stopVoice()."
+}

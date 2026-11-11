@@ -716,3 +716,8 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 ## Background music volume + Academy back button (Jun 2026)
 - useStreetMusic (Campus, Academy, Main Stage) now routes through a shared Web Audio GainNode (iOS ignores <audio>.volume, so music was full-volume on phones); target volume 0.09 (was 0.16)
 - Academy: header Back button removed (portal door exits)
+
+## Music + voice fixes (Jun 2026)
+- Street music gain 0.096 (60% of original 0.16). Muted = never calls play() (no blip on street hops); toggle stays visible showing "Music off" (Campus + Main Stage)
+- Voice: cutVoiceOnRouteChange() (called from ScrollToTop on pathname change) stops lines started >1.2s before leaving; carried-over lines finish before the arrival line plays (say() waits on ended)
+- Known: jazzy.tag.jam.mp3 missing from assets/voice

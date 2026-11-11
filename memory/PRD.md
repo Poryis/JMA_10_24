@@ -712,3 +712,7 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 ## Lesson player underwater movie screen (Jun 2026)
 - LessonPlayerPage (video + locked screen): chalkboard bg replaced by UnderwaterBackdrop calm (slower fish, no school, half bubbles) + projector glow; video framed like a movie screen (yellow ring + glow); title white w/ navy shadow, subtitle pill
 - /lessons/* excluded from FitStage; phone landscape: compact title, video sized to fit height
+
+## Background music volume + Academy back button (Jun 2026)
+- useStreetMusic (Campus, Academy, Main Stage) now routes through a shared Web Audio GainNode (iOS ignores <audio>.volume, so music was full-volume on phones); target volume 0.09 (was 0.16)
+- Academy: header Back button removed (portal door exits)

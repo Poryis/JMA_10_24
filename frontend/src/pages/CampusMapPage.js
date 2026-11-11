@@ -41,6 +41,18 @@ function isNight() { const h = new Date().getHours(); return h >= 20 || h < 5; }
 // Street music: a Jelly instrumental playlist per street. Each visit starts on
 // the next song in the rotation, fades in, stops when you leave.
 const MUTE_KEY = 'jma_street_music_muted';
+const MUSIC_VOL = 0.09;
+// iOS ignores <audio>.volume, so music runs through one shared Web Audio gain node.
+let musicCtx = null;
+function musicGain(a) {
+  try {
+    if (!musicCtx) musicCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (musicCtx.state === 'suspended') musicCtx.resume();
+    const g = musicCtx.createGain(); g.gain.value = 0;
+    musicCtx.createMediaElementSource(a).connect(g); g.connect(musicCtx.destination);
+    return g;
+  } catch (_) { return null; }
+}
 export function useStreetMusic(tracks) {
   const [nowPlaying, setNowPlaying] = useState(null);
   const [muted, setMuted] = useState(() => { try { return localStorage.getItem(MUTE_KEY) === '1'; } catch (_) { return false; } });
@@ -51,7 +63,9 @@ export function useStreetMusic(tracks) {
     setNowPlaying(null);
     if (!tracks || !tracks.length || !voiceEnabled()) return undefined;
     const a = new Audio(); a.preload = 'auto'; a.volume = 0; a.muted = muted; audioRef.current = a;
-    let fade = null; let armed = false; let alive = true;
+    let fade = null; let armed = false; let alive = true; let gain = null;
+    const vol = () => (gain ? gain.gain.value : a.volume);
+    const setVol = (v) => { if (gain) gain.gain.value = v; else a.volume = v; };
     // Rotate through the playlist across visits so each entry starts on the next song.
     const rotKey = `jma_music_rot_${tracks.map((t) => t.src).join('|')}`;
     const pick = () => {
@@ -61,16 +75,16 @@ export function useStreetMusic(tracks) {
       try { localStorage.setItem(rotKey, `${i}:${Date.now()}`); } catch (_) { /* ignore */ }
       return tracks[i];
     };
-    const fadeIn = () => { clearInterval(fade); fade = setInterval(() => { if (!alive) return clearInterval(fade); a.volume = Math.min(0.16, a.volume + 0.02); if (a.volume >= 0.16) clearInterval(fade); }, 80); };
-    const start = () => { if (!alive) return; const t = pick(); a.src = t.src; a.play().then(() => { fadeIn(); setNowPlaying(t.title); }).catch(() => {}); };
+    const fadeIn = () => { clearInterval(fade); fade = setInterval(() => { if (!alive) return clearInterval(fade); setVol(Math.min(MUSIC_VOL, vol() + 0.01)); if (vol() >= MUSIC_VOL) clearInterval(fade); }, 80); };
+    const start = () => { if (!alive) return; if (!gain) { gain = musicGain(a); if (gain) a.volume = 1; } const t = pick(); a.src = t.src; a.play().then(() => { fadeIn(); setNowPlaying(t.title); }).catch(() => {}); };
     a.addEventListener('ended', start);
     // Leaving the app / switching tabs: music stops (and quietly fades back in on return).
-    const onVis = () => { if (document.hidden) { clearInterval(fade); a.pause(); } else if (a.src && a.paused) { a.volume = 0; a.play().then(fadeIn).catch(() => {}); } };
+    const onVis = () => { if (document.hidden) { clearInterval(fade); a.pause(); } else if (a.src && a.paused) { setVol(0); if (musicCtx && musicCtx.state === 'suspended') musicCtx.resume(); a.play().then(fadeIn).catch(() => {}); } };
     const onHide = () => { clearInterval(fade); a.pause(); };
     document.addEventListener('visibilitychange', onVis);
     window.addEventListener('pagehide', onHide);
     try { if (sessionStorage.getItem('jma_audio_unlocked_v1') === '1') start(); else { armed = true; document.addEventListener('pointerdown', start, { once: true, capture: true }); } } catch (_) { start(); }
-    return () => { alive = false; clearInterval(fade); a.pause(); a.src = ''; audioRef.current = null; document.removeEventListener('visibilitychange', onVis); window.removeEventListener('pagehide', onHide); if (armed) document.removeEventListener('pointerdown', start, { capture: true }); };
+    return () => { alive = false; clearInterval(fade); a.pause(); a.src = ''; try { gain?.disconnect(); } catch (_) { /* ignore */ } audioRef.current = null; document.removeEventListener('visibilitychange', onVis); window.removeEventListener('pagehide', onHide); if (armed) document.removeEventListener('pointerdown', start, { capture: true }); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks]);
   return { nowPlaying, muted, toggleMute };

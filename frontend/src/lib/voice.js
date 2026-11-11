@@ -80,6 +80,8 @@ export function say(idOrGroup, { interrupt = true, minGapMs = 900, delayMs = 0, 
     a.play().catch(() => finish(false));
   };
   if (!audioUnlocked()) { deferUntilGesture(play); return true; }
+  // A line carried over from the previous building finishes first; the arrival line follows it.
+  if (current && !current.ended && current._route !== sayRoute) { current.addEventListener('ended', play, { once: true }); return true; }
   if (delayMs > 0) setTimeout(play, delayMs); else play();
   return true;
 }

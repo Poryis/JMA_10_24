@@ -1,0 +1,28 @@
+{
+  "summary": "Frontend-only retest of the iteration_75 fixes, using Playwright with play/pause/createGain instrumentation. Fix A PASS: with muted='1', campus-now-playing renders 'Music off · tap for sound' (data-muted=true). 4 street-sign hops (play->learn->create->learn->play) made 0 music play() calls, and the toggle stayed visible. Unmuting started goody-bag.mp3 and the GainNode settled at 0.096. Muting again paused it. Main Stage: rank-hall-now-playing renders 'Music off' while muted, with 0 music plays. Unmuting played magic.mp3 at gain 0.096, and muting again paused it. Fix B PASS: Rhythm Game charlie.howto.jukebox (2.38s) was at 1.4s when Back was clicked; 300ms later on #/campus it was paused=true (0 hashchange events, so the useLocation path works). Academy arrival greeting charlie.academy.welcome played fully (3.94s). Carry-over not effective: in Song Studio, 'Jam on it' plays charlie.jam.takeit and navigates to /free-play. The route cut does NOT stop it, but ~450ms later the Free Play arrival tagline (useVoiceTagline('jazzy.tag.jam')) calls say() -> stopVoice() and cuts takeit at 0.26s. jazzy.tag.jam.mp3 does not exist (the SPA fallback returns HTML), so the user hears a clipped 'Take—' followed by charlie.howto.jam.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {"flow": "Song Studio / Beat Lab 'Jam on it' -> Free Play carry-over", "issue": "The CARRY_MS logic in cutVoiceOnRouteChange is correct, but FreePlayPage's useVoiceTagline('jazzy.tag.jam','charlie.howto.jam') fires say() with interrupt=true after 450ms. play() calls stopVoice() before the missing file is detected, so charlie.jam.takeit is cut at ~0.26s. The carry-over line is never heard in full. jazzy.tag.jam.mp3 is missing from public/assets/voice, and that Audio element was created twice.", "affected_selectors": ["[data-testid^='song-gallery-jam-']", "[data-testid='loop-jam-on-it']"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Protect carry-over lines: e.g. in say(), if current is a carried line (current._route !== sayRoute and it is still playing), queue the arrival tagline with onended instead of interrupting, or call it with interrupt:false. Alternatively skip the Free Play tagline when arriving via 'Jam on it'.",
+    "Optional: avoid stopVoice() for a line whose file is unknown or missing. Here jazzy.tag.jam.mp3 does not exist, and it still kills the current line before onerror marks it missing. Consider stopping the previous line only once the new Audio fires 'playing'."
+  ],
+  "critical_code_review_comments": [
+    "voice.js play(): stopVoice() runs before the new Audio is known to load, so missing files still interrupt the current line.",
+    "useStreetMusic: after re-muting, the toggle keeps showing the struck-through track title (e.g. 'Magic') instead of 'Music off'. This is cosmetic and acceptable.",
+    "ScrollToTop runs cutVoiceOnRouteChange on pathname only, so query-only changes (campus zone hops) don't cut voice. This matches the intent."
+  ],
+  "updated_files": ["/app/test_reports/iteration_76.json"],
+  "success_rate": {"backend": "N/A", "frontend": "90% (Fix A fully passes; the Fix B cut and the arrival greeting pass; the carry-over line is clipped by the Free Play tagline)"},
+  "seed_data_creation": "In the test browser's localStorage only: jma_songs_v1 with one TEST_song (id song_TEST1). No DB data.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Close [data-testid=tour-start-modal-close] after each reload, or clicks hit the modal. Seed jma_songs_v1 in an init script, then song-gallery-btn -> song-gallery-jam-song_TEST1 tests the carry-over. Instrument by patching HTMLMediaElement.play to collect elements whose src contains assets/voice/. Campus street signs: campus-sign-left / campus-sign-right.",
+  "rca of the issue": "The carry-over clip happens because FreePlayPage mounts -> useVoiceTagline -> say('jazzy.tag.jam', interrupt default true, delay 450ms) -> play() -> stopVoice() pauses charlie.jam.takeit -> new Audio(missing file) errors -> then charlie.howto.jam plays. Repro: Song Studio with a saved song -> Gallery -> Jam on it."
+}

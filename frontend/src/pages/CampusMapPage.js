@@ -732,15 +732,15 @@ export default function CampusMapPage({ plaza = false }) {
 
       {/* now playing */}
       <AnimatePresence>
-        {nowPlaying && (
-          <motion.button key={nowPlaying} type="button" data-testid="campus-now-playing" data-muted={musicMuted ? 'true' : 'false'} aria-label={musicMuted ? 'Unmute street music' : 'Mute street music'} onClick={toggleMusic}
+        {(nowPlaying || musicMuted) && (
+          <motion.button key={nowPlaying || 'off'} type="button" data-testid="campus-now-playing" data-muted={musicMuted ? 'true' : 'false'} aria-label={musicMuted ? 'Unmute street music' : 'Mute street music'} onClick={toggleMusic}
             className="absolute bottom-4 left-3 z-20 flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] md:text-xs font-black cursor-pointer"
             style={{ background: 'rgba(10,37,64,0.85)', color: 'white', border: '2px solid white', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)', opacity: musicMuted ? 0.7 : 1 }}
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: musicMuted ? 0.7 : 1, y: 0 }} exit={{ opacity: 0, y: 10 }} whileTap={{ scale: 0.92 }}>
             {musicMuted
               ? <VolumeX className="w-3.5 h-3.5" strokeWidth={3} />
               : <motion.span animate={{ rotate: [-12, 12, -12] }} transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}><Music className="w-3.5 h-3.5" strokeWidth={3} /></motion.span>}
-            <span style={{ textDecoration: musicMuted ? 'line-through' : 'none' }}>{nowPlaying}</span>
+            <span style={{ textDecoration: musicMuted ? 'line-through' : 'none' }}>{nowPlaying || 'Music off'}</span>
             {musicMuted && <span className="opacity-80">· tap for sound</span>}
           </motion.button>
         )}

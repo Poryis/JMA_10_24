@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only audio review using Playwright with HTMLMediaElement.play/pause and AudioContext.createGain instrumentation. (1) Music gain: PASS. The music GainNode settles at 0.096. (2) No music while muted: PASS. Clicking street signs 6 times (play/learn/create) with jma_street_music_muted='1' never called play() on music; Rank Hall muted also played no music. But there is a new REGRESSION: when muted, the Campus and Main Stage music toggles never render, so the user cannot unmute there. (3) Voice cut on leaving a building: FAIL. Started charlie.howto.jukebox (2.38s) in Rhythm Game, clicked Back at about 1.6s, and 300ms later on #/campus the voice Audio was still playing (paused=false, currentTime=1.75). 0 hashchange events fired. (4) Academy arrival greeting charlie.academy.welcome still plays: PASS. Academy has no header back-button: PASS. Academy mute toggle works (unmute -> play() + gain 0.096, mute -> pause): PASS.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CampusMapPage now-playing toggle / RankHallPage now-playing toggle", "issue": "The button only renders when nowPlaying is set: `{nowPlaying && (...)}` at CampusMapPage ~L735 and RankHallPage L290. The new mute logic makes start() return early when muted, so nowPlaying stays null and the toggle never appears. Once muted, the user cannot unmute on any street or on the Main Stage (only the Academy's always-visible academy-mute works). Reproduced: with muted='1', the campus-now-playing and rank-hall-now-playing counts were both 0.", "selector": "[data-testid='campus-now-playing'], [data-testid='rank-hall-now-playing']", "priority": "HIGH"}
+    ],
+    "integration_issues": [
+      {"flow": "Leaving a building cuts the voice line (lib/voice.js)", "issue": "The cut only runs from a window 'hashchange' listener. react-router-dom v7 HashRouter navigates with history.pushState, which does NOT fire hashchange (we counted 0 hashchange events during in-app Back navigation). The cut never runs, and the how-to line keeps playing after you leave. It only fires on manual URL/hash edits or page.goto.", "affected_selectors": ["[data-testid='back-button']", "[data-testid^='song-']"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "voice.js: detect route changes beyond hashchange. Either add a small <VoiceRouteCut/> inside HashRouter that uses useLocation() and, in an effect on location.pathname change, applies the same check (current._route !== routeKey() && Date.now()-current._at > CARRY_MS -> stopVoice()), or wrap history.pushState/replaceState and listen to 'popstate'. Keep the CARRY_MS carry-over for 'charlie.jam.takeit'.",
+    "Campus & RankHall: always render the music toggle (show a placeholder label such as 'Music off · tap for sound' when nowPlaying is null and muted), so muted users can unmute. Academy already does this."
+  ],
+  "critical_code_review_comments": [
+    "voice.js relies on window 'hashchange', which never fires for react-router v7 HashRouter navigation (pushState/replaceState).",
+    "useStreetMusic: muted now means start() is skipped and nowPlaying stays null, but the Campus and RankHall UIs gate the unmute button on nowPlaying. This contract mismatch makes the unmute button disappear.",
+    "The muting logic itself is correct: mutedRef syncs before start, and unmuting calls resumeRef -> start()."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "60% (3 of 5 checks pass; the voice cut fails and there is a new unmute regression)"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Use page.goto(BASE+'/#/route') then page.reload() so init scripts apply (a hash-only goto doesn't reload). Dismiss the 'Welcome to the Academy / Pick My Character' modal via tour-start-modal-close before clicking song-*. To test the voice cut: patch HTMLMediaElement.prototype.play to push voice elements into window.__voices, click [data-testid^=song-] (plays charlie.howto.jukebox, 2.38s), wait 1.6s, click back-button, and after 300ms check __voices[0].paused. The Academy welcome is once per day (localStorage jma_voice_academy_day); remove that key to retest. The carry-over (charlie.jam.takeit) was not UI-tested.",
+  "rca of the issue": "Voice cut: react-router v7 createHashHistory uses window.history.pushState('#/path'), and per spec pushState never dispatches hashchange, so the voice.js listener never runs during in-app navigation. Repro: Rhythm Game -> tap song -> Back within 2s -> the line keeps playing on campus. Unmute regression: muted -> start() exits -> setNowPlaying never called -> the {nowPlaying && <button/>} toggle stays unrendered."
+}

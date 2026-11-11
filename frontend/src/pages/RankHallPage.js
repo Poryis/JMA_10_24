@@ -287,11 +287,11 @@ export default function RankHallPage() {
       </motion.div>
 
       {/* now playing / mute */}
-      {nowPlaying && (
+      {(nowPlaying || muted) && (
         <button type="button" data-testid="rank-hall-now-playing" data-muted={muted ? 'true' : 'false'} onClick={toggleMute} aria-label={muted ? 'Unmute music' : 'Mute music'}
           className="rank-hall-music absolute flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-black cursor-pointer" style={{ right: '2%', top: 'calc(13% + 28px)', zIndex: 6, background: 'rgba(10,37,64,0.85)', color: 'white', border: '2px solid white', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)', opacity: muted ? 0.7 : 1 }}>
           {muted ? <VolumeX className="w-3.5 h-3.5" strokeWidth={3} /> : <motion.span animate={{ rotate: [-12, 12, -12] }} transition={{ repeat: Infinity, duration: 1.2, ease: 'easeInOut' }}><Music className="w-3.5 h-3.5" strokeWidth={3} /></motion.span>}
-          <span style={{ textDecoration: muted ? 'line-through' : 'none' }}>{nowPlaying}</span>
+          <span style={{ textDecoration: muted ? 'line-through' : 'none' }}>{nowPlaying || 'Music off'}</span>
         </button>
       )}
 

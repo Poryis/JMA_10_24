@@ -5,10 +5,12 @@
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { cutVoiceOnRouteChange } from '../lib/voice';
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
+    cutVoiceOnRouteChange(); // leaving a building silences its how-to line
     try {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     } catch {

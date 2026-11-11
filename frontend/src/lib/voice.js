@@ -34,10 +34,8 @@ export function setVoiceEnabled(on) {
 // moment before the hop (e.g. "take it away!" then navigate) are allowed to carry over.
 const CARRY_MS = 1200;
 const routeKey = () => (window.location.hash || '#/').split('?')[0];
-if (typeof window !== 'undefined') {
-  window.addEventListener('hashchange', () => {
-    if (current && current._route !== routeKey() && Date.now() - current._at > CARRY_MS) stopVoice();
-  });
+export function cutVoiceOnRouteChange() {
+  if (current && current._route !== routeKey() && Date.now() - current._at > CARRY_MS) stopVoice();
 }
 
 export function stopVoice() {

@@ -30,6 +30,16 @@ export function setVoiceEnabled(on) {
   if (!on) stopVoice();
 }
 
+// Leaving a building cuts whatever line was playing there. Lines started in the last
+// moment before the hop (e.g. "take it away!" then navigate) are allowed to carry over.
+const CARRY_MS = 1200;
+const routeKey = () => (window.location.hash || '#/').split('?')[0];
+if (typeof window !== 'undefined') {
+  window.addEventListener('hashchange', () => {
+    if (current && current._route !== routeKey() && Date.now() - current._at > CARRY_MS) stopVoice();
+  });
+}
+
 export function stopVoice() {
   if (current) { try { current.pause(); } catch (_) {} current = null; }
 }
@@ -57,9 +67,12 @@ export function say(idOrGroup, { interrupt = true, minGapMs = 900, delayMs = 0, 
   lastSpokenAt[idOrGroup] = now;
   if (kudos) lastKudosAt = now;
 
+  const sayRoute = routeKey();
   const play = () => {
+    if (routeKey() !== sayRoute && Date.now() - now > CARRY_MS) { onDone?.(false); return; }
     stopVoice();
     const a = new Audio(`${BASE}${line.id}.mp3?v=${VOICE_VERSION}`);
+    a._route = sayRoute; a._at = Date.now();
     a.volume = volume;
     let done = false;
     const finish = (ok) => { if (done) return; done = true; if (current === a) current = null; onDone?.(ok); };

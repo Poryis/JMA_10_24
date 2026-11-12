@@ -63,12 +63,12 @@ const DRUM_INFO = {
 // playing surface (drum head / cymbal top). Back row = cymbals + rack toms,
 // front row (nearer, larger) = snare / kick / floor tom.
 const DRUM_LAYOUT = {
-  crash:  [165,  55, 200, 170, 1, 0.42, 0.48],
+  crash:  [177,  47, 200, 170, 1, 0.42, 0.48],
   ride:   [690,  62, 225, 225, 1, 0.34, 0.50],
   kick:   [395, 205, 250, 271, 2, 0.50, 0.36],
   tom:    [348,  88, 150, 146, 3, 0.50, 0.34],
   midTom: [506,  52, 165, 174, 3, 0.50, 0.33],
-  hihat:  [141, 152, 189, 176, 4, 0.52, 0.36],
+  hihat:  [141, 144, 189, 176, 4, 0.52, 0.36],
   lowTom: [610, 225, 240, 252, 5, 0.50, 0.32],
   snare:  [215, 235, 230, 257, 6, 0.50, 0.32],
 };

@@ -220,15 +220,15 @@ export default function NoteMatchPage() {
 
         <motion.h1
           className="intro-head text-3xl md:text-5xl font-black mb-2 text-center font-display uppercase"
-          style={{ color: '#fff', WebkitTextStroke: '2px #000', paintOrder: 'stroke fill', textShadow: '0 4px 0 #000' }}
+          style={{ color: '#fff', WebkitTextStroke: '6px #000', paintOrder: 'stroke fill', textShadow: '0 5px 0 #000' }}
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
           NOTE MATCH
         </motion.h1>
         <motion.p
-          className="intro-sub text-base md:text-lg font-bold mb-4 text-center"
-          style={{ color: 'var(--jma-dark)' }}
+          className="intro-sub text-base md:text-lg font-black mb-4 text-center"
+          style={{ color: '#fff', WebkitTextStroke: '4px #000', paintOrder: 'stroke fill', textShadow: '0 3px 0 #000' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}

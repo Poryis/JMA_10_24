@@ -360,9 +360,9 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
           style={{
             color: '#fff',
             fontFamily: "'Fredoka', cursive",
-            WebkitTextStroke: '2px #000',
+            WebkitTextStroke: '6px #000',
             paintOrder: 'stroke fill',
-            textShadow: '0 4px 0 #000',
+            textShadow: '0 5px 0 #000',
           }}
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

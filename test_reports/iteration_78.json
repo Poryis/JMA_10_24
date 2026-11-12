@@ -1,0 +1,36 @@
+{
+  "summary": "Frontend-only check of this batch of changes, run with Playwright on the public URL. All 7 requested items pass. (1) /#/lessons: m101-charlie (charlie-grad.png) shows on the right at 1920x800 (box 1555-1862, rightmost lesson card edge 1270), 1280x800 (1037-1242, cards end at 950) and 1024x768 (829-993, cards end at 822). It overlaps no lesson card. Tapping it calls HTMLMediaElement.play once with voice/charlie.tag.music101.mp3 and runs the bounce/rotate animation, confirmed by the transform matrix mid-tap. It is hidden at 1023 and 900 widths. (2) /#/dressing-room: picking Stew plays only riffs/stew-classic-1.mp3. The bubble shows \"Stew! That's me! Hi!\" and no stew.dress.* mp3 plays. Tapping a Stew outfit shows \"Does this come with a kazoo pocket?\" with the riff only and no voice. Charlie, Finn and Chunk outfit taps still play their {id}.dress.wear.mp3 lines. Picking Jazzy or Doctor plays the riff plus a bubble only, which is correct because pick lines are bubble-only. (3) /#/fun-facts on arrival plays only voice/charlie.howto.funfacts.mp3 and no stew.tag.funfacts. (4) /#/academy: the header reads 'Jelly of the Month Club Music Academy' on one line with no overflow at 1920x800 (20px) and 390x844 (14px, fits in the 390px width). At 844x390 the title pill is hidden by the existing app-wide phone-landscape rule (index.css:957 hides .game-title-pill:not(.keep-title) when max-height is 520px or less), so nothing overlaps. Once a character is chosen, the portal pill reads 'CAMPUS' plus an arrow svg at all 3 viewports. (5) /#/home plaza: assets/plaza/academy.webp loads at 1800x1645 natural size (aspect 0.914 matches data/campus.js). The shield is crisp, and the flag sits on the pole and the vane on the spire. (6) /#/free-play drums: in the new layout, crash and hi-hat load and are not clipped at 1920x800, 1280x800 and 844x390. elementFromPoint at each piece's center returns that piece, and pointerdown switches to the pressed frame. The layout looks natural. (7) Note Match and Stew Kazoo Says intro h1s are white (#fff) with a 2px black stroke and a black drop shadow, and are readable at desktop and 844x390.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DressingRoomPage speak()", "issue": "Each speak() schedules later(() => setBubble(null), 3200) without clearing the previous bubble timer. When the user taps things quickly, an older timer can hide a newer bubble early. In one run, pick-bubble reads 1.5s after picking returned none (unconfirmed; a slower re-run with polling showed bubbles correctly). Low priority.", "selector": "[data-testid=dressing-bubble]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/#/academy", "issues": [
+        "The academy-portal-sign is anchored at right:50% of the portal box. With the shorter 'CAMPUS ->' label it sits left of the archway's center: at 1920 the sign spans 933-1071 while the portal is 897-1246. At 844x390 the sign starts at x=372, left of the portal's left edge at 396. Consider centering it (left:50% with translateX(-50%)).",
+        "At 844x390 the long header title is hidden by the global phone-landscape rule. If the user wants it visible in phone landscape, pass keepTitle to GameHeader (check that it does not collide with the Quest Board).",
+        "At 390x844 portrait, Charlie's 'Welcome to the Academy!' speech bubble is cut off at the right edge of the viewport. This existed before this batch."
+      ]},
+      {"screen": "/#/lessons 1024x768", "issues": ["Charlie's left edge (829) is only 7px from the right edge of the lesson cards (822). They do not overlap, but it is tight. Charlie's outstretched hand also comes close to the fullscreen button in the bottom-right corner at 1024 and 1280."]},
+      {"screen": "/#/note-match intro 1920", "issues": ["The dark subtitle 'Flip the bells. Match the sounds!' sits on the purple/blue water stripe, so its contrast is low. This existed before this batch."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: center academy-portal-sign horizontally over the archway now that the label is shorter.",
+    "Optional: clear the previous bubble-hide timer in DressingRoomPage speak() before scheduling a new one.",
+    "Decide whether the Academy title should show in phone landscape (keepTitle)."
+  ],
+  "critical_code_review_comments": [
+    "React.StrictMode in index.js makes useVoiceTagline arrival lines call play() twice in dev (stopVoice interrupts the first). This does not affect production, but it shows up as duplicate play() calls in tests.",
+    "Drum pieces (PlayableDrumPiece img) have no data-testid; tests had to use the alt text. Consider adding data-testid={`drum-${drumId}`}.",
+    "m101-charlie has an infinite idle y-animation, so Playwright needs force=True to click it. This is not a user issue."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% (7/7 requested items pass)"},
+  "seed_data_creation": "None. Only localStorage/sessionStorage flags were set in the test browser.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Plaza is /#/home (not /#/campus, which is the zone map). Portal 'CAMPUS' sign needs localStorage jma_avatar_v1={\"character\":\"charlie\",\"outfit\":\"classic\"}, otherwise it shows 'PICK A CHARACTER FIRST'. Hook HTMLMediaElement.prototype.play in the init script to record srcs. Do one real mouse click on #/campus, then switch routes via window.location.hash. Drum pieces: [data-testid=drum-kit-pov] img.instrument-frame-idle[alt=Crash|Hi-Hat]. jma_unlock_all_v1 does not unlock dressing-room outfits (Stew had only 1 unlocked)."
+}

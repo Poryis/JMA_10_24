@@ -721,3 +721,12 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Street music gain 0.096 (60% of original 0.16). Muted = never calls play() (no blip on street hops); toggle stays visible showing "Music off" (Campus + Main Stage)
 - Voice: cutVoiceOnRouteChange() (called from ScrollToTop on pathname change) stops lines started >1.2s before leaving; carried-over lines finish before the arrival line plays (say() waits on ended)
 - Known: jazzy.tag.jam.mp3 missing from assets/voice
+
+## Batch polish (Jun 2026)
+- Music 101: Professor Charlie (charlie-grad) right of the lessons (lg+), tap = charlie.tag.music101
+- Dressing Room: Stew never voices dress lines (riff + bubble only); bubble timer no longer cut early by rapid taps
+- Fun Facts: no Stew tagline before Charlie how-to
+- Plaza academy.webp rebuilt at 1800px with crisp logo.png baked into the shield (backup in asset_backups/)
+- Academy header: full name; portal pill "CAMPUS ->"
+- Jam Session drums: crash/hi-hat moved down+in, +5% size
+- Note Match & Stew Kazoo Says intro titles white w/ black stroke

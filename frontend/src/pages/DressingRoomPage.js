@@ -131,6 +131,8 @@ export default function DressingRoomPage() {
   const timers = useRef([]);
   const later = (fn, ms) => timers.current.push(setTimeout(fn, ms));
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  const bubbleTimer = useRef(null);
+  useEffect(() => () => clearTimeout(bubbleTimer.current), []);
 
   const speak = useCallback((charId, group) => {
     const id = `${charId}.dress.${group}`;
@@ -139,7 +141,8 @@ export default function DressingRoomPage() {
     // each character speaks their pick/wear line at most once every 5 minutes; the bubble still shows
     // pick lines are bubble-only (the character's riff plays instead)
     if (line && group !== 'pick' && charId !== 'stew' && Date.now() - (lastDressVoice[charId] || 0) > DRESS_VOICE_GAP_MS && say(id, { minGapMs: 0 })) lastDressVoice[charId] = Date.now();
-    later(() => setBubble(null), 3200);
+    clearTimeout(bubbleTimer.current);
+    bubbleTimer.current = setTimeout(() => setBubble(null), 3200);
   }, []);
 
   const celebrate = () => { setPoof(p => p + 1); setFlash(f => f + 1); setPose(p => p + 1); };

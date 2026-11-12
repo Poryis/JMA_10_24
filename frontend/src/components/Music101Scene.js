@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import UnderwaterBackdrop from './UnderwaterBackdrop';
+import { say } from '../lib/voice';
 
 const ROOM = 'assets/academy/room/';
 const ding = (f, maxMs) => {
@@ -44,6 +45,10 @@ export default function Music101Scene({ next, onNext }) {
       <Toy src={`${ROOM}harp.png`} testId="m101-harp" label="Starfish harp" sfx="riffs/harp.mp3" className="hidden md:block"
         style={{ left: 0, bottom: 'clamp(10px, 4vh, 40px)', width: 'clamp(90px, 9vw, 190px)' }}
         tap={{ rotate: [0, -3, 3, -2, 1, 0], y: [0, -8, 0] }} />
+      <Toy src="assets/characters/charlie-grad.png" testId="m101-charlie" label="Professor Charlie" className="hidden lg:block"
+        style={{ right: '3vw', bottom: 'clamp(16px, 5vh, 48px)', width: 'clamp(140px, 16vw, 320px)' }}
+        idle={{ y: [0, -6, 0] }} tap={{ y: [0, -24, 0, -8, 0], rotate: [0, -4, 3, 0] }}
+        onTap={() => say('charlie.tag.music101', { minGapMs: 0 })} />
     </>
   );
 }

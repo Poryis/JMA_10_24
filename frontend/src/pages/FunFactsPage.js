@@ -71,7 +71,7 @@ function writeFound(set) {
 const INTRO_KEY = 'jma_clubhouse_intro_seen_v1';
 
 function FunFactsPage() {
-  useVoiceTagline('stew.tag.funfacts', 'charlie.howto.funfacts');
+  useVoiceTagline(null, 'charlie.howto.funfacts');
   const [activeFact, setActiveFact] = useState(null);
   const [found, setFound] = useState(() => readFound());
   const [poppingName, setPoppingName] = useState(null); // for first-find animation

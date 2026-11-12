@@ -358,9 +358,11 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
         <motion.h1
           className="intro-head text-3xl md:text-5xl font-black mb-4 text-center uppercase"
           style={{
-            color: 'var(--jma-dark)',
+            color: '#fff',
             fontFamily: "'Fredoka', cursive",
-            WebkitTextStroke: 0,
+            WebkitTextStroke: '2px #000',
+            paintOrder: 'stroke fill',
+            textShadow: '0 4px 0 #000',
           }}
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

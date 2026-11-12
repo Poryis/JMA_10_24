@@ -359,7 +359,7 @@ export default function AcademyPage() {
 
   return (
     <div data-testid="academy-page" className="fixed inset-0 overflow-hidden" style={{ background: '#F7D9A8' }}>
-      <GameHeader title="The Academy" showHomeButton={false} />
+      <GameHeader title="Jelly of the Month Club Music Academy" showHomeButton={false} />
       <motion.button type="button" data-testid="academy-mute" data-muted={muted ? 'true' : 'false'} aria-label={muted ? 'Unmute music' : 'Mute music'} onClick={toggleMute} whileTap={{ scale: 0.9 }}
         className="fixed bottom-4 left-3 z-20 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] md:text-xs font-black cursor-pointer"
         style={{ background: 'rgba(10,37,64,0.85)', color: 'white', border: '2px solid white', boxShadow: '0 3px 0 0 rgba(0,0,0,0.35)' }}>

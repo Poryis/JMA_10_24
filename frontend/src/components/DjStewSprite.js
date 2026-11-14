@@ -19,7 +19,7 @@ const Piece = ({ id, style, ...rest }) => {
   );
 };
 
-export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className = '' }) {
+export default function DjStewSprite({ scratchTick = 0, beatTick = 0, downbeatTick = 0, className = '' }) {
   const [blinking, setBlinking] = useState(false);
   const [scratching, setScratching] = useState(false);
   const [pressFrame, setPressFrame] = useState(0); // 0 idle, 1-3 button-press poses
@@ -78,16 +78,23 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scratchTick]);
 
-  // Every backing-beat: the left wing presses a drum pad + the pads flash.
+  // Every backing-beat: the drum pads flash (feels like it's pulsing with
+  // the music). The left wing only actually presses a pad on the DOWNBEAT
+  // (once per bar) — pressing on every beat looked too busy/robotic.
   useEffect(() => {
     if (beatTick === 0) return;
-    setPressFrame((f) => (f % 3) + 1);
     setDrumFlash((f) => f + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [beatTick]);
+
+  useEffect(() => {
+    if (downbeatTick === 0) return;
+    setPressFrame((f) => (f % 3) + 1);
     clearTimeout(pressTimer.current);
     pressTimer.current = setTimeout(() => setPressFrame(0), 260);
     return () => clearTimeout(pressTimer.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [beatTick]);
+  }, [downbeatTick]);
 
   const leftWingId = pressFrame === 0 ? 'wing_left_idle' : `wing_left_press${pressFrame}`;
 

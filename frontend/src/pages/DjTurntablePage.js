@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Disc3, Trophy, Play, RotateCcw, Star } from 'lucide-react';
-import { GameHeader, FeedbackPopup } from '../components/GameUI';
+import { GameHeader } from '../components/GameUI';
 import Confetti from '../components/Confetti';
 import ScrollingRhythmStrip from '../components/ScrollingRhythmStrip';
 import CountInOverlay from '../components/CountInOverlay';
@@ -37,12 +37,15 @@ function randomRun(level) {
   return run;
 }
 
-// One bar of boom-bap in eighth-note slots (0-7). Hi-hat on the off-beats,
-// kick/snare on the classic "boots & cats" grid.
-const KICK_SLOTS = new Set([0, 4, 5]);
-const SNARE_SLOTS = new Set([2, 6]);
-const HIHAT_SLOTS = new Set([1, 3, 5, 7]);
-const BEAT_TICK_SLOTS = new Set([0, 2, 4, 6]); // quarter-beats, for the sprite
+// One bar of boom-bap in eighth-note slots (0-7). A small pool of variants
+// rotates bar-to-bar so the beat doesn't feel identical on every loop.
+const BOOM_BAP_PATTERNS = [
+  { kick: new Set([0, 4, 5]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
+  { kick: new Set([0, 3, 4]), snare: new Set([2, 6]), hihat: new Set([1, 2, 5, 6, 7]) },
+  { kick: new Set([0, 2, 5, 6]), snare: new Set([4]), hihat: new Set([1, 3, 5, 7]) },
+];
+const BEAT_TICK_SLOTS = new Set([0, 2, 4, 6]); // quarter-beats, drives the drum-pad flash
+const DOWNBEAT_SLOT = 0; // once per bar — the left wing only presses here
 
 const COUNT_IN_BEATS = ScrollingRhythmStrip.COUNT_IN_BEATS;
 
@@ -65,6 +68,9 @@ export default function DjTurntablePage() {
   const [metronomeStartMs, setMetronomeStartMs] = useState(0);
   const [scratchTick, setScratchTick] = useState(0);
   const [beatTick, setBeatTick] = useState(0);
+  const [downbeatTick, setDownbeatTick] = useState(0);
+  const [sparkles, setSparkles] = useState([]);
+  const sparkleIdRef = useRef(0);
 
   const timeoutsRef = useRef([]);
   const patternRef = useRef([]);
@@ -75,6 +81,7 @@ export default function DjTurntablePage() {
   const sessionTallyRef = useRef({ correct: 0, total: 0 });
   const scoreRef = useRef(0);
   const streakRef = useRef(0);
+  const roundEndedRef = useRef(false);
   useEffect(() => { scoreRef.current = score; }, [score]);
   useEffect(() => { streakRef.current = streak; }, [streak]);
 
@@ -88,18 +95,20 @@ export default function DjTurntablePage() {
   // as the notation, so an on-time scratch really is on-time with the song.
   // Each bar is scheduled relative to the moment IT starts (not an
   // ever-growing absolute offset), so the loop never drifts or drops bars.
-  const scheduleBackingLoop = useCallback(() => {
+  const scheduleBackingLoop = useCallback((barIndex = 0) => {
     const eighth = BEAT_MS / 2;
+    const bar = BOOM_BAP_PATTERNS[barIndex % BOOM_BAP_PATTERNS.length];
     for (let slot = 0; slot < 8; slot++) {
       const t = setTimeout(() => {
-        if (KICK_SLOTS.has(slot)) playDrumSound('kick');
-        if (SNARE_SLOTS.has(slot)) playDrumSound('snare');
-        if (HIHAT_SLOTS.has(slot)) playDrumSound('hihat');
+        if (bar.kick.has(slot)) playDrumSound('kick');
+        if (bar.snare.has(slot)) playDrumSound('snare');
+        if (bar.hihat.has(slot)) playDrumSound('hihat');
         if (BEAT_TICK_SLOTS.has(slot)) setBeatTick((b) => b + 1);
+        if (slot === DOWNBEAT_SLOT) setDownbeatTick((b) => b + 1);
       }, slot * eighth);
       timeoutsRef.current.push(t);
     }
-    const next = setTimeout(() => scheduleBackingLoop(), 8 * eighth);
+    const next = setTimeout(() => scheduleBackingLoop(barIndex + 1), 8 * eighth);
     timeoutsRef.current.push(next);
   }, [playDrumSound]);
 
@@ -107,6 +116,8 @@ export default function DjTurntablePage() {
   const finishRoundRef = useRef(null);
 
   const finishRound = useCallback(() => {
+    if (roundEndedRef.current) return;
+    roundEndedRef.current = true;
     clearTimeouts();
     const pat = patternRef.current;
     const results = tapResultsRef.current;
@@ -158,6 +169,7 @@ export default function DjTurntablePage() {
   const startRound = useCallback(() => {
     initAudioContext();
     clearTimeouts();
+    roundEndedRef.current = false;
     const pat = randomRun(level);
     setPattern(pat);
     patternRef.current = pat;
@@ -214,33 +226,65 @@ export default function DjTurntablePage() {
       tapResultsRef.current[i] = 'miss';
       autoMissed = true;
     }
-    if (targetIdx === -1) {
-      if (autoMissed) { setStreak(0); playFeedbackSound('miss'); }
-      return;
-    }
-    const diff = Math.abs(tapTime - expectedStarts[targetIdx]);
-    if (diff > tol) return; // too early — leave the note open for a real attempt
 
-    claimed.add(targetIdx);
-    const tier = diff <= tol * 0.3 ? 'perfect' : diff <= tol * 0.6 ? 'great' : 'good';
-    tapResultsRef.current[targetIdx] = tier;
-    const mult = streakRef.current >= 7 ? 3 : streakRef.current >= 5 ? 2 : streakRef.current >= 3 ? 1.5 : 1;
-    const base = tier === 'perfect' ? 25 : tier === 'great' ? 15 : 10;
-    setScore((s) => s + Math.round(base * mult));
-    setStreak((s) => s + 1);
-    setScratchTick((s) => s + 1);
-    setFeedback(tier);
-    timeoutsRef.current.push(setTimeout(() => setFeedback(null), 350));
-    const scratchSound = tier === 'perfect' && streakRef.current >= 5
-      ? 'scratchPushPull'
-      : (targetIdx % 2 === 0 ? 'scratchPush' : 'scratchPull');
-    playDrumSound(scratchSound);
+    let scored = false;
+    if (targetIdx !== -1) {
+      const diff = Math.abs(tapTime - expectedStarts[targetIdx]);
+      if (diff <= tol) {
+        claimed.add(targetIdx);
+        const tier = diff <= tol * 0.3 ? 'perfect' : diff <= tol * 0.6 ? 'great' : 'good';
+        tapResultsRef.current[targetIdx] = tier;
+        const nextStreak = streakRef.current + 1;
+        const mult = nextStreak >= 7 ? 3 : nextStreak >= 5 ? 2 : nextStreak >= 3 ? 1.5 : 1;
+        const base = tier === 'perfect' ? 25 : tier === 'great' ? 15 : 10;
+        setScore((s) => s + Math.round(base * mult));
+        setStreak(nextStreak);
+        setScratchTick((s) => s + 1);
+        setFeedback(tier);
+        timeoutsRef.current.push(setTimeout(() => setFeedback(null), 350));
+        const scratchSound = tier === 'perfect' && nextStreak >= 5
+          ? 'scratchPushPull'
+          : (targetIdx % 2 === 0 ? 'scratchPush' : 'scratchPull');
+        playDrumSound(scratchSound);
+        // Long perfect streaks earn a little sparkle burst.
+        if (tier === 'perfect' && nextStreak >= 5) {
+          const id = ++sparkleIdRef.current;
+          setSparkles((prev) => [...prev, { id }]);
+          timeoutsRef.current.push(setTimeout(() => setSparkles((prev) => prev.filter((s) => s.id !== id)), 900));
+        }
+        scored = true;
+      }
+    }
+
+    if (autoMissed) { setStreak(0); playFeedbackSound('miss'); }
+    if (!scored && !autoMissed) return; // too early — leave the note open for a real attempt
+
+    // Finish the round the instant every note is accounted for, instead of
+    // only relying on a parallel timer (which could drift out of sync).
+    const allNonRest = pat.map((k, i) => (k === 'rest' ? null : i)).filter((x) => x !== null);
+    if (allNonRest.length > 0 && allNonRest.every((i) => claimed.has(i))) {
+      const fin = setTimeout(() => finishRoundRef.current?.(), 280);
+      timeoutsRef.current.push(fin);
+    }
   }, [phase, level, playDrumSound, playFeedbackSound]);
 
   const onScratchDown = useCallback((e) => {
     e.preventDefault();
     handleScratchTap();
   }, [handleScratchTap]);
+
+  // Spacebar also scratches, alongside tapping the play area or Stew himself.
+  useEffect(() => {
+    if (screen !== 'playing') return undefined;
+    const onKeyDown = (e) => {
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        handleScratchTap();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [screen, handleScratchTap]);
 
   const startSession = useCallback((pickedLevel) => {
     const lvl = pickedLevel || level;
@@ -366,7 +410,6 @@ export default function DjTurntablePage() {
       style={{ background: 'radial-gradient(circle at 50% 0%, #3A2366 0%, #190E33 70%)' }}
     >
       <GameHeader title="DJ Stew's Turntable" subtitle={levelInfo.label} score={score} streak={streak} showHomeButton={true} backTo="/campus?zone=play" />
-      <AnimatePresence>{feedback && <FeedbackPopup feedback={feedback} />}</AnimatePresence>
 
       <main className="flex-1 flex flex-col items-center pt-24 md:pt-28 lg:pt-32 pb-6 px-3">
         <div className="flex items-center justify-center gap-2 mb-2" data-testid="dj-turntable-round-dots">
@@ -398,24 +441,58 @@ export default function DjTurntablePage() {
           {phase === 'reveal' && 'Run complete!'}
         </div>
 
-        <div className="w-full max-w-2xl mb-2">
-          <ScrollingRhythmStrip key={roundKey} pattern={pattern} kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'} beatMs={BEAT_MS} />
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 'clamp(28px, 7vw, 44px)' }}
+        >
+          <AnimatePresence mode="wait">
+            {feedback && (
+              <motion.div
+                key={feedback}
+                data-testid="dj-turntable-feedback"
+                className="font-black font-display uppercase text-xl sm:text-2xl md:text-4xl whitespace-nowrap"
+                style={{
+                  color: feedback === 'perfect' ? '#4CD964' : feedback === 'great' ? '#4285F4' : feedback === 'good' ? '#FFCC00' : '#FF3B30',
+                  WebkitTextStroke: '2px #0A2540',
+                  paintOrder: 'stroke fill',
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 1.3, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {feedback === 'perfect' ? 'PERFECT!' : feedback === 'great' ? 'GREAT!' : feedback === 'good' ? 'GOOD!' : 'MISS!'}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        <div style={{ opacity: phase === 'countin' ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none' }}>
-          <CountInOverlay running={metronomeRunning} startAtMs={metronomeStartMs} beatMs={BEAT_MS} />
-        </div>
-
-        <button
+        <div
           data-testid="dj-turntable-tap-target"
-          type="button"
+          role="button"
+          tabIndex={0}
           aria-label="Scratch the turntable"
           onPointerDown={onScratchDown}
-          className="w-full max-w-md relative border-0 bg-transparent p-0"
+          className="w-full flex flex-col items-center relative cursor-pointer"
           style={{ touchAction: 'none' }}
         >
-          <DjStewSprite scratchTick={scratchTick} beatTick={beatTick} />
-        </button>
+          <div className="w-full max-w-2xl mb-2">
+            <ScrollingRhythmStrip key={roundKey} pattern={pattern} kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'} beatMs={BEAT_MS} />
+          </div>
+
+          <div style={{ opacity: phase === 'countin' ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none' }}>
+            <CountInOverlay running={metronomeRunning} startAtMs={metronomeStartMs} beatMs={BEAT_MS} />
+          </div>
+
+          <div className="w-full max-w-md relative">
+            <DjStewSprite scratchTick={scratchTick} beatTick={beatTick} downbeatTick={downbeatTick} />
+            {sparkles.map((s) => (
+              <div key={s.id} className="pointer-events-none absolute inset-0 flex items-center justify-center z-20">
+                <Confetti count={14} size={180} testId={`dj-turntable-sparkle-${s.id}`} />
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
 
       <AnimatePresence>

@@ -2,7 +2,7 @@ import json
 
 page.on("console", lambda msg: print(f"CONSOLE[{msg.type}]: {msg.text}") if msg.type in ("error","warning") else None)
 
-BASE = "https://jma-music-academy--3kmrs26q.preview.emergentagent.com/#"
+BASE = "https://jelly-academy--30531d69.preview.emergentagent.com/#"
 
 async def setup(p, viewport, coarse=False):
     await p.set_viewport_size(viewport)

@@ -1,0 +1,125 @@
+{
+  "drum_on": {
+    "x": 958,
+    "y": 1264,
+    "w": 796,
+    "h": 319,
+    "file": "drum-machine-on.png"
+  },
+  "drum_off": {
+    "x": 958,
+    "y": 1264,
+    "w": 796,
+    "h": 319,
+    "file": "drum-machine-off.png"
+  },
+  "body": {
+    "x": 1001,
+    "y": 800,
+    "w": 631,
+    "h": 802,
+    "file": "body.png"
+  },
+  "turntable_outline": {
+    "x": 0,
+    "y": 1237,
+    "w": 3232,
+    "h": 1032,
+    "file": "turntable-outline.png"
+  },
+  "record_right": {
+    "x": 1732,
+    "y": 1279,
+    "w": 803,
+    "h": 254,
+    "file": "record-right.png"
+  },
+  "record_left": {
+    "x": 199,
+    "y": 1292,
+    "w": 772,
+    "h": 245,
+    "file": "record-left.png"
+  },
+  "needle_left": {
+    "x": 2197,
+    "y": 1337,
+    "w": 338,
+    "h": 165,
+    "file": "needle-left.png"
+  },
+  "needle_right": {
+    "x": 115,
+    "y": 1346,
+    "w": 338,
+    "h": 165,
+    "file": "needle-right.png"
+  },
+  "head_base": {
+    "x": 827,
+    "y": 0,
+    "w": 827,
+    "h": 907,
+    "file": "head-base.png"
+  },
+  "eyes": {
+    "x": 1012,
+    "y": 256,
+    "w": 299,
+    "h": 339,
+    "file": "eyes.png"
+  },
+  "wing_right_idle": {
+    "x": 513,
+    "y": 861,
+    "w": 532,
+    "h": 572,
+    "file": "wing-right-idle.png"
+  },
+  "wing_right_scratch": {
+    "x": 519,
+    "y": 871,
+    "w": 526,
+    "h": 591,
+    "file": "wing-right-scratch.png"
+  },
+  "wing_right_push": {
+    "x": 510,
+    "y": 868,
+    "w": 536,
+    "h": 600,
+    "file": "wing-right-push.png"
+  },
+  "wing_left_idle": {
+    "x": 1514,
+    "y": 302,
+    "w": 402,
+    "h": 899,
+    "file": "wing-left-idle.png"
+  },
+  "wing_left_press1": {
+    "x": 1076,
+    "y": 907,
+    "w": 556,
+    "h": 591,
+    "file": "wing-left-press1.png"
+  },
+  "wing_left_press2": {
+    "x": 1040,
+    "y": 865,
+    "w": 593,
+    "h": 555,
+    "file": "wing-left-press2.png"
+  },
+  "wing_left_press3": {
+    "x": 1079,
+    "y": 885,
+    "w": 554,
+    "h": 524,
+    "file": "wing-left-press3.png"
+  },
+  "_stage": {
+    "w": 3232,
+    "h": 2269
+  }
+}

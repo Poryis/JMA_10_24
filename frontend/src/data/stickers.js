@@ -178,6 +178,7 @@ export const COLLECTION_STICKERS = [
   // ---- Name That Note (Finn's staff school) — perfect-round flair ----
   { id: 'ntn_staff_star',    name: 'Staff Star',         category: 'milestones', icon: 'assets/characters/finn-disco.png',       color: '#34A853', hint: 'Score a perfect 10/10 in Name That Note (Name It)' },
   { id: 'ntn_place_ace',     name: 'Note Navigator',     category: 'milestones', icon: 'assets/characters/finn-danger.png',      color: '#4285F4', hint: 'Score a perfect 10/10 in Name That Note (Place It)' },
+  { id: 'dj_stew_scratch',   name: 'Scratch Master',     category: 'milestones', icon: 'assets/dj-stew/head-base.png',           color: '#AF52DE', hint: 'Clear a set in DJ Stew\'s Turntable' },
   // ---- Daily Gems — earned by finishing all 3 "Today at the Academy" quests ----
   { id: 'gem_1',  name: 'First Gem',     category: 'gems', icon: gemIcon('#4CD964', '#1F7A36'), color: '#34A853', hint: 'Finish all 3 daily quests for the first time' },
   { id: 'gem_3',  name: 'Triple Gem',    category: 'gems', icon: gemIcon('#4FA8FF', '#1C5FBF'), color: '#4285F4', hint: 'Finish the daily quests on 3 different days' },

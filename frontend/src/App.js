@@ -26,6 +26,7 @@ import NameThatNotePage from "./pages/NameThatNotePage";
 import BoomGardenPage from "./pages/BoomGardenPage";
 import RobotBoogiePage from "./pages/RobotBoogiePage";
 import ShredLegendPage from "./pages/ShredLegendPage";
+import DjTurntablePage from "./pages/DjTurntablePage";
 import JMAtvHomePage from "./pages/JMAtvHomePage";
 import JMAtvLivePage from "./pages/JMAtvLivePage";
 import JMAtvChannelPage from "./pages/JMAtvChannelPage";
@@ -113,6 +114,7 @@ function App() {
             <Route path="/boom-garden" element={<BoomGardenPage />} />
             <Route path="/robot-boogie" element={<RobotBoogiePage />} />
             <Route path="/shred-legend" element={<ShredLegendPage />} />
+            <Route path="/dj-turntable" element={<DjTurntablePage />} />
             <Route path="/jmatv" element={<JMAtvHomePage />} />
             <Route path="/jmatv/live" element={<JMAtvLivePage />} />
             <Route path="/jmatv/:channelId" element={<JMAtvChannelPage />} />

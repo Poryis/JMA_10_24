@@ -1,5 +1,5 @@
 {
-  "summary": "Frontend-only verification of JMA polish round: (a) JMA shield logo replaces Music icon on AudioUnlockOverlay AND PlayerNamePrompt, (b) playerStorage.js abstraction with canonical snapshot, (c) PrintReport now reads from getPlayerSnapshot() and exposes Backup button that downloads a JSON file. All 6 review scenarios verified PASS on https://jma-music-academy--3kmrs26q.preview.emergentagent.com (1280x900).",
+  "summary": "Frontend-only verification of JMA polish round: (a) JMA shield logo replaces Music icon on AudioUnlockOverlay AND PlayerNamePrompt, (b) playerStorage.js abstraction with canonical snapshot, (c) PrintReport now reads from getPlayerSnapshot() and exposes Backup button that downloads a JSON file. All 6 review scenarios verified PASS on https://jelly-academy--30531d69.preview.emergentagent.com (1280x900).",
   "backend_issues": { "critical": [], "minor": [] },
   "frontend_issues": {
     "ui_bugs": [],

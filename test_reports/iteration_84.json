@@ -1,0 +1,34 @@
+{
+  "summary": "Iteration 84: Re-verification of the DJ Stew's Turntable cascading-miss regression from iteration_83 (frontend only). FIXED: one stray tap now costs exactly 1 point and no longer cascades. Anti-spam still holds: 0% accuracy and every round fails. Genuine play is unchanged at 100%. Ran 6 full sessions plus smoke checks. No console or page errors.",
+  "test_results": {
+    "regression_a_cadet_countin_stray": "PASS. One Space at start+2250ms in every round (the first note was at 3000ms, 750ms away, beyond the 500ms tolerance, so it counted as a stray). Every real note was then tapped on time. All 5 rounds passed (5 green dots). Every note got PERFECT and none was missed. Session 58/63 = exactly 63-5, one point per stray, 3 stars, 4105 pts. Before the fix this was 0/12 per round.",
+    "regression_b_master_mid23_stray": "PASS. One stray at the midpoint of notes 2 and 3 in every round, then every real note tapped on time. All 5 rounds passed. Session 90/95 = exactly 95-5, 3 stars, 6270 pts. When the gap was 375ms, the stray (187ms early) fell inside the 220ms tolerance and claimed note 3 as GOOD. The real tap on note 3 then became the stray. The cost was still exactly 1 and nothing cascaded. Gaps of 750ms and 1500ms gave a pure stray. Before the fix this was 2/12.",
+    "anti_spam_master_space": "PASS. 560 Space keydowns, 90-290ms apart. Spam still claims every note, but the strays outnumber the hits, so the session scored 0/98, 1 star and 5 red dots.",
+    "anti_spam_pro_pointerdown": "PASS. 426 pointerdowns on dj-turntable-tap-target. Session 0/87, 5 red dots.",
+    "genuine_master": "PASS. 95/95, 7401 pts, 3 stars, 5 green dots, 91 sparkles, streak chip climbed to 100. No phase got stuck; the longest phase was 17.6s.",
+    "genuine_cadet_plus_repeat_guard": "PASS. 60/60, 4776 pts, 3 stars, 56 sparkles. 25 Space keydowns with repeat:true were fired during count-ins and all were ignored; accuracy stayed at 100%, so the e.repeat guard works.",
+    "smoke": "PASS. Play Again restarts the session and resets the dots (dot 1 yellow, the rest grey). Change Level goes back to the menu. A round with no taps turns its dot red (#FF3B30). The back button goes to /#/campus?zone=play. Early finish works: with every note claimed, rounds end on time. No console errors in any run. The Home button was not clicked this iteration; it passed in iterations 80-83."
+  },
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Session complete", "issues": ["A 0/98 spam session still shows a trophy and 'Set Complete!' with 1 star and 1470 pts. This is cosmetic and not new, but a softer heading for very low accuracy would read better."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/dj_helpers.js", "/app/tests/dj_stray_helpers.js", "/app/tests/dj_session_runner.py", "/app/tests/dj_setup_snippet.py"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Low priority: spamming still adds in-round points (1470 on a 0% Master session) because each tap that claims a note scores before the stray penalty is applied at round end. Consider also subtracting points per stray, or zeroing the round's tap points when the round fails.",
+    "Low priority: the streak chip counts both note hits and round passes (95 hits + 5 passes = 100 on Master). This is not new; just make sure it is intended.",
+    "Design note: a kid who double-taps every note loses 1 per extra tap, which could fail them. This follows from the rule and looks intentional."
+  ],
+  "updated_files": ["/app/tests/dj_stray_helpers.js (new test helper only, no app code changed)"],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Setup: page.evaluate(dj_helpers.js) and then dj_stray_helpers.js. Click audio-unlock-overlay, wait 2.5s, then add_style_tag hiding tour-start-modal and player-name-prompt. Start a level with JS .click() on dj-turntable-difficulty-X. Inject a stray once per round with window.__djStray.mode='countin' (start+2250) or 'mid23'. Combine it with __djAuto.mode='all'. Per-round tap results are in window.__djRoundSnaps[i].results. Note: __djStrayCount() returns the wrong ref, because the boolean-ref index heuristic is off; use the session X/Y text instead. Baselines this iteration: Cadet with one stray per round 58/63; Master with one stray per round 90/95; Master spam 0/98; Pro pointer spam 0/87; Master genuine 95/95; Cadet genuine 60/60.",
+  "rca of the issue": "The iteration_83 cascade is fixed. Taps now match the nearest open note, and an unmatched tap only increments strayCountRef; it no longer burns a note. At round end, correct = max(0, rawCorrect - strays). Both repro cases were confirmed at exactly 1 point lost per stray."
+}

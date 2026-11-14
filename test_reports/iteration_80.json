@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only retest of the rebuilt DJ Stew's Turntable (v2). Everything requested passed. (a) The scroll is one continuous run per round: Cadet renders 16 trail-note blocks (2 chained phrases, 16 beats). I sampled note-0 position every animation frame for the whole round (950 samples): it never jumped back, the longest stall was 29ms, and the speed held at exactly -120px/s (90px per beat at 750ms per beat). Phase went countin, then input at 2.7s, then reveal at 15.5s. (b) Disc spin bug is fixed: getComputedStyle(transform) was 'none' on disc-left, disc-right and all 8 spin-*.png overlays for the whole round, and all 4 glint frames per side cycled. Zoomed screenshots show the discs sitting still. (c) Scoring: an in-browser auto-tapper that fires on strike-line crossings landed 12/12 taps. Score went to 151 mid-round and 726 at the end of the round, and the streak chip showed 5x, then 13x. (d) A full no-tap Cadet session finished every round by failsafe ('Run complete!'), and the next round started about 2.6s later. Round dots advanced 0 to 5, and the session reached dj-turntable-complete with 3 star icons (1 filled at 0/65) and all 3 buttons. Full sessions also passed for Pro (no taps) and again for Cadet. Master starts and scrolls fine. (e) Backing loop: hooking AudioBufferSourceNode.start shows 48 hits per round and a max gap of 381-384ms inside every round (countin through reveal), across all 5 rounds. (f) Play Again goes back to 'Get ready...' with the score reset to 0. Change Level goes to the menu with no leaked timers (still on the menu after 3s). Home goes to /#/academy. The header Back button goes to /#/campus?zone=play, and campus-building-dj-turntable is present. (g) No console errors in any game flow. The mobile 390x844 layout is fine.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DjTurntablePage Play Again", "issue": "For about 25-50ms after Play Again, the phase pill shows the stale 'Run complete!' and round dot 1 is green. This happens because phase stays 'reveal' until startRound runs 50ms later. Fix: call setPhase('countin') (and setPattern([])) inside startSession.", "selector": "[data-testid='dj-turntable-phase']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "DJ Turntable playing", "issues": ["When the CountInOverlay (1-4 boxes) unmounts at the countin-to-input handoff, the DJ Stew sprite and tap target jump up about 90px. This layout shift happens at the exact moment the kid starts tapping. Reserve the overlay's height, or position it absolutely.", "The backing beat stops for the 2.6s 'Run complete!' gap between rounds because finishRound calls clearTimeouts. This is expected by design, but if a continuous song feel across rounds is wanted, keep the loop running through the reveal."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional (LOW): reset phase/pattern in startSession so the stale 'Run complete!' does not flash on Play Again",
+    "Optional (LOW): stop the layout jump of the sprite/tap target when the count-in overlay disappears"
+  ],
+  "critical_code_review_comments": [
+    "finishRound adds +1 to the same `streak` state that per-note taps use, so the round-pass bonus inflates the note-streak multiplier (13x after 12 notes). Minor semantics issue.",
+    "Session-complete stars: the minimum is 1 star even at 0/65 accuracy. This is a design choice, but worth confirming it is intended.",
+    "A single 'Encountered two children with the same key' React warning was seen once on the first app load, while the name prompt and tour modals were mounting, before entering the game. It was not reproduced in any DJ Turntable flow and is likely from another global component."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% of requested checks"},
+  "seed_data_creation": "None. localStorage jma_player_name_skipped_v1=1 was set in the test browser only.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Overlays: set localStorage jma_player_name_skipped_v1=1 via add_init_script, click audio-unlock-overlay, wait about 2s, then close the tour with JS document.querySelector('[data-testid=tour-start-modal-close]').click() (a Playwright force-click during its spring animation did not dismiss it). Cadet session with no taps takes about 92s (each round is about 18.4s: 3s countin, 12s run, 0.8s failsafe, 2.6s reveal). For auto-tapping, use a rAF loop that dispatches pointerdown on dj-turntable-tap-target when a non-rest trail-note's left edge crosses the strike line (strip left + 25% width)."
+}

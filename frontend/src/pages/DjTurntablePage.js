@@ -248,6 +248,8 @@ export default function DjTurntablePage() {
     setScore(0);
     setStreak(0);
     setCurrentRound(1);
+    setPhase('countin');
+    setPattern([]);
     sessionTallyRef.current = { correct: 0, total: 0 };
     setScreen('playing');
     setTimeout(() => startRoundRef.current?.(), 50);
@@ -400,9 +402,9 @@ export default function DjTurntablePage() {
           <ScrollingRhythmStrip key={roundKey} pattern={pattern} kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'} beatMs={BEAT_MS} />
         </div>
 
-        {phase === 'countin' && (
+        <div style={{ opacity: phase === 'countin' ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none' }}>
           <CountInOverlay running={metronomeRunning} startAtMs={metronomeStartMs} beatMs={BEAT_MS} />
-        )}
+        </div>
 
         <button
           data-testid="dj-turntable-tap-target"

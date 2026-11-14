@@ -682,6 +682,14 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Low-priority fixes also applied: reveal tint now shows green for great/good hits too (not just perfect); all sprite pose PNGs preloaded on mount to avoid blank-wing flashes
 - Tested: iteration_79 (88% initially, HIGH bug fixed + re-verified via audio-timing hook: max gap 385ms ≈ expected 375ms eighth-note interval, no more multi-second silent gaps)
 
+## DJ Stew's Turntable — v2 rebuild after user feedback (Nov 2026)
+- User was disappointed with v1: (1) "not like rhythm run" — it was a stop/start 1-measure-at-a-time Copy Cat loop, not a continuous Guitar-Hero highway; (2) "spinning records look ridiculous" — literal CSS rotate(360deg) on the perspective-angled disc artwork looked like a flat sticker spinning
+- Confirmed via ask_human: (1) chain SEVERAL phrases back-to-back unbroken per round (not just one), (2) use the PSD's own pre-built 4-frame "Shadow spinning" glint-cycle layers instead of rotating the disc
+- Rebuilt pages/DjTurntablePage.js on ScrollingRhythmStrip.js (same proven engine as Boom Garden's Tap Trail) with `randomRun()` concatenating PHRASES_PER_ROUND=2 TRAIL_PATTERNS phrases into one continuous pattern per round; removed the old demo phase entirely (countin -> input -> reveal only)
+- components/DjStewSprite.js: disc_left/disc_right now render fully static; added spin_left_1-4/spin_right_1-4 glint overlay frames (exported from PSD's "Shadow spinning" group) cycling via setTimeout, faster while actively scratching
+- Tested: iteration_80, 100% of requested checks passed (continuous unbroken scroll verified via per-frame position sampling, disc confirmed static via getComputedStyle, backing loop gap-free, full 5-round sessions complete for all 3 difficulties). Fixed 2 LOW polish items it found: stale "Run complete!" flash on Play Again (now resets phase/pattern in startSession), and a ~90px layout jump when CountInOverlay unmounted at countin->input handoff (now stays mounted, fades via opacity instead)
+- User already knows the campus building icon is a placeholder and will replace it themselves — not a bug, do not re-flag
+
 ## Voice recordings imported (Nov 2026)
 - public/assets/voice/<id>.mp3 (mono 96k, -16 LUFS, trimmed). Importer: /app/memory/import_voice.py (take choices + Doc 07 timestamps), transcriber: /app/memory/transcribe.py (whisper-1, Emergent key)
 - Charlie: 67/69 recorded (missing perfect.3, quest.q_jmatv). New charlie.go.3. Texts in voiceLines.js updated to match takes

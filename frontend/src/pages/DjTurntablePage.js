@@ -83,6 +83,7 @@ export default function DjTurntablePage() {
   const scoreRef = useRef(0);
   const streakRef = useRef(0);
   const roundEndedRef = useRef(false);
+  const strayCountRef = useRef(0);
   useEffect(() => { scoreRef.current = score; }, [score]);
   useEffect(() => { streakRef.current = streak; }, [streak]);
 
@@ -123,7 +124,11 @@ export default function DjTurntablePage() {
     const pat = patternRef.current;
     const results = tapResultsRef.current;
     const playable = pat.map((k, i) => (k !== 'rest' ? i : null)).filter((i) => i !== null);
-    const correct = playable.filter((i) => results[i] && results[i] !== 'miss').length;
+    const rawCorrect = playable.filter((i) => results[i] && results[i] !== 'miss').length;
+    // Every stray tap (mistimed, matched no open note) costs a point of
+    // accuracy, so spamming still fails even though it no longer cascades
+    // into burning the wrong note for the rest of the round.
+    const correct = Math.max(0, rawCorrect - strayCountRef.current);
     const total = playable.length;
     sessionTallyRef.current.correct += correct;
     sessionTallyRef.current.total += total;
@@ -172,6 +177,7 @@ export default function DjTurntablePage() {
     initAudioContext();
     clearTimeouts();
     roundEndedRef.current = false;
+    strayCountRef.current = 0;
     const pat = randomRun(level);
     setPattern(pat);
     patternRef.current = pat;
@@ -219,56 +225,64 @@ export default function DjTurntablePage() {
     const claimed = claimedRef.current;
     const tol = TOLERANCE_MS[level] ?? TOLERANCE_MS.cadet;
 
-    let targetIdx = -1;
+    // Auto-miss any note whose window has fully closed, independent of
+    // which note (if any) this particular tap ends up matching.
     let autoMissed = false;
     for (let i = 0; i < pat.length; i++) {
       if (pat[i] === 'rest' || claimed.has(i)) continue;
-      if (expectedStarts[i] >= tapTime - tol) { targetIdx = i; break; }
-      claimed.add(i);
-      tapResultsRef.current[i] = 'miss';
-      autoMissed = true;
+      if (expectedStarts[i] + tol < tapTime) {
+        claimed.add(i);
+        tapResultsRef.current[i] = 'miss';
+        autoMissed = true;
+      }
+    }
+
+    // Match this tap to the NEAREST still-open note (not just the first
+    // unclaimed one) — this stops a single stray tap from shifting the
+    // matching for every note that comes after it.
+    let targetIdx = -1;
+    let bestDiff = Infinity;
+    for (let i = 0; i < pat.length; i++) {
+      if (pat[i] === 'rest' || claimed.has(i)) continue;
+      const diff = Math.abs(tapTime - expectedStarts[i]);
+      if (diff < bestDiff) { bestDiff = diff; targetIdx = i; }
     }
 
     let scored = false;
     let stray = false;
-    if (targetIdx !== -1) {
-      const diff = Math.abs(tapTime - expectedStarts[targetIdx]);
-      if (diff <= tol) {
-        claimed.add(targetIdx);
-        const tier = diff <= tol * 0.3 ? 'perfect' : diff <= tol * 0.6 ? 'great' : 'good';
-        tapResultsRef.current[targetIdx] = tier;
-        const nextStreak = streakRef.current + 1;
-        const mult = nextStreak >= 7 ? 3 : nextStreak >= 5 ? 2 : nextStreak >= 3 ? 1.5 : 1;
-        const base = tier === 'perfect' ? 25 : tier === 'great' ? 15 : 10;
-        setScore((s) => s + Math.round(base * mult));
-        setStreak(nextStreak);
-        setScratchTick((s) => s + 1);
-        setFeedback(tier);
-        timeoutsRef.current.push(setTimeout(() => setFeedback(null), 350));
-        const scratchSound = tier === 'perfect' && nextStreak >= 5
-          ? 'scratchPushPull'
-          : (targetIdx % 2 === 0 ? 'scratchPush' : 'scratchPull');
-        playDrumSound(scratchSound);
-        // Long perfect streaks earn a little sparkle burst.
-        if (tier === 'perfect' && nextStreak >= 5) {
-          const id = ++sparkleIdRef.current;
-          setSparkles((prev) => [...prev, { id }]);
-          timeoutsRef.current.push(setTimeout(() => setSparkles((prev) => prev.filter((s) => s.id !== id)), 900));
-        }
-        scored = true;
-      } else {
-        // Tapped outside the tolerance window (too early for this note).
-        // Burn the note as a miss instead of leaving it open — otherwise a
-        // spam of rapid taps could eventually land inside every note's
-        // window by chance, with zero timing skill required.
-        claimed.add(targetIdx);
-        tapResultsRef.current[targetIdx] = 'miss';
-        stray = true;
+    if (targetIdx !== -1 && bestDiff <= tol) {
+      claimed.add(targetIdx);
+      const tier = bestDiff <= tol * 0.3 ? 'perfect' : bestDiff <= tol * 0.6 ? 'great' : 'good';
+      tapResultsRef.current[targetIdx] = tier;
+      const nextStreak = streakRef.current + 1;
+      const mult = nextStreak >= 7 ? 3 : nextStreak >= 5 ? 2 : nextStreak >= 3 ? 1.5 : 1;
+      const base = tier === 'perfect' ? 25 : tier === 'great' ? 15 : 10;
+      setScore((s) => s + Math.round(base * mult));
+      setStreak(nextStreak);
+      setScratchTick((s) => s + 1);
+      setFeedback(tier);
+      timeoutsRef.current.push(setTimeout(() => setFeedback(null), 350));
+      const scratchSound = tier === 'perfect' && nextStreak >= 5
+        ? 'scratchPushPull'
+        : (targetIdx % 2 === 0 ? 'scratchPush' : 'scratchPull');
+      playDrumSound(scratchSound);
+      // Long perfect streaks earn a little sparkle burst.
+      if (tier === 'perfect' && nextStreak >= 5) {
+        const id = ++sparkleIdRef.current;
+        setSparkles((prev) => [...prev, { id }]);
+        timeoutsRef.current.push(setTimeout(() => setSparkles((prev) => prev.filter((s) => s.id !== id)), 900));
       }
+      scored = true;
+    } else {
+      // No open note was close enough — a stray tap. It doesn't burn any
+      // note (so one accidental extra tap barely costs anything), but it
+      // does count against accuracy at round-end, so spamming still fails.
+      strayCountRef.current += 1;
+      stray = true;
     }
 
     if (autoMissed || stray) { setStreak(0); playFeedbackSound('miss'); }
-    if (!scored && !autoMissed && !stray) return; // nothing to do — leave notes open
+    if (!scored && !autoMissed && !stray) return; // nothing to do
 
     // Finish the round the instant every note is accounted for, instead of
     // only relying on a parallel timer (which could drift out of sync).

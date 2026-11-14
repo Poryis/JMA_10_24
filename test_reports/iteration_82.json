@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only retest (iteration 4) of the DJ Stew's Turntable anti-spam fix, run with Playwright on the public URL at 1920x1080. 4 of the 5 requested items pass. The main fix, anti-spam, does NOT work. (1) ANTI-SPAM FAILED: Space keydown fired every 90-290ms with random timing for a whole Master session (579 taps) still finished 93/93 on time with 3 stars. All 5 round dots turned green. It was 89/89 before the fix, so accuracy is unchanged. Only the points dropped: 1875 for spam vs 8001 for genuine perfect play on Master (103/103). Spamming pointerdown on the tap target on Pro also cleared round 1 (green dot, 2x multiplier visible). (2) SPACE AUTO-REPEAT PASSED: keydown with repeat:true placed exactly on a note did nothing (claimed set 0 to 0, no feedback), twice. A burst of 30 repeat events also did nothing (4 to 4). The first non-repeat keydown registered PERFECT. (3) GENUINE TIMING PASSED: Master 103/103 with 8001 pts and 99 sparkles. Cadet 64/64 with 5076 pts. The streak multiplier was shown in the header. (4) ROUND DOTS PASSED: a round with no taps showed dot 1 red rgb(255,59,48) during reveal. The current round was yellow rgb(255,204,0), rounds not yet reached were grey rgba(255,255,255,0.35), and a cleared round turned green rgb(52,168,83). (5) REGRESSION PASSED: a clean Cadet session reached Set Complete with 3 stars. Play Again restarts at round 1 with the dots reset, Change Level returns to the menu, Home goes to #/academy. No console errors appeared during gameplay.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DjTurntablePage handleScratchTap (stray branch)", "issue": "The anti-spam fix does not work. Spamming taps on Master still scores 93/93 on time, 3 stars, and every round passes. A stray tap only resets the streak. The note stays open, so the next spam tap that lands inside the window still claims it. On Master the window is ±220ms, 440ms wide. Any spam interval under 440ms is therefore guaranteed to hit every note. Accuracy, round pass/fail, stars, the dj_stew_scratch sticker and the rhythm achievements are all decided by correct/total, and stray taps never affect that count.", "selector": "[data-testid=dj-turntable-tap-target], window keydown Space", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/tests/dj_helpers.js", "/app/tests/dj_session_runner.py", "/app/tests/dj_setup_snippet.py"],
+  "action_items": [
+    "Make stray taps count against the player, not just the streak. Two options. (a) Track a per-round strayCount in a ref and use effectiveCorrect = max(0, correct - strayCount) both for the pass threshold in finishRound and for sessionTally (or add strays to the total). (b) When a stray tap happens, mark the next unclaimed note as 'burned' or locked, so that a hit within roughly tol ms after a stray does not count. Lock out input for about tol ms after a stray, or mark the target note 'miss' if a stray happened within BEAT_MS/2 before its window. Then re-run a Master session with 90-290ms spam: accuracy should fall well under the 70% pass line, while genuine on-time play must still reach 100%.",
+    "Make sure stars, the dj_stew_scratch sticker and the earnAchievement calls use the spam-adjusted accuracy, so spam can't unlock rewards."
+  ],
+  "critical_code_review_comments": [
+    "handleScratchTap: stray = true only calls setStreak(0) and plays the miss sound. tapResultsRef and claimed are untouched, so finishRound's correct/total cannot see spam.",
+    "The e.repeat guard on the Space keydown is correct and works.",
+    "The roundResults / isDone dot logic is correct. The current round's dot shows its pass/fail color only during the reveal phase.",
+    "Testing note, not a bug: the app uses hash routing. If page.goto is called with the same URL plus a hash, the page is not reloaded and add_init_script never runs, so the helpers must be injected with page.evaluate."
+  ],
+  "updated_files": ["/app/tests/dj_setup_snippet.py"],
+  "success_rate": {"backend": "N/A", "frontend": "80% (4/5 requested items pass; anti-spam fails)"},
+  "seed_data_creation": "None. Only localStorage progress and stickers in the test browser.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Setup: page.evaluate(open('/app/tests/dj_helpers.js').read()) after the page loads (init scripts don't run on a hash-only goto). Click [data-testid=audio-unlock-overlay]. Wait about 2.5s, then add_style_tag hiding [data-testid=tour-start-modal] and [data-testid=player-name-prompt]; the tour modal reappears even after its close button is clicked. Start a level with JS: document.querySelector('[data-testid=dj-turntable-difficulty-X]').click(). Spam test: a setTimeout loop dispatching Space keydown every 90+rand*200 ms. Baseline: Master spam 93/93, 1875 pts; Master genuine 103/103, 8001 pts. After a proper fix, spam should fail most rounds (red dots).",
+  "rca of the issue": "Reproduction: on Master, dispatch Space every 90-290ms for the whole session. Result: 93/93 on time, 3 stars, all green dots. Root cause: tolerance is ±220ms, so each note has a 440ms acceptance window, which is longer than the longest spam gap (290ms). A stray tap leaves the note open, so one of the next 2-4 spam taps always lands in the window and scores at least 'good'. Strays never reach tapResultsRef, so correct/total stays 100%. Fix: penalize accuracy, either by counting strays in the pass and accuracy math or by locking out or burning the next note after a stray."
+}

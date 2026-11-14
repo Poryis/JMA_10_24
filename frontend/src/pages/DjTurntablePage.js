@@ -257,9 +257,12 @@ export default function DjTurntablePage() {
         }
         scored = true;
       } else {
-        // Tapped well before the next note's window opens — a stray tap.
-        // The note itself stays open for a real attempt, but spamming taps
-        // shouldn't be a free way to win, so the streak breaks.
+        // Tapped outside the tolerance window (too early for this note).
+        // Burn the note as a miss instead of leaving it open — otherwise a
+        // spam of rapid taps could eventually land inside every note's
+        // window by chance, with zero timing skill required.
+        claimed.add(targetIdx);
+        tapResultsRef.current[targetIdx] = 'miss';
         stray = true;
       }
     }

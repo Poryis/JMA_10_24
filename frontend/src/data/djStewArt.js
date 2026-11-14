@@ -9,8 +9,18 @@ export const STAGE = { w: 3232, h: 2269 };
 export const PIECES = {
   body:               { x: 1001, y: 800,  w: 631, h: 802, file: `${A}body.png` },
   turntable_outline:  { x: 0,    y: 1237, w: 3232, h: 1032, file: `${A}turntable-outline.png` },
-  record_left:        { x: 199,  y: 1292, w: 772, h: 245, file: `${A}record-left.png` },
-  record_right:       { x: 1732, y: 1279, w: 803, h: 254, file: `${A}record-right.png` },
+  disc_left:          { x: 199,  y: 1292, w: 772, h: 245, file: `${A}disc-left.png` },
+  disc_right:         { x: 1732, y: 1279, w: 803, h: 254, file: `${A}disc-right.png` },
+  // 4-frame glint cycle per turntable — toggling these fakes the spin
+  // instead of literally rotating the (perspective-angled) disc artwork.
+  spin_left_1:        { x: 321,  y: 1438, w: 210, h: 64, file: `${A}spin-left-1.png` },
+  spin_left_2:        { x: 281,  y: 1314, w: 211, h: 64, file: `${A}spin-left-2.png` },
+  spin_left_3:        { x: 675,  y: 1316, w: 211, h: 63, file: `${A}spin-left-3.png` },
+  spin_left_4:        { x: 674,  y: 1438, w: 212, h: 64, file: `${A}spin-left-4.png` },
+  spin_right_1:       { x: 1858, y: 1430, w: 220, h: 66, file: `${A}spin-right-1.png` },
+  spin_right_2:       { x: 1817, y: 1302, w: 219, h: 66, file: `${A}spin-right-2.png` },
+  spin_right_3:       { x: 2228, y: 1303, w: 219, h: 66, file: `${A}spin-right-3.png` },
+  spin_right_4:       { x: 2228, y: 1431, w: 219, h: 65, file: `${A}spin-right-4.png` },
   needle_left:        { x: 2197, y: 1337, w: 338, h: 165, file: `${A}needle-left.png` },
   needle_right:       { x: 115,  y: 1346, w: 338, h: 165, file: `${A}needle-right.png` },
   drum_off:           { x: 958,  y: 1264, w: 796, h: 319, file: `${A}drum-machine-off.png` },

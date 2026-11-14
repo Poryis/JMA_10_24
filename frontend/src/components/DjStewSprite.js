@@ -24,6 +24,7 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className 
   const [scratching, setScratching] = useState(false);
   const [pressFrame, setPressFrame] = useState(0); // 0 idle, 1-3 button-press poses
   const [drumFlash, setDrumFlash] = useState(0);
+  const [spinFrame, setSpinFrame] = useState(1); // 1-4, cycles the glint overlay
   const scratchTimer = useRef(null);
   const pressTimer = useRef(null);
 
@@ -32,6 +33,24 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className 
   useEffect(() => {
     Object.values(PIECES).forEach((p) => { const img = new Image(); img.src = p.file; });
   }, []);
+
+  // The record art is drawn at a perspective angle, so literally rotating it
+  // looks like a flat sticker spinning in place. Real 2D animators fake a
+  // spinning disc by cycling a few highlight/glint frames instead — same
+  // trick used here (goes faster while actively scratching).
+  useEffect(() => {
+    let alive = true;
+    let frame = 1;
+    let timer;
+    const tick = () => {
+      if (!alive) return;
+      setSpinFrame(frame);
+      frame = (frame % 4) + 1;
+      timer = setTimeout(tick, scratching ? 90 : 220);
+    };
+    tick();
+    return () => { alive = false; clearTimeout(timer); };
+  }, [scratching]);
 
   // Blink at a random interval — feels alive without being distracting.
   useEffect(() => {
@@ -99,24 +118,10 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className 
 
         <Piece id="turntable_outline" style={{ zIndex: 4 }} />
 
-        <motion.img
-          src={PIECES.record_left.file}
-          alt=""
-          draggable={false}
-          className="absolute object-contain pointer-events-none select-none"
-          style={{ ...pct(PIECES.record_left), zIndex: 5 }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: scratching ? 0.5 : 3.6, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.img
-          src={PIECES.record_right.file}
-          alt=""
-          draggable={false}
-          className="absolute object-contain pointer-events-none select-none"
-          style={{ ...pct(PIECES.record_right), zIndex: 5 }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 3.6, repeat: Infinity, ease: 'linear' }}
-        />
+        <Piece id="disc_left" style={{ zIndex: 5 }} />
+        <Piece id={`spin_left_${spinFrame}`} style={{ zIndex: 5, opacity: 0.85 }} />
+        <Piece id="disc_right" style={{ zIndex: 5 }} />
+        <Piece id={`spin_right_${spinFrame}`} style={{ zIndex: 5, opacity: 0.85 }} />
 
         <motion.img
           src={PIECES.needle_left.file}

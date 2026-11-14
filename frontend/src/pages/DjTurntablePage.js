@@ -1,11 +1,10 @@
-// DJ Stew's Turntable — sight-reading rhythm game. Read the notation, tap
-// the turntable in time, and your scratches land right on the backing beat.
-//
-// Round flow mirrors Boom Garden's proven Copy Cat loop (demo → count-in →
-// input → reveal), reusing the same rhythms.js data model and tolerance
-// tiers, but the backing track is a real looping boom-bap beat (kick/snare/
-// hi-hat) running continuously on the SAME beat clock as the notation, so a
-// kid who scratches on time is actually playing in the pocket of the song.
+// DJ Stew's Turntable — Guitar-Hero-style sight-reading rhythm game.
+// Notation scrolls continuously toward a strike line (ScrollingRhythmStrip,
+// the same engine as Who's Got the Rhythm's Tap Trail); the kid scratches
+// the turntable as each note crosses it. Each round chains several TRAIL
+// phrases back-to-back so the scroll never stops mid-round, and a boom-bap
+// backing loop runs underneath on the same beat clock the whole time, so a
+// kid who scratches on time is genuinely playing in the pocket of the song.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { Disc3, Trophy, Play, RotateCcw, Star } from 'lucide-react';
 import { GameHeader, FeedbackPopup } from '../components/GameUI';
 import Confetti from '../components/Confetti';
-import RhythmStrip from '../components/RhythmStrip';
+import ScrollingRhythmStrip from '../components/ScrollingRhythmStrip';
 import CountInOverlay from '../components/CountInOverlay';
 import DjStewSprite from '../components/DjStewSprite';
 import useAudio from '../hooks/useAudio';
@@ -21,13 +20,21 @@ import { reportGameWin } from '../lib/lessonHelperReward';
 import { earnAchievement, earnAchievementUpTo, earnSticker } from '../hooks/useStickers';
 import { say } from '../lib/voice';
 import {
-  PATTERNS, DIFFICULTIES, BEAT_MS, TOLERANCE_MS,
+  TRAIL_PATTERNS, DIFFICULTIES, BEAT_MS, TOLERANCE_MS,
   patternBeats, noteStartTimes, ROUNDS_PER_SESSION,
 } from '../data/rhythms';
 
-function randomPattern(level) {
-  const pool = PATTERNS[level] || PATTERNS.cadet;
-  return pool[Math.floor(Math.random() * pool.length)];
+// Each round chains this many TRAIL phrases back-to-back, unbroken, so the
+// highway keeps flowing like one continuous run instead of a single bar.
+const PHRASES_PER_ROUND = 2;
+
+function randomRun(level) {
+  const pool = TRAIL_PATTERNS[level] || TRAIL_PATTERNS.cadet;
+  const run = [];
+  for (let i = 0; i < PHRASES_PER_ROUND; i++) {
+    run.push(...pool[Math.floor(Math.random() * pool.length)]);
+  }
+  return run;
 }
 
 // One bar of boom-bap in eighth-note slots (0-7). Hi-hat on the off-beats,
@@ -37,16 +44,17 @@ const SNARE_SLOTS = new Set([2, 6]);
 const HIHAT_SLOTS = new Set([1, 3, 5, 7]);
 const BEAT_TICK_SLOTS = new Set([0, 2, 4, 6]); // quarter-beats, for the sprite
 
+const COUNT_IN_BEATS = ScrollingRhythmStrip.COUNT_IN_BEATS;
+
 export default function DjTurntablePage() {
   const navigate = useNavigate();
   const { playDrumSound, playCountInBeep, playFeedbackSound, initAudioContext } = useAudio();
 
   const [screen, setScreen] = useState('menu'); // menu | playing | session-complete
   const [level, setLevel] = useState('cadet');
-  const [phase, setPhase] = useState('demo'); // demo | countin | input | reveal
+  const [phase, setPhase] = useState('countin'); // countin | input | reveal
   const [pattern, setPattern] = useState([]);
-  const [highlightIndex, setHighlightIndex] = useState(-1);
-  const [hitStates, setHitStates] = useState([]);
+  const [roundKey, setRoundKey] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [currentRound, setCurrentRound] = useState(1);
@@ -103,17 +111,14 @@ export default function DjTurntablePage() {
     const pat = patternRef.current;
     const results = tapResultsRef.current;
     const playable = pat.map((k, i) => (k !== 'rest' ? i : null)).filter((i) => i !== null);
-    const hits = pat.map((k, i) => (k === 'rest' ? undefined : (results[i] && results[i] !== 'miss' ? 'perfect' : 'miss')));
     const correct = playable.filter((i) => results[i] && results[i] !== 'miss').length;
     const total = playable.length;
     sessionTallyRef.current.correct += correct;
     sessionTallyRef.current.total += total;
-    setHitStates(hits);
-    setHighlightIndex(-1);
     setMetronomeRunning(false);
     setPhase('reveal');
 
-    const passed = correct >= Math.max(1, Math.ceil(total * 0.8));
+    const passed = correct >= Math.max(1, Math.ceil(total * 0.7));
     if (passed) {
       setScore((s) => s + 100);
       setStreak((s) => s + 1);
@@ -153,63 +158,41 @@ export default function DjTurntablePage() {
   const startRound = useCallback(() => {
     initAudioContext();
     clearTimeouts();
-    const pat = randomPattern(level);
+    const pat = randomRun(level);
     setPattern(pat);
     patternRef.current = pat;
     claimedRef.current = new Set();
     tapResultsRef.current = {};
-    setHitStates([]);
-    setHighlightIndex(-1);
-    setPhase('demo');
+    setRoundKey((k) => k + 1);
+    setPhase('countin');
 
     // Backing loop starts now and runs uninterrupted through the whole round.
     scheduleBackingLoop();
 
+    const countInMs = COUNT_IN_BEATS * BEAT_MS;
     const totalBeats = patternBeats(pat);
-    const starts = noteStartTimes(pat, BEAT_MS);
-    // Demo: Stew scratches the pattern himself while the strip highlights it.
-    pat.forEach((key, i) => {
-      const t = setTimeout(() => {
-        setHighlightIndex(i);
-        if (key !== 'rest') {
-          setScratchTick((s) => s + 1);
-          playDrumSound(i % 2 === 0 ? 'scratchPush' : 'scratchPull');
-        }
-      }, starts[i]);
+    for (let b = 0; b < COUNT_IN_BEATS; b++) {
+      const isLast = b === COUNT_IN_BEATS - 1;
+      const t = setTimeout(() => playCountInBeep(isLast), b * BEAT_MS);
       timeoutsRef.current.push(t);
-    });
+    }
+    setMetronomeStartMs(Date.now());
+    setMetronomeRunning(true);
+    const stopT = setTimeout(() => setMetronomeRunning(false), (COUNT_IN_BEATS + 0.5) * BEAT_MS);
+    timeoutsRef.current.push(stopT);
 
-    const demoMs = totalBeats * BEAT_MS;
-    const countInMs = 4 * BEAT_MS;
-    const countIn = setTimeout(() => {
-      setPhase('countin');
-      setHighlightIndex(-1);
-      for (let b = 0; b < 4; b++) {
-        const isLast = b === 3;
-        const t = setTimeout(() => playCountInBeep(isLast), b * BEAT_MS);
-        timeoutsRef.current.push(t);
-      }
-      setMetronomeStartMs(Date.now());
-      setMetronomeRunning(true);
-      const stopT = setTimeout(() => setMetronomeRunning(false), 4.5 * BEAT_MS);
-      timeoutsRef.current.push(stopT);
-      inputStartRef.current = Date.now();
-      expectedStartsRef.current = starts.map((t) => t + countInMs);
-    }, demoMs);
-    timeoutsRef.current.push(countIn);
+    // Open the tap window now so anticipatory taps on the last count-in beat
+    // land within tolerance of beat 1 of the run.
+    inputStartRef.current = Date.now();
+    expectedStartsRef.current = noteStartTimes(pat, BEAT_MS).map((t) => t + countInMs);
 
     const handoff = setTimeout(() => {
       setPhase('input');
-      // Visual-only playhead so the strip keeps moving through the input phase.
-      pat.forEach((key, i) => {
-        const t = setTimeout(() => setHighlightIndex(i), starts[i]);
-        timeoutsRef.current.push(t);
-      });
-      const failsafe = setTimeout(() => finishRoundRef.current?.(), totalBeats * BEAT_MS + 1000);
+      const failsafe = setTimeout(() => finishRoundRef.current?.(), totalBeats * BEAT_MS + 800);
       timeoutsRef.current.push(failsafe);
-    }, demoMs + countInMs);
+    }, countInMs);
     timeoutsRef.current.push(handoff);
-  }, [level, initAudioContext, clearTimeouts, scheduleBackingLoop, playDrumSound, playCountInBeep]);
+  }, [level, initAudioContext, clearTimeouts, scheduleBackingLoop, playCountInBeep]);
   const startRoundRef = useRef(null);
   useEffect(() => { startRoundRef.current = startRound; }, [startRound]);
 
@@ -245,8 +228,9 @@ export default function DjTurntablePage() {
     const base = tier === 'perfect' ? 25 : tier === 'great' ? 15 : 10;
     setScore((s) => s + Math.round(base * mult));
     setStreak((s) => s + 1);
-    setHighlightIndex(targetIdx);
     setScratchTick((s) => s + 1);
+    setFeedback(tier);
+    timeoutsRef.current.push(setTimeout(() => setFeedback(null), 350));
     const scratchSound = tier === 'perfect' && streakRef.current >= 5
       ? 'scratchPushPull'
       : (targetIdx % 2 === 0 ? 'scratchPush' : 'scratchPull');
@@ -286,7 +270,7 @@ export default function DjTurntablePage() {
           DJ Stew&apos;s Turntable
         </motion.h1>
         <p className="text-base md:text-lg font-bold mb-4 text-center text-white">
-          Read the rhythm. Scratch it back. Stay in the pocket!
+          Read the rhythm as it rolls by. Scratch it right on the beat!
         </p>
 
         <div className="w-full max-w-sm mb-4">
@@ -297,10 +281,10 @@ export default function DjTurntablePage() {
           <Disc3 className="w-8 h-8 mx-auto mb-2" style={{ color: '#AF52DE' }} />
           <h2 className="text-lg font-bold mb-2 font-display">How to Play</h2>
           <p className="text-sm md:text-base" style={{ color: 'var(--jma-dark)' }}>
-            1. Watch Stew scratch the rhythm on the staff<br />
-            2. A beat drops in behind him<br />
-            3. Tap the turntable in the same rhythm — right on his beat!<br />
-            4. Clear 5 rounds to win the session.
+            1. Notes roll in from the right, just like a song<br />
+            2. Tap the turntable the instant each note hits the gold line<br />
+            3. A real beat plays underneath — stay in the pocket!<br />
+            4. Clear 5 runs to win the session.
           </p>
         </div>
 
@@ -402,19 +386,18 @@ export default function DjTurntablePage() {
           data-testid="dj-turntable-phase"
           className="inline-block px-3 py-1 rounded-full text-xs md:text-sm font-black border-2 mb-3"
           style={{
-            backgroundColor: phase === 'demo' ? '#34A853' : phase === 'reveal' ? 'var(--jma-purple)' : 'var(--jma-yellow)',
-            color: phase === 'demo' || phase === 'reveal' ? 'white' : 'var(--jma-dark)',
+            backgroundColor: phase === 'reveal' ? 'var(--jma-purple)' : 'var(--jma-yellow)',
+            color: phase === 'reveal' ? 'white' : 'var(--jma-dark)',
             borderColor: 'var(--jma-dark)',
           }}
         >
-          {phase === 'demo' && 'Watch Stew scratch it'}
           {phase === 'countin' && 'Get ready...'}
-          {phase === 'input' && 'Your turn — scratch it back!'}
-          {phase === 'reveal' && 'Round complete!'}
+          {phase === 'input' && 'Scratch it as it rolls in!'}
+          {phase === 'reveal' && 'Run complete!'}
         </div>
 
-        <div className="w-full max-w-sm mb-2">
-          <RhythmStrip pattern={pattern} highlightIndex={highlightIndex} hitStates={hitStates} height={88} testIdPrefix="dj-turntable-block" testId="dj-turntable-strip" />
+        <div className="w-full max-w-2xl mb-2">
+          <ScrollingRhythmStrip key={roundKey} pattern={pattern} kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'} beatMs={BEAT_MS} />
         </div>
 
         {phase === 'countin' && (

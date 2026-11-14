@@ -1,0 +1,31 @@
+{
+  "summary": "Frontend-only retest of the DJ Stew's Turntable fixes (iteration 3), run with Playwright on the public URL at desktop 1920x1080 and mobile 375x812. A helper script reads React refs through the fiber tree (pattern, expected note times, input start, claimed notes), so taps could be timed exactly to the note and every phase change logged with timestamps. (1) Tapping works all three ways. Clicking the Stew sprite, the strip or the empty area inside dj-turntable-tap-target, and pressing Space all registered PERFECT and raised the score. The page did not scroll (scrollY stayed 0). (2) The feedback popup sits in its own fixed slot between the phase badge and the strip. Desktop: popup y=206-234, phase badge bottom 186, strip top 242, sprite top 528. Mobile: popup 91x28 at y=162, badge bottom 150, strip top 190, sprite top 440, no horizontal overflow (scrollWidth 375). The strip and sprite never moved when the popup appeared or disappeared, and the popup never overlaps Stew. (3) Wing vs drum: in 6.0s of play there were 8 drum-machine-on flashes and 2 left-wing presses, which is the expected 1 press per 4 beats. (4) Sparkles appeared only from streak 5 onward: 8 perfects in a row gave 4 sparkles (sparkle-1..4). (5) Round advance: 32 rounds across 7 sessions, and none got stuck. Six sessions ran to the end screen: Cadet all-perfect (63/63), Play Again with Cadet tapping every other note (34/64), Pro with no taps (0/88), Change Level then Master with random spam taps through count-in and reveal (89/89), a fresh-profile Cadet round 1 to round 2, and leaving mid-round via #/ then re-entering and starting Pro. Every round followed count-in 3.0s, input 11.5-17.4s, reveal 2.6s; no phase ever lasted more than 20s, and session-complete always appeared right after round 5. I could not reproduce the hang. (6) The backing-beat variety was checked by reading the code (3 BOOM_BAP_PATTERNS rotated by barIndex), not by listening. No crashes or audio errors across 32 rounds. Play Again and Change Level work. The only console error was the known 'two children with the same key' React warning on initial app load, already noted in iterations 79 and 80.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DjTurntablePage handleScratchTap", "issue": "Spamming taps wins every round. A tap that lands before the tolerance window returns with no penalty, so random taps every ~90-290ms (Space or pointer) scored 89/89 'on time' on MASTER and earned the Master achievement and rank-up. Holding Space has the same effect, because auto-repeat keydown events are not filtered (no e.repeat check).", "selector": "[data-testid=dj-turntable-tap-target]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Playing - round dots", "issues": ["A round dot turns green when the round ends even if the round was failed (e.g. Pro with no taps, 0/88, still showed all green dots). There is no pass/fail difference."]},
+      {"screen": "Playing - mobile 375px", "issues": ["The DJ booth art looks slightly off-centre to the left (turntable spans about x=12-305 on a 375px screen). Minor."]}
+    ]
+  },
+  "test_report_links": ["/app/tests/dj_helpers.js", "/app/tests/dj_session_runner.py"],
+  "action_items": [
+    "Stop tap spamming from auto-winning: penalise or count stray taps that hit no note window (e.g. break the streak / count a miss when a tap lands more than tol before the next note), and ignore repeated keydown events with `if (e.repeat) return;` in the Space listener.",
+    "Optional: show failed rounds as red (or another colour) in the round dots instead of always green."
+  ],
+  "critical_code_review_comments": [
+    "Round lifecycle looks solid. The roundEndedRef guard, the early finish once all notes are claimed, and the failsafe timer behaved correctly across 32 rounds. finishRound's closure over currentRound is safe because it is always called through finishRoundRef, which is refreshed every render.",
+    "The Space keydown listener has no e.repeat guard (see action items). It also calls preventDefault on every Space press while screen is 'playing', which is fine, but if a GameHeader button has focus, Space will no longer activate it.",
+    "The same streak state counts both per-note hit streaks and per-round passes (finishRound adds +1 streak on pass), so the multiplier and sparkle threshold get an extra bump from round passes. Probably harmless but semantically mixed.",
+    "The startSession setTimeout(…, 50) is not added to timeoutsRef, so it is not cleared on unmount. Harmless now because startRoundRef would just update unmounted state."
+  ],
+  "updated_files": ["/app/tests/dj_helpers.js", "/app/tests/dj_session_runner.py"],
+  "success_rate": {"backend": "N/A", "frontend": "100% of requested fixes verified (1 additional MEDIUM game-design issue: tap spamming)"},
+  "seed_data_creation": "None. Only localStorage in the ephemeral test browser was touched (name prompt skipped, achievements earned).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Use /app/tests/dj_helpers.js via page.add_init_script. It provides window.__djRefs() (reads pat/exp/start/claimed from DjTurntablePage hooks through the React fiber; exp = the last numeric-array ref), window.__nextNoteDelay(), and an auto-player window.__djAuto.mode = 'all'|'half'|'none' that dispatches Space keydown at the exact note times. window.__djLog holds phase transitions with timestamps; window.__djFx counts wing presses, drum flashes and sparkle testids. Overlays: set localStorage jma_player_name_skipped_v1=1, click audio-unlock-overlay, close tour-start-modal-close with JS; on mobile also click orientation-dismiss. A session takes about 92s on Cadet and more on Master, so a browser_automation call can fit 2 sessions."
+}

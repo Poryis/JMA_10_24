@@ -70,6 +70,7 @@ export default function DjTurntablePage() {
   const [beatTick, setBeatTick] = useState(0);
   const [downbeatTick, setDownbeatTick] = useState(0);
   const [sparkles, setSparkles] = useState([]);
+  const [roundResults, setRoundResults] = useState([]);
   const sparkleIdRef = useRef(0);
 
   const timeoutsRef = useRef([]);
@@ -130,6 +131,7 @@ export default function DjTurntablePage() {
     setPhase('reveal');
 
     const passed = correct >= Math.max(1, Math.ceil(total * 0.7));
+    setRoundResults((prev) => { const next = [...prev]; next[currentRound - 1] = passed; return next; });
     if (passed) {
       setScore((s) => s + 100);
       setStreak((s) => s + 1);
@@ -228,6 +230,7 @@ export default function DjTurntablePage() {
     }
 
     let scored = false;
+    let stray = false;
     if (targetIdx !== -1) {
       const diff = Math.abs(tapTime - expectedStarts[targetIdx]);
       if (diff <= tol) {
@@ -253,11 +256,16 @@ export default function DjTurntablePage() {
           timeoutsRef.current.push(setTimeout(() => setSparkles((prev) => prev.filter((s) => s.id !== id)), 900));
         }
         scored = true;
+      } else {
+        // Tapped well before the next note's window opens — a stray tap.
+        // The note itself stays open for a real attempt, but spamming taps
+        // shouldn't be a free way to win, so the streak breaks.
+        stray = true;
       }
     }
 
-    if (autoMissed) { setStreak(0); playFeedbackSound('miss'); }
-    if (!scored && !autoMissed) return; // too early — leave the note open for a real attempt
+    if (autoMissed || stray) { setStreak(0); playFeedbackSound('miss'); }
+    if (!scored && !autoMissed && !stray) return; // nothing to do — leave notes open
 
     // Finish the round the instant every note is accounted for, instead of
     // only relying on a parallel timer (which could drift out of sync).
@@ -277,6 +285,7 @@ export default function DjTurntablePage() {
   useEffect(() => {
     if (screen !== 'playing') return undefined;
     const onKeyDown = (e) => {
+      if (e.repeat) return;
       if (e.code === 'Space' || e.key === ' ') {
         e.preventDefault();
         handleScratchTap();
@@ -294,6 +303,7 @@ export default function DjTurntablePage() {
     setCurrentRound(1);
     setPhase('countin');
     setPattern([]);
+    setRoundResults([]);
     sessionTallyRef.current = { correct: 0, total: 0 };
     setScreen('playing');
     setTimeout(() => startRoundRef.current?.(), 50);
@@ -413,18 +423,21 @@ export default function DjTurntablePage() {
 
       <main className="flex-1 flex flex-col items-center pt-24 md:pt-28 lg:pt-32 pb-6 px-3">
         <div className="flex items-center justify-center gap-2 mb-2" data-testid="dj-turntable-round-dots">
-          {Array.from({ length: ROUNDS_PER_SESSION }).map((_, i) => (
-            <div
-              key={i}
-              className="rounded-full border-2"
-              style={{
-                width: 18, height: 18,
-                backgroundColor: i + 1 < currentRound || (i + 1 === currentRound && phase === 'reveal')
-                  ? '#34A853' : i + 1 === currentRound ? '#FFCC00' : 'rgba(255,255,255,0.35)',
-                borderColor: '#0A2540',
-              }}
-            />
-          ))}
+          {Array.from({ length: ROUNDS_PER_SESSION }).map((_, i) => {
+            const result = roundResults[i]; // true=pass, false=fail, undefined=not reached
+            const isDone = i + 1 < currentRound || (i + 1 === currentRound && phase === 'reveal' && result !== undefined);
+            const color = isDone
+              ? (result ? '#34A853' : '#FF3B30')
+              : i + 1 === currentRound ? '#FFCC00' : 'rgba(255,255,255,0.35)';
+            return (
+              <div
+                key={i}
+                data-testid={`dj-turntable-round-dot-${i + 1}`}
+                className="rounded-full border-2"
+                style={{ width: 18, height: 18, backgroundColor: color, borderColor: '#0A2540' }}
+              />
+            );
+          })}
         </div>
 
         <div

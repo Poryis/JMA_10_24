@@ -27,6 +27,12 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, className 
   const scratchTimer = useRef(null);
   const pressTimer = useRef(null);
 
+  // Preload every pose frame once so wing/eye swaps never show a blank
+  // flash while the browser fetches a PNG it hasn't needed yet.
+  useEffect(() => {
+    Object.values(PIECES).forEach((p) => { const img = new Image(); img.src = p.file; });
+  }, []);
+
   // Blink at a random interval — feels alive without being distracting.
   useEffect(() => {
     let alive = true;

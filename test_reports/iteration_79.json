@@ -1,0 +1,36 @@
+{
+  "summary": "Frontend-only test of the new DJ Stew's Turntable game (/#/dj-turntable), using Playwright at desktop 1920x1080 and mobile 390x844. A page-side auto-tapper (/app/test_reports/dj_init.js) read the notation strip and tapped on each note. With it, full 5-round sessions finished at Cadet (14/14, 3 stars, 1313 pts; and 16/16 on mobile) and at Master (30/30, 2513 pts). The 'dj_stew_scratch' sticker was written to localStorage and shows as 'Scratch Master' in Sticker Book > Fun Milestones. Also checked: the phase badge cycles demo -> countin -> input -> reveal; the no-tap failsafe shows 'Round complete!' and a MISS popup that clears in about 0.5s; round dots advance; mistimed and mashed taps cause no crash; Play Again restarts at the same level with score 0; Change Level opens the menu; Home goes to '/', which RootGate redirects to /academy; the BACK pill goes to /campus?zone=play and all timers/audio stop after leaving; the campus building opens /dj-turntable when unlocked. The sprite renders as one positioned character (448x314 desktop) on every navigation and difficulty change, with no giant-stack regression. No page errors. One main bug found: the backing beat does not loop continuously.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DjTurntablePage.scheduleBackingLoop", "issue": "The backing loop's delay grows each bar, so whole bars go silent. Line 92 chains `setTimeout(() => scheduleBackingLoop(startDelayMs + 8*eighth), startDelayMs + 8*eighth)`. The recursive call gets an ABSOLUTE offset, but it runs RELATIVE to the time the chain timer fires, so the delay compounds: bars start at t=0, 6000, 15000, 27000ms... instead of 0, 3000, 6000, 9000. I measured this by hooking AudioBufferSourceNode.start. Cadet/Pro (4-beat): the demo bar has drums, the whole count-in bar has NO drums, the input bar has drums. Master (8-beat): the second half of the demo has no drums, and the whole 6s input phase has no backing beat (drums only come back at t=15000, during reveal). This breaks the core requirement that scratches line up with a continuous beat.", "selector": "n/a (audio scheduling)", "priority": "HIGH"},
+      {"component": "GameHeader subtitle pill vs round dots (desktop)", "issue": "At 1920x1080 the level pill (CADET/PRO/MASTER) from GameHeader sits on top of round dots 2-3, so players can't see their progress. Mobile 390px is fine.", "selector": "[data-testid=dj-turntable-round-dots]", "priority": "MEDIUM"},
+      {"component": "RhythmStrip reveal tint", "issue": "In the reveal, only 'perfect' hits turn green. 'great' and 'good' hits keep the default colour and look the same as notes that were never played. Hits are also not tinted live during input (hitStates is only set in finishRound). The 'green = hit' feedback the brief expects only shows for perfect hits, and only after the round.", "selector": "[data-testid^=dj-turntable-block-]", "priority": "LOW"},
+      {"component": "DjStewSprite pose images", "issue": "The wing pose PNGs (wing-right-scratch, wing-left-press1-3) are not preloaded. The first src swaps abort their requests (net::ERR_ABORTED in the network log), which can briefly show a blank or missing wing on the first scratches and beats.", "selector": "[data-testid=dj-stew-sprite]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "DJ Turntable playing (desktop 1920x1080)", "issues": ["All content fits in the top ~420px. The sprite is capped at max-w-md (448px), leaving the bottom ~60% of the screen empty. Consider a larger max width for the sprite and strip on desktop, or centring vertically."]},
+      {"screen": "Campus PLAY street", "issues": ["The DJ Stew's Turntable building has starter:false, so for a fresh profile it is locked ('Earn 1 badge to open') and tapping it goes to /academy?panel=class. This matches other non-starter games. Confirm it is intended; the brief implied it opens directly."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/dj_init.js"],
+  "action_items": [
+    "HIGH: Fix the scheduleBackingLoop chaining (DjTurntablePage.js line 92). Use a relative delay, e.g. `const next = setTimeout(() => scheduleBackingLoop(0), startDelayMs + 8 * eighth);`. Better: compute every bar from a fixed round-start timestamp, so drift does not build up and the drums stay locked to inputStartRef/expectedStarts.",
+    "MEDIUM: Increase top padding of <main> on the playing screen (e.g. md:pt-28) or move the round dots, so the GameHeader level pill no longer covers them on desktop.",
+    "LOW: Tint 'great'/'good' hits green in the reveal (RhythmStrip only checks for 'perfect'), and optionally update hitStates live during input.",
+    "LOW: Preload all DjStewSprite pose images, or render every pose and toggle opacity, to avoid blank-wing flashes and aborted requests."
+  ],
+  "critical_code_review_comments": [
+    "scheduleBackingLoop: compounding absolute delay in the recursive setTimeout (see the HIGH item). Chained setTimeout also drifts; consider scheduling against AudioContext.currentTime.",
+    "finishRound: the celebration and feedback setTimeouts (lines 119 and 133) are not added to timeoutsRef, so they can fire after unmount. Harmless in React 18, but inconsistent.",
+    "The streak badge shows the raw streak count as 'Nx' (e.g. '5x'), while the real score multiplier is 1/1.5/2/3. Kids may read it as a 5x multiplier. This comes from the shared GameHeader, not this page.",
+    "A 'two children with the same key' React warning appears once on initial app load (desktop). It was also seen when the app was first loaded on the campus page, so it is likely pre-existing, but the source was not identified."
+  ],
+  "updated_files": ["/app/test_reports/dj_init.js (test helper only, no app code changed)"],
+  "success_rate": {"backend": "N/A", "frontend": "88% (all flows pass; continuous backing beat fails)"},
+  "seed_data_creation": "None. Tests ran in fresh browser contexts and set the localStorage flags jma_player_name_skipped_v1, jma_unlock_all_v1, jma_reveal_seen_v1 and jma_stickers_v1 only inside those contexts.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Use /app/test_reports/dj_init.js via page.add_init_script(path=...). It auto-dismisses the name prompt, logs AudioBufferSourceNode.start times to window.__srcStarts, logs phase changes to window.__phaseLog, and auto-taps the pattern on 'Get ready...'. Set window.__totalBeats=8 for Master and window.__autoTap=false for no-tap rounds. Overlays to close: audio-unlock-overlay, then tour-start-modal-close (it appears even when the name prompt is skipped). To unlock the campus building, set localStorage jma_unlock_all_v1=1. Session timing: Cadet/Pro about 63s, Master about 93s. To verify the backing-loop fix, check that __srcStarts shows hits every ~375ms with no 3s gaps through the count-in and input phases."
+}

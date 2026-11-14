@@ -78,7 +78,9 @@ export default function DjTurntablePage() {
 
   // ---- Backing boom-bap loop — runs continuously on the same beat clock
   // as the notation, so an on-time scratch really is on-time with the song.
-  const scheduleBackingLoop = useCallback((startDelayMs) => {
+  // Each bar is scheduled relative to the moment IT starts (not an
+  // ever-growing absolute offset), so the loop never drifts or drops bars.
+  const scheduleBackingLoop = useCallback(() => {
     const eighth = BEAT_MS / 2;
     for (let slot = 0; slot < 8; slot++) {
       const t = setTimeout(() => {
@@ -86,10 +88,10 @@ export default function DjTurntablePage() {
         if (SNARE_SLOTS.has(slot)) playDrumSound('snare');
         if (HIHAT_SLOTS.has(slot)) playDrumSound('hihat');
         if (BEAT_TICK_SLOTS.has(slot)) setBeatTick((b) => b + 1);
-      }, startDelayMs + slot * eighth);
+      }, slot * eighth);
       timeoutsRef.current.push(t);
     }
-    const next = setTimeout(() => scheduleBackingLoop(startDelayMs + 8 * eighth), startDelayMs + 8 * eighth);
+    const next = setTimeout(() => scheduleBackingLoop(), 8 * eighth);
     timeoutsRef.current.push(next);
   }, [playDrumSound]);
 
@@ -101,7 +103,7 @@ export default function DjTurntablePage() {
     const pat = patternRef.current;
     const results = tapResultsRef.current;
     const playable = pat.map((k, i) => (k !== 'rest' ? i : null)).filter((i) => i !== null);
-    const hits = pat.map((k, i) => (k === 'rest' ? undefined : (results[i] || 'miss')));
+    const hits = pat.map((k, i) => (k === 'rest' ? undefined : (results[i] && results[i] !== 'miss' ? 'perfect' : 'miss')));
     const correct = playable.filter((i) => results[i] && results[i] !== 'miss').length;
     const total = playable.length;
     sessionTallyRef.current.correct += correct;
@@ -116,7 +118,7 @@ export default function DjTurntablePage() {
       setScore((s) => s + 100);
       setStreak((s) => s + 1);
       setShowCelebration(true);
-      setTimeout(() => setShowCelebration(false), 1800);
+      timeoutsRef.current.push(setTimeout(() => setShowCelebration(false), 1800));
       setFeedback('perfect');
       reportGameWin();
       say('stew.perfect');
@@ -130,7 +132,7 @@ export default function DjTurntablePage() {
       setFeedback('miss');
       say('stew.miss');
     }
-    setTimeout(() => setFeedback(null), 500);
+    timeoutsRef.current.push(setTimeout(() => setFeedback(null), 500));
 
     const isLastRound = currentRound >= ROUNDS_PER_SESSION;
     const next = setTimeout(() => {
@@ -161,7 +163,7 @@ export default function DjTurntablePage() {
     setPhase('demo');
 
     // Backing loop starts now and runs uninterrupted through the whole round.
-    scheduleBackingLoop(0);
+    scheduleBackingLoop();
 
     const totalBeats = patternBeats(pat);
     const starts = noteStartTimes(pat, BEAT_MS);
@@ -380,7 +382,7 @@ export default function DjTurntablePage() {
       <GameHeader title="DJ Stew's Turntable" subtitle={levelInfo.label} score={score} streak={streak} showHomeButton={true} backTo="/campus?zone=play" />
       <AnimatePresence>{feedback && <FeedbackPopup feedback={feedback} />}</AnimatePresence>
 
-      <main className="flex-1 flex flex-col items-center pt-20 md:pt-20 pb-6 px-3">
+      <main className="flex-1 flex flex-col items-center pt-24 md:pt-28 lg:pt-32 pb-6 px-3">
         <div className="flex items-center justify-center gap-2 mb-2" data-testid="dj-turntable-round-dots">
           {Array.from({ length: ROUNDS_PER_SESSION }).map((_, i) => (
             <div

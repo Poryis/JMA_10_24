@@ -671,6 +671,17 @@ Beta tester (Rose) feedback pass + a new Live channel. Respond in English.
 - Script generator: node frontend/scripts/voiceScript.mjs → /app/memory/voice_script.md, /app/memory/voice_script_charlie.md, public/voice-script-charlie.md
 - Charlie guitar licks: riffs/guitar/gl-NN.mp3 (63MB wav → 1.8MB). Pools in lib/avatarRiffs.js POOLS (metal→classic/captain, funky→disco, surf, punk, boris→zoot, cucina→pinstripes, reggae, zebra=all tagged, unused(10,11,12,13,15,19,28)→rundmc/studio/steampunk, 18→secret dolphin). Excluded 08,14,38. Drum Major/Graduate still riffs/charlie.mp3. Academy coral guitar → playAcademyLick (random any lick, no repeats)
 
+## DJ Stew's Turntable — new standalone game (Nov 2026)
+- User provided a layered PSD (body/head/eyes-blink/beak, 2 turntables+needles+faders, drum machine, right wing idle/scratch/push poses, left wing idle/3 button-press poses). Exported via psd-tools (/app/memory/dj_stew_psd/export*.py) to frontend/public/assets/dj-stew/*.png + manifest.json (per-piece x/y/w/h relative to a 3232x2269 stage)
+- User choices (ask_human): lives in PLAY campus street; backing track = built-in boom-bap loops sequenced from existing drum samples (no new audio); scratches must musically line up with the backing beat
+- data/djStewArt.js: STAGE + PIECES position data + pct() helper. components/DjStewSprite.js: layered scene (breathing, random blink, spinning records, wing swap on scratchTick prop, left-wing press + drum-machine flash on beatTick prop), all pose PNGs preloaded on mount
+- pages/DjTurntablePage.js: reuses Boom Garden's proven Copy Cat round architecture (demo→countin→input→reveal, 5 rounds) and data/rhythms.js (PATTERNS/DIFFICULTIES/BEAT_MS/TOLERANCE_MS/noteStartTimes) unmodified. New: scheduleBackingLoop schedules one bar (8 eighth-slots, kick/snare/hihat boom-bap pattern) relative to when that bar starts (not an absolute offset) so the loop runs continuously and never drifts/drops bars — this is the bug the testing agent caught and we fixed (prior version compounded the delay each bar)
+- Route /dj-turntable in App.js; campus.js building id='dj-turntable' zone='play' (starter:false, locked until 1 badge earned, matches other non-starter games); new milestone sticker 'dj_stew_scratch' ("Scratch Master") in stickers.js, awarded at >=70% session accuracy; also feeds the existing 'rhythm' achievement domain
+- Campus building icon generated (isometric kiosk matching existing style) + composited with Stew's head onto the sign: frontend/public/assets/campus/dj-turntable.png
+- Known bug found+fixed by testing_agent (iteration_79): backing loop silent gaps from compounding setTimeout delay — fixed by always recursing with a relative (not absolute) offset
+- Low-priority fixes also applied: reveal tint now shows green for great/good hits too (not just perfect); all sprite pose PNGs preloaded on mount to avoid blank-wing flashes
+- Tested: iteration_79 (88% initially, HIGH bug fixed + re-verified via audio-timing hook: max gap 385ms ≈ expected 375ms eighth-note interval, no more multi-second silent gaps)
+
 ## Voice recordings imported (Nov 2026)
 - public/assets/voice/<id>.mp3 (mono 96k, -16 LUFS, trimmed). Importer: /app/memory/import_voice.py (take choices + Doc 07 timestamps), transcriber: /app/memory/transcribe.py (whisper-1, Emergent key)
 - Charlie: 67/69 recorded (missing perfect.3, quest.q_jmatv). New charlie.go.3. Texts in voiceLines.js updated to match takes

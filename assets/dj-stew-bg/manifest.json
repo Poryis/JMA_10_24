@@ -1,0 +1,120 @@
+{
+  "stage": {
+    "w": 5016,
+    "h": 2823
+  },
+  "pieces": {
+    "neon-purple-tiled-dance-room": {
+      "x": 4,
+      "y": 2,
+      "w": 5008,
+      "h": 2819,
+      "orig_name": "Neon Purple Tiled Dance Room"
+    },
+    "behind-the-note-accents-to-make-the-note-pop-out-of-wall": {
+      "x": 0,
+      "y": 229,
+      "w": 5010,
+      "h": 1248,
+      "orig_name": "behind the note accents to make the note pop out of wall"
+    },
+    "tied-eighth-notes-decoration": {
+      "x": 297,
+      "y": 589,
+      "w": 476,
+      "h": 544,
+      "orig_name": "tied eighth notes decoration"
+    },
+    "tied-eighth-notes-decoration-copy": {
+      "x": 4195,
+      "y": 518,
+      "w": 476,
+      "h": 544,
+      "orig_name": "tied eighth notes decoration copy"
+    },
+    "stage": {
+      "x": 1922,
+      "y": 1847,
+      "w": 1564,
+      "h": 387,
+      "orig_name": "stage"
+    },
+    "random-accents-without-a-home-layer-8": {
+      "x": 1552,
+      "y": 2041,
+      "w": 206,
+      "h": 236,
+      "orig_name": "Layer 8"
+    },
+    "random-accents-without-a-home-layer-7": {
+      "x": 1550,
+      "y": 2541,
+      "w": 149,
+      "h": 185,
+      "orig_name": "Layer 7"
+    },
+    "random-accents-without-a-home-layer-6": {
+      "x": 1146,
+      "y": 2188,
+      "w": 404,
+      "h": 407,
+      "orig_name": "Layer 6"
+    },
+    "random-accents-without-a-home-layer-5": {
+      "x": 849,
+      "y": 2210,
+      "w": 265,
+      "h": 455,
+      "orig_name": "Layer 5"
+    },
+    "equalizer-bars-copy": {
+      "x": 4348,
+      "y": 1596,
+      "w": 624,
+      "h": 390,
+      "orig_name": "equalizer bars copy"
+    },
+    "equalizer-bars-copy-2": {
+      "x": 5,
+      "y": 1622,
+      "w": 626,
+      "h": 397,
+      "orig_name": "equalizer bars copy 2"
+    },
+    "disco-ball": {
+      "x": 2413,
+      "y": -25,
+      "w": 568,
+      "h": 778,
+      "orig_name": "disco ball"
+    },
+    "sign": {
+      "x": 1891,
+      "y": -34,
+      "w": 1447,
+      "h": 954,
+      "orig_name": "sign"
+    },
+    "speaker": {
+      "x": 625,
+      "y": 991,
+      "w": 854,
+      "h": 1172,
+      "orig_name": "speaker"
+    },
+    "speaker-copy": {
+      "x": 3584,
+      "y": 956,
+      "w": 849,
+      "h": 1165,
+      "orig_name": "speaker copy"
+    },
+    "light-scaffolding": {
+      "x": 566,
+      "y": -556,
+      "w": 4105,
+      "h": 911,
+      "orig_name": "light scaffolding"
+    }
+  }
+}

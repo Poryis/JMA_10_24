@@ -1,0 +1,74 @@
+{
+ "hole": {
+  "left": 47.47,
+  "top": 28.52,
+  "width": 16.67,
+  "height": 38.67
+ },
+ "chalkboard": {
+  "left": 4.73,
+  "top": 18.88,
+  "width": 27.84,
+  "height": 45.57
+ },
+ "chalk-doodles": {
+  "left": 7.66,
+  "top": 27.41,
+  "width": 21.25,
+  "height": 30.27
+ },
+ "shield": {
+  "left": 77.0,
+  "top": 11.52,
+  "width": 19.19,
+  "height": 39.58
+ },
+ "lectern": {
+  "left": 32.45,
+  "top": 48.57,
+  "width": 11.5,
+  "height": 24.48
+ },
+ "book": {
+  "left": 32.05,
+  "top": 42.84,
+  "width": 11.79,
+  "height": 16.86
+ },
+ "harp": {
+  "left": 0.0,
+  "top": 57.94,
+  "width": 14.62,
+  "height": 37.89
+ },
+ "trumpet": {
+  "left": 19.08,
+  "top": 64.71,
+  "width": 11.9,
+  "height": 13.22
+ },
+ "lantern-left": {
+  "left": 34.29,
+  "top": 24.93,
+  "width": 3.88,
+  "height": 17.64
+ },
+ "lantern-right": {
+  "left": 73.74,
+  "top": 24.93,
+  "width": 3.88,
+  "height": 17.64
+ },
+ "art-station": {
+  "left": 69.27,
+  "top": 49.67,
+  "width": 23.99,
+  "height": 36.33
+ },
+ "guitar": {
+  "left": 86.63,
+  "top": 49.35,
+  "width": 13.22,
+  "height": 44.79
+ }
+}

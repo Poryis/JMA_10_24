@@ -503,19 +503,19 @@ export default function DjTurntablePage() {
           tabIndex={0}
           aria-label="Scratch the turntable"
           onPointerDown={onScratchDown}
-          className="w-full flex flex-col items-center relative cursor-pointer"
+          className="dj-turntable-tap-target w-full flex flex-col items-center relative cursor-pointer"
           style={{ touchAction: 'none' }}
         >
-          <div className="w-full max-w-2xl mb-2">
+          <div className="dj-turntable-strip-wrap w-full max-w-2xl mb-2">
             <ScrollingRhythmStrip key={roundKey} pattern={pattern} kickOff={phase === 'countin' || phase === 'input' || phase === 'reveal'} beatMs={BEAT_MS} />
+
+            <div style={{ opacity: phase === 'countin' ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none' }}>
+              <CountInOverlay running={metronomeRunning} startAtMs={metronomeStartMs} beatMs={BEAT_MS} />
+            </div>
           </div>
 
-          <div style={{ opacity: phase === 'countin' ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none' }}>
-            <CountInOverlay running={metronomeRunning} startAtMs={metronomeStartMs} beatMs={BEAT_MS} />
-          </div>
-
-          <div className="w-full max-w-md relative">
-            <DjStewSprite scratchTick={scratchTick} beatTick={beatTick} downbeatTick={downbeatTick} />
+          <div className="dj-turntable-stew-wrap w-full max-w-md relative">
+            <DjStewSprite scratchTick={scratchTick} beatTick={beatTick} downbeatTick={downbeatTick && phase === 'input' ? downbeatTick : 0} />
             {sparkles.map((s) => (
               <div key={s.id} className="pointer-events-none absolute inset-0 flex items-center justify-center z-20">
                 <Confetti count={14} size={180} testId={`dj-turntable-sparkle-${s.id}`} />

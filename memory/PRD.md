@@ -40,6 +40,16 @@ backing loops synced to the notated rhythm.
 - **DJ Stew's Turntable beat variety**: expanded `BOOM_BAP_PATTERNS` from 3 to 6 — 3
   boom-bap variants, 1 disco (four-on-the-floor kick + hat on the upbeats), and 2
   dancehall riddims (one-drop, stepper) — all still rotating bar-to-bar.
+- **DJ Stew's Turntable groove-per-round fix**: the backing beat used to switch pattern
+  every single bar/measure (jarring mid-round). Now one groove is picked randomly per
+  ROUND and held fixed for every bar of that round; it only changes when the next round
+  starts (avoids repeating the same groove twice in a row).
+- **Campus map building art**: DJ Stew's Turntable icon replaced twice — final version
+  is the user-supplied "Mirrored DJ Turntable Storefront" art (correct building-facing
+  direction matching the rest of the street), with its baked-in checkerboard
+  "transparency" chroma-keyed out and cropped to a near-square ~1:1 content box so it
+  renders at a comparable size to the other street buildings (object-contain in a square
+  slot was shrinking the old 4:3 art).
 
 All of the above verified via testing_agent (iteration_85, iteration_86 — both passed,
 only optional/low-priority suggestions which have now been addressed) and manual

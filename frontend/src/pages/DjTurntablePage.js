@@ -105,9 +105,13 @@ export default function DjTurntablePage() {
   // as the notation, so an on-time scratch really is on-time with the song.
   // Each bar is scheduled relative to the moment IT starts (not an
   // ever-growing absolute offset), so the loop never drifts or drops bars.
-  const scheduleBackingLoop = useCallback((barIndex = 0) => {
+  // The whole round sticks to ONE groove (picked in startRound) — it only
+  // changes when a new round begins, never mid-round.
+  const roundPatternRef = useRef(BOOM_BAP_PATTERNS[0]);
+  const lastPatternIdxRef = useRef(-1);
+  const scheduleBackingLoop = useCallback(() => {
     const eighth = BEAT_MS / 2;
-    const bar = BOOM_BAP_PATTERNS[barIndex % BOOM_BAP_PATTERNS.length];
+    const bar = roundPatternRef.current;
     for (let slot = 0; slot < 8; slot++) {
       const t = setTimeout(() => {
         if (bar.kick.has(slot)) playDrumSound('kick');
@@ -118,7 +122,7 @@ export default function DjTurntablePage() {
       }, slot * eighth);
       timeoutsRef.current.push(t);
     }
-    const next = setTimeout(() => scheduleBackingLoop(barIndex + 1), 8 * eighth);
+    const next = setTimeout(() => scheduleBackingLoop(), 8 * eighth);
     timeoutsRef.current.push(next);
   }, [playDrumSound]);
 
@@ -193,6 +197,15 @@ export default function DjTurntablePage() {
     tapResultsRef.current = {};
     setRoundKey((k) => k + 1);
     setPhase('countin');
+
+    // Pick this round's groove once — it stays locked in for every bar of
+    // the round and only changes when the next round starts.
+    let idx = Math.floor(Math.random() * BOOM_BAP_PATTERNS.length);
+    if (BOOM_BAP_PATTERNS.length > 1 && idx === lastPatternIdxRef.current) {
+      idx = (idx + 1) % BOOM_BAP_PATTERNS.length;
+    }
+    lastPatternIdxRef.current = idx;
+    roundPatternRef.current = BOOM_BAP_PATTERNS[idx];
 
     // Backing loop starts now and runs uninterrupted through the whole round.
     scheduleBackingLoop();

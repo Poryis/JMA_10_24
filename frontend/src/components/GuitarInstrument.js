@@ -538,7 +538,13 @@ export default function GuitarInstrument({ getAudioGraph, initAudioContext, onPl
     const onKeyDown = (e) => {
       if (e.repeat) return;
       const k = e.key.toLowerCase();
-      if (e.code === 'Space') { e.preventDefault(); if (modeRef.current === 'notes') applyBend(true); return; }
+      if (e.code === 'Space') {
+        const tag = (e.target?.tagName || '').toLowerCase();
+        if (tag === 'button' || tag === 'input' || tag === 'textarea' || e.target?.isContentEditable) return;
+        e.preventDefault();
+        if (modeRef.current === 'notes') applyBend(true);
+        return;
+      }
       if (k === 'q') { setTone('clean'); return; }
       if (k === 'w') { setTone('crunch'); return; }
       if (k === 'z') { setMode('chords'); return; }

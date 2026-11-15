@@ -54,7 +54,9 @@ export function playRiff(id, outfit, vol = 0.8, { overlap = false } = {}) {
     playing = [];
   }
   r.forEach(([file, delay]) => setTimeout(() => {
-    const a = new Audio(encodeURI(A + file) + '?v=2'); a.volume = vol; playing.push(a); a.play().catch(() => {});
+    const a = new Audio(encodeURI(A + file) + '?v=2'); a.volume = vol; playing.push(a);
+    a.addEventListener('ended', () => { playing = playing.filter((x) => x !== a); });
+    a.play().catch(() => {});
   }, delay));
 }
 

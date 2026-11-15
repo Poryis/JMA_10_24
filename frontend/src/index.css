@@ -1202,6 +1202,11 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 700px) and (min-height: 521px) {
   .rank-hall-actions { left: auto !important; right: 2% !important; transform: none !important; bottom: 22% !important; flex-direction: column !important; align-items: flex-end !important; gap: 8px !important; }
 }
+/* Main Stage on narrow portrait phones: let the row wrap instead of overflowing the viewport */
+@media (max-width: 480px) {
+  .rank-hall-actions { flex-wrap: wrap !important; white-space: normal !important; max-width: 94vw; gap: 4px !important; }
+  .rank-hall-actions button { padding: 4px 8px !important; font-size: 10px !important; }
+}
 
 
 

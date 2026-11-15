@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only test of 5 tweaks plus a DJ Turntable regression check. ALL PASS. (1) Campus Play Street order, read from DOM getBoundingClientRect left-to-right: jelly-jukebox, stew-kazoo, bandstand(Main Stage), shred-legend, dj-turntable, note-match, detective-jellybone, sight-reading, robot-boogie. No horizontal overlap between building boxes in the play, learn or create zones at 1920x1080, and screenshots look clean. (2) Shred City: in Notes mode, holding '1' then Spacebar ramps the playbackRate to 1.1892 (C/A, the next pentatonic note), the same value as holding B. The BEND bar turns yellow. Releasing Space ramps back to 1.0. Page scrollY stayed at 0. In Chords mode Space does nothing. (3) Main Stage at 1600x900: the 5 buttons stack vertically, right-aligned at about x=1568, y=469 to 702. Same at 768x1024 tablet. I hooked window.Audio: tapping finn, then jazzy, then stew left all 3 riff Audio elements playing (paused=false, currentTime still going up). The control path (tapping the YOU avatar, no overlap) still pauses the earlier ones as intended. (4) Stew Kazoo Says: the level-clear voice stew.correct.3.mp3 has volume 0.65, and the miss voice stew.miss.2.mp3 has volume 0.65. Kazoo notes use WebAudio buffers (no Audio element is created), so they are unaffected. (5) DJ Turntable regression: the wing stays idle for the 3s count-in, then cycles press1, press2, press3, press1 at 3s intervals. At 844x390 the tap-target is row-reverse, Stew is at x=12 (210x147) fully visible, scrollHeight is 390.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "RankHallPage action row (portrait phone 390x844)", "issue": "Probably existed before this change; the new CSS block does not apply here. The centered single row uses whitespace-nowrap and overflows the 390px viewport: TAKE A BOW! is clipped on the left and My Achievement Book is cut off on the right.", "selector": ".rank-hall-actions", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: let the Main Stage action row wrap or scroll on portrait phones (390 wide) so TAKE A BOW! and My Achievement Book are not clipped.",
+    "Optional: in GuitarInstrument's onKeyDown, skip the Space preventDefault when e.target is a button, input or textarea, so keyboard users can still press Space to activate a focused button while the guitar is mounted.",
+    "Optional: avatarRiffs.js 'playing' array only grows in overlap mode, because finished Audio elements are never removed. Drop each element on 'ended', or cap the list.",
+    "Optional consistency fix: DjTurntablePage.js:156 say('stew.miss') still uses the default 0.95 volume. Consider 0.65 to match Simon Says if the same loudness complaint applies."
+  ],
+  "critical_code_review_comments": [
+    "GuitarInstrument: the Space keydown calls preventDefault unconditionally, in any mode and whatever element has focus.",
+    "avatarRiffs.playRiff overlap: no limit on how many lick Audio elements can stack up; a kid spamming taps can layer many licks at once.",
+    "Note for testers, not a bug: voice.js KUDOS_GAP_MS=15000 suppresses stew.miss/stew.correct if another kudos line played in the last 15s. A miss right after a level-clear produces no voice, by design."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "HashRouter: after page.goto to a hash route, call page.reload() or the add_init_script hooks and localStorage won't apply. Close the modals with [data-testid=audio-unlock-overlay], [data-testid=tour-start-modal-close], and the 'I'll add my name later' text or [data-testid=player-name-skip]. The tour modal still appears even with the jma_tour_v1 seed. Audio can be checked by wrapping window.Audio in an init script that pushes each instance to window.__aud. Guitar bend can be checked by wrapping AudioParam.prototype.linearRampToValueAtTime. Crowd testids on Main Stage: band-member-{finn,chunk,jazzy,charlie,lou,stew,doctor}."
+}

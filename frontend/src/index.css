@@ -10,6 +10,19 @@
   font-display: swap;
 }
 
+
+/* DJ Stew's Turntable — animated neon-club background */
+@keyframes djbg-disco-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes djbg-disco-sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes djbg-note-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6%) rotate(4deg); } }
+@keyframes djbg-twinkle { 0%, 100% { opacity: 0.5; transform: scale(0.82) rotate(0deg); } 50% { opacity: 1; transform: scale(1.18) rotate(18deg); } }
+@keyframes djbg-stage-glow { 0%, 100% { filter: brightness(1) saturate(1); } 50% { filter: brightness(1.4) saturate(1.25); } }
+@keyframes djbg-sign-flicker { 0%, 46%, 100% { opacity: 1; filter: brightness(1); } 48% { opacity: 0.82; filter: brightness(0.8); } 50% { opacity: 1; filter: brightness(1.2); } }
+@keyframes djbg-speaker-thump { 0%, 100% { transform: scale(1); } 18% { transform: scale(1.035); } 36% { transform: scale(1); } }
+@keyframes djbg-eq-bounce-a { 0%, 100% { transform: scaleY(0.8); } 25% { transform: scaleY(1.08); } 50% { transform: scaleY(0.88); } 75% { transform: scaleY(1); } }
+@keyframes djbg-eq-bounce-b { 0%, 100% { transform: scaleY(1); } 30% { transform: scaleY(0.82); } 55% { transform: scaleY(1.1); } 80% { transform: scaleY(0.9); } }
+@keyframes djbg-lightning-flicker { 0%, 84%, 88%, 100% { opacity: 1; } 86% { opacity: 0.25; } }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -44,6 +44,13 @@ backing loops synced to the notated rhythm.
   every single bar/measure (jarring mid-round). Now one groove is picked randomly per
   ROUND and held fixed for every bar of that round; it only changes when the next round
   starts (avoids repeating the same groove twice in a row).
+- **DJ Stew's Turntable animated background**: replaced the flat purple gradient with a
+  full neon-club scene built from the user's "bg kit" PSD (extracted to
+  `/app/frontend/public/assets/dj-stew-bg/`) — tiled dance floor, glowing center stage,
+  two speakers that thump on the beat tempo, bouncing cyan EQ bars on both walls, a
+  disco ball that spins + sways, a flickering neon sign, musical-note wall art, and
+  floor sparkles/lightning/star accents — all via `DjStewBackground.js` (new component)
+  + CSS keyframes in `index.css`. Used across menu, playing, and session-complete screens.
 - **Campus map building art**: DJ Stew's Turntable icon replaced twice — final version
   is the user-supplied "Mirrored DJ Turntable Storefront" art (correct building-facing
   direction matching the rest of the street), with its baked-in checkerboard

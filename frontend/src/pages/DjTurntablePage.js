@@ -15,6 +15,7 @@ import Confetti from '../components/Confetti';
 import ScrollingRhythmStrip from '../components/ScrollingRhythmStrip';
 import CountInOverlay from '../components/CountInOverlay';
 import DjStewSprite from '../components/DjStewSprite';
+import DjStewBackground from '../components/DjStewBackground';
 import useAudio from '../hooks/useAudio';
 import { reportGameWin } from '../lib/lessonHelperReward';
 import { earnAchievement, earnAchievementUpTo, earnSticker } from '../hooks/useStickers';
@@ -353,8 +354,8 @@ export default function DjTurntablePage() {
       <div
         data-testid="dj-turntable-menu"
         className="min-h-screen flex flex-col items-center justify-center jma-safe-center p-4 pt-20 md:pt-24 lg:pt-32 pb-8 relative"
-        style={{ background: 'radial-gradient(circle at 50% 0%, #3A2366 0%, #190E33 70%)' }}
       >
+        <DjStewBackground />
         <GameHeader showHomeButton={true} backTo="/campus?zone=play" />
         <motion.h1
           className="text-3xl md:text-5xl font-black mb-2 text-center font-display uppercase"
@@ -412,9 +413,9 @@ export default function DjTurntablePage() {
     return (
       <div
         data-testid="dj-turntable-complete"
-        className="min-h-screen flex items-center justify-center p-4"
-        style={{ background: 'radial-gradient(circle at 50% 0%, #3A2366 0%, #190E33 70%)' }}
+        className="min-h-screen flex items-center justify-center p-4 relative"
       >
+        <DjStewBackground />
         <Confetti count={48} size={420} mega={stars === 3} />
         <motion.div
           className="bg-white rounded-3xl border-4 p-6 max-w-md w-full text-center relative z-10"
@@ -455,8 +456,8 @@ export default function DjTurntablePage() {
     <div
       data-testid="dj-turntable-playing"
       className="min-h-screen flex flex-col relative"
-      style={{ background: 'radial-gradient(circle at 50% 0%, #3A2366 0%, #190E33 70%)' }}
     >
+      <DjStewBackground />
       <GameHeader title="DJ Stew's Turntable" subtitle={levelInfo.label} score={score} streak={streak} showHomeButton={true} backTo="/campus?zone=play" />
 
       <main className="flex-1 flex flex-col items-center pt-24 md:pt-28 lg:pt-32 pb-6 px-3">

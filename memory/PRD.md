@@ -21,7 +21,8 @@ backing loops synced to the notated rhythm.
     longer remount the whole page mid-session (was dropping players back to the menu).
 - **Campus map**: Play/Learn/Create street buildings reordered so Jelly Jukebox and Stew
   Kazoo Says are the first two on Play Street; all street building `size` values bumped
-  ~8% (Plaza untouched) — `data/campus.js`.
+  ~8% (Plaza untouched) — `data/campus.js`. DJ Stew's Turntable building icon replaced
+  with user-supplied "DJ Stew's Turntable Club.png" art.
 - **Shred City guitar**: Spacebar now also holds the string-bend (alongside the existing
   'B' key), gated to not fire when a button/input/textarea has focus — `GuitarInstrument.js`.
 - **Main Stage (`/rank-hall`)**:
@@ -34,6 +35,11 @@ backing loops synced to the notated rhythm.
     wraps instead of overflowing — `index.css`.
 - **Stew Kazoo Says (`/simon-says`)**: voice lines (`stew.correct`/`stew.perfect`/`stew.miss`)
   were much louder than kazoo SFX; lowered to `volume:0.65` to match kazoo loudness.
+- **DJ Stew's Turntable snare fix**: the 3rd boom-bap variant had its snare landing on
+  beat 3 instead of on beats 2 & 4; fixed to `snare: [2,6]` for all patterns.
+- **DJ Stew's Turntable beat variety**: expanded `BOOM_BAP_PATTERNS` from 3 to 6 — 3
+  boom-bap variants, 1 disco (four-on-the-floor kick + hat on the upbeats), and 2
+  dancehall riddims (one-drop, stepper) — all still rotating bar-to-bar.
 
 All of the above verified via testing_agent (iteration_85, iteration_86 — both passed,
 only optional/low-priority suggestions which have now been addressed) and manual

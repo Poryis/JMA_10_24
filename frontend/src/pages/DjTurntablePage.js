@@ -37,12 +37,20 @@ function randomRun(level) {
   return run;
 }
 
-// One bar of boom-bap in eighth-note slots (0-7). A small pool of variants
-// rotates bar-to-bar so the beat doesn't feel identical on every loop.
+// One bar of backing groove in eighth-note slots (0-7). A pool of variants rotates
+// bar-to-bar (boom-bap, disco, and a couple of dancehall riddims) so the beat never
+// feels identical loop after loop.
 const BOOM_BAP_PATTERNS = [
+  // Boom-bap (hip-hop) — snare always on 2 & 4
   { kick: new Set([0, 4, 5]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
   { kick: new Set([0, 3, 4]), snare: new Set([2, 6]), hihat: new Set([1, 2, 5, 6, 7]) },
   { kick: new Set([0, 3, 5]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
+  // Disco — four-on-the-floor kick, hat chops the upbeats
+  { kick: new Set([0, 2, 4, 6]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
+  // Dancehall one-drop — kick & snare land together on beat 3, hat chops the upbeats
+  { kick: new Set([4]), snare: new Set([4]), hihat: new Set([1, 3, 5, 7]) },
+  // Dancehall stepper — kick on every beat, hat doubles the kick instead of the offbeat
+  { kick: new Set([0, 2, 4, 6]), snare: new Set([2, 6]), hihat: new Set([0, 2, 4, 6]) },
 ];
 const BEAT_TICK_SLOTS = new Set([0, 2, 4, 6]); // quarter-beats, drives the drum-pad flash
 const DOWNBEAT_SLOT = 0; // once per bar — the left wing only presses here

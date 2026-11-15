@@ -278,7 +278,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
           // 🎹 Keyboard Scout achievements via Stew Kazoo Says level milestones
           if (level >= 1) earnAchievement('keyboard', 'cadet');
           reportQuestEvent('stew_level', { level });
-          say(level >= 4 ? 'stew.perfect' : 'stew.correct');
+          say(level >= 4 ? 'stew.perfect' : 'stew.correct', { volume: 0.65 });
           if (level >= 4) earnAchievementUpTo('keyboard', 'pro');
           if (level >= 8) earnAchievementUpTo('keyboard', 'master');
           if (level >= 8) {
@@ -322,7 +322,7 @@ function SimonSaysPage({ score, setScore, gameStats, setGameStats, resetGame }) 
       
       setFeedback('miss');
       playFeedbackSound('miss');
-      say('stew.miss');
+      say('stew.miss', { volume: 0.65 });
       setMessage('Oops! Try again!');
       setNeedHelp(true);
       setGameState('fail');

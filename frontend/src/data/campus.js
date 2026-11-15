@@ -13,25 +13,25 @@ export const CAMPUS_ZONES = [
 
 export const CAMPUS_BUILDINGS = [
   // PLAY
-  { id: 'bandstand',           zone: 'play',   name: 'Main Stage',           path: '/rank-hall',      art: 'assets/plaza/bandstand.png',          host: `${CH}charlie.png`,               starter: true,  size: 1.15, flat: true, custom: 'bandstand' },
-  { id: 'jelly-jukebox',       zone: 'play',   name: 'Jelly Jukebox',        path: '/rhythm-game',    art: 'assets/campus/jukebox-diner.png',     host: `${CH}jazzy.png`,                 starter: true,  size: 1.0 },
-  { id: 'shred-legend',        zone: 'play',   name: 'Shred City',           path: '/shred-legend',   art: 'assets/campus/shred-club.png',        host: `${CH}charlie-punk.png`,          starter: false, size: 1.0 },
-  { id: 'dj-turntable',        zone: 'play',   name: "DJ Stew's Turntable",  path: '/dj-turntable',   art: 'assets/campus/dj-turntable.png',      host: `${CH}stew.png`,                  starter: false, size: 1.0 },
-  { id: 'stew-kazoo',          zone: 'play',   name: 'Stew Kazoo Says',      path: '/simon-says',     art: 'assets/campus/stew-room-kazoo.png',         host: `${CH}stew.png`,                  starter: true,  size: 0.95 },
-  { id: 'note-match',          zone: 'play',   name: 'Note Match',           path: '/note-match',     art: 'assets/campus/note-match.png',        host: `${CH}sharky-hiphop.png`,         starter: false, size: 0.85 },
-  { id: 'detective-jellybone', zone: 'play',   name: "Dr. Jellybone's Office", path: '/detective',    art: 'assets/campus/detective-office.png',  host: `${CH}dr-jellybone-detective.png`, starter: true, size: 1.0 },
-  { id: 'sight-reading',       zone: 'play',   name: 'Sight-Reading Sprint', path: '/sight-reading',  art: 'assets/campus/sight-reading.png',     host: `${CH}finn-danger.png`,           starter: false, size: 0.9 },
-  { id: 'robot-boogie',        zone: 'play',   name: 'Robot Boogie',         path: '/robot-boogie',   art: 'assets/campus/robot-boogie.png',      host: 'assets/robot-boogie/robot1-card-hero.png', starter: false, size: 0.9 },
+  { id: 'jelly-jukebox',       zone: 'play',   name: 'Jelly Jukebox',        path: '/rhythm-game',    art: 'assets/campus/jukebox-diner.png',     host: `${CH}jazzy.png`,                 starter: true,  size: 1.08 },
+  { id: 'stew-kazoo',          zone: 'play',   name: 'Stew Kazoo Says',      path: '/simon-says',     art: 'assets/campus/stew-room-kazoo.png',         host: `${CH}stew.png`,                  starter: true,  size: 1.03 },
+  { id: 'bandstand',           zone: 'play',   name: 'Main Stage',           path: '/rank-hall',      art: 'assets/plaza/bandstand.png',          host: `${CH}charlie.png`,               starter: true,  size: 1.24, flat: true, custom: 'bandstand' },
+  { id: 'shred-legend',        zone: 'play',   name: 'Shred City',           path: '/shred-legend',   art: 'assets/campus/shred-club.png',        host: `${CH}charlie-punk.png`,          starter: false, size: 1.08 },
+  { id: 'dj-turntable',        zone: 'play',   name: "DJ Stew's Turntable",  path: '/dj-turntable',   art: 'assets/campus/dj-turntable.png',      host: `${CH}stew.png`,                  starter: false, size: 1.08 },
+  { id: 'note-match',          zone: 'play',   name: 'Note Match',           path: '/note-match',     art: 'assets/campus/note-match.png',        host: `${CH}sharky-hiphop.png`,         starter: false, size: 0.92 },
+  { id: 'detective-jellybone', zone: 'play',   name: "Dr. Jellybone's Office", path: '/detective',    art: 'assets/campus/detective-office.png',  host: `${CH}dr-jellybone-detective.png`, starter: true, size: 1.08 },
+  { id: 'sight-reading',       zone: 'play',   name: 'Sight-Reading Sprint', path: '/sight-reading',  art: 'assets/campus/sight-reading.png',     host: `${CH}finn-danger.png`,           starter: false, size: 0.97 },
+  { id: 'robot-boogie',        zone: 'play',   name: 'Robot Boogie',         path: '/robot-boogie',   art: 'assets/campus/robot-boogie.png',      host: 'assets/robot-boogie/robot1-card-hero.png', starter: false, size: 0.97 },
   // LEARN
-  { id: 'lessons',             zone: 'learn',  name: 'Music 101',            path: '/lessons',        art: 'assets/campus/music-101.png',         host: `${CH}charlie-grad.png`,          size: 1.0 },
-  { id: 'fun-facts',           zone: 'learn',  name: 'Fun Facts Clubhouse',  path: '/fun-facts',      art: 'assets/campus/fun-facts.png',         host: `${CH}stew.png`,                  size: 0.9 },
-  { id: 'boom-garden',         zone: 'learn',  name: "Who's Got the Rhythm", path: '/boom-garden',    art: 'assets/campus/football-field.png',    host: `${CH}chunk-marching.png`,        size: 1.05 },
-  { id: 'ear-quest',           zone: 'learn',  name: 'Ear Quest',            path: '/ear-trainer',    art: 'assets/campus/ear-quest.png',         host: `${CH}dr-jellybone.png`,          size: 0.9 },
-  { id: 'name-that-note',      zone: 'learn',  name: 'Name That Note',       path: '/name-that-note', art: 'assets/campus/name-that-note.png',    host: `${CH}finn-danger.png`,           size: 0.9 },
+  { id: 'lessons',             zone: 'learn',  name: 'Music 101',            path: '/lessons',        art: 'assets/campus/music-101.png',         host: `${CH}charlie-grad.png`,          size: 1.08 },
+  { id: 'fun-facts',           zone: 'learn',  name: 'Fun Facts Clubhouse',  path: '/fun-facts',      art: 'assets/campus/fun-facts.png',         host: `${CH}stew.png`,                  size: 0.97 },
+  { id: 'boom-garden',         zone: 'learn',  name: "Who's Got the Rhythm", path: '/boom-garden',    art: 'assets/campus/football-field.png',    host: `${CH}chunk-marching.png`,        size: 1.13 },
+  { id: 'ear-quest',           zone: 'learn',  name: 'Ear Quest',            path: '/ear-trainer',    art: 'assets/campus/ear-quest.png',         host: `${CH}dr-jellybone.png`,          size: 0.97 },
+  { id: 'name-that-note',      zone: 'learn',  name: 'Name That Note',       path: '/name-that-note', art: 'assets/campus/name-that-note.png',    host: `${CH}finn-danger.png`,           size: 0.97 },
   // CREATE
-  { id: 'beat-lab',            zone: 'create', name: 'Beat Lab',             path: '/loop-studio',    art: 'assets/campus/beat-lab.png',          host: `${CH}chunk.png`,                 size: 0.95 },
-  { id: 'jam-session',         zone: 'create', name: 'Jam Session',          path: '/free-play',      art: 'assets/campus/jam-session.png',       host: `${CH}jazzy-disco.png`,           size: 0.95 },
-  { id: 'song-studio',         zone: 'create', name: "Charlie's Song Studio", path: '/song-studio',   art: 'assets/campus/song-studio.png',       host: `${CH}charlie-studio.png`,        size: 1.0 },
+  { id: 'beat-lab',            zone: 'create', name: 'Beat Lab',             path: '/loop-studio',    art: 'assets/campus/beat-lab.png',          host: `${CH}chunk.png`,                 size: 1.03 },
+  { id: 'jam-session',         zone: 'create', name: 'Jam Session',          path: '/free-play',      art: 'assets/campus/jam-session.png',       host: `${CH}jazzy-disco.png`,           size: 1.03 },
+  { id: 'song-studio',         zone: 'create', name: "Charlie's Song Studio", path: '/song-studio',   art: 'assets/campus/song-studio.png',       host: `${CH}charlie-studio.png`,        size: 1.08 },
 ];
 
 // A quest route → the street/plaza URL that swims the kid into that game's door

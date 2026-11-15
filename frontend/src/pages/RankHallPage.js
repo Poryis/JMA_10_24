@@ -321,7 +321,7 @@ export default function RankHallPage() {
 
       {/* the band cheers from the pit */}
       <div className="absolute inset-x-0 bottom-0" style={{ height: '20%', zIndex: 7 }}>
-        <CrowdRow energy={energy} burstId={bow} shouts={shouts} extras={false} onTap={(m) => playRiff(m.who, m.outfit)} />
+        <CrowdRow energy={energy} burstId={bow} shouts={shouts} extras={false} onTap={(m) => playRiff(m.who, m.outfit, 0.8, { overlap: true })} />
       </div>
 
       {bow > 0 && <CrowdBurst key={`burst-${bow}`} id={bow} big={ovation} />}

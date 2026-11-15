@@ -43,12 +43,16 @@ export const pickLick = (key, pool) => {
 
 let playing = [];
 
-export function playRiff(id, outfit, vol = 0.8) {
+// `overlap: true` lets this riff play alongside whatever's already going (e.g. the
+// Main Stage crowd — tapping a second bandmate shouldn't cut off the first one's lick).
+export function playRiff(id, outfit, vol = 0.8, { overlap = false } = {}) {
   const key = `${id}-${outfit}`;
   let r = POOLS[key] ? [[pickLick(key, POOLS[key]), 0]] : OUTFIT_RIFFS.has(key) ? [[`riffs/${key}.mp3`, 0]] : RIFFS[id] || [[`riffs/${id}.mp3`, 0]];
   if (Array.isArray(r[0][0])) r = r[Math.floor(Math.random() * r.length)];
-  playing.forEach((a) => { try { a.pause(); } catch (_) { /* ignore */ } });
-  playing = [];
+  if (!overlap) {
+    playing.forEach((a) => { try { a.pause(); } catch (_) { /* ignore */ } });
+    playing = [];
+  }
   r.forEach(([file, delay]) => setTimeout(() => {
     const a = new Audio(encodeURI(A + file) + '?v=2'); a.volume = vol; playing.push(a); a.play().catch(() => {});
   }, delay));

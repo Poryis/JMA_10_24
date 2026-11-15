@@ -1197,6 +1197,12 @@ h1, h2, h3, h4, h5, h6 {
   .funfacts-scroller-pad { padding: var(--ff-pad-y, 26vh) 30vw; box-sizing: content-box; width: max-content; }
 }
 
+/* Main Stage: on roomy screens (desktop, tablets) the action buttons stack down the right wall
+   just like the short-landscape-phone layout above, instead of crowding the bottom-center. */
+@media (min-width: 700px) and (min-height: 521px) {
+  .rank-hall-actions { left: auto !important; right: 2% !important; transform: none !important; bottom: 22% !important; flex-direction: column !important; align-items: flex-end !important; gap: 8px !important; }
+}
+
 
 
 .marquee-bulb {

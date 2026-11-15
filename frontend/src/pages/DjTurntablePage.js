@@ -42,7 +42,7 @@ function randomRun(level) {
 const BOOM_BAP_PATTERNS = [
   { kick: new Set([0, 4, 5]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
   { kick: new Set([0, 3, 4]), snare: new Set([2, 6]), hihat: new Set([1, 2, 5, 6, 7]) },
-  { kick: new Set([0, 2, 5, 6]), snare: new Set([4]), hihat: new Set([1, 3, 5, 7]) },
+  { kick: new Set([0, 3, 5]), snare: new Set([2, 6]), hihat: new Set([1, 3, 5, 7]) },
 ];
 const BEAT_TICK_SLOTS = new Set([0, 2, 4, 6]); // quarter-beats, drives the drum-pad flash
 const DOWNBEAT_SLOT = 0; // once per bar — the left wing only presses here

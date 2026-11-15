@@ -27,6 +27,7 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, downbeatTi
   const [spinFrame, setSpinFrame] = useState(1); // 1-4, cycles the glint overlay
   const scratchTimer = useRef(null);
   const pressTimer = useRef(null);
+  const poseRef = useRef(0); // cycles 1-2-3 independent of the 0-reset timer below
 
   // Preload every pose frame once so wing/eye swaps never show a blank
   // flash while the browser fetches a PNG it hasn't needed yet.
@@ -89,7 +90,8 @@ export default function DjStewSprite({ scratchTick = 0, beatTick = 0, downbeatTi
 
   useEffect(() => {
     if (downbeatTick === 0) return;
-    setPressFrame((f) => (f % 3) + 1);
+    poseRef.current = (poseRef.current % 3) + 1;
+    setPressFrame(poseRef.current);
     clearTimeout(pressTimer.current);
     pressTimer.current = setTimeout(() => setPressFrame(0), 260);
     return () => clearTimeout(pressTimer.current);

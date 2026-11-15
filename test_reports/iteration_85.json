@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only test of DJ Stew's Turntable (/#/dj-turntable): wing timing fix, the new mobile-landscape layout, and a regression smoke test. I sampled the phase badge text and the left-wing image src every 20ms in the browser. (1) Count-in gating WORKS: the wing stayed on wing-left-idle.png for the whole 3s count-in. The first press came at t=3080ms, right when the phase changed to 'Scratch it as it rolls in!'. (2) Downbeat presses WORK: once per bar (every 3000ms), returning to idle after about 260-280ms. BUT the press pose never changes: every press was wing-left-press1.png, and press2/press3 never appeared. (3) Landscape 844x390 WORKS: tap-target is flex row-reverse, Stew is in the left column at [12,189,210x147] and fully visible, strip on the right at [234,148,598x230], dots and phase badge compact at the top, scrollHeight=390 (no overflow). Spacebar and tap-area clicks register. (4) Portrait 390x844 is unchanged: column layout, strip above Stew, no overflow. (5) A full 5-round Cadet session played in landscape reached the 'Set Complete!' screen with stars, confetti, and the Play Again / Change Level / Home buttons. GREAT and MISS feedback were seen. Found an extra issue: rotating the device mid-game (portrait 390x844 to landscape 896x414) unmounts the game and drops the player back to the difficulty menu.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DjStewSprite left wing press cycle", "issue": "Only press pose 1 is ever shown; press2 and press3 never appear. Root cause: line 92 sets setPressFrame((f) => (f % 3) + 1), but line 94's 260ms timer resets pressFrame to 0 before the next downbeat. So f is always 0 and the result is always 1. Fix: keep the cycle in a separate ref (e.g. poseRef.current = (poseRef.current % 3) + 1; setPressFrame(poseRef.current)).", "selector": "[data-testid=dj-stew-sprite] img[src*=wing-left]", "priority": "MEDIUM"},
+      {"component": "FitStage / orientation change mid-game", "issue": "Rotating portrait to landscape (390x844 to 896x414) during play resets the game to the difficulty menu, so the session is lost. Root cause: FitStage.js returns <>{children}</> when inactive but wraps the children in a div[data-testid=fit-stage] when active (short landscape). The tree shape changes, so React remounts the whole page. /dj-turntable is not in the EXCLUDED list. Fix: always render the same wrapper and just toggle the styles. Or, since DJ Turntable now has its own landscape CSS, add '/dj-turntable' to EXCLUDED (check that it still fits without scaling). This likely affects other non-excluded games too.", "selector": "[data-testid=fit-stage]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "DJ Turntable landscape 844x390", "issues": ["Stew's column is fairly small (210x147) and leaves empty space above him. Acceptable, but he could be larger if the height allows."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix the DjStewSprite wing pose cycle so press1, press2 and press3 rotate (use a ref counter that is not reset by the 260ms idle timeout).",
+    "Stop the game remounting on orientation change: make FitStage's render tree stable, or exclude /dj-turntable now that it has its own landscape layout."
+  ],
+  "critical_code_review_comments": [
+    "DjTurntablePage line 518: the gating works, but when phase becomes 'input' the prop jumps from 0 to the current downbeatTick value. That alone fires one press at the start of input, even when no new downbeat has happened. This matches the expected behaviour described in the request, but it is a side effect of the gating rather than a real downbeat.",
+    "The session-complete screen showed '0/62 on time' with 830 pts after I spam-tapped at 2x tempo. Stray taps are subtracted (strayCountRef), so this is consistent with the code. A score of 830 next to 0 correct may confuse players, though."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "85%"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Bypass the name prompt by setting the localStorage keys and then calling page.reload(): a hash-only goto does not remount. You can also click [data-testid=player-name-skip]. The wing pose can be checked by polling the src of [data-testid=dj-stew-sprite] img[src*=wing-left] every 20ms. A Cadet session lasts about 80s."
+}
